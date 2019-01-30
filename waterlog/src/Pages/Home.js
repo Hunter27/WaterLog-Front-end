@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 // import { BrouserRouter as Router, Route, Link } from "react-router-dom";
 
 

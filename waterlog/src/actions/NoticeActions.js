@@ -1,29 +1,30 @@
 import {FETCH_NOTICES, NEW_NOTICE} from './types';
-
-export function fetchNotices(){
-    return function(dispatch){ 
-        fetch('https://jsonplaceholder.typicode.com/posts')
-        .then(res => res.json())
-        .then(posts =>  dispatch({
-            type:FETCH_NOTICES,
-            payload:posts
-        }));
-    }
-}
-
-export function createNotice(postData){
-    return function(dispatch){  
-        fetch('https://jsonplaceholder.typicode.com/posts',{
-            method:'POST',
-            header:{
-                'content-type':'application/json'
-            },
-            body: JSON.stringify(postData)
+ 
+export const fetchNotices = () => dispatch => {
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then(res => res.json())
+      .then(notices =>
+        dispatch({
+          type: FETCH_NOTICES,
+          payload: notices
         })
-        .then(res => res.json())
-        .then(post =>dispatch({
-            type:NEW_NOTICE,
-            payload:post
-        }));
-    }
-}
+      );
+  };
+
+ 
+export const createNotice = postData => dispatch => {
+    fetch('https://jsonplaceholder.typicode.com/posts', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(postData)
+    })
+      .then(res => res.json())
+      .then(notice =>
+        dispatch({
+          type: NEW_NOTICE,
+          payload: notice
+        })
+      );
+  };

@@ -20,17 +20,17 @@ class NoticeForm extends Component {
   }
   onSubmit(e){
       e.preventDefault();
-      const post ={
+      const notice ={
           title: this.state.title,
           body:this.state.body
       }
       //call action
-      this.props.createNotice(post);
+      this.props.createNotice(notice);
   }    
   render() {
     return (
       <div>
-        <h1>Add Post</h1>
+        <h1>Add notice</h1>
         <form onSubmit ={this.onSubmit}>
             <div>
                 <label>Title:</label><br/>
@@ -39,7 +39,7 @@ class NoticeForm extends Component {
             <br/>
             <div>
                 <label>Body:</label><br/>
-                <textarea name="body"/>
+                <textarea name="body" onChange={this.onChange} value={this.state.body}/>
             </div>
             <br/>
             <button type="submit">submit</button>
