@@ -30,7 +30,7 @@ class NoticeForm extends Component {
   render() {
     return (
       <div>
-        <h1>Add notice</h1>
+        <h1>Set State</h1>
         <form onSubmit ={this.onSubmit}>
             <div>
                 <label>Title:</label><br/>

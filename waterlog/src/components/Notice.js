@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {fetchNotices} from '../actions/NoticeActions';
 import PropTypes from 'prop-types';
 
 
 class Notice extends Component {
  
-  componentDidMount(){
-    this.props.fetchNotices();
-  }
-  
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.newNotice) {
       this.props.notices.unshift(nextProps.newNotice);
@@ -25,7 +21,7 @@ class Notice extends Component {
     )); 
     return (
       <div> 
-        <p>THESE ARE THE ITEMS</p>
+        <p>Data From State:</p>
         {noticeItems}
       </div>
     )
@@ -42,4 +38,4 @@ const mapStateToProps= state =>({
   newNotice:state.notices.item
 });
 
-export default connect(mapStateToProps,{fetchNotices})(Notice);
+export default connect(mapStateToProps)(Notice);
