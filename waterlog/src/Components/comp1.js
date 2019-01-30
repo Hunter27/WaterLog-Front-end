@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link,  NavLink } from "react-router-dom";
 
 
 import AlertComponent from './../Pages/Alert';
@@ -14,22 +14,27 @@ export default class Comp1 extends Component {
         <div className="row">
             <div className="col-3">
                 <div className="list-group">
-                    <Link to="/" className="list-group-item list-group-item-action">
-                        <img src="./icon.ico" alt="'"/>
+                    <NavLink exact to="/" className="list-group-item list-group-item-action">
+                        <img src="images/home.png" alt="'" width="50" height="50"/>
                         Home
-                    </Link>
-                    <Link to="/alert" className="list-group-item list-group-item-action">
-                        <img src="waterlog/src/icon.ico" alt="'"/>
+                    </NavLink>
+
+                    <NavLink to="/alert" className="list-group-item list-group-item-action">
+                        <img src="images/alert.png" alt="'" width="50" height="50"/>
                         Alert
-                    </Link>
-                    <Link to="/map" className="list-group-item list-group-item-action">
-                        <img src="/" alt="'"/>
+                    </NavLink>
+
+                    <NavLink to="/map" className="list-group-item list-group-item-action">
+                        <img src="images/map.png" alt="'" width="50" height="50"/>
                         Map
-                    </Link>
-                    <Link to="/usage" className="list-group-item list-group-item-action">
-                        <img src="/" alt="'"/>
+                    </NavLink>
+
+                    <NavLink   to="/usage" 
+                            className="list-group-item list-group-item-action"    
+                    >
+                        <img src="images/usage.png" alt="'" width="50" height="50"/>
                         Usage
-                    </Link>
+                    </NavLink>
                     
                 </div>
             </div>
