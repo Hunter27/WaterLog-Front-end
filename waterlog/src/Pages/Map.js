@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
- // import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
-
 
 class MapComponent extends Component {
+
   render() {
     return (
-      <h1>Map</h1>
+      //displays the map
+      <div id="map">
+        This is the map  :=) 
+      </div>
+      
     );
   }
 }
