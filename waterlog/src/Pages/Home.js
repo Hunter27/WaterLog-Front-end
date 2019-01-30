@@ -6,7 +6,7 @@ import MiniMapComponent from './../Components/MiniMap';
 
 //Contains all the components in the home page
 
-class HomeComponent extends Component {
+class HomeComponent extends React.Component {
   render() {
     return (
       <div>
