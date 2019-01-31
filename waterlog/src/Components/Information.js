@@ -27,7 +27,6 @@ export default class InformationComponent extends Component {
 							<h6>Money lost</h6>
 							<p> R {this.state.moneyLost}</p>
 						</div>
-
 						<div className="text-center information">
 							<h6> Total water lost</h6>
 							<p> {this.state.waterLost} l/hour</p>
