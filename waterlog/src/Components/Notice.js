@@ -28,8 +28,7 @@ class Notice extends Component {
   }
 }
 
-Notice.propTypes={
-  fetchNotices: PropTypes.func.isRequired,
+Notice.propTypes={ 
   notices: PropTypes.array.isRequired,
   newNotice: PropTypes.object
 }
