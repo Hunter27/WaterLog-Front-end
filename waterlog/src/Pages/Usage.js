@@ -10,4 +10,3 @@ class UsageComponent extends Component {
 }
 
 export default UsageComponent;
-

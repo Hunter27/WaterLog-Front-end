@@ -22,12 +22,6 @@ export default class TankLevelsContainerComponent extends Component {
       name : 'Tank 3',
       percentage: 30
     }
-    ,
-    {
-      id : 4,
-      name : 'Tank 4',
-      percentage: 10
-    }
   ];
   
 
