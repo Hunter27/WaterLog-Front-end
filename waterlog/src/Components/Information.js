@@ -11,16 +11,15 @@ export default class InformationComponent extends Component {
 
 	constructor(props) {
 		super(props);
-
 		this.state = {
-			percentage: 0,
-			moneyLost: 0,
-			waterLost: 0
+			percentage: 47,
+			moneyLost: 7321.45,
+			waterLost: 985
 		};
 	}
 	render() {
 		return (
-			<div className="card bg-light container infomation p-2" style={{ marginTop: '15px', marginBottom: '15px' }}>
+			<div className="card bg-light container infomation p-2" style={{ borderRadius: 0, marginTop: '15px', marginBottom: '15px' }}>
 				<h5 className="card-title text-center">Wastage</h5>
 				<div className="card-body">
 					<div className="row">
@@ -28,7 +27,6 @@ export default class InformationComponent extends Component {
 							<h6>Money lost</h6>
 							<p> R {this.state.moneyLost}</p>
 						</div>
-
 						<div className="text-center information">
 							<h6> Total water lost</h6>
 							<p> {this.state.waterLost} l/hour</p>

@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, NavLink, Switch } from "react-router-dom";
 
 
-import AlertComponent from './../Pages/Alert';
-import HomeComponent from './../Pages/Home';
-import MapComponent from './../Pages/Map';
-import UsageComponent from './../Pages/Usage';
+import AlertComponent from '../Pages/Alert';
+import HomeComponent from '../Pages/Home';
+import MapComponent from '../Pages/Map';
+import UsageComponent from '../Pages/Usage';
 
-export default class Comp1 extends Component {
+export default class NavComponent extends Component {
   render() {
     return (
       <Router>
@@ -46,6 +46,7 @@ export default class Comp1 extends Component {
                     <Route path="/usage" component={UsageComponent} />
                     <Route path="*" component={HomeComponent} />
                 </Switch> 
+
             </div>
         </div>
         
