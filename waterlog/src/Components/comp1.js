@@ -43,6 +43,7 @@ export default class Comp1 extends Component {
                 <Route path="/alert" component={AlertComponent} />
                 <Route path="/map" component={MapComponent} />
                 <Route path="/usage" component={UsageComponent} />
+                <Route path="*" component={HomeComponent} />
             </div>
         </div>
         
