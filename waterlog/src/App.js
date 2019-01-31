@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.scss';
 
-import Comp1 from './Components/comp1';
+import NavComponent from './Components/NavComponent';
 import HeaderComponent from './Components/Header';
 
 class App extends Component {
@@ -9,7 +9,7 @@ class App extends Component {
     return (
       <div>
         <HeaderComponent />
-        <Comp1 />
+        <NavComponent />
       </div>
     );
   }
