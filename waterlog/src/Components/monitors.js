@@ -1,7 +1,7 @@
 import React, { Component } from 'react';	
 import './../Stylesheets/_monitors.scss';
 
-const APIUri = 'https://localhost:44382/api/monitors';
+const APIUri = 'http://iot.retrotest.co.za/api/monitors';
 
 
 
