@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link,  NavLink } from "react-router-dom";
+import { BrowserRouter as Router, Route, NavLink, Switch } from "react-router-dom";
 
 
 import AlertComponent from './../Pages/Alert';
@@ -39,10 +39,13 @@ export default class Comp1 extends Component {
                 </div>
             </div>
             <div className="col-8">
-                <Route exact path="/" component={HomeComponent} />
-                <Route path="/alert" component={AlertComponent} />
-                <Route path="/map" component={MapComponent} />
-                <Route path="/usage" component={UsageComponent} />
+                <Switch>
+                    <Route exact path="/" component={HomeComponent} />
+                    <Route path="/alert" component={AlertComponent} />
+                    <Route path="/map" component={MapComponent} />
+                    <Route path="/usage" component={UsageComponent} />
+                    <Route path="*" component={HomeComponent} />
+                </Switch> 
             </div>
         </div>
         
