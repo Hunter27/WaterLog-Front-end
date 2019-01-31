@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TankComponent from './Tank'
+import './../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 
 // Contains the tank levels that are displayed on the home page
@@ -34,14 +35,20 @@ export default class TankLevelsContainerComponent extends Component {
   
   render() {
     return (
-      <div style={{textAlign: 'center', border: '1px dashed grey', height: '400px', width: '100%'}}>
-        <h1>TANK LEVELS</h1>
-        { this.tankInfo.map(
-          tank => <TankComponent
-                    key={tank.id} 
-                    name={tank.name} 
-                    percentage={tank.percentage } />
-        )}
+      <div className="jumbotron container p-4"
+      style={{borderRadius: 0, textAlign: 'center', border: '1px dashed grey',minHeight:'400px',  width: '100%'}}>
+        <h3>TANK LEVELS</h3>
+        <div className="row">
+          { this.tankInfo.map(
+            tank => <div className="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                      <TankComponent
+                      key={tank.id} 
+                      name={tank.name} 
+                      percentage={tank.percentage } />
+                    </div>  
+          )}
+        </div>
+        
        
       </div>
     );

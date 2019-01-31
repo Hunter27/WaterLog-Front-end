@@ -3,18 +3,16 @@ import React, {Component} from 'react';
 
 import TankLevelsContainerComponent from './../Components/TankLevel';
 import MiniMapComponent from './../Components/MiniMap';
+import InformationComponent from '../Components/Information'
 
 //Contains all the components in the home page
 
-class HomeComponent extends React.Component {
+class HomeComponent extends Component {
   render() {
     return (
       <div>
         <TankLevelsContainerComponent />
-        <br />
-        Usage what what ...
-        <br />
-
+        <InformationComponent />
         <MiniMapComponent />
       </div>
     );
