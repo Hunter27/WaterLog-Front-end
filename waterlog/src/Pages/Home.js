@@ -7,7 +7,7 @@ import InformationComponent from '../Components/Information'
 
 //Contains all the components in the home page
 
-class HomeComponent extends Component {
+class HomeComponent extends React.Component {
   render() {
     return (
       <div>
