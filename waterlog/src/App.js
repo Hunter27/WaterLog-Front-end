@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.scss';
 
+
 import NavComponent from './Components/NavComponent';
 import HeaderComponent from './Components/Header';
 
