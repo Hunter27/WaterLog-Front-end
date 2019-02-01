@@ -12,7 +12,7 @@ class HomeComponent extends React.Component {
     return (
       <div>
         <TankLevelsContainerComponent />
-       <InformationComponent />
+        <InformationComponent />
         <MiniMapComponent />
       </div>
     );

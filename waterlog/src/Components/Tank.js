@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../tank.scss';
+import './../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 export default class TankComponent extends Component {
   

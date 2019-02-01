@@ -14,7 +14,7 @@ class Notice extends Component {
 
   render() {
     const noticeItems = this.props.notices.map(notice =>(
-    <div key={notice.id}>
+    <div key={notice.title}>
       <h3>{notice.title}</h3>
       <p>{notice.body}</p>
     </div>
@@ -29,7 +29,6 @@ class Notice extends Component {
 }
 
 Notice.propTypes={
-  fetchNotices: PropTypes.func.isRequired,
   notices: PropTypes.array.isRequired,
   newNotice: PropTypes.object
 }
