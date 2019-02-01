@@ -30,7 +30,7 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
-    "test": "jest App.test.js",
+    "test": "set CI=true &&react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
