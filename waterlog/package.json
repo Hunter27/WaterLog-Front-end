@@ -31,7 +31,7 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build && sw-precache --config=sw-precache-config.js",
-    "test": "jest App.test.js",
+    "test": "cross-env CI=true react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -44,6 +44,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "cross-env": "^5.2.0",
     "workbox-webpack-plugin": "^3.6.3"
   }
 }
