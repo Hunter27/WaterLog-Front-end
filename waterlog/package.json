@@ -25,11 +25,12 @@
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.7",
     "redux-thunk": "^2.3.0",
-    "serve": "^10.1.1"
+    "serve": "^10.1.1",
+    "sw-precache": "^5.2.1"
   },
   "scripts": {
     "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
+    "build": "react-app-rewired build && sw-precache --config=sw-precache-config.js",
     "test": "jest App.test.js",
     "eject": "react-scripts eject"
   },
