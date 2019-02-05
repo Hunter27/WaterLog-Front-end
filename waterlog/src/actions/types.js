@@ -1,2 +1,4 @@
 export const FETCH_NOTICES = 'FETCH_NOTICES';
 export const NEW_NOTICE = 'NEW_NOTICE';
+
+export const FETCH_SENSORS ='FETCH_SENSORS';
