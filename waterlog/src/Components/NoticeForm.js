@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {createNotice} from '../actions/NoticeActions';
+ 
 
 class NoticeForm extends Component {
 
@@ -42,7 +43,7 @@ class NoticeForm extends Component {
                 <textarea name="body" onChange={this.onChange} value={this.state.body}/>
             </div>
             <br/>
-            <button type="submit">submit</button>
+            <button type="submit">submit</button> 
         </form>
       </div>
     )
