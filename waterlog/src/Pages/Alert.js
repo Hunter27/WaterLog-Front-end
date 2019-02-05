@@ -1,24 +1,15 @@
 import React, { Component } from 'react';
-//import { BrouserRouter as Router, Route, Link } from "react-router-dom";
-import Notice from '../Components/Notice';
-import NoticeForm from '../Components/NoticeForm';
-import {Provider} from 'react-redux';
-import store from '../store';
+import Demo from './../Components/AlertTable'
+
+
 
 class AlertComponent extends Component {
   render() {
     return (
-        <Provider store={store}>
           <div className="App">
-            <header className="App-header">
-               
-              <NoticeForm/>
-              <hr/>
-              <Notice/> 
-              
-            </header>
+              <h1 style={{textAlign:'center', fontFamily: 'Malayalam Sangam MN'}}>Alerts</h1>
+              <Demo />
           </div>
-        </Provider>
     );
   }
 }
