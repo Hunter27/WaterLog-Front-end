@@ -11,9 +11,9 @@ class Segments extends Component {
     render() {
         const segments = this.props.segments.map(segments => (
             <div key={segments.id}>
-                <p>{"id: " + segments.id}</p>
-                <p>{"sense ID Out: " + segments.senseIDOut}</p>
-                <p>{"sense ID In: " + segments.senseIDIn}</p>
+                <p>{"Id: " + segments.id}</p>
+                <p>{"sense ID out: " + segments.senseIDOut}</p>
+                <p>{"sense ID in: " + segments.senseIDIn}</p>
             </div>
         ));
         return (
