@@ -1,7 +1,7 @@
 import React, { Component } from 'react';	
 import './../Stylesheets/_monitors.scss';
-
-const APIUri = 'http://iot.retrotest.co.za/api/monitors';
+import BtnResolve from "./BtnResolve";
+const APIUri = 'http://api.iot.retrotest.co.za/api/monitors';
 
 
 
@@ -15,7 +15,7 @@ class MonitorsComponent extends Component {
     this.state = {
 			data: [{"id":0,"type":"xxxx","max_flow":0.0,"long":0.0,"lat":0.0,"status":"xxx"}],
 			faultyMonitors: 0
-    };
+		}; 
 	}
 		
   componentDidMount() {
@@ -54,7 +54,8 @@ class MonitorsComponent extends Component {
 							</tr>
 						)}
 					</tbody>
-				</table>
+				</table> 
+				<BtnResolve/>
 			</div>
     );
   }
