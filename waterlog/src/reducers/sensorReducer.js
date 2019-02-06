@@ -1,4 +1,4 @@
-import {FETCH_NOTICES, NEW_NOTICE} from '../actions/types';
+import {FETCH_SENSORS} from '../actions/types';
 
 const initialState ={
     items:[],
@@ -7,17 +7,11 @@ const initialState ={
 
    export default function(state =initialState, action){
        switch(action.type){
-        case FETCH_NOTICES: 
+        case FETCH_SENSORS: 
          return{
              ...state,
              items:action.payload
-         };
-
-         case NEW_NOTICE:
-         return{
-             ...state,
-             item:action.payload
-         } 
+         }; 
            default:
              return state;
        }
