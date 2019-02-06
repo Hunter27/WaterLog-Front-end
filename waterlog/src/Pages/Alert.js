@@ -1,23 +1,15 @@
 import React, { Component } from 'react';
-import Notice from '../Components/Notice';
-import NoticeForm from '../Components/NoticeForm';
-import {Provider} from 'react-redux';
-import store from '../store';
+import AlertTable from './../Components/AlertTable'
+
+
 
 class AlertComponent extends Component {
   render() {
     return (
-        <Provider store={store}>
           <div className="App">
-            <header className="App-header">
-               
-              <NoticeForm/>
-              <hr/>
-              <Notice/> 
-              
-            </header>
+              <h1 style={{textAlign:'center', fontFamily: 'Malayalam Sangam MN'}}>Alerts</h1>
+              <AlertTable />
           </div>
-        </Provider>
     );
   }
 }
