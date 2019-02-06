@@ -10,8 +10,7 @@ class Sensors extends Component {
   }
   render() {
     const sensorItems = this.props.sensors.map(sensor => (
-        <div key={sensor.id}>
-          
+        <div key={sensor.id}> 
           <h3>{sensor.type}{sensor.id}</h3>
           <p>{sensor.status}</p>
           <p>{sensor.max_flow}</p>
