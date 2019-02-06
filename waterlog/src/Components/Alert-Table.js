@@ -88,28 +88,28 @@ function createData(date, subject, costRate, status, read = false) {
 	return { id: counter, date, subject, costRate, status, read };
 }
 
-const styles = (theme) => ({
-	root: {
-		width: '100%',
-		marginTop: theme.spacing.unit * 3
-	},
-	table: {
-		minWidth: 500,
-		backgroundColor: 0xff
-	},
-	tableWrapper: {
-		overflowX: 'auto'
-	},
-	row: {
-        backgroundColor: 0xff,
-        '&:hover': {
-            color: 'oxffab00',
-        },
-	},
-	body: {
-		fontFamily: 'Malayalam Sangam MN'
-	}
-});
+// const styles = (theme) => ({
+// 	root: {
+// 		width: '100%',
+// 		marginTop: theme.spacing.unit * 3
+// 	},
+// 	table: {
+// 		minWidth: 500,
+// 		backgroundColor: 0xff
+// 	},
+// 	tableWrapper: {
+// 		overflowX: 'auto'
+// 	},
+// 	row: {
+//         backgroundColor: 0xff,
+//         '&:hover': {
+//             color: 'oxffab00',
+//         },
+// 	},
+// 	body: {
+// 		font: 'Malayalam Sangam MN'
+// 	}
+// });
 
 var contextTypes = React.createContext({
     transitionTo: PropTypes.func.isRequired
@@ -118,9 +118,9 @@ class AlertTable extends Component {
     
 	state = {
 		rows: [
-			createData(new Date(Date.now()).toDateString(), 'Section 1 Leak', 500, 'High'),
-			createData(new Date(Date.now()).toDateString(), 'Section 1 Leak', 200, 'Medium'),
-			createData(new Date(Date.now()).toDateString(), 'Section 1 Leak', 100, 'Low')
+			createData(new Date(Date.now()).toDateString(), 'Section 1 Leak', 'R' + 500, 'High'),
+			createData(new Date(Date.now()).toDateString(), 'Section 1 Leak', 'R' + 200, 'Medium'),
+			createData(new Date(Date.now()).toDateString(), 'Section 1 Leak', 'R' + 100, 'Low')
 		],
 		page: 0,
 		rowsPerPage: 5
