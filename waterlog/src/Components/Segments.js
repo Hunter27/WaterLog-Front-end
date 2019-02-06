@@ -1,11 +1,18 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchSegments } from '../actions/SegmentActions';
 
 class Segments extends Component {
+    componentWillMount() {
+        this.props.fetchSegments();
+      }
   render() {
     const segments = this.props.segments.map(segments => (
         <div key={segments.id}> 
-           <p>{segments.senseIDOut}</p>
-           <p>{segments.senseIDIn}</p>
+           <p>{"id: "+segments.id}</p>
+           <p>{"sense ID Out: "+segments.senseIDOut}</p>
+           <p>{"sense ID In: "+segments.senseIDIn}</p>
         </div>
       ));
     return (
@@ -15,4 +22,15 @@ class Segments extends Component {
     )
   }
 } 
-export default Segments;
+
+Segments.propTypes = {
+    fetchSegments: PropTypes.func.isRequired,
+    segments: PropTypes.array.isRequired
+  
+  };
+
+const mapStateToProps = state => ({
+segments: state.segments.items
+});
+
+export default connect(mapStateToProps, { fetchSegments })(Segments);

@@ -9,12 +9,13 @@ class UsageComponent extends Component {
     return ( 
      
         <Provider store={store}>
-        <div className="App">
-        <h1>List of Components</h1>
-        <Sensors/> 
-        <hr/>
-        <Segments/>
-        </div>
+          <div className="App">
+          <h1>List of Components</h1>
+          <Sensors/> 
+          <hr/>
+          <h1>Segments</h1> 
+          <Segments/>
+          </div>
       </Provider> 
     );
   }
