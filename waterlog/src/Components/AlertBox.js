@@ -1,52 +1,35 @@
-import React from "react";
-import { withStyles } from "@material-ui/core/styles";
-import SvgIcon from "@material-ui/core/SvgIcon";
+import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import SvgIcon from '@material-ui/core/SvgIcon';
 
-const styles = theme => ({
-  High: {
-    color: "#ff1744"
-  },
-  Medium: {
-    color: "#ffab00"
-  },
-  Low: {
-    color: "#ffea00"
-  }
-});
 
-function BoxIcon(props) {
-  return (
-    <SvgIcon {...props}>
-      <path d="M6 6h12v12H6z" />
-    </SvgIcon>
-  );
-}
-
-function highStatus(props) {
-  const { classes } = props;
-  return (
-    <div>
-      <BoxIcon className={classes.High} />
-    </div>
-  );
+function highStatus() {
+	return (
+		<svg width="20" height="20">
+			<rect x="0" y="0" width="20" height="20" style={{ fill: '#ff1744' }} />
+			Sorry, your browser does not support inline SVG.
+		</svg>
+	);
 }
 
 function mediumStatus(props) {
-  return (
-    <div>
-      <BoxIcon className={props.classes.Medium} />
-    </div>
-  );
+	return (
+		<svg width="20" height="20">
+			<rect x="0" y="0" width="20" height="20" style={{ fill: '#ffab00' }} />
+			Sorry, your browser does not support inline SVG.
+		</svg>
+	);
 }
 
 function lowStatus(props) {
-  return (
-    <div>
-      <BoxIcon className={props.classes.Low} />
-    </div>
-  );
+	return (
+		<svg width="20" height="20">
+			<rect x="0" y="0" width="20" height="20" style={{ fill: '#ffea00' }} />
+			Sorry, your browser does not support inline SVG.
+		</svg>
+	);
 }
 
-export const HighStatusIcon = withStyles(styles)(highStatus);
-export const MediumStatusIcon = withStyles(styles)(mediumStatus);
-export const LowStatusIcon = withStyles(styles)(lowStatus);
+export const HighStatusIcon = highStatus;
+export const MediumStatusIcon = mediumStatus;
+export const LowStatusIcon = lowStatus;
