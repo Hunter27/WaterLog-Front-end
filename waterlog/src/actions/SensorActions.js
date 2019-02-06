@@ -1,7 +1,7 @@
 import {FETCH_SENSORS} from "./types";
  
   export const fetchSensors = () => dispatch => { 
-    fetch('http://api.iot.retrotest.co.za/api/monitors')
+    fetch('https://localhost:44382/api/monitors')
       .then(res => res.json())
       .then(sensors =>
         dispatch({
