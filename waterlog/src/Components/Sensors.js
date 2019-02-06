@@ -17,8 +17,7 @@ class Sensors extends Component {
         </div>
       ));
     return (
-      <div>
-         <h1>Monitors</h1>
+      <div> 
         {sensorItems}
       </div>
     )

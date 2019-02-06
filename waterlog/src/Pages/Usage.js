@@ -6,12 +6,13 @@ import store from '../store';
 class UsageComponent extends Component {
   render() {
     return ( 
+     
         <Provider store={store}>
         <div className="App">
-        <Sensors/>
+        <h1>List of Components</h1>
+        <Sensors/> 
         </div>
-      </Provider>
-       
+      </Provider> 
     );
   }
 }
