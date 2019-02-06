@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -101,21 +101,23 @@ const styles = (theme) => ({
 		overflowX: 'auto'
 	},
 	row: {
-        backgroundColor: 0xff,
-        '&:hover': {
-            color: 'oxffab00',
-        },
+		backgroundColor: 0xff,
+		'&:hover': {
+			color: 'oxffab00'
+		}
 	},
 	body: {
 		fontFamily: 'Malayalam Sangam MN'
 	}
 });
 
-var contextTypes = React.createContext({
-    transitionTo: PropTypes.func.isRequired
-});
+const fetchAlerts = () => {
+	fetch('https://localhost:44382/').then(
+		(res) => res.json()).then((events) =>
+		console.log(events)
+	);
+};
 class AlertTable extends Component {
-    
 	state = {
 		rows: [
 			createData(new Date(Date.now()).toDateString(), 'Section 1 Leak', 500, 'High'),
@@ -124,16 +126,16 @@ class AlertTable extends Component {
 		],
 		page: 0,
 		rowsPerPage: 5
-    };
-    static contextType = {
-        router: PropTypes.shape({
-          history: PropTypes.shape({
-            push: PropTypes.func.isRequired,
-            replace: PropTypes.func.isRequired
-          }).isRequired,
-          staticContext: PropTypes.object
-        }).isRequired
-      };
+	};
+	static contextType = {
+		router: PropTypes.shape({
+			history: PropTypes.shape({
+				push: PropTypes.func.isRequired,
+				replace: PropTypes.func.isRequired
+			}).isRequired,
+			staticContext: PropTypes.object
+		}).isRequired
+	};
 
 	handleChangePage = (event, page) => {
 		this.setState({ page });
@@ -154,9 +156,13 @@ class AlertTable extends Component {
 					<Table className={classes.table}>
 						<TableBody className={classes.body}>
 							{rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-								<TableRow  key={row.id} onClick = {() => {
-                                    window.location = "/alert/leakage/1" ;
-                                }} >
+								<TableRow
+									key={row.id}
+									onClick={() => {
+										fetchAlerts();
+										
+									}}
+								>
 									<TableCell scope="row">{row.date}</TableCell>
 									<TableCell align="center">{row.subject}</TableCell>
 									<TableCell align="center">{row.costRate}</TableCell>
