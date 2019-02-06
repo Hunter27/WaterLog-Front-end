@@ -1,8 +1,6 @@
-import {combineReducers} from 'redux';
-import noticeReducer from './noticeReducer';
+import {combineReducers} from 'redux'; 
 import sensorReducer from './sensorReducer';
 
-export default combineReducers({
-    notices: noticeReducer,
+export default combineReducers({ 
     sensors:sensorReducer
 })

@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import MonitorsComponent from './../Components/monitors';
+import React, { Component } from 'react'; 
 import Sensors from './../Components/Sensors';
 import {Provider} from 'react-redux';
 import store from '../store';
