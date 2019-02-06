@@ -155,7 +155,7 @@ class AlertTable extends Component {
 						<TableBody className={classes.body}>
 							{rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
 								<TableRow  key={row.id} onClick = {() => {
-                                    window.location = "/alert/leakage/2" ;
+                                    window.location = "/alert/leakage/1" ;
                                 }} >
 									<TableCell scope="row">{row.date}</TableCell>
 									<TableCell align="center">{row.subject}</TableCell>

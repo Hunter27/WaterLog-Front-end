@@ -47,7 +47,7 @@ class LeakageInfoComponent extends Component {
                     onClick={()=>this.expandMap()}/>
                 {/*  map component here */}
                 <hr />
-                <NavLink exact to="/alert/leakage/1">COMPONENT HISTORY</NavLink>                
+                <NavLink exact to="/alert/leakage-history/1">COMPONENT HISTORY</NavLink>                
             </div>
     );
   }
