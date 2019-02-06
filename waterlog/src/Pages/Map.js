@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 
+import ComponentLeakage from './ComponentLeakage';
+
 class MapComponent extends Component {
 
   render() {
     return (
-      //displays the map
-      <div id="map">
-        This is the map  :=) 
+      <div>
+        <ComponentLeakage />
       </div>
       
     );
