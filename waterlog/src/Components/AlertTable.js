@@ -15,6 +15,7 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
 
 import { LowStatusIcon, MediumStatusIcon, HighStatusIcon } from './AlertBox';
+import {NavLink} from 'react-router-dom';
 
 const actionsStyles = (theme) => ({
 	root: {
@@ -101,14 +102,21 @@ const styles = (theme) => ({
 		overflowX: 'auto'
 	},
 	row: {
-		backgroundColor: 0xff
+        backgroundColor: 0xff,
+        '&:hover': {
+            color: 'oxffab00',
+        },
 	},
 	body: {
 		fontFamily: 'Malayalam Sangam MN'
 	}
 });
 
+var contextTypes = React.createContext({
+    transitionTo: PropTypes.func.isRequired
+});
 class CustomPaginationActionsTable extends React.Component {
+    
 	state = {
 		rows: [
 			createData(new Date(Date.now()).toDateString(), 'Section 1 Leak', 500, 'High'),
@@ -117,7 +125,16 @@ class CustomPaginationActionsTable extends React.Component {
 		],
 		page: 0,
 		rowsPerPage: 5
-	};
+    };
+    static contextType = {
+        router: PropTypes.shape({
+          history: PropTypes.shape({
+            push: PropTypes.func.isRequired,
+            replace: PropTypes.func.isRequired
+          }).isRequired,
+          staticContext: PropTypes.object
+        }).isRequired
+      };
 
 	handleChangePage = (event, page) => {
 		this.setState({ page });
@@ -138,7 +155,9 @@ class CustomPaginationActionsTable extends React.Component {
 					<Table className={classes.table}>
 						<TableBody className={classes.body}>
 							{rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-								<TableRow  key={row.id}>
+								<TableRow  key={row.id} onClick = {() => {
+                                    window.location = "/alert/leakage/2" ;
+                                }} >
 									<TableCell scope="row">{row.date}</TableCell>
 									<TableCell align="center">{row.subject}</TableCell>
 									<TableCell align="center">{row.costRate}</TableCell>
@@ -187,6 +206,7 @@ class CustomPaginationActionsTable extends React.Component {
 		);
 	}
 }
+
 
 //inject styles to the component class
 export default withStyles(styles)(CustomPaginationActionsTable);
