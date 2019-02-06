@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
-import MyComponent from './mycomponent';
+
 
 export default class MiniMapComponent extends Component {
   render() {
