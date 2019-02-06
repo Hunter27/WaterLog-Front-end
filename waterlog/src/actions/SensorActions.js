@@ -1,7 +1,6 @@
 import {FETCH_SENSORS} from "./types";
  
-  export const fetchSensors = () => dispatch => {
-    console.log("coming");
+  export const fetchSensors = () => dispatch => { 
     fetch('http://api.iot.retrotest.co.za/api/monitors')
       .then(res => res.json())
       .then(sensors =>
@@ -11,3 +10,5 @@ import {FETCH_SENSORS} from "./types";
         })
       );
   };
+
+
