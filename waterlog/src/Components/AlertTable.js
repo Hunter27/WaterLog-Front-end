@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -15,7 +15,6 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
 
 import { LowStatusIcon, MediumStatusIcon, HighStatusIcon } from './AlertBox';
-import {NavLink} from 'react-router-dom';
 
 const actionsStyles = (theme) => ({
 	root: {
@@ -115,7 +114,7 @@ const styles = (theme) => ({
 var contextTypes = React.createContext({
     transitionTo: PropTypes.func.isRequired
 });
-class CustomPaginationActionsTable extends React.Component {
+class AlertTable extends Component {
     
 	state = {
 		rows: [
@@ -207,6 +206,5 @@ class CustomPaginationActionsTable extends React.Component {
 	}
 }
 
-
 //inject styles to the component class
-export default withStyles(styles)(CustomPaginationActionsTable);
+export default withStyles(styles)(AlertTable);
