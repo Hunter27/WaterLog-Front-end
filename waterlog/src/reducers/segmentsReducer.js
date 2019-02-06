@@ -1,4 +1,4 @@
-import { FETCH_SENSORS } from '../actions/types';
+import { FETCH_SEGMENTS } from '../actions/types';
 
 const initialState = {
     items: [],
@@ -7,7 +7,7 @@ const initialState = {
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case FETCH_SENSORS:
+        case FETCH_SEGMENTS:
             return {
                 ...state,
                 items: action.payload
