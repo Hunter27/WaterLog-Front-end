@@ -6,31 +6,31 @@ import { fetchSegments } from '../actions/SegmentActions';
 class Segments extends Component {
     componentWillMount() {
         this.props.fetchSegments();
-      }
-  render() {
-    const segments = this.props.segments.map(segments => (
-        <div key={segments.id}> 
-           <p>{"id: "+segments.id}</p>
-           <p>{"sense ID Out: "+segments.senseIDOut}</p>
-           <p>{"sense ID In: "+segments.senseIDIn}</p>
-        </div>
-      ));
-    return (
-        <div> 
-        {segments}
-       </div>
-    )
-  }
-} 
+    }
+
+    render() {
+        const segments = this.props.segments.map(segments => (
+            <div key={segments.id}>
+                <p>{"id: " + segments.id}</p>
+                <p>{"sense ID Out: " + segments.senseIDOut}</p>
+                <p>{"sense ID In: " + segments.senseIDIn}</p>
+            </div>
+        ));
+        return (
+            <div>
+                {segments}
+            </div>
+        )
+    }
+}
 
 Segments.propTypes = {
     fetchSegments: PropTypes.func.isRequired,
     segments: PropTypes.array.isRequired
-  
-  };
+};
 
 const mapStateToProps = state => ({
-segments: state.segments.items
+    segments: state.segments.items
 });
 
 export default connect(mapStateToProps, { fetchSegments })(Segments);
