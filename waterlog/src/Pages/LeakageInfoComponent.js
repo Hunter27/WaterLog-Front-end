@@ -1,6 +1,5 @@
 
 import React, { Component } from 'react';
-import { NavLink } from "react-router-dom";
 
 class LeakageInfoComponent extends Component {
     section = this.props.segment; 
