@@ -6,10 +6,7 @@ class LeakageHistoryComponent extends Component {
 
     render() {
         return ( 
-        <div >
-            this is some history
-            for the component 
-        </div>
+        <div> this is some history for the component </div>
         );
     }
 

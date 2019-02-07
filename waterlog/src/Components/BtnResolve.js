@@ -29,11 +29,11 @@ class BtnResolve extends Component {
       .then(response => response.json())
       .then(data => {
         this.setState({
-          data
+          data: data
         });
       })
       .catch(err => {
-        console.log(err)
+        
       });
 
   }
