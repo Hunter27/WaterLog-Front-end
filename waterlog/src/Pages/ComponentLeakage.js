@@ -21,36 +21,36 @@ class ComponentLeakage extends Component {
         this.props.fetchSegmentsLeaks();
     }
 
-    // componentDidMount() {
-	// 	fetch('https://localhost:44382/api/segmentleaks')
-	// 		.then(response => response.json())
-	// 		.then(data => {
-	// 			this.setState({ data });
-	// 		})
-	// 		.catch(err => {
-	// 			console.log(err)
-    //         });
+    componentDidMount() {
+		fetch('https://localhost:44382/api/segmentleaks')
+			.then(response => response.json())
+			.then(data => {
+				this.setState({ data });
+			})
+			.catch(err => {
+				console.log(err)
+            });
 
-    //     fetch('https://localhost:44382/api/segmentleaks')
-	// 		.then(response => response.json())
-	// 		.then(data => {
-	// 			this.setState({ data });
-	// 		})
-	// 		.catch(err => {
-	// 			console.log(err)
-    //         }
-    //     );
+        fetch('https://localhost:44382/api/segmentleaks')
+			.then(response => response.json())
+			.then(data => {
+				this.setState({ data });
+			})
+			.catch(err => {
+				console.log(err)
+            }
+        );
 
-    //     fetch('https://localhost:44382/api/segmentleaks')
-	// 		.then(response => response.json())
-	// 		.then(data => {
-	// 			this.setState({ data });
-	// 		})
-	// 		.catch(err => {
-	// 			console.log(err)
-    //         }
-    //     );      
-	// }
+        fetch('https://localhost:44382/api/segmentleaks')
+			.then(response => response.json())
+			.then(data => {
+				this.setState({ data });
+			})
+			.catch(err => {
+				console.log(err)
+            }
+        );      
+	}
 
     resolveLeak(){
         //verify if it is resolved and disable the button if it 
