@@ -1,6 +1,4 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import SvgIcon from '@material-ui/core/SvgIcon';
 
 
 function highStatus() {

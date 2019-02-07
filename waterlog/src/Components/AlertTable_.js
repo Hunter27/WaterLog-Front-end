@@ -25,14 +25,14 @@ class AlertTableComponent extends Component {
 						<tr
 						key={alert.id}
 						className={alert.status === 'Fault' ? 'fault' : ''}
-							onClick={() => (window.location = `/alert/segment/${alert.id}`)}
+							onClick={() => (window.location.href =  `alert/segment/${alert.id}`)}
 							>
 							<td>{new Date(alert.originalTimeStamp).toDateString()}</td>
 							<td>Section {alert.segmentId} Leak</td>
-							<td>R{alert.cost}/hr</td>
-							<NavLink to={`/alert/segment/${alert.segmentId}`}>
+							<td>R{alert.cost}  /hr</td>
 								<td>
 									{(() => {
+										
 										switch (alert.severity) {
 											case 'high':
 											return HighStatusIcon();
@@ -45,7 +45,6 @@ class AlertTableComponent extends Component {
 										}
 									})()}
 								</td>
-							</NavLink>
 						</tr>
 					))}
 				</tbody>
@@ -65,14 +64,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, { fetchSegmentsLeaks })(AlertTableComponent);
-/*
-constructor(props) {
-	super(props);
-	this.state = {
-		data: [
-			{ id: '1', date: '06/25/2019', desc: 'SECTOR 2 LEAK', cost: 500, status: 'High' },
-			{ id: '1', date: '06/25/2019', desc: 'SECTOR 2 LEAK', cost: 500, status: 'Medium' },
-			{ id: '1', date: '06/25/2019', desc: 'SECTOR 2 LEAK', cost: 500, status: 'Low' }
-		]
-	};
-}*/

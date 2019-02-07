@@ -20,8 +20,3 @@ class AlertComponent extends Component {
 }
 
 export default AlertComponent;
-/*
-<div className="App">
-   
-</div>
-*/
