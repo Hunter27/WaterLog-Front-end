@@ -8,7 +8,6 @@ const initialState = {
 export default function (state = initialState, action) {
     switch (action.type) {
         case FETCH_LEAKS_COSTS:
-        console.log("action payload ",action.payload)
             return {
                 ...state,
                 item: action.payload
