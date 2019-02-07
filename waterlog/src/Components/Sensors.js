@@ -10,16 +10,14 @@ class Sensors extends Component {
   }
   render() {
     const sensorItems = this.props.sensors.map(sensor => (
-        <div key={sensor.id}>
-          
-          <h3>{sensor.type}{sensor.id}</h3>
-          <p>{sensor.status}</p>
-          <p>{sensor.max_flow}</p>
-        </div>
-      ));
+      <div key={sensor.id}>
+        <h3>{sensor.type}{sensor.id}</h3>
+        <p>{sensor.status}</p>
+        <p>{sensor.max_flow}</p>
+      </div>
+    ));
     return (
       <div>
-         <h1>Monitors</h1>
         {sensorItems}
       </div>
     )
@@ -27,13 +25,13 @@ class Sensors extends Component {
 }
 
 Sensors.propTypes = {
-    fetchSensors: PropTypes.func.isRequired,
-    sensors: PropTypes.array.isRequired
-  
-  };
- 
+  fetchSensors: PropTypes.func.isRequired,
+  sensors: PropTypes.array.isRequired
+
+};
+
 const mapStateToProps = state => ({
-    sensors: state.sensors.items
-    });
+  sensors: state.sensors.items
+});
 
 export default connect(mapStateToProps, { fetchSensors })(Sensors);

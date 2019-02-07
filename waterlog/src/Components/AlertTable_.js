@@ -1,6 +1,9 @@
 import React, { Component } from 'react';	
 import './../Stylesheets/_alerts.scss';
-import { NavLink } from 'react-router-dom';
+//import { NavLink } from 'react-router-dom';
+import Segmentleaks from './segmentleaks';
+import {Provider} from 'react-redux';
+import store from '../store';
 
 class AlertTableComponent extends Component {
 	
@@ -15,6 +18,8 @@ class AlertTableComponent extends Component {
 	
     render() {
         return(
+            <div>
+            
             <table> 
                 <thead>
                     <tr>
@@ -32,11 +37,12 @@ class AlertTableComponent extends Component {
                                     <td>{alert.date}</td>
                                     <td>{alert.desc}</td>
                                     <td>R{alert.cost }/hr</td>
-                                    <NavLink to={`/alert/segment/${alert.id}`}><td>{alert.status}</td></NavLink>
+                                    <td>{alert.status}</td>
                                 </tr>
                     )}
                 </tbody>
             </table> 
+            </div>
         );
     }
 }

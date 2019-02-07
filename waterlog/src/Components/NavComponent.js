@@ -43,8 +43,8 @@ export default class NavComponent extends Component {
             <div className="col-8">
                 <Route exact path="/" component={HomeComponent} />
                 <Route exact path="/alert" component={AlertComponent} />
-                <Route exact path="/alert/leakage/:id" component={MapComponent} />
-                <Route exact path="/alert/leakage-history/:id" component={LeakageHistoryComponent} />
+                <Route exact path="/alert/segment/:id" component={MapComponent} />
+                <Route exact path="/alert/segment-history/:id" component={LeakageHistoryComponent} />
                 <Route path="/map" component={MapComponent} />
                 <Route path="/usage" component={UsageComponent} />
 

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { NavLink } from "react-router-dom";
 
 class LeakageInfoComponent extends Component {
-    section = this.props.section; 
+    section = this.props.segment; 
     severity = this.props.severity; 
     waterLost = this.props.waterLost;
     cost = this.props.cost;
@@ -34,7 +34,7 @@ class LeakageInfoComponent extends Component {
     render() {
         return (
             <div style={this.styles.severe}>
-                <h2>{ this.section } is Leaking</h2>
+                <h2>Segment { this.section } is Leaking</h2>
                 <p>({ this.severity })</p>
                 <h1>R { this.cost }</h1>
                 <p><strong>is being lost per hour</strong></p>
@@ -47,7 +47,7 @@ class LeakageInfoComponent extends Component {
                     onClick={()=>this.expandMap()}/>
                 {/*  map component here */}
                 <hr />
-                <NavLink exact to="/alert/leakage-history/1">COMPONENT HISTORY</NavLink>                
+                <NavLink exact to="/alert/segment-history/1">COMPONENT HISTORY</NavLink>                
             </div>
     );
   }
