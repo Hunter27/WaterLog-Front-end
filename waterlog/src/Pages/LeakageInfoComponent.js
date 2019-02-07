@@ -34,12 +34,12 @@ class LeakageInfoComponent extends Component {
     render() {
         return (
             <div style={this.styles.severe}>
-                <h2>Segment { this.section } is Leaking</h2>
-                <p>({ this.severity })</p>
-                <h1>R { this.cost }</h1>
+                <h2>Segment { this.props.value.leak.id} is Leaking</h2>
+                <p>({ this.props.value.leak.severity})</p>
+                <h1>R { this.props.value.data.Item2 }</h1>
                 <p><strong>is being lost per hour</strong></p>
-                <p><strong>Loosing { this.waterLost } (l) per hour</strong></p>
-                <p>no leak would be 0l per hour</p>
+                <p><strong>Loosing { this.props.value.usage.Item2 } L per hour</strong></p>
+                <p>no leak would be 0L per hour</p>
                 <img src={this.isMapExpanded ? "images/icons/map-expand.png" : "images/icons/map-close.png"} 
                     alt="expand-map" 
                     height="40px" 
@@ -47,7 +47,7 @@ class LeakageInfoComponent extends Component {
                     onClick={()=>this.expandMap()}/>
                 {/*  map component here */}
                 <hr />
-                <NavLink exact to="/alert/segment-history/1">COMPONENT HISTORY</NavLink>                
+                {/*Unimplemented <NavLink exact to="/alert/segment-history/1">COMPONENT HISTORY</NavLink>                 */}
             </div>
     );
   }

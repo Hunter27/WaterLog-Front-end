@@ -6,9 +6,9 @@ import HomeComponent from '../Pages/Home';
 import MapComponent from '../Pages/Map';
 import UsageComponent from '../Pages/Usage';
 import LeakageHistoryComponent from './LeakageHistory';
+import ComponentLeakage from '../Pages/ComponentLeakage';
 
 export default class NavComponent extends Component {
-
 	render() {
 		return (
 			<Router>
@@ -40,11 +40,15 @@ export default class NavComponent extends Component {
 						<Switch>
 							<Route exact path="/" component={HomeComponent} />
 							<Route exact path="/alert" component={AlertComponent} />
-							<Route exact path="/alert/leakage/:id" component={MapComponent} />
+							<Route
+								exact
+								path="/alert/segment/:id"
+								render={(props) => <ComponentLeakage {...props.match.params} />}
+							/>
 							<Route exact path="/alert/leakage-history/:id" component={LeakageHistoryComponent} />
 							<Route path="/map" component={MapComponent} exact />
 							<Route path="/usage" component={UsageComponent} exact />
-							<Redirect from="/*" to="/" exact/>
+							<Redirect from="/*" to="/" exact />
 						</Switch>
 					</div>
 				</div>

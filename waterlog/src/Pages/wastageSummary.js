@@ -26,14 +26,15 @@ class WastageSummaryComponent extends Component {
   }
 
   render() {
+      console.log(this.props.value)
     return (
         <div style={{textAlign:"center", margin: "10px"}}>
-          <h3>Wastage</h3>
+          <h3 style={{color: "white"}}>Wastage</h3>
           <div style={this.styles.mild}>
-              <h2>{ this.percent }% or { this.waterLost }l</h2>
+              <h2>{ (this.props.value.Item1).toFixed(2) }L</h2>
               <p>(of the total water used is being lost due to this pipe</p>
                   <ProgressBarComponent percentage={ this.percent} />
-              <p style={{marginTop: "5px"}}>(only {100 - this.percent }% of the water passing out the tanks through the system is being used)</p>
+              {/* Unimplemented <p style={{marginTop: "5px"}}>(only {100 - this.percent }% of the water passing out the tanks through the system is being used)</p> */}
           </div>
         </div>
     );

@@ -1,56 +1,20 @@
 import React, { Component }from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchSegmentsLeaks } from '../actions/segmentLeaksActions';
+import { fetchSegmentsLeaksById } from '../actions/segmentLeaksByIdActions';
 
 import LeakageInfoComponent from './LeakageInfoComponent';
 import WastageSummaryComponent from './wastageSummary';
 
+
 class ComponentLeakage extends Component {
-    constructor(){
-        super();
-
-        this.state = {
-            leak: {},
-            cost: {},
-            usage: {},
-        }
-    }
-
+    
     componentWillMount() {
-        this.props.fetchSegmentsLeaks();
-    }
-
-    componentDidMount() {
-		fetch('https://localhost:44382/api/segmentleaks')
-			.then(response => response.json())
-			.then(data => {
-				this.setState({ data });
-			})
-			.catch(err => {
-				console.log(err)
-            });
-
-        fetch('https://localhost:44382/api/segmentleaks')
-			.then(response => response.json())
-			.then(data => {
-				this.setState({ data });
-			})
-			.catch(err => {
-				console.log(err)
-            }
-        );
-
-        fetch('https://localhost:44382/api/segmentleaks')
-			.then(response => response.json())
-			.then(data => {
-				this.setState({ data });
-			})
-			.catch(err => {
-				console.log(err)
-            }
-        );      
+		this.props.fetchSegmentsLeaksById(this.props.id);
 	}
+
+    
+
 
     resolveLeak(){
         //verify if it is resolved and disable the button if it 
@@ -60,34 +24,38 @@ class ComponentLeakage extends Component {
 
 
     render (){
-        const leaksItems= this.props.leaks;
-        const leak = this.props.leaks[0];
-        console.log(leaksItems);
-        return (
-            <div style={{textAlign:"center"}}> 
-            <LeakageInfoComponent segment={leak.segmentId} severity={leak.severity} waterLost="20" cost="200"/>
-                <WastageSummaryComponent percent="40" waterLost="250"/>
-                <button id="btnResolveLeak" 
-                    onClick={()=>this.resolveLeak()}
-                >
-                    Resolved
-                </button>
-                
-            </div>
-        );
+        console.log(this.props.leak);
+
+        if(this.props.leak === {}){
+            return (<span>Loading ...</span>)
+        } else {
+            return(
+                <div style={{textAlign:"center"}}>
+                <LeakageInfoComponent value={this.props.leak} /*segment={this.props.leak.id} severity={this.props.leak.severity} */ waterLost="20" cost="200"/>
+                    <WastageSummaryComponent value={this.props.leak.usage} />
+                    <button id="btnResolveLeak" 
+                        onClick={()=>this.resolveLeak()}
+                    >
+                        Resolved 
+                    </button>
+                    
+                </div>
+        )
+        }   
     }
 
 }
 
 ComponentLeakage.propTypes = {
-    fetchSegmentsLeaks: PropTypes.func.isRequired,
-    leaks: PropTypes.array.isRequired
+    fetchSegmentsLeaksById: PropTypes.func.isRequired,
+    leak: PropTypes.object.isRequired
   
   };
   
   const mapStateToProps = state => ({
-    leaks: state.leaks.items
+    leak: state.leak.item
   });
   
   
-  export default connect(mapStateToProps, { fetchSegmentsLeaks })(ComponentLeakage);
+  export default connect(mapStateToProps, { fetchSegmentsLeaksById })(ComponentLeakage);
+

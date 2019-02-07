@@ -7,7 +7,7 @@ class MapComponent extends Component {
   render() {
     return ( 
         <div className="App">
-            <ComponentLeakage />
+           
         </div>
     );
   }
