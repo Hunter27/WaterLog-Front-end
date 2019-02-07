@@ -1,4 +1,6 @@
-import { FETCH_SEGMENTS_EVENTS } from '../actions/types';
+import {
+    FETCH_SEGMENTS_EVENTS
+} from '../actions/Types';
 
 const initialState = {
     items: [],

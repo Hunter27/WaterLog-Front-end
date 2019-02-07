@@ -10,7 +10,6 @@ class SegmentEventsList extends Component {
     }
 
     render() {
-
         const events = this.props.events.map(events => (
             <div key={events.id}>
                 <h3>{"Event ID: " + events.id}</h3>
@@ -35,4 +34,4 @@ SegmentEventsList.propTypes = {
 const mapStateToProps = state => ({
     events: state.events.items
 });
-export default connect(mapStateToProps, { fetchSegmentsEvents })(SegmentEventsList); 
+export default connect(mapStateToProps, { fetchSegmentsEvents })(SegmentEventsList);

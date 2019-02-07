@@ -1,4 +1,6 @@
-import { FETCH_COSTS } from '../actions/types';
+import {
+    FETCH_COSTS
+} from '../actions/Types';
 
 const initialState = {
     items: [],

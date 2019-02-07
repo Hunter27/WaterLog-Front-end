@@ -2,7 +2,7 @@ import 'jsdom';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import store from '../store';
+import store from '../Store';
 
 import AlertComponent from './../Pages/Alert'
 import AlertTableComponent  from './../Components/AlertTable_'

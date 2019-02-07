@@ -1,4 +1,6 @@
-import { FETCH_SENSORS } from '../actions/types';
+import {
+    FETCH_SENSORS
+} from '../actions/Types';
 
 const initialState = {
     items: [],

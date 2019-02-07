@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 function highStatus() {
 	return (
 		<svg width="20" height="20">
@@ -31,3 +30,4 @@ function lowStatus(props) {
 export const HighStatusIcon = highStatus;
 export const MediumStatusIcon = mediumStatus;
 export const LowStatusIcon = lowStatus;
+

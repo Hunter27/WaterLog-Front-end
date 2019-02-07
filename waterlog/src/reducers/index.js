@@ -1,10 +1,12 @@
-import { combineReducers } from 'redux';
-import sensorReducer from './sensorReducer';
-import segmentsReducer from './segmentsReducer';
-import segmentEventReducer from './segmentEventsReducer';
-import segmentLeaksReducer from './segmentLeaksReducer';
-import costsReducer from './costsReducer';
-import segmentLeaksByIdReducer from './segmentLeaksByIdReducer';
+import {
+    combineReducers
+} from 'redux';
+import sensorReducer from './SensorReducer';
+import segmentsReducer from './SegmentsReducer';
+import segmentEventReducer from './SegmentEventsReducer';
+import segmentLeaksReducer from './SegmentLeaksReducer';
+import costsReducer from './CostsReducer';
+import segmentLeaksByIdReducer from './SegmentLeaksByIdReducer';
 
 export default combineReducers({
     sensors: sensorReducer,

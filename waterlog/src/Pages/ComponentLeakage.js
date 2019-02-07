@@ -1,21 +1,18 @@
 import React, { Component }from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchSegmentsLeaksById } from '../actions/segmentLeaksByIdActions';
-
+import { fetchSegmentsLeaksById } from '../actions/SegmentLeaksByIdActions';
 import LeakageInfoComponent from './LeakageInfoComponent';
-import WastageSummaryComponent from './../Components/wastageSummary';
-
+import WastageSummaryComponent from '../Components/WastageSummary';
 
 class ComponentLeakage extends Component {
     
-    componentWillMount() {
-		this.props.fetchSegmentsLeaksById(this.props.id);
+componentWillMount() {
+	this.props.fetchSegmentsLeaksById(this.props.id);
 	}
 
-    render (){
-        console.log(this.props.leak);
-
+render (){
+    console.log(this.props.leak);
         if(this.props.leak === {}){
             return (<span>Loading ...</span>)
         } else {

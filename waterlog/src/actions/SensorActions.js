@@ -1,6 +1,8 @@
-import { FETCH_SENSORS } from "./types";
+import {
+  FETCH_SENSORS
+} from "./Types";
 
-export const fetchSensors = () => dispatch => { 
+export const fetchSensors = () => dispatch => {
   fetch('https://api.iot.retrotest.co.za/api/monitors')
     .then(res => res.json())
     .then(sensors =>
@@ -10,6 +12,3 @@ export const fetchSensors = () => dispatch => {
       })
     );
 };
-
-
-

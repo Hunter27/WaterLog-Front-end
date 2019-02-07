@@ -1,7 +1,9 @@
-import { FETCH_COSTS } from "./types";
+import {
+  FETCH_COSTS
+} from "./Types";
 
 export const fetchCosts = () => dispatch => {
-  fetch('https://api.iot.retrotest.co.za/api/segments')//Change to use either localhost/server
+  fetch('https://api.iot.retrotest.co.za/api/segments') //Change to use either localhost/server
     .then(res => res.json())
     .then(costs =>
       dispatch({

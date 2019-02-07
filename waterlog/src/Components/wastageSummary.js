@@ -33,7 +33,6 @@ class WastageSummaryComponent extends Component {
               <h2>{ (this.props.value.Item1).toFixed(2) }L</h2>
               <p>(of the total water used is being lost due to this pipe</p>
                   <ProgressBarComponent percentage={ this.percent} />
-              {/* Unimplemented <p style={{marginTop: "5px"}}>(only {100 - this.percent }% of the water passing out the tanks through the system is being used)</p> */}
           </div>
         </div>
     );

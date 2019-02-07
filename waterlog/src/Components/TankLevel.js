@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import TankComponent from './Tank'
 import './../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
-
-// Contains the tank levels that are displayed on the home page
 export default class TankLevelsContainerComponent extends Component {
   
   tankInfo = [
@@ -24,9 +22,6 @@ export default class TankLevelsContainerComponent extends Component {
     }
   ];
   
-
-  //  <TankComponent name="tank 1" percentage="100" />
-  
   render() {
     return (
       <div className="jumbotron container p-4"
@@ -42,8 +37,6 @@ export default class TankLevelsContainerComponent extends Component {
                     </div>  
           )}
         </div>
-        
-       
       </div>
     );
   }

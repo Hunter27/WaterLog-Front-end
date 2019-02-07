@@ -1,7 +1,9 @@
-import { FETCH_SEGMENTS_EVENTS } from "./types";
+import {
+    FETCH_SEGMENTS_EVENTS
+} from "./Types";
 
 export const fetchSegmentsEvents = () => dispatch => {
-    fetch('https://api.iot.retrotest.co.za/api/segmentevents')//Change to use either localhost/server
+    fetch('https://api.iot.retrotest.co.za/api/segmentevents') //Change to use either localhost/server
         .then(res => res.json())
         .then(events =>
             dispatch({
