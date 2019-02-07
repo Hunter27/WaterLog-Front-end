@@ -2,7 +2,7 @@ import { FETCH_SEGMENTS } from "./types";
 
 export const fetchSegments = () => dispatch => {
   console.log("please");
-  fetch('https://localhost:44382/api/segments')//Change to use either localhost/server
+  fetch('https://api.iot.retrotest.co.za/api/segments')//Change to use either localhost/server
     .then(res => res.json())
     .then(segments =>
       dispatch({

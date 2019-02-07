@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ProgressBarComponent from './../Components/ProgressBar';
+import ProgressBarComponent from './ProgressBar';
 
 class WastageSummaryComponent extends Component {
 
