@@ -5,7 +5,7 @@ const initialState = {
   item: {}
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
     case FETCH_LEAK_LITRES:
       return {

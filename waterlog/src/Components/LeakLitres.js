@@ -7,7 +7,7 @@ class LeakLitres extends Component {
 
   componentDidMount() {
     this.props.fetchLeakLitres();
-    
+
   }
 
   constructor(props) {
@@ -16,19 +16,19 @@ class LeakLitres extends Component {
   }
 
   render() {
-    const leakItem = this.props.litres; 
-    
+    const leakItem = this.props.litres;
+
     return (
       <div>
-          <h1>{leakItem.item.Item1}</h1>
+        <h1>{leakItem.item.Item1}</h1>
       </div>
     )
   }
 }
 //  {leakItem.item.Item1}
 LeakLitres.propTypes = {
-    fetchLeakLitres: PropTypes.func.isRequired,
-    litres: PropTypes.object
+  fetchLeakLitres: PropTypes.func.isRequired,
+  litres: PropTypes.object
 };
 
 function mapStateToProps(state) {
