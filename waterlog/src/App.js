@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import './App.scss';
-
-
 import NavComponent from './Components/NavComponent';
 import HeaderComponent from './Components/Header';
-
 import { Provider } from 'react-redux';
 import store from './store';
 
@@ -23,3 +20,4 @@ class App extends Component {
 }
 
 export default App;
+

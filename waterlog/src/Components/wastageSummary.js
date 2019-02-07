@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ProgressBarComponent from './ProgressBar';
-
 class WastageSummaryComponent extends Component {
 
   percent = this.props.percent;

@@ -26,13 +26,13 @@ class BtnResolve extends Component {
           console.log(err)
 			});
   
-    } 
+    }
+
   resolve(){ 
         for(var i = 0; i < this.state.data.length; i++)
         { 
           if(this.state.data[i].status==="faulty")
           {
-           // console.log(this.state.data[i].status);
            this.setState({
             text: "Can't resolve "+this.state.data[i].type+" "+ this.state.data[i].id +' is faulty'
           });
