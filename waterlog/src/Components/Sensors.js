@@ -6,7 +6,7 @@ import { fetchSensors } from '../actions/SensorActions';
 class Sensors extends Component {
 
   componentWillMount() {
-    this.props.fetchSensors();
+    this.props.fetchSensors();  
   }
   render() {
     const sensorItems = this.props.sensors.map(sensor => (
@@ -16,6 +16,7 @@ class Sensors extends Component {
         <p>{sensor.max_flow}</p>
       </div>
     ));
+    console.log(sensorItems)
     return (
       <div>
         {sensorItems}

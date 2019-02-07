@@ -3,6 +3,7 @@ import Sensors from './../Components/Sensors';
 import Segments from './../Components/Segments';
 import SegmentsEventsList from './../Components/SegmentEventsList';
 import Segmentleaks from '../Components/Segmentleaks';
+import LeakCosts from '../Components/LeakCosts';
 import {Provider} from 'react-redux';
 import store from '../store';
 
@@ -23,6 +24,8 @@ class UsageComponent extends Component {
             <SegmentsEventsList/>
             <hr/>
             <Segmentleaks/>
+            <hr/>
+            <LeakCosts/>
       </Provider> 
     );
   }
