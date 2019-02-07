@@ -1,13 +1,13 @@
-import { FETCH_SEGMENTS_LEAKS } from '../actions/types';
+import { FETCH_COSTS } from '../actions/types';
 
 const initialState = {
-    items: [{"id":0,"segmentId":0,"segmentsEntry":0,"severity":"0","originalTimeStamp":"0","latestTimeStamp":"0","resolvedStatus":"0"}],
+    items: [],
     item: {}
 }
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case FETCH_SEGMENTS_LEAKS:
+        case FETCH_COSTS:
             return {
                 ...state,
                 items: action.payload

@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/feature/leakage-alert
 
 export default class MiniMapComponent extends Component {
   render() {

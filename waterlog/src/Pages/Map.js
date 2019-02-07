@@ -5,11 +5,10 @@ import ComponentLeakage from './ComponentLeakage';
 class MapComponent extends Component {
 
   render() {
-    return (
-      <div>
-        <ComponentLeakage />
-      </div>
-      
+    return ( 
+        <div className="App">
+            <ComponentLeakage />
+        </div>
     );
   }
 }
