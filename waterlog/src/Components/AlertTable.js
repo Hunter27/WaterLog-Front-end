@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './../Stylesheets/_alerts.scss';
 import { LowStatusIcon, MediumStatusIcon, HighStatusIcon } from './AlertBox';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';

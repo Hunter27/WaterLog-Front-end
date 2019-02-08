@@ -11,7 +11,7 @@ export default class ProgressBarComponent extends Component {
 	}
 	render() {
 		return (
-			<div style={{ marginLeft: '10px' }}>
+			<div className="progressBar">
 				<ProgressBar percentage={this.state.percentage} />
 			</div>
 		);

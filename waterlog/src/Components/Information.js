@@ -3,7 +3,6 @@ import React, {
 } from 'react';
 import ProgressBarComponent from './ProgressBar';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import '../Stylesheets/_home.scss';
 
 //displays the wastage information on the home page
 export default class InformationComponent extends Component {
@@ -21,14 +20,7 @@ export default class InformationComponent extends Component {
 	}
 	render() {
 		return ( 
-		<div className = "card bg-light container infomation p-2"
-			style = {
-				{
-					borderRadius: 0,
-					marginTop: '15px',
-					marginBottom: '15px'
-				}
-			} >
+		<div className = "card bg-light container p-2 wastageInfo">
 			<h5 className = "card-title text-center" > Wastage </h5> 
 				<div className = "card-body" >
 					<div className = "row" >

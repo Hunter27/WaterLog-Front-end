@@ -7,11 +7,9 @@ export default class TankComponent extends Component {
 
   render() {
     return (
-      <div style={{width: '150px', border: '1px solid black', textAlign:'center', float: 'left', margin: '2px'}}>
+      <div className="tank">
         <p>{this.tankName}</p>
-        <div 
-          style={{ border: '2px solid black', backgroundColor: 'red', width: '150px', height: '200px'}} 
-        >
+        <div className="div">
           { this.percentage} % 
         </div>
       </div>

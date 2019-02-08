@@ -1,34 +1,17 @@
 import React, { Component } from 'react';
 import ProgressBarComponent from './ProgressBar';
+
 class WastageSummaryComponent extends Component {
 
   percent = this.props.percent;
   waterLost = this.props.waterLost;
 
-  styles = {
-    mild: {
-        textAlign: 'center',
-        color: '#4f5b62',
-        backgroundColor: '#f6f6f6',
-        borderRadius: '5px',
-        padding: '5px'
-    },
-    moderate: {
-        textAlign: 'center',
-        color: 'white'
-    }, 
-    severe: {
-        textAlign: 'center',
-        color:'red'
-    }
-  }
-
   render() {
       console.log(this.props.value)
     return (
-        <div style={{textAlign:"center", margin: "10px"}}>
-          <h3 style={{color: "white"}}>Wastage</h3>
-          <div style={this.styles.mild}>
+        <div className="wastageSummary">
+          <h3 className="wastageSummaryH3">Wastage</h3>
+          <div className="wastageSummary mild">
               <h2>{ (this.props.value.Item1).toFixed(2) }L</h2>
               <p>(of the total water used is being lost due to this pipe</p>
                   <ProgressBarComponent percentage={ this.percent} />

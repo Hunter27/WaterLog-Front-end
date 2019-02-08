@@ -62,4 +62,4 @@ class BtnResolve extends Component {
     )
   }
 }
-export default BtnResolve;\
+export default BtnResolve;

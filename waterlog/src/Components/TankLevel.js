@@ -24,8 +24,7 @@ export default class TankLevelsContainerComponent extends Component {
   
   render() {
     return (
-      <div className="jumbotron container p-4"
-      style={{borderRadius: 0, textAlign: 'center', border: '1px dashed grey',minHeight:'400px',  width: '100%'}}>
+      <div className="jumbotron container p-4 tanklevel">
         <h3>TANK LEVELS</h3>
         <div className="row">
           { this.tankInfo.map(
