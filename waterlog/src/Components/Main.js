@@ -5,7 +5,7 @@ import React, {
 export default class MainComponent extends Component {
   render() {
     return ( 
-    <h1 > Main View Area </h1>
+    <div><h1 > Main View Area </h1></div>
     );
   }
 }

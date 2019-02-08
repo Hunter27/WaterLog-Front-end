@@ -12,7 +12,6 @@ class WastageSummaryComponent extends Component {
         backgroundColor: '#f6f6f6',
         borderRadius: '5px',
         padding: '5px'
-        //height: '100px'
     },
     moderate: {
         textAlign: 'center',

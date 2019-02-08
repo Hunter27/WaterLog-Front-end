@@ -1,8 +1,9 @@
 import React, {
   Component
 } from 'react'
+import { Globals } from './../Globals'
 
-const APIUri = 'http://api.iot.retrotest.co.za/api/monitors';
+const APIUri = `${Globals.API_URL}/api/monitors`;
 class BtnResolve extends Component {
 
   monitorInfo = ["id", "type", "max_flow", "location", "status"];
@@ -61,4 +62,4 @@ class BtnResolve extends Component {
     )
   }
 }
-export default BtnResolve;
+export default BtnResolve;\

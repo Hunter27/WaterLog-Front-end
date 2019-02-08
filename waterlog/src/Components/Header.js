@@ -21,11 +21,11 @@ export default class HeaderComponent extends Component {
       src = "images/burger_menu.png"
       width = "35px"
       height = "35px"
-      alt = "icon" / >
+      alt = "icon" />
       <img src = "images/logo.png"
       width = "50px"
       height = "50px"
-      alt = "retrorabbit" / >
+      alt = "retrorabbit" />
       WATER LOG - RETRO RABBIT </h3>  
     </div>  
     );

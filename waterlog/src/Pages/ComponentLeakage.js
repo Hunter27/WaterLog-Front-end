@@ -2,7 +2,6 @@ import React, { Component }from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchSegmentsLeaksById } from '../actions/SegmentLeaksByIdActions';
-
 import LeakageInfoComponent from './LeakageInfoComponent';
 import WastageSummaryComponent from './../Components/wastageSummary';
 

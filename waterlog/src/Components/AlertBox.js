@@ -30,4 +30,3 @@ function lowStatus(props) {
 export const HighStatusIcon = highStatus;
 export const MediumStatusIcon = mediumStatus;
 export const LowStatusIcon = lowStatus;
-
