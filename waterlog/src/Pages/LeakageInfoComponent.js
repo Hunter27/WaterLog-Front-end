@@ -8,11 +8,9 @@ class LeakageInfoComponent extends Component {
     isMapExpanded = false;
 
     expandMap(){
-        console.log('map expanded');
         this.isMapExpanded = !this.isMapExpanded;
     }
     displayHistory(id){
-        console.log("History for " + id);
     }
 
     render() {
