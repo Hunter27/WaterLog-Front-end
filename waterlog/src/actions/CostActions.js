@@ -1,9 +1,10 @@
 import {
   FETCH_COSTS
 } from "./Types";
+import { Globals } from './../Globals';
 
 export const fetchCosts = () => dispatch => {
-  fetch('https://api.iot.retrotest.co.za/api/segments') //Change to use either localhost/server
+  fetch(`${Globals.API_URL}/api/segments`) //Change to use either localhost/server
     .then(res => res.json())
     .then(costs =>
       dispatch({

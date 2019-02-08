@@ -1,9 +1,10 @@
 import {
   FETCH_SENSORS
 } from "./Types";
+import { Globals } from './../Globals';
 
 export const fetchSensors = () => dispatch => {
-  fetch('https://api.iot.retrotest.co.za/api/monitors')
+  fetch(`${Globals.API_URL}/api/monitors`)
     .then(res => res.json())
     .then(sensors =>
       dispatch({

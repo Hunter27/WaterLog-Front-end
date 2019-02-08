@@ -2,7 +2,7 @@ import 'jsdom';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import store from '../Store';
+import store from '../store';
 
 import AlertComponent from './../Pages/Alert'
 import AlertTableComponent  from './../Components/AlertTable_'
@@ -19,5 +19,6 @@ it('Alert table renders without crashing', ()=> {
     ReactDOM.render(<Provider store={store}><AlertTableComponent /></Provider>, div);
     ReactDOM.unmountComponentAtNode(div);
 });
+
 
   

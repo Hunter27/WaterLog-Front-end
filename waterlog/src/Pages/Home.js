@@ -3,6 +3,7 @@ import TankLevelsContainerComponent from './../Components/TankLevel';
 import MiniMapComponent from './../Components/MiniMap';
 import InformationComponent from '../Components/Information'
 
+//Contains all the components in the home page
 class HomeComponent extends React.Component {
   render() {
     return (

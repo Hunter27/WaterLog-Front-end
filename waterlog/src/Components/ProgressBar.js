@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import '../Stylesheets/_progressBar.scss';
-
 export default class ProgressBarComponent extends Component {
 	percentage = this.props.percentage;
 	constructor(props) {

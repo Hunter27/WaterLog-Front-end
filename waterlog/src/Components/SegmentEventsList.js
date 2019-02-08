@@ -34,4 +34,4 @@ SegmentEventsList.propTypes = {
 const mapStateToProps = state => ({
     events: state.events.items
 });
-export default connect(mapStateToProps, { fetchSegmentsEvents })(SegmentEventsList);
+export default connect(mapStateToProps, { fetchSegmentsEvents })(SegmentEventsList); 

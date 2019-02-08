@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import './../../node_modules/bootstrap/dist/css/bootstrap.min.css';
-
 export default class TankComponent extends Component {
   
-tankName = this.props.name;
-percentage = this.props.percentage;
+  tankName = this.props.name;
+  percentage = this.props.percentage;
 
   render() {
     return (
@@ -19,7 +18,3 @@ percentage = this.props.percentage;
     );
   }
 }
-
-
-
-
