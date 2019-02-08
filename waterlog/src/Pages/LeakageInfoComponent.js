@@ -7,20 +7,6 @@ class LeakageInfoComponent extends Component {
     cost = this.props.cost;
     isMapExpanded = false;
 
-    styles = {
-        mild: {
-            textAlign: 'center',
-            color: 'white'
-        },
-        moderate: {
-            textAlign: 'center',
-            color: 'white'
-        }, 
-        severe: {
-            textAlign: 'center',
-            color:'red'
-        }
-    }
     expandMap(){
         console.log('map expanded');
         this.isMapExpanded = !this.isMapExpanded;
@@ -31,7 +17,7 @@ class LeakageInfoComponent extends Component {
 
     render() {
         return (
-            <div style={this.styles.severe}>
+            <div className="severe">
                 <h2>Segment { this.props.value.leak.segmentId} is Leaking</h2>
                 <p>({ this.props.value.leak.severity})</p>
                 <h1>R { this.props.value.data.Item2 }</h1>
