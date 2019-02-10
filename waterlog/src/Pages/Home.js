@@ -1,11 +1,7 @@
 import React from 'react';
-// import { BrouserRouter as Router, Route, Link } from "react-router-dom";
-
 import TankLevelsContainerComponent from './../Components/TankLevel';
 import MiniMapComponent from './../Components/MiniMap';
-import InformationComponent from '../Components/Information'
-
-//Contains all the components in the home page
+import InformationComponent from '../Components/Information';
 
 class HomeComponent extends React.Component {
   render() {

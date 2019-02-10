@@ -1,0 +1,49 @@
+table {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	border-collapse: collapse;
+	color: white;
+	width: 100%;
+}
+
+tr {
+	border-bottom: 1px solid white;
+	width: 100%;
+}
+
+td,
+th {
+	padding: 8px;
+}
+
+tr:hover {
+	cursor: pointer;
+}
+
+th {
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: left;
+	color: white;
+}
+
+h3 {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	text-transform: uppercase;
+	font-size: 1rem;
+	font-weight: bolder;
+}
+
+.fault {
+	background-color: rgb(216, 0, 0);
+}
+
+.alertsH1 {
+	text-align: center;
+	font: Malayalam Sangam MN;
+	color: white;
+	padding: 5px;
+}
+
+body{
+  background-color: #253238 !important;
+}

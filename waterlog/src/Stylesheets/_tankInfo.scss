@@ -1,0 +1,22 @@
+.tank {
+	width: 150px;
+	border: 1px solid black;
+	text-align: center;
+	float: left;
+	margin: 2px;
+
+	div {
+		border: 2px solid black;
+		background-color: red;
+		width: 150px;
+		height: 200px;
+	}
+}
+
+.tanklevel {
+	border-radius: 0;
+	text-align: center;
+	border: 1px dashed grey;
+	min-height: 400px;
+	width: 100%;
+}

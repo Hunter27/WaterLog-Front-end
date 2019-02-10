@@ -1,4 +1,6 @@
-import { FETCH_SEGMENTS } from '../actions/types';
+import {
+    FETCH_SEGMENTS
+} from '../actions/Types';
 
 const initialState = {
     items: [],
