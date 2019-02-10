@@ -12,14 +12,12 @@ class ComponentLeakage extends Component {
 	}
 
     render (){
-        console.log(this.props.leak);
-
         if(this.props.leak === {}){
             return (<span>Loading ...</span>)
         } else {
             return(
                 <div className="leakageComponent">
-                    <LeakageInfoComponent value={this.props.leak} /*segment={this.props.leak.id} severity={this.props.leak.severity} */ waterLost="20" cost="200"/>
+                    <LeakageInfoComponent value={this.props.leak} />
                     <WastageSummaryComponent value={this.props.leak.usage} />
                 </div>
         )
