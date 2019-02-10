@@ -1,6 +1,5 @@
-import React, {
-  Component
-} from 'react';
+import React, {Component} from 'react';
+
 
 class MapComponent extends Component {
 

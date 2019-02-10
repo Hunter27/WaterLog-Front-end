@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 class LeakageInfoComponent extends Component {
     section = this.props.segment; 
     severity = this.props.severity; 

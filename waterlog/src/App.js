@@ -6,9 +6,6 @@ import { Provider } from 'react-redux';
 import store from './Store';
 
 class App extends Component {
-  componentWillMount(){
-    document.body.style.backgroundColor = "#253238";
-  }
 
   render() {
     return (

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import AlertTable from '../Components/AlertTable';
 import { Provider } from 'react-redux';
 import store from '../Store';
+import '../App.scss';
 class AlertComponent extends Component {
 	render() {
 		return (
