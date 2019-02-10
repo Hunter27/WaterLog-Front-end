@@ -10,8 +10,19 @@ class AlertTableComponent extends Component {
 	}
 	alertInfo = [ 'DATE', 'DESCRIPTION', 'COST', 'STATUS' ];
 
+	getStatusIcon = function(severity) {
+		switch (severity) {
+			case 'high':
+				return HighStatusIcon();
+			case 'low':
+				return LowStatusIcon();
+			case 'normal':
+				return MediumStatusIcon();
+			default:
+				return null;
+		}
+	};
 	render() {
-		
 		return (
 			<table>
 				<thead>
@@ -20,28 +31,14 @@ class AlertTableComponent extends Component {
 				<tbody>
 					{this.props.leaks.map((alert) => (
 						<tr
-						key={alert.id}
-						className={alert.status === 'Fault' ? 'fault' : ''}
-							onClick={() => (window.location.href =  `alert/segment/${alert.id}`)}
-							>
+							key={alert.id}
+							className={alert.status === 'Fault' ? 'fault' : ''}
+							onClick={() => (window.location.href = `alert/segment/${alert.id}`)}
+						>
 							<td>{new Date(alert.originalTimeStamp).toDateString()}</td>
 							<td>Section {alert.segmentId} Leak</td>
-							<td>R{alert.cost}  /hr</td>
-						<td>
-									{(() => {
-										
-						    switch (alert.severity) {
-								case 'high':
-								return HighStatusIcon();
-								case 'low':
-								return LowStatusIcon();
-								case 'normal':
-								return MediumStatusIcon();
-								default:
-								return null;
-								}
-									})()}
-						</td>
+							<td>R{alert.cost} /hr</td>
+							<td>{this.getStatusIcon(alert.severity)}</td>
 						</tr>
 					))}
 				</tbody>
@@ -53,10 +50,9 @@ class AlertTableComponent extends Component {
 AlertTableComponent.propTypes = {
 	fetchSegmentsLeaks: PropTypes.func.isRequired,
 	leaks: PropTypes.array.isRequired
-	
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
 	leaks: state.leaks.items
 });
 
