@@ -1,4 +1,4 @@
-import { FETCH_LEAK_LITRES } from "./types";
+import { FETCH_LEAK_LITRES } from  './types';
 
 export const fetchLeakLitres = (id = 1) => dispatch => {
   fetch(`https://localhost:44382/api/segmentleaks/litres/${id}`)
