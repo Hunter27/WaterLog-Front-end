@@ -24,7 +24,7 @@ export default class NavComponent extends Component {
               </NavLink>
               <NavLink  to="/alert"className="navicon-container" activeClassName="selected-route">
                 <img src="images/alert_icon.png" height="33px" width="33px" alt="alert"/>
-                <span class="badge">{9}</span>
+                <span className="badge">{9}</span>
               </NavLink>
               <NavLink exact to="/map" className="navicon-container" activeClassName="selected-route">
                 <img src="images/map_icon.png" height="33px" width="33px" alt="map"/>

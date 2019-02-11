@@ -18,19 +18,23 @@
     margin: auto;
     border-right: 1px solid grey;
     text-decoration: none;
+    height: 40px; 
+    //display: relative;
+    .badge {
+        background-color: #ff4417;
+        color: #f6f6f6;
+        font-size: 8pt;
+        padding: 2px 5px;
+        border-radius: 30px;
+        position: relative;
+        top: -20px;
+        margin-left: -15px;
+        
+    }
 }
 
 .selected-route {
     background-color: #253238;
 }
 
-.badge {
-    background-color: #ff4417;
-    color: #f6f6f6;
-    padding: 2px;
-    border-radius: 40px;
-    display: absolute;
-    top: 10px;
-    left: 10px;
-    
-}
+
