@@ -1,7 +1,8 @@
 import { FETCH_LEAK_LITRES } from  './Types';
+import { Globals } from './../Globals';
 
 export const fetchLeakLitres = (id = 1) => dispatch => {
-  fetch(`https://localhost:44382/api/segmentleaks/litres/${id}`)
+  fetch( `${Globals.API_URL}/api/segmentleaks/litres${id}`)
     .then(res => res.json())
     .then(leak => {
       dispatch({
