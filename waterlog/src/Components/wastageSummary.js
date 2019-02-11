@@ -1,24 +1,15 @@
-import React, { Component } from 'react';
-import ProgressBarComponent from './ProgressBar';
+import React from 'react';
+import ProgressBar from './ProgressBar';
 
-class WastageSummaryComponent extends Component {
-
-  percent = this.props.percent;
-  waterLost = this.props.waterLost;
-
-  render() {
-      console.log(this.props.value)
-    return (
-        <div className="wastageSummary">
-          <h3 className="wastageSummaryH3">Wastage</h3>
-          <div className="wastageSummary mild">
-              <h2>{ (this.props.value.Item1).toFixed(2) }L</h2>
-              <p>(of the total water used is being lost due to this pipe</p>
-                  <ProgressBarComponent percentage={ this.percent} />
-          </div>
-        </div>
-    );
-  }
+const WastageSummary = () => {
+  return(
+    <div className="wastage-summary">
+      <p>{40}% or 250&#x2113;</p>
+      <p>(of the total water used is being lost due to this pipe)</p>
+      <ProgressBar />
+      <p>(only {60}% of the water passing out the tanks throughout the system is being used)</p>
+    </div>
+  )
 }
+export default WastageSummary;
 
-export default WastageSummaryComponent;

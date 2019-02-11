@@ -1,18 +1,33 @@
-import React, { Component } from 'react';
-import './../../node_modules/bootstrap/dist/css/bootstrap.min.css';
-export default class TankComponent extends Component {
-  
-  tankName = this.props.name;
-  percentage = this.props.percentage;
+import React from 'react';
 
-  render() {
-    return (
-      <div className="tank">
-        <p>{this.tankName}</p>
-        <div className="div">
-          { this.percentage} % 
-        </div>
-      </div>
-    );
+const Tank = (props)=>{
+  const tankIcon = ()=>{
+    if(props.tank.waterLevel < 50)
+      return "img/tank_0.png"
+    else if (props.tank.waterLevel >= 50 && props.tank.waterLevel < 75)
+      return "img/tank_50.png"
+    else if (props.tank.waterLevel >= 75 && props.tank.waterLevel < 95)
+      return "img/tank_75.png"
+    else
+    return "img/tank_100.png"
   }
+
+  const pumpStatusIndicator = () => {
+    if(props.tank.pumpOn===true && props.tank.waterLevel > 95)
+      return "turn pump off";
+    else if(!props.tank.pumpOn && props.tank.waterLevel < 5)
+      return "turn pump on";
+    else 
+      return "leave pump off";  
+  }
+
+  return (
+    <div className="tank">
+      <p>{props.tank.name}</p>
+      <img src={tankIcon()} alt="100% tank"/>
+      <p>{props.tank.status}</p>
+      <p className="link">{pumpStatusIndicator()}</p>
+    </div>
+  )
 }
+export default Tank;
