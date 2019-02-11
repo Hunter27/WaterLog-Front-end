@@ -9,9 +9,9 @@ class AlertTableComponent extends Component {
 		this.props.fetchSegmentsLeaks();
 	}
 
-	alertInfo = [ 'DATE', 'DESCRIPTION', 'COST', 'STATUS' ];
+	alertInfo = ['DATE', 'DESCRIPTION', 'COST', 'STATUS'];
 
-	getStatusIcon = function(severity) {
+	getStatusIcon = function (severity) {
 		switch (severity.toLowerCase()) {
 			case 'high':
 				return HighStatusIcon();
@@ -24,12 +24,12 @@ class AlertTableComponent extends Component {
 		}
 	};
 	render() {
-		const {error, loading, leaks} = this.props;
+		const { error, loading, leaks } = this.props;
 
-		if(error){
+		if (error) {
 			return <div>Error! {error.message}</div>;
 		}
-		if(loading){
+		if (loading) {
 			return <div>Loading...</div>;
 		}
 
@@ -47,7 +47,7 @@ class AlertTableComponent extends Component {
 						>
 							<td>{new Date(alert.originalTimeStamp).toDateString()}</td>
 							<td>Section {alert.segmentId} Leak</td>
-							<td>{"R "+alert.cost.Item2 + "/hr"}</td>
+							<td>{'R ' + alert.cost.Item2 + '/hr'}</td>
 							<td>{this.getStatusIcon(alert.severity)}</td>
 						</tr>
 					))}

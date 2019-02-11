@@ -38,7 +38,6 @@ export const fetchSegmentsLeaks = () => (dispatch) => {
 						}
 					})
 			);
-
 			return leaks;
 		})
 		.catch((error) => {
