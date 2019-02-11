@@ -12,7 +12,7 @@ class AlertTableComponent extends Component {
 	alertInfo = [ 'DATE', 'DESCRIPTION', 'COST', 'STATUS' ];
 
 	getStatusIcon = function(severity) {
-		switch (severity) {
+		switch (severity.toLowerCase()) {
 			case 'high':
 				return HighStatusIcon();
 			case 'low':
