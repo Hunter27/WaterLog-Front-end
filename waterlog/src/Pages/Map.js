@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+
 
 class MapComponent extends Component {
 
   render() {
-    return (
-      //displays the map
-      <div id="map">
-        This is the map  :=) 
-      </div>
-      
+    return ( 
+    <div className = "App" >
+      <div> Map Component </div> 
+    </div>
     );
   }
 }

@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
-//import { BrouserRouter as Router, Route, Link } from "react-router-dom"; 
-import {Provider} from 'react-redux';
-import store from '../store';
-
+import AlertTable from '../Components/AlertTable';
+import { Provider } from 'react-redux';
+import store from '../Store';
+import '../App.scss';
 class AlertComponent extends Component {
-  render() {
-    return (
-        <Provider store={store}>
-          <div className="App">
-            <header className="App-header"> 
-            </header>
-          </div>
-        </Provider>
-    );
-  }
+	render() {
+		return (
+			<Provider store={store}>
+				<div className="App">
+					<h1 className="alertsH1">
+						Alerts
+					</h1>
+					<AlertTable />
+				</div>
+			</Provider>
+		);
+	}
 }
 
 export default AlertComponent;
