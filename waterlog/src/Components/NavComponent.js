@@ -17,19 +17,20 @@ export default class NavComponent extends Component {
             
             <div className="navicons">
               <div className="logo">
-                <img src="img/logo_green.png" height="33px" width="33px" alt="logo"/>
+                <img src="images/logo.png" height="33px" width="33px" alt="logo"/>
               </div>
               <NavLink exact to="/" className="navicon-container" activeClassName="selected-route">
-                <img src="img/home_icon.png" height="33px" width="33px" alt="home"/>
+                <img src="images/home_icon.png" height="33px" width="33px" alt="home"/>
               </NavLink>
               <NavLink  to="/alert"className="navicon-container" activeClassName="selected-route">
-                <img src="img/alert_icon.png" height="33px" width="33px" alt="alert"/>
+                <img src="images/alert_icon.png" height="33px" width="33px" alt="alert"/>
+                <span class="badge">{9}</span>
               </NavLink>
               <NavLink exact to="/map" className="navicon-container" activeClassName="selected-route">
-                <img src="img/map_icon.png" height="33px" width="33px" alt="map"/>
+                <img src="images/map_icon.png" height="33px" width="33px" alt="map"/>
               </NavLink>
               <NavLink exact to="/usage" className="navicon-container" activeClassName="selected-route">
-                <img src="img/usage_icon.png" height="33px" width="33px" alt="usage"/>
+                <img src="images/usage_icon.png" height="33px" width="33px" alt="usage"/>
               </NavLink>
             </div>
           </header>
