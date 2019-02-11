@@ -1,13 +1,5 @@
-/*
-@import './Stylesheets/header';
-@import './Stylesheets/alerts';
-@import './Stylesheets/home';
-@import './Stylesheets/progressBar';
-@import './Stylesheets/monitors';
-@import './Stylesheets/map';
-@import './Stylesheets/wastageSummary';
- */
 @import './Stylesheets/wastage';
+@import './Stylesheets/wastageSummary';
 @import './Stylesheets/nav';
 @import './Stylesheets/loader';
 @import './Stylesheets/tankInfo';
@@ -29,85 +21,6 @@
 	background-color: #253238;
 }
 
-
-/* ************ App ***************** */
-.navicons {
-    display: flex;
-    height: 44px;
-    background-color: #4f5b62;
-    margin-top: 2px;
-    opacity: 0.9;
-}
-
-.logo {
-    margin: auto;
-    width: 51px;
-    border-right: 1px solid grey;
-    
-}
-
-.navicon-container {
-    flex: 1;
-    margin: auto;
-    border-right: 1px solid grey;
-    text-decoration: none;
-}
-
-.selected-route {
-    background-color: #253238;
-}
-
-/* ************ Wastage summary ********* */
-.wastage-summary {
-    background-color: white;
-    border-radius: 5px;
-    margin: 10px 20px;
-    padding: 5px;
-}
-.wastage-summary p:first-child {
-    font-size: 25pt;
-    font-weight: bolder;
-    color: #4f5b62;
-    margin: 0;
-}
-
-.wastage-summary p:nth-child(2){
-    font-size: 10pt;
-    color: #4f5b62;
-    margin: 7px 0;
-}
-
-.wastage-summary p:last-child{
-    font-size: 9pt;
-    color: #93a4ab;
-    margin: 7px 0;
-}
-
-/*  ********** Progress Bar *************** */
-.progress-bar {
-    background-color: #eceff1;
-    height: 32px;
-    padding: 0;
-    margin: 0 10px;
-}
-
-.filler {
-    background-color: red;
-    height: 32px;
-    padding: 0;
-    margin: 0;
-    border-radius: 0 15px 15px 0;
-    color: white;
-}
-
-.percent-label {
-    display: inline-block;
-    color: white;
-    font-size: 15pt;
-    padding: 0;
-    margin-top: 5px;
-
-}
 
 button {
     background-color: dee1e2;;
@@ -145,72 +58,11 @@ hr {
     margin: 0 20px
 }
 
-.leakInfo {
-    color: #ff1744;
-    margin: 0 20px;
-    padding: 0;
-}
-
-.leakInfo :first-child {
-    font-size: 20pt;
-}
-
-.leakInfo :nth-child(2) {
-    margin: 5px;
-    font-weight: bold;
-    font-size: 10pt;
-}
-
-.leakInfo :nth-child(3) {
-    margin: 0;
-    font-weight: bolder;
-}
-.leakInfo :nth-child(4) {
-    margin: 0;
-    margin-bottom: 7px;
-    font-weight: bold;
-    font-size: 12pt;
-}
-.leakInfo :nth-child(5) {
-    margin: 0;
-    color: #93a4ae;
-    font-weight: bold;
-    font-size: 12pt;
-}
-.leakInfo :nth-child(6) {
-    margin-top: 0;
-    color: #93a4ae;
-    font-size: 10pt;
-}
-
-.default-status {
-    color: #93a4ae;
-    margin: 0;
-}
-
-.leak-unresolved-status {
-    color: red;
-    margin: 0;
-    font-size: 11pt;
-}
-
-
-
-/* +++++++++++++++++++ Home styles +++++++++++++++++++++++++++ */
 .home-text {
     margin: 5px;
     font-size: 15pt;
     color: #f6f6f6;
 }
 
-
-/* +++++++++++++++++++ Tank +++++++++++++++++++++++++++ */
-
-/* ++++++++++++++++++++++++ ALERTS MAP +++++++++++++++++++++ */
-.alerts-map {
-    border: 1px solid grey;
-    margin: 0 20px;
-    min-height: 100px; /* remove after loading content */
-}
 
 

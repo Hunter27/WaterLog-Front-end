@@ -1,3 +1,29 @@
+.navicons {
+    display: flex;
+    height: 44px;
+    background-color: #4f5b62;
+    margin-top: 2px;
+    opacity: 0.9;
+}
+
+.logo {
+    margin: auto;
+    width: 51px;
+    border-right: 1px solid grey;
+    
+}
+
+.navicon-container {
+    flex: 1;
+    margin: auto;
+    border-right: 1px solid grey;
+    text-decoration: none;
+}
+
+.selected-route {
+    background-color: #253238;
+}
+
 .badge {
     background-color: #ff4417;
     color: #f6f6f6;

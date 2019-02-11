@@ -44,6 +44,8 @@ h3 {
 	padding: 5px;
 }
 
-body{
-  background-color: #253238 !important;
+.alerts-map {
+    border: 1px solid grey;
+    margin: 0 20px;
+    min-height: 100px; /* remove after loading content */
 }
