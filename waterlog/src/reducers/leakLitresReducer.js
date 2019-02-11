@@ -12,14 +12,14 @@ export default function (state = initialState, action) {
       return {
         ...state,
         loading: true,
-        error: null
-
+        error: null 
       };
     case FETCH_LEAK_LITRES_SUCCESS:
       return {
         ...state,
         loading: false,
-        item: action.payload.litres
+        item: action.payload.litres,
+        error: null
       };
     case FETCH_LEAK_LITRES_FAILURE:
       return {
