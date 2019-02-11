@@ -4,11 +4,9 @@ import { connect } from 'react-redux';
 import { fetchSegmentsEvents } from '../actions/SegmentEvents';
 
 class SegmentEventsList extends Component {
-
     componentWillMount() {
         this.props.fetchSegmentsEvents();
     }
-
     render() {
         const events = this.props.events.map(events => (
             <div key={events.id}>

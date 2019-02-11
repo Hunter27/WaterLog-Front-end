@@ -3,13 +3,13 @@ import React from 'react';
 const Tank = (props)=>{
   const tankIcon = ()=>{
     if(props.tank.waterLevel < 50)
-      return "img/tank_0.png"
+      return "images/tank_0.png"
     else if (props.tank.waterLevel >= 50 && props.tank.waterLevel < 75)
-      return "img/tank_50.png"
+      return "images/tank_50.png"
     else if (props.tank.waterLevel >= 75 && props.tank.waterLevel < 95)
-      return "img/tank_75.png"
+      return "images/tank_75.png"
     else
-    return "img/tank_100.png"
+    return "images/tank_100.png"
   }
 
   const pumpStatusIndicator = () => {

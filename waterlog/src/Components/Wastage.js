@@ -10,6 +10,9 @@ class Wastage extends Component {
         display: "daily"
       }
     }
+    componentDidMount(){
+      document.getElementById("openByDefault").click();
+    }
     graphToDisplay(){
       if(this.state.display === "daily")
         return <DailyWastageComponent />
@@ -44,6 +47,7 @@ class Wastage extends Component {
             <div className="graph-nav tab">
               <button className="btn-graph-nav tablinks"
                 onClick={(e)=>this.openGraph(e,"daily")}
+                id="openByDefault"
               >
                 Daily
               </button>

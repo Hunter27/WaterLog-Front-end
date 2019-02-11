@@ -7,12 +7,12 @@ class TankLevels extends Component {
     this.state = {
       tanks: [{
           name: "Tank 1",
-          waterLevel: 100,
+          waterLevel: 0,
           status: "sufficient level",
           pumpOn: true
         },{
           name: "Tank 2",
-          waterLevel: 0,
+          waterLevel: 75,
           status: "insufficient level",
           pumpOn: false
         },{
