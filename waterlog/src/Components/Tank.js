@@ -18,7 +18,7 @@ const Tank = (props)=>{
     else if(!props.tank.pumpOn && props.tank.waterLevel < 5)
       return "turn pump on";
     else 
-      return "leave pump off";  
+      return "leave pump on";  
   }
 
   return (

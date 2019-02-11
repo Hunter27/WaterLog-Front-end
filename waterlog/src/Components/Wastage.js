@@ -17,9 +17,9 @@ class Wastage extends Component {
       if(this.state.display === "daily")
         return <DailyWastageComponent />
       else if(this.state.display === "montlhy")
-        return <MonthlyWastageComponent />
+        return 
       else if(this.state.display === "seasonal")
-        return <SeasonalWastageComponent />
+        return 
       else
       return <h1>Choose the summary to display</h1>  
     }
@@ -65,13 +65,13 @@ class Wastage extends Component {
             <div className="tabcontent" id="daily">
               <p>R {1000.00} <small>lost so far</small></p>
               <p>({10}% more than normal water usage)</p>
-              {this.graphToDisplay()}
+              <DailyWastageComponent />
             </div>
             <div className="tabcontent" id="monthly">
-              monthly wastage graph
+              <MonthlyWastageComponent />
             </div>
             <div className="tabcontent" id="seasonal">
-              seasonal wastage graph
+              <SeasonalWastageComponent />
             </div>
           </div>
       )
