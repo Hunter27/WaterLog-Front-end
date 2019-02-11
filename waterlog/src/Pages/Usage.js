@@ -1,6 +1,5 @@
 import React, { Component } from 'react'; 
 
-
 class UsageComponent extends Component {
   render() {
     return ( 
@@ -8,5 +7,4 @@ class UsageComponent extends Component {
     );
   }
 }
-
 export default UsageComponent;

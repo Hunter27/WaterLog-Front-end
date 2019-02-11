@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import AlertTable from '../Components/AlertTable';
 import { Provider } from 'react-redux';
 import store from '../Store';
-import '../App.scss';
+import { NavLink } from 'react-router-dom';
+
 class AlertComponent extends Component {
 	render() {
 		return (
@@ -12,10 +13,10 @@ class AlertComponent extends Component {
 						Alerts
 					</h1>
 					<AlertTable />
+					<NavLink to="/alert/segment/2">Segment 2</NavLink>
 				</div>
 			</Provider>
 		);
 	}
 }
-
 export default AlertComponent;

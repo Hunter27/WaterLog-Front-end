@@ -1,18 +1,19 @@
 import React from 'react';
-import TankLevelsContainerComponent from './../Components/TankLevel';
-import MiniMapComponent from './../Components/MiniMap';
-import InformationComponent from '../Components/Information';
+import Wastage from './../Components/Wastage';
+import AlertsMap from './../Components/AlertsMap';
+import TankLevels from './../Components/TankLevels';
 
 class HomeComponent extends React.Component {
   render() {
     return (
       <div>
-        <TankLevelsContainerComponent />
-        <InformationComponent />
-        <MiniMapComponent />
+        <p className="home-text">Alerts Map</p>
+      <AlertsMap />
+      <Wastage />
+      <p className="home-text">Tank Levels</p>
+      <TankLevels />
       </div>
     );
   }
 }
-
 export default HomeComponent;
