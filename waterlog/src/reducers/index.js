@@ -1,6 +1,5 @@
-import {
-    combineReducers
-} from 'redux';
+import { combineReducers} from 'redux';
+
 import SensorReducer from './SensorReducer';
 import SegmentsReducer from './SegmentsReducer';
 import SegmentEventReducer from './SegmentEventsReducer';
