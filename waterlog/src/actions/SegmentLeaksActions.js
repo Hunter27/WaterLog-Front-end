@@ -19,10 +19,10 @@ export const fecthSegmentsLeaksFailure = (error) => ({
 	type: FETCH_SEGMENTS_LEAKS_FAILURE,
 	payload: { error }
 });
-// TODO: will implement after setting redux
+
 export const fetchSegmentsLeaks = () => (dispatch) => {
 	dispatch(fecthSegmentsLeaksBegin());
-	return fetch(`${Globals.API_URL}/api/segmentleaks`) //Change to use either localhost/server
+	return fetch(`${Globals.API_URL}/api/segmentleaks`) 
 		.then(handleErrors)
 		.then((res) => res.json())
 		.then((leaks) => {

@@ -46,7 +46,7 @@ class AlertTableComponent extends Component {
 							onClick={() => (window.location.href = `alert/segment/${alert.id}`)}
 						>
 							<td>{new Date(alert.originalTimeStamp).toDateString()}</td>
-							<td>Section{console.log(alert.cost)} {alert.segmentId} Leak</td>
+							<td>Section {alert.segmentId} Leak</td>
 							<td>{"R "+alert.cost.Item2 + "/hr"}</td>
 							<td>{this.getStatusIcon(alert.severity)}</td>
 						</tr>
