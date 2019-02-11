@@ -38,7 +38,7 @@ class SegmentLeak extends Component{
                   <p>Loosing {20}&#x2113; per hour</p>
                   <p>no leak would be 0&#x2113; per hour</p>
                 </div>
-                <img src={this.state.mapExpanded === false ? "img/map_expand.png" : "img/map_close.png" } 
+                <img src={this.state.mapExpanded === false ? "images/map_expand.png" : "images/map_close.png" } 
                   width="50px" 
                   alt="segment-map"
                   onClick={()=>this.handleMapExpand()}
