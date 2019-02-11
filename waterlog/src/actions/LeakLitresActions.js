@@ -1,7 +1,8 @@
 import {
   FETCH_LEAK_LITRES_BEGIN,
   FETCH_LEAK_LITRES_SUCCESS,
-  FETCH_LEAK_LITRES_FAILURE
+  FETCH_LEAK_LITRES_FAILURE,
+  handleErrors
 } from './Types';
 import { Globals } from './../Globals';
 
