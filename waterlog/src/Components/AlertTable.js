@@ -36,14 +36,14 @@ class AlertTableComponent extends Component {
 		return (
 			<table>
 				<thead>
-					<tr>{this.alertInfo.map((info) => <th key={info}>{info}</th>)}</tr>
+					<tr>{this.alertInfo.map((info) => <th key = {info}>{info}</th>)}</tr>
 				</thead>
 				<tbody>
 					{leaks.map((alert) => (
 						<tr
-							key={alert.id}
-							className={alert.status === 'Fault' ? 'fault' : ''}
-							onClick={() => (window.location.href = `alert/segment/${alert.id}`)}
+							key = {alert.id}
+							className = {alert.status === 'Fault' ? 'fault' : ''}
+							onClick = {() => (window.location.href = `alert/segment/${alert.id}`)}
 						>
 							<td>{new Date(alert.originalTimeStamp).toDateString()}</td>
 							<td>Section {alert.segmentId} Leak</td>
