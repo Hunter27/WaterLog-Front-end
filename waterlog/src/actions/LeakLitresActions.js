@@ -1,8 +1,8 @@
-import { FETCH_LEAK_LITRES } from  './Types';
-import { Globals } from './../Globals';
+import { FETCH_LEAK_LITRES } from "./Types";
+import { Globals } from "./../Globals";
 
-export const fetchLeakLitres = (id = 1) => dispatch => {
-  fetch( `${Globals.API_URL}/api/segmentleaks/litres${id}`)
+export const fetchLeakLitres = id => dispatch => {
+  fetch(`${Globals.API_URL}/api/segmentleaks/litres${id}`)
     .then(res => res.json())
     .then(leak => {
       dispatch({
@@ -10,7 +10,7 @@ export const fetchLeakLitres = (id = 1) => dispatch => {
         payload: leak
       });
     })
-    .catch(function (ex) {
+    .catch(function(ex) {
       throw ex;
     });
 };

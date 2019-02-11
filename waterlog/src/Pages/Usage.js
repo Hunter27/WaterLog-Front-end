@@ -1,9 +1,9 @@
-import React, { Component } from 'react'; 
+import React, { Component } from 'react';
 
 
 class UsageComponent extends Component {
   render() {
-    return ( 
+    return (
       <div>Usage page</div>
     );
   }
