@@ -4,6 +4,19 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchSegmentsLeaks } from '../actions/SegmentLeaksActions';
 
+
+export const getStatusIcon = function (severity) {
+	switch (severity.toLowerCase()) {
+		case 'high':
+			return HighStatusIcon();
+		case 'low':
+			return LowStatusIcon();
+		case 'normal':
+			return MediumStatusIcon();
+		default:
+			return null;
+	}
+};
 class AlertTableComponent extends Component {
 	componentDidMount() {
 		this.props.fetchSegmentsLeaks();
@@ -11,18 +24,6 @@ class AlertTableComponent extends Component {
 
 	alertInfo = ['DATE', 'DESCRIPTION', 'COST', 'STATUS'];
 
-	getStatusIcon = function (severity) {
-		switch (severity.toLowerCase()) {
-			case 'high':
-				return HighStatusIcon();
-			case 'low':
-				return LowStatusIcon();
-			case 'normal':
-				return MediumStatusIcon();
-			default:
-				return null;
-		}
-	};
 	render() {
 		const { error, loading, leaks } = this.props;
 
@@ -48,7 +49,7 @@ class AlertTableComponent extends Component {
 							<td>{new Date(alert.originalTimeStamp).toDateString()}</td>
 							<td>Section {alert.segmentId} Leak</td>
 							<td>{'R ' + alert.cost.Item2 + '/hr'}</td>
-							<td>{this.getStatusIcon(alert.severity)}</td>
+							<td>{getStatusIcon(alert.severity)}</td>
 						</tr>
 					))}
 				</tbody>
