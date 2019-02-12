@@ -18,7 +18,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         loading: false,
-        item: action.payload.litres,
+        item: action.payload.history,
         error: null
       };
     case FETCH_LEAK_HISTORY_FAILURE:

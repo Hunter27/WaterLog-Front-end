@@ -25,8 +25,8 @@ import {
     fetch(`${Globals.API_URL}/api/segmentleaks/${id}`)
       .then(handleErrors)
       .then(res => res.json())
-      .then(leak => {
-        dispatch(fetchLeakHistorySuccess(leak));
+      .then(history => {
+        dispatch(fetchLeakHistorySuccess(history));
       })
       .catch(error => dispatch(fetchLeakHistoryFailure(error)));
   };

@@ -22,10 +22,10 @@ class HistoryTableComponent extends Component {
 		this.props.fetchSegmentsLeaks();
 	}
 
-	alertInfo = ['DATE', 'DESCRIPTION', 'COST', 'STATUS'];
+	historyInfo = ['DATE', 'DESCRIPTION', 'COST', 'STATUS'];
 
 	render() {
-		const { error, loading, leaks } = this.props;
+		const { error, loading, history } = this.props;
 
 		if (error) {
 			return <div>Error! {error.message}</div>;
@@ -37,19 +37,19 @@ class HistoryTableComponent extends Component {
 		return (
 			<table>
 				<thead>
-					<tr>{this.alertInfo.map((info) => <th key = {info}>{info}</th>)}</tr>
+					<tr>{this.historyInfo.map((info) => <th key = {info}>{info}</th>)}</tr>
 				</thead>
 				<tbody>
-					{leaks.map((alert) => (
+					{history.map((history) => (
 						<tr
-							key = {alert.id}
-							className = {alert.status === 'Fault' ? 'fault' : ''}
-							onClick = {() => (window.location.href = `alert/segment/${alert.id}`)}
+							key = {history.id}
+							className = {history.status === 'Fault' ? 'fault' : ''}
+							onClick = {() => (window.location.href = `alert/segment/${history.id}`)}
 						>
-							<td>{new Date(alert.originalTimeStamp).toDateString()}</td>
-							<td>Section {alert.segmentId} Leak</td>
-							<td>{'R ' + alert.cost.Item2 + '/hr'}</td>
-							<td>{getStatusIcon(alert.severity)}</td>
+							<td>{new Date(history.originalTimeStamp).toDateString()}</td>
+							<td>Section {history.segmentsId} Leak</td>
+							<td>{'R ' + history.cost.Item2 + '/hr'}</td>
+							<td>{getStatusIcon(history.severity)}</td>
 						</tr>
 					))}
 				</tbody>
@@ -59,14 +59,14 @@ class HistoryTableComponent extends Component {
 }
 
 HistoryTableComponent.propTypes = {
-	fetchSegmentsLeaks: PropTypes.func.isRequired,
-	leaks: PropTypes.array.isRequired
+	fetchSegmentsHistory: PropTypes.func.isRequired,
+	history: PropTypes.array.isRequired
 };
 
 const mapStateToProps = (state) => ({
-	leaks: state.leaks.items,
-	loading: state.leaks.loading,
-	error: state.leaks.errors
+	history: state.history.items,
+	loading: state.history.loading,
+	error: state.history.errors
 });
 
-export default connect(mapStateToProps, { fetchSegmentsLeaks })(HistoryTableComponent);
+export default connect(mapStateToProps, { fetchSegmentsHistory })(HistoryTableComponent);
