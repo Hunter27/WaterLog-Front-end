@@ -1,47 +1,49 @@
 import {
-    FETCH_SEGMENTS_LEAKS_BEGIN,
-    FETCH_SEGMENTS_LEAKS_SUCCESS,
-    FETCH_SEGMENTS_LEAKS_FAILURE,
+    FETCH_SEGMENTS_RESOLVED_BEGIN,
+    FETCH_SEGMENTS_RESOLVED_SUCCESS,
+    FETCH_SEGMENTS_RESOLVED_FAILURE,
     handleErrors
 } from './Types';
 import { Globals } from './../Globals';
 
-export const fecthSegmentsLeaksBegin = () => ({
-    type: FETCH_SEGMENTS_LEAKS_BEGIN
+export const fecthSegmentsResolvesBegin = () => ({
+	type: FETCH_SEGMENTS_RESOLVED_BEGIN
 });
 
-export const fecthSegmentsLeaksSuccess = (leaks) => ({
-    type: FETCH_SEGMENTS_LEAKS_SUCCESS,
-    payload: { leaks }
+export const fecthSegmentsResolvesSuccess = (leaksResolves) => ({
+	type: FETCH_SEGMENTS_RESOLVED_SUCCESS,
+	payload: { leaksResolves }
 });
 
-export const fecthSegmentsLeaksFailure = (error) => ({
-    type: FETCH_SEGMENTS_LEAKS_FAILURE,
-    payload: { error }
+export const fecthSegmentsResolvesFailure = (error) => ({
+	type: FETCH_SEGMENTS_RESOLVED_FAILURE,
+	payload: { error },
+	
 });
 
 //TODO: Resolve promise hell
-export const fetchSegmentsLeaks = () => (dispatch) => {
-    dispatch(fecthSegmentsLeaksBegin());
-    return fetch(`${Globals.API_URL}/api/segmentleaks`)
+export const fetchSegmentsLeaks = id => (dispatch) => {
+    dispatch(fecthSegmentsResolvesBegin());
+    return fetch(`${Globals.API_URL}/api/segmentleaks/${id}`)
         .then(handleErrors)
         .then((res) => res.json())
-        .then((leaks) => {
-            var count = 0;
-            leaks.map((leak) =>
-                fetch(`${Globals.API_URL}/api/segmentleaks/resolve/${leak.id}`)
-                    .then((res) => res.json())
-                    .then((resolve) => {
-                        leaks[count].resolve = resolve;
-                        count = count + 1;
-                        if (count === leaks.length) {
-                            dispatch(fecthSegmentsLeaksSuccess(leaks));
-                        }
-                    })
-            );
-            return leaks;
+        .then((leaksResolves) => {
+        dispatch(fecthSegmentsResolvesSuccess(leaksResolves));
         })
         .catch((error) => {
-            dispatch(fecthSegmentsLeaksFailure(error));
+            dispatch(fecthSegmentsResolvesFailure(error));
         });
 };
+
+
+/*export const fetchLeakLitres = id => dispatch => {
+    dispatch(fetchLeakLitresBegin());
+    fetch(`${Globals.API_URL}/api/segmentleaks/litres${id}`)
+      .then(handleErrors)
+      .then(res => res.json())
+      .then(leak => {
+        dispatch(fetchLeakLitresSuccess(leak));
+      })
+      .catch(error => dispatch(fetchLeakLitresFailure(error)));
+  };*/
+ 

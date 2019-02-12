@@ -1,65 +1,63 @@
 import React, {
   Component
-} from 'react'
-import { Globals } from './../Globals'
+} from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchSegmentsLeaks } from '../actions/SegmentResolveActions';
 
-const APIUri = `${Globals.API_URL}/api/monitors`;
 class BtnResolve extends Component {
 
-  monitorInfo = ["id", "type", "max_flow", "location", "status"];
-  faults = 0;
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: [{
-        "id": 0,
-        "type": "xxxx",
-        "max_flow": 0.0,
-        "long": 0.0,
-        "lat": 0.0,
-        "status": "xxx"
-      }],
-      faultyMonitors: 0,
-      text: 'Resolve Issue'
-    };
-  }
-
   componentDidMount() {
-    fetch(APIUri)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({
-          data: data
-        });
-      })
-      .catch(err => {
-        
-      });
-
-  }
-
-  resolve() {
-    for (var i = 0; i < this.state.data.length; i++) {
-      if (this.state.data[i].status === "faulty") {
-        this.setState({
-          text: "Can't resolve " + this.state.data[i].type + " " + this.state.data[i].id + ' is faulty'
-        });
-      } else {
-        this.setState({
-          text: 'Good '
-        });
-      }
-    }
+    this.props.fetchSegmentsLeaks(1);
   }
 
   render() {
-    return ( 
-    <div>
-      <h1>{this.state.text} </h1>
-      <button onClick = {() => this.resolve()} className = "BtnResolve" > Resolve </button> 
-    </div>
+
+    const { error, loading, leaks } = this.props;
+
+    if (error) {
+      return <div>Error! {error.message}</div>;
+    }
+    if (loading) {
+      return <div>Loading...</div>;
+    }
+    return (
+      <div>
+        <button onClick={() => this.resolve(leaks)} className="BtnResolve" > Resolve </button>
+      </div>
     )
   }
+
+  resolve(leaksArray) {
+
+    leaksArray = this.props.leaks;
+    console.log(leaksArray);
+
+
+
+    /* for (var i = 0; i < this.state.data.length; i++) {
+       if (this.state.data[i].status === "faulty") {
+         this.setState({
+           text: "Can't resolve " + this.state.data[i].type + " " + this.state.data[i].id + ' is faulty'
+         });
+       } else {
+         this.setState({
+           text: 'Good '
+         });
+       }
+     }*/
+  }
 }
-export default BtnResolve;
+
+BtnResolve.propTypes = {
+  fetchSegmentsLeaks: PropTypes.func.isRequired,
+  leaks: PropTypes.array.isRequired
+};
+
+const mapStateToProps = (state) => ({
+  leaks: state.leaks.items,
+  loading: state.leaks.loading,
+  error: state.leaks.errors
+});
+
+export default connect(mapStateToProps, { fetchSegmentsLeaks })(BtnResolve);

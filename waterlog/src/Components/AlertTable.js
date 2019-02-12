@@ -3,7 +3,7 @@ import { LowStatusIcon, MediumStatusIcon, HighStatusIcon } from './AlertBox';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchSegmentsLeaks } from '../actions/SegmentLeaksActions';
-
+import BtnResolve from './BtnResolve';
 
 export const getStatusIcon = function (severity) {
 	switch (severity.toLowerCase()) {
@@ -53,7 +53,10 @@ class AlertTableComponent extends Component {
 						</tr>
 					))}
 				</tbody>
-			</table>
+				<BtnResolve/>
+			</table>  
+			 
+					 
 		);
 	}
 }
