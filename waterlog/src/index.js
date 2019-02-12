@@ -8,8 +8,8 @@ import TankLevel from './Components/TankLevel';
 
 
 ReactDOM.render(<div>
-    <TankComponent tankName={1} pumpStatus={true}  levelDescription="sufficient level"/>
-
+    <TankComponent tankName="Tank1" pumpStatus="Turn pump off"  levelDescription="sufficient level"/>
+    
     
 
 </div>, document.getElementById('root'));
