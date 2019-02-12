@@ -22,7 +22,7 @@ import {
   
   export const fetchLeakHistory = id => dispatch => {
     dispatch(fetchLeakHistoryBegin());
-    fetch(`${Globals.API_URL}/api/segmentleaks/litres${id}`)
+    fetch(`${Globals.API_URL}/api/segmentleaks/${id}`)
       .then(handleErrors)
       .then(res => res.json())
       .then(leak => {
