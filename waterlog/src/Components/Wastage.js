@@ -13,20 +13,10 @@ class Wastage extends Component {
       }
     }
     componentDidMount(){
-      //document.getElementById("openByDefault").click();
-    }
-    graphToDisplay(){
-      if(this.state.display === "daily")
-        return <DailyWastageComponent />
-      else if(this.state.display === "montlhy")
-        return 
-      else if(this.state.display === "seasonal")
-        return 
-      else
-      return <h1>Choose the summary to display</h1>  
+      this.openGraph("daily");
     }
   
-    openGraph = (e, cityName) => {
+    openGraph = (cityName) => {
       var i, tabcontent, tablinks;
       
       tabcontent = document.getElementsByClassName("tabcontent");
@@ -40,26 +30,26 @@ class Wastage extends Component {
       }
     
       document.getElementById(cityName).style.display = "block";
-      e.currentTarget.className += " active";
     }
+
     render(){
       return(
           <div className="wastage">
             <p>Wastage</p>
             <div className="graph-nav tab">
-              <button className="btn-graph-nav tablinks"
-                onClick={(e)=>this.openGraph(e,"daily")}
+              <button className={`btn-graph-nav tablinks ${this.state.display === "daily" ? "active" : ""}`}
+                onClick={(e)=>this.openGraph("daily")}
                 id="openByDefault"
               >
                 Daily
               </button>
-              <button className="btn-graph-nav tablinks"
-                onClick={(e)=>this.openGraph(e,"monthly")}
+              <button className={`btn-graph-nav tablinks ${this.state.display === "monthly" ? "active" : ""}`}
+                onClick={(e)=>this.openGraph("monthly")}
               >
                 Monthly
               </button>
-              <button className="btn-graph-nav tablinks"
-                onClick={(e)=>this.openGraph(e, "seasonal")}
+              <button className={`btn-graph-nav tablinks ${this.state.display === "seasonal" ? "active" : ""}`}
+                onClick={(e)=>this.openGraph("seasonal")}
               >
                 Seasonal
               </button>
