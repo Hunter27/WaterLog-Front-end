@@ -7,7 +7,6 @@ class WastageSummaryComponent extends Component {
   waterLost = this.props.waterLost;
 
   render() {
-      console.log(this.props.value)
     return (
         <div className="wastageSummary">
           <h3 className="wastageSummaryH3">Wastage</h3>
