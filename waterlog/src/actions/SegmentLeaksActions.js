@@ -6,25 +6,25 @@ import {
 } from './Types';
 import { Globals } from './../Globals';
 
-export const fecthSegmentsResolvesBegin = () => ({
+export const fecthSegmentsLeaksBegin = () => ({
 	type: FETCH_SEGMENTS_LEAKS_BEGIN
 });
 
-export const fecthSegmentsResolvesSuccess = (leaks) => ({
+export const fecthSegmentsLeaksSuccess = (leaks) => ({
 	type: FETCH_SEGMENTS_LEAKS_SUCCESS,
 	payload: { leaks }
 });
 
-export const fecthSegmentsResolvesFailure = (error) => ({
+export const fecthSegmentsLeaksFailure = (error) => ({
 	type: FETCH_SEGMENTS_LEAKS_FAILURE,
 	payload: { error },
-
+	
 });
 
 //TODO: Resolve promise hell
 export const fetchSegmentsLeaks = () => (dispatch) => {
-	dispatch(fecthSegmentsResolvesBegin());
-	return fetch(`${Globals.API_URL}/api/segmentleaks`)
+	dispatch(fecthSegmentsLeaksBegin());
+	return fetch(`${Globals.API_URL}/api/segmentleaks`) 
 		.then(handleErrors)
 		.then((res) => res.json())
 		.then((leaks) => {
@@ -36,13 +36,13 @@ export const fetchSegmentsLeaks = () => (dispatch) => {
 						leaks[count].cost = cost;
 						count = count + 1;
 						if (count === leaks.length) {
-							dispatch(fecthSegmentsResolvesSuccess(leaks));
+							dispatch(fecthSegmentsLeaksSuccess(leaks));
 						}
 					})
 			);
 			return leaks;
 		})
 		.catch((error) => {
-			dispatch(fecthSegmentsResolvesFailure(error));
+			dispatch(fecthSegmentsLeaksFailure(error));
 		});
 };
