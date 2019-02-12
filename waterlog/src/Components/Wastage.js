@@ -16,20 +16,22 @@ class Wastage extends Component {
       this.openGraph("daily");
     }
   
-    openGraph = (cityName) => {
-      var i, tabcontent, tablinks;
-      
-      tabcontent = document.getElementsByClassName("tabcontent");
-      for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-      }
+    openGraph = (graphType) => {
+      this.setState({
+        display: graphType
+      })
+    }
 
-      tablinks = document.getElementsByClassName("tablinks");
-      for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-      }
-    
-      document.getElementById(cityName).style.display = "block";
+    getGraphType = ()=>{
+      if(this.state.display==="daily")
+        return <DailyWastageComponent/>
+      else if(this.state.display==="monthly")  
+        return <MonthlyWastageComponent/>
+      else if(this.state.display==="seasonal")
+        return <SeasonalWastageComponent/>
+      else 
+        return <div>Error has occured</div>
+
     }
 
     render(){
@@ -54,17 +56,9 @@ class Wastage extends Component {
                 Seasonal
               </button>
             </div>
-            <div className="tabcontent" id="daily">
-              <p>R {1000.00} <small>lost so far</small></p>
-              <p>({10}% more than normal water usage)</p>
-              <DailyWastageComponent />
-            </div>
-            <div className="tabcontent" id="monthly">
-              <MonthlyWastageComponent />
-            </div>
-            <div className="tabcontent" id="seasonal">
-              <SeasonalWastageComponent />
-            </div>
+            <div className="tabcontent">
+              {this.getGraphType()}
+            </div> 
           </div>
       )
     }
