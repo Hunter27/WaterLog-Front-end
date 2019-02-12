@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import Tank from './Tank'
 
 class TankLevels extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       tanks: [{
           name: "Tank 1",

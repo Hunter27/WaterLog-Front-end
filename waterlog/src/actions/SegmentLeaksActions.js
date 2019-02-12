@@ -23,7 +23,7 @@ export const fecthSegmentsLeaksFailure = (error) => ({
 export const fetchSegmentsLeaks = () => (dispatch) => {
 	dispatch(fecthSegmentsLeaksBegin());
 	return fetch(`${Globals.API_URL}/api/segmentleaks`) 
-		.then(handleErrors)
+		.then((res) => handleErrors(res))
 		.then((res) => res.json())
 		.then((leaks) => {
 			var count = 0;

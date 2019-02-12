@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Wastage from './../Components/Wastage';
 import AlertsMap from './../Components/AlertsMap';
 import TankLevels from './../Components/TankLevels';
 
-class HomeComponent extends React.Component {
+class HomeComponent extends Component {
   render() {
     return (
       <div>

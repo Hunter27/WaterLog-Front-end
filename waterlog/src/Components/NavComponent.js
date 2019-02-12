@@ -38,7 +38,7 @@ export default class NavComponent extends Component {
             <Switch>
               <Route exact path="/" component={HomeComponent} />
               <Route exact path="/alert" component={AlertComponent} />
-              <Route exact path="/alert/segment/:id" component={SegmentLeak} /> 
+              <Route exact path="/alert/segment/:id" render={(props) => <SegmentLeak {...props} />} /> 
               <Route exact path="/alert/segment-history/:id" component={SegmentHistory} />
               <Route exact path="/map" component={MapComponent} />
               <Route exact path="/usage" component={UsageComponent} />

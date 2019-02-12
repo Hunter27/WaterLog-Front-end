@@ -1,12 +1,13 @@
+
 table {
-	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 	border-collapse: collapse;
-	color: white;
-	width: 100%;
+	color: #f6f6f6;
+	margin: 0 auto;
+	width: 90%;
 }
 
 tr {
-	border-bottom: 1px solid white;
+	border-bottom: 1px solid lightgrey;
 	width: 100%;
 }
 
@@ -39,7 +40,6 @@ h3 {
 
 .alertsH1 {
 	text-align: center;
-	font: Malayalam Sangam MN;
 	color: white;
 	padding: 5px;
 }

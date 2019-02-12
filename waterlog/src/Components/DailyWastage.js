@@ -26,7 +26,7 @@ const DailyWastageComponent = (props) => {
     defaults.global.legend.display = false;
     return (
       <div className="wastage-graph">
-        <Line options={options} data={ data } height="100" />
+        <Line options={options} data={data} height="100"/>
       </div>
     )
 }

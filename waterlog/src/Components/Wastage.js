@@ -4,14 +4,16 @@ import MonthlyWastageComponent from './MonthlyWastage';
 import SeasonalWastageComponent from './SeasonalWastage';
 
 class Wastage extends Component {
-    constructor(){
-      super();
+    constructor(props){
+      super(props);
+
+      this.openGraph = this.openGraph.bind(this);
       this.state = {
         display: "daily"
       }
     }
     componentDidMount(){
-      document.getElementById("openByDefault").click();
+      //document.getElementById("openByDefault").click();
     }
     graphToDisplay(){
       if(this.state.display === "daily")
