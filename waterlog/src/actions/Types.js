@@ -13,7 +13,6 @@ export const FETCH_SEGMENTS_RESOLVED_BEGIN = "FETCH_SEGMENTS_RESOLVED_BEGIN";
 export const FETCH_SEGMENTS_RESOLVED_SUCCESS = "FETCH_SEGMENTS_RESOLVED_SUCCESS";
 export const FETCH_SEGMENTS_RESOLVED_FAILURE = "FETCH_SEGMENTS_RESOLVED_FAILURE";
 
-
 export const handleErrors = response => {
   if (!response.ok) {
     throw Error(response.statusText);

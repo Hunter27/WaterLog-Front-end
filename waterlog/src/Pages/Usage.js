@@ -3,7 +3,7 @@ import BtnResolve from '../Components/BtnResolve';
 
 class UsageComponent extends Component {
   render() {
-    return <div><BtnResolve/></div>;
+    return <div><BtnResolve id={1} /></div>;
   }
 }
 
