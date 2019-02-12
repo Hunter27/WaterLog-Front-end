@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import { LowStatusIcon, MediumStatusIcon, HighStatusIcon } from './AlertBox';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { fetchSegmentsLeaks } from '../actions/SegmentLeaksActions';
-
+import React, { Component } from "react";
+import { LowStatusIcon, MediumStatusIcon, HighStatusIcon } from "./AlertBox";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { fetchSegmentsLeaks } from "../actions/SegmentLeaksActions";
+import BtnResolve from "./BtnResolve";
 
 export const getStatusIcon = function (severity) {
 	switch (severity.toLowerCase()) {
-		case 'high':
+		case "high":
 			return HighStatusIcon();
-		case 'low':
+		case "low":
 			return LowStatusIcon();
-		case 'normal':
+		case "normal":
 			return MediumStatusIcon();
 		default:
 			return null;
@@ -22,7 +22,7 @@ class AlertTableComponent extends Component {
 		this.props.fetchSegmentsLeaks();
 	}
 
-	alertInfo = ['DATE', 'DESCRIPTION', 'COST', 'STATUS'];
+	alertInfo = ["DATE", "DESCRIPTION", "COST", "STATUS"];
 
 	render() {
 		const { error, loading, leaks } = this.props;
@@ -37,22 +37,29 @@ class AlertTableComponent extends Component {
 		return (
 			<table>
 				<thead>
-					<tr>{this.alertInfo.map((info) => <th key = {info}>{info}</th>)}</tr>
+					<tr>
+						{this.alertInfo.map(info => (
+							<th key={info}>{info}</th>
+						))}
+					</tr>
 				</thead>
 				<tbody>
-					{leaks.map((alert) => (
+					{leaks.map(alert => (
 						<tr
-							key = {alert.id}
-							className = {alert.status === 'Fault' ? 'fault' : ''}
-							onClick = {() => (window.location.href = `alert/segment/${alert.id}`)}
+							key={alert.id}
+							className={alert.status === "Fault" ? "fault" : ""}
+							onClick={() =>
+								(window.location.href = `alert/segment/${alert.id}`)
+							}
 						>
 							<td>{new Date(alert.originalTimeStamp).toDateString()}</td>
 							<td>Section {alert.segmentId} Leak</td>
-							<td>{'R ' + alert.cost.Item2 + '/hr'}</td>
+							<td>{"R " + alert.cost.Item2 + "/hr"}</td>
 							<td>{getStatusIcon(alert.severity)}</td>
 						</tr>
 					))}
 				</tbody>
+				<BtnResolve />
 			</table>
 		);
 	}
@@ -63,10 +70,13 @@ AlertTableComponent.propTypes = {
 	leaks: PropTypes.array.isRequired
 };
 
-const mapStateToProps = (state) => ({
-	leaks: state.leaks.items,
+const mapStateToProps = state => ({
+	SegmentLeaksActions: state.leaks.items,
 	loading: state.leaks.loading,
-	error: state.leaks.errors
+	error: state.leaks.error
 });
 
-export default connect(mapStateToProps, { fetchSegmentsLeaks })(AlertTableComponent);
+export default connect(
+	mapStateToProps,
+	{ fetchSegmentsLeaks }
+)(AlertTableComponent);

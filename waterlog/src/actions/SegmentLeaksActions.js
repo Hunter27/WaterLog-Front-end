@@ -17,9 +17,11 @@ export const fecthSegmentsLeaksSuccess = (leaks) => ({
 
 export const fecthSegmentsLeaksFailure = (error) => ({
 	type: FETCH_SEGMENTS_LEAKS_FAILURE,
-	payload: { error }
+	payload: { error },
+	
 });
 
+//TODO: Resolve promise hell
 export const fetchSegmentsLeaks = () => (dispatch) => {
 	dispatch(fecthSegmentsLeaksBegin());
 	return fetch(`${Globals.API_URL}/api/segmentleaks`) 
