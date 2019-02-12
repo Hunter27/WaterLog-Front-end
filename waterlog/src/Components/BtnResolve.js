@@ -29,8 +29,8 @@ class BtnResolve extends Component {
           onClick={() => this.resolve(leaksResolves)}
           className="BtnResolve"
         >
-          {" "}
-          Resolve{" "}
+
+          Resolve
         </button>
       </div>
     );
