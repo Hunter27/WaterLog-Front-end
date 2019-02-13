@@ -1,22 +1,28 @@
-.tank {
-	width: 150px;
-	border: 1px solid black;
-	text-align: center;
-	float: left;
-	margin: 2px;
-
-	div {
-		border: 2px solid black;
-		background-color: red;
-		width: 150px;
-		height: 200px;
-	}
+.tank-container {
+    display: flex;
+    margin: 0 20px;
 }
 
-.tanklevel {
-	border-radius: 0;
-	text-align: center;
-	border: 1px dashed grey;
-	min-height: 400px;
-	width: 100%;
+.tank {
+    flex: 1;
+    margin: 2px;
+}
+
+.tank img {
+    height: 80px;
+}
+
+.tank p {
+    margin: 0;
+}
+
+.tank p:nth-child(1){
+    color: #93a4ae;
+}
+.tank p:nth-child(3){
+    color: #93a4ae;
+    font-size: 10pt;
+}
+.tank p:nth-child(4){
+    color: #f6f6f6;
 }
