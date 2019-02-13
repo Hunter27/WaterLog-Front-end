@@ -1,24 +1,24 @@
-.mild {
-	text-align: center;
-	color: #4f5b62;
-	background-color: #f6f6f6;
-	border-radius: 5px;
-	padding: 5px;
+.wastage-summary {
+    background-color: white;
+    border-radius: 5px;
+    margin: 10px 20px;
+    padding: 5px;
 }
-.moderate {
-	text-align: center;
-	color: white;
-}
-.severe {
-	text-align: center;
-	color: red;
+.wastage-summary p:first-child {
+    font-size: 25pt;
+    font-weight: bolder;
+    color: #4f5b62;
+    margin: 0;
 }
 
-.wastageSummary {
-	text-align: center;
-	margin: 10px;
+.wastage-summary p:nth-child(2){
+    font-size: 10pt;
+    color: #4f5b62;
+    margin: 7px 0;
 }
 
-.wastageSummaryH3 {
-	color: white;
+.wastage-summary p:last-child{
+    font-size: 9pt;
+    color: #93a4ab;
+    margin: 7px 0;
 }
