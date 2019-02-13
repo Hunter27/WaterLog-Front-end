@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import BtnResolve from '../Components/BtnResolve'; 
+import CostForecastComponent from '../Components/CostForecast'; 
+import { Provider } from 'react-redux';
+import store from '../Store';
 
 class UsageComponent extends Component {
   render() {
-    return <div><BtnResolve id={1} /></div>;
+
+    return <Provider store={store}> <div><CostForecastComponent id={1} /></div></Provider>;
   }
 }
 export default UsageComponent;

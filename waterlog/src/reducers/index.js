@@ -4,13 +4,15 @@ import SegmentLeaksByIdReducer from './SegmentLeaksByIdReducer';
 import LeakLitresReducer from './LeakLitresReducer';
 import LeaksResolvedReducer from './LeaksResolvedReducer';
 import SegmentEventsReducer from './SegmentEventsReducer';
+import ForecastChartReducer from './ForecastChartReducer';
 
 export default combineReducers({
 	leaks: SegmentLeaksReducer,
 	leak: SegmentLeaksByIdReducer,
 	litres: LeakLitresReducer,
 	leaksResolves: LeaksResolvedReducer,
-	events: SegmentEventsReducer
+  events: SegmentEventsReducer,
+  lineParameters: ForecastChartReducer
 });
 
 
