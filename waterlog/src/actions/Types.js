@@ -10,6 +10,10 @@ export const FETCH_LEAK_LITRES_BEGIN = "FETCH_LEAK_LITRES_BEGIN";
 export const FETCH_LEAK_LITRES_SUCCESS = "FETCH_SEGMENTS_LEAKS_SUCCESS";
 export const FETCH_LEAK_LITRES_FAILURE = "FETCH_LEAK_LITRES_FAILURE";
 
+export const FETCH_TANK_LEVELS_BEGIN = "FETCH_TANK_LEVELS_BEGIN";
+export const FETCH_TANK_LEVELS_SUCCESS = "FETCH_TANK_LEVELS_SUCCESS";
+export const FETCH_TANK_LEVELS_FAILURE = "FETCH_TANK_LEVELS_FAILURE";
+
 export const handleErrors = response => {
   if (!response.ok) {
     throw Error(response.statusText);

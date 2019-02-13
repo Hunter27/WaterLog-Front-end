@@ -1,7 +1,7 @@
 import React from 'react';
 import TankLevelsContainerComponent from './../Components/TankLevel';
-import MiniMapComponent from './../Components/MiniMap';
 import InformationComponent from '../Components/Information';
+import TankComponent from '../Components/TankComponent';
 
 class HomeComponent extends React.Component {
   render() {
@@ -9,7 +9,8 @@ class HomeComponent extends React.Component {
       <div>
         <TankLevelsContainerComponent />
         <InformationComponent />
-        <MiniMapComponent />
+        <TankComponent />
+
       </div>
     );
   }

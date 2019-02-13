@@ -13,6 +13,7 @@ class App extends Component {
         <div>
           <HeaderComponent />
           <NavComponent />
+          
         </div>
       </Provider>
     );

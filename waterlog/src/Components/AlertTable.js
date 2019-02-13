@@ -66,6 +66,7 @@ AlertTableComponent.propTypes = {
 const mapStateToProps = (state) => ({
 	leaks: state.leaks.items,
 	loading: state.leaks.loading,
+	
 	error: state.leaks.errors
 });
 
