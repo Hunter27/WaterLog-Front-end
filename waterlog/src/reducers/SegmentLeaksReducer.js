@@ -1,13 +1,15 @@
 import {
-    FETCH_SEGMENTS_LEAKS_BEGIN, FETCH_SEGMENTS_LEAKS_SUCCESS, FETCH_SEGMENTS_LEAKS_FAILURE
-} from '../actions/Types';
+  FETCH_SEGMENTS_LEAKS_BEGIN,
+  FETCH_SEGMENTS_LEAKS_SUCCESS,
+  FETCH_SEGMENTS_LEAKS_FAILURE
+} from "../actions/Types";
 
 const initialState = {
-    items: [],
-    item: {},
-    loading: true,
-    error: null
-}
+  items: [],
+  item: {},
+  loading: true,
+  error: null
+};
 
 export default function (state = initialState, action) {
     switch (action.type) {

@@ -1,3 +1,3 @@
 export const Globals = {
-	API_URL: 'https://api.iot.retrotest.co.za'
+	API_URL: 'http://api.iot.retrotest.co.za'
 };
