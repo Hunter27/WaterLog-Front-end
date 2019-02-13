@@ -35,5 +35,3 @@ export const fetchSegmentEvents = () => dispatch => {
       dispatch(fecthSegmentEventsFailure(error));
     });
 };
-
-

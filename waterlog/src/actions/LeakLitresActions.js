@@ -30,5 +30,3 @@ export const fetchLeakLitres = id => dispatch => {
     })
     .catch(error => dispatch(fetchLeakLitresFailure(error)));
 };
-
-

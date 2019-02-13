@@ -46,5 +46,3 @@ export const fetchSegmentsLeaks = () => (dispatch) => {
 			dispatch(fecthSegmentsLeaksFailure(error));
 		});
 };
-
-
