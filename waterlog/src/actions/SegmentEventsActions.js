@@ -1,37 +1,37 @@
 import {
-    FETCH_SEGMENTS_EVENTS_BEGIN,
-    FETCH_SEGMENTS_EVENTS_SUCCESS,
-    FETCH_SEGMENTS_EVENTS_FAILURE,
-    handleErrors
-} from './Types';
-import { Globals } from './../Globals';
+  FETCH_SEGMENT_EVENTS_BEGIN,
+  FETCH_SEGMENT_EVENTS_SUCCESS,
+  FETCH_SEGMENT_EVENTS_FAILURE,
+  handleErrors
+} from "./Types";
+import { Globals } from "./../Globals";
 
-export const fecthSegmentsResolvesBegin = () => ({
-    type: FETCH_SEGMENTS_EVENTS_BEGIN
+export const fecthSegmentEventsBegin = () => ({
+  type: FETCH_SEGMENT_EVENTS_BEGIN
 });
 
-export const fecthSegmentsResolvesSuccess = (leaksResolves) => ({
-    type: FETCH_SEGMENTS_EVENTS_SUCCESS,
-    payload: { leaksResolves }
+export const fecthSegmentEventsSuccess = events => ({
+  type: FETCH_SEGMENT_EVENTS_SUCCESS,
+  payload: { events }
 });
 
-export const fecthSegmentsResolvesFailure = (error) => ({
-    type: FETCH_SEGMENTS_EVENTS_FAILURE,
-    payload: { error },
-    loading: false
+export const fecthSegmentEventsFailure = error => ({
+  type: FETCH_SEGMENT_EVENTS_FAILURE,
+  payload: { error },
+  loading: false
 });
 
 //TODO: Resolve promise hell
-export const fetchSegmentsLeaksResolve = id => (dispatch) => {
-    dispatch(fecthSegmentsResolvesBegin());
-    return fetch(`${Globals.API_URL}/api/segmentevents/${id}`)
-        .then(handleErrors)
-        .then((res) => res.json())
-        .then((leaksResolves) => {
-            dispatch(fecthSegmentsResolvesSuccess(leaksResolves));
-        })
-        .catch((error) => {
-            dispatch(fecthSegmentsResolvesFailure(error));
-        });
-};
+export const fetchSegmentEvents = () => dispatch => {
+  dispatch(fecthSegmentEventsBegin());
 
+  return fetch(`${Globals.API_URL}/api/segmentevents`)
+    .then(handleErrors)
+    .then(res => res.json())
+    .then(events => {
+      dispatch(fecthSegmentEventsSuccess(events)); 
+    })
+    .catch(error => {
+      dispatch(fecthSegmentEventsFailure(error));
+    });
+};
