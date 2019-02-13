@@ -4,17 +4,17 @@ import { Line, defaults } from 'react-chartjs-2';
 const DailyWastageComponent = (props) => {
   var data = {
     labels: [
-      'Jan', 'Feb', 
-      'Mar', 'Apr', 
-      'May', 'Jun', 
-      'Jul', 'Aug', 
-      'Sept', 'Oct', 
-      'Nov', 'Dec'
+      '', '', 
+      '', '', 
+      '', '', 
+      '', '', 
+      '', '', 
+      '', ''
     ],
     datasets: [
       {
-        label: 'Temperature',
-        data: [10,19,27,23,22,4,100,25,23,24,20,19],
+        label: 'gog',
+        data: [15,19,27,223,2,44,10,2,25,24,20,19],
         fill: true,         
         borderColor: 'blue'  
       }
@@ -22,13 +22,27 @@ const DailyWastageComponent = (props) => {
   }
   var options = {
     maintainAspectRatio: true,
+    scales: {
+      yAxes: [{
+        scaleLabel: {
+          display: true,
+          labelString: 'Litres'
+        }
+      }],
+      xAxes: [{
+        scaleLabel: {
+          display: true,
+          labelString: 'Hours'
+        }
+      }],
+    }     
   }
     defaults.global.legend.display = false;
     return (
       <div className="wastage-graph">
         <p>R {1000.00} <small>lost so far</small></p>
         <p>({10}% more than normal water usage)</p>
-        <Line options={options} data={data} height="100"/>
+        <Line options={options} data={data, data} height="100"/>
       </div>
     )
 }
