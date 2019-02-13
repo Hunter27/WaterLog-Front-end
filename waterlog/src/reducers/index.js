@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-
 import SegmentLeaksReducer from './SegmentLeaksReducer';
 import SegmentLeaksByIdReducer from './SegmentLeaksByIdReducer';
 import LeakLitresReducer from './LeakLitresReducer';
@@ -11,5 +10,7 @@ export default combineReducers({
 	leak: SegmentLeaksByIdReducer,
 	litres: LeakLitresReducer,
 	leaksResolves: LeaksResolvedReducer,
-    events: SegmentEventsReducer
+	events: SegmentEventsReducer
 });
+
+
