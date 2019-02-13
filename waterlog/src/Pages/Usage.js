@@ -6,5 +6,4 @@ class UsageComponent extends Component {
     return <div><BtnResolve id={1} /></div>;
   }
 }
-
 export default UsageComponent;

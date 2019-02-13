@@ -4,7 +4,7 @@ import React, {
 import ProgressBarComponent from './ProgressBar';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
-//displays the wastage information on the home page
+
 export default class InformationComponent extends Component {
 	percentage = this.props.percentage;
 	moneyLost = this.props.moneyLost;

@@ -1,0 +1,68 @@
+.wastage {
+    background-color: white;
+    margin: 20px;
+    border-radius: 5px;
+	padding: 2px;
+	min-height: 200px;
+}
+
+.wastage > p:first-child{
+    margin: 5px 0 0 0;
+	font-weight: bold;
+	color: #4f5b62;
+}
+
+.graph-nav {
+    display: flex;
+    padding: 0 10px;
+}
+
+.btn-graph-nav {
+    flex: 1;
+	margin: 5px;
+	background-color: dee1e2;
+}
+
+.graph-outlet p{
+    margin: 0;
+}
+
+.tab {
+	overflow: hidden;
+	button {
+		transition: 0.3s;
+		cursor: pointer;
+		border: none;
+		padding: 5px;
+		font-size: 11px;
+		font-weight: bold;
+		color: #4f5b62;
+	}
+	button.active {
+		background-color: #93a4ae;
+		color: #f6f6f6;
+	}
+}
+
+// .tabcontent {
+//     display: none;
+// }
+
+#daily {
+	margin: 0;
+	padding: 0;
+	border: 1px solid black;
+
+	p:nth-child(1){
+		color: #ff1744;
+		font-size: 15pt;
+		font-weight: bold;
+		margin: 5px 0 0 0;
+	}
+	p:nth-child(2){
+		font-weight: bold;
+		margin: inherit;
+		color: #4f5b62;
+
+	}
+}
