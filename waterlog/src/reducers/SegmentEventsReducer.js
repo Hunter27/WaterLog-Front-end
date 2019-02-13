@@ -28,8 +28,7 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 loading: false,
-                error: action.payload.error,
-                items: []
+                error: action.payload.error
             }
         default:
             return state;

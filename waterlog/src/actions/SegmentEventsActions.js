@@ -10,9 +10,9 @@ export const fecthSegmentEventsBegin = () => ({
   type: FETCH_SEGMENT_EVENTS_BEGIN
 });
 
-export const fecthSegmentEventsSuccess = leaksResolves => ({
+export const fecthSegmentEventsSuccess = events => ({
   type: FETCH_SEGMENT_EVENTS_SUCCESS,
-  payload: { leaksResolves }
+  payload: { events }
 });
 
 export const fecthSegmentEventsFailure = error => ({
@@ -22,13 +22,14 @@ export const fecthSegmentEventsFailure = error => ({
 });
 
 //TODO: Resolve promise hell
-export const fetchSegmentsLeaksResolve = id => dispatch => {
+export const fetchSegmentEvents = () => dispatch => {
   dispatch(fecthSegmentEventsBegin());
-  return fetch(`${Globals.API_URL}/api/segmentevents/${id}`)
+
+  return fetch(`${Globals.API_URL}/api/segmentevents`)
     .then(handleErrors)
     .then(res => res.json())
-    .then(leaksResolves => {
-      dispatch(fecthSegmentEventsSuccess(leaksResolves));
+    .then(events => {
+      dispatch(fecthSegmentEventsSuccess(events)); 
     })
     .catch(error => {
       dispatch(fecthSegmentEventsFailure(error));
