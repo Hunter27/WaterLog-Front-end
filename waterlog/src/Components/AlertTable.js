@@ -3,7 +3,7 @@ import { LowStatusIcon, MediumStatusIcon, HighStatusIcon } from './AlertBox';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchSegmentsLeaks } from '../actions/SegmentLeaksActions';
-
+import Loader from './Loader';
 
 export const getStatusIcon = function (severity) {
 	switch (severity.toLowerCase()) {
@@ -31,20 +31,17 @@ class AlertTableComponent extends Component {
 			return <div>Error! {error.message}</div>;
 		}
 		if (loading) {
-			return <div>Loading...</div>;
+			return <Loader />
 		}
-
 		return (
+			
 			<table>
-				<thead>
-					<tr>{this.alertInfo.map((info) => <th key = {info}>{info}</th>)}</tr>
-				</thead>
 				<tbody>
 					{leaks.map((alert) => (
 						<tr
 							key = {alert.id}
-							className = {alert.status === 'Fault' ? 'fault' : ''}
-							onClick = {() => (window.location.href = `alert/segment/${alert.id}`)}
+							className ="table-row"
+							onClick = {() => (window.location.href = `alert/segment/${this.props.match.params.id}`)}
 						>
 							<td>{new Date(alert.originalTimeStamp).toDateString()}</td>
 							<td>Section {alert.segmentId} Leak</td>
@@ -53,7 +50,7 @@ class AlertTableComponent extends Component {
 						</tr>
 					))}
 				</tbody>
-			</table>
+			</table>			
 		);
 	}
 }
@@ -66,8 +63,7 @@ AlertTableComponent.propTypes = {
 const mapStateToProps = (state) => ({
 	leaks: state.leaks.items,
 	loading: state.leaks.loading,
-	
-	error: state.leaks.errors
+	error: state.leaks.error
 });
 
 export default connect(mapStateToProps, { fetchSegmentsLeaks })(AlertTableComponent);

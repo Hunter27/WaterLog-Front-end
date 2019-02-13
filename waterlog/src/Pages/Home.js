@@ -1,19 +1,23 @@
-import React from 'react';
-import TankLevelsContainerComponent from './../Components/TankLevel';
-import InformationComponent from '../Components/Information';
-import TankComponent from '../Components/TankComponent';
 
-class HomeComponent extends React.Component {
+import React, { Component } from 'react';
+import TankComponent from '../Components/TankComponent';
+import Wastage from './../Components/Wastage';
+import AlertsMap from './../Components/AlertsMap';
+import TankLevels from './../Components/TankLevels';
+
+
+class HomeComponent extends Component {
   render() {
     return (
       <div>
-        <TankLevelsContainerComponent />
-        <InformationComponent />
+        <p className="home-text">Alerts Map</p>
+        <AlertsMap />
+        <Wastage />
+        <p className="home-text">Tank Levels</p>
+        <TankLevels />
         <TankComponent />
-
       </div>
     );
   }
 }
-
 export default HomeComponent;

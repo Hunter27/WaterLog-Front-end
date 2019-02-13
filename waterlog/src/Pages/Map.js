@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 
-
 class MapComponent extends Component {
-
   render() {
     return ( 
     <div className = "App" >
@@ -11,5 +9,4 @@ class MapComponent extends Component {
     );
   }
 }
-
 export default MapComponent;
