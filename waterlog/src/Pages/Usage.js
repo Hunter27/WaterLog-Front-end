@@ -5,5 +5,4 @@ class UsageComponent extends Component {
     return <div>Usage page</div>;
   }
 }
-
 export default UsageComponent;

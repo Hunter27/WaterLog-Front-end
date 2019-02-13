@@ -21,15 +21,16 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 loading: false,
-                items: action.payload.leaks
+                items: action.payload.leaks,
+                error:null
             }
 
         case FETCH_SEGMENTS_LEAKS_FAILURE:
             return {
                 ...state,
                 loading: false,
-                error: action.payload.error,
-                items: []
+                items: [],
+                error: action.payload.error
             }
         default:
             return state;

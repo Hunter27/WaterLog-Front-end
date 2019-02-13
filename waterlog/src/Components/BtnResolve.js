@@ -1,6 +1,4 @@
-import React, {
-  Component
-} from 'react'
+import React, { Component } from 'react'
 import { Globals } from './../Globals'
 
 const APIUri = `${Globals.API_URL}/api/monitors`;
