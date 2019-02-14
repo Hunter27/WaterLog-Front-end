@@ -11,7 +11,7 @@ export const getStatusIcon = function (severity) {
 			return HighStatusIcon();
 		case 'low':
 			return LowStatusIcon();
-		case 'normal':
+		case 'medium':
 			return MediumStatusIcon();
 		default:
 			return null;
@@ -43,8 +43,8 @@ class HistoryTableComponent extends Component {
 							className ="table-row"
 							onClick = {() => (window.location.href = `history/segment/${this.props.match.params.id}`)}
 						>
-							<td>{new Date(history.originalTimeStamp).toDateString()}</td>
-							<td>{"Section " + history.id + " Leak"}</td>
+							<td id ="date">{new Date(history.originalTimeStamp).toDateString()}</td>
+							<td>{"SECTION " + 2 + " LEAK"}</td>
 							<td>{'R ' + history.cost.Item2 + '/hr'}</td>
 							<td>{getStatusIcon(history.severity)}</td>
 							
