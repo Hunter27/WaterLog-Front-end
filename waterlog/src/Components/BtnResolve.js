@@ -19,7 +19,6 @@ class BtnResolve extends Component {
 
   render() {
     const { error, loading, leaksResolves } = this.props;
-    console.log({ leaksResolves });
     if (error) {
       return <div>Error! {error.message}</div>;
     }
