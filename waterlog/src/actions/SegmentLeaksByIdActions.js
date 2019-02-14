@@ -1,24 +1,25 @@
-import { FETCH_SEGMENTS_LEAKS_BEGIN, 
-  FETCH_SEGMENTS_LEAKS_SUCCESS, 
-  FETCH_SEGMENTS_LEAKS_FAILURE 
+import {
+  FETCH_SEGMENTS_LEAKS_BEGIN,
+  FETCH_SEGMENTS_LEAKS_SUCCESS,
+  FETCH_SEGMENTS_LEAKS_FAILURE
 } from './Types';
 import { Globals } from './../Globals';
 
 export const fetchSegmentsAllLeaksBegin = () => ({
-	type: FETCH_SEGMENTS_LEAKS_BEGIN
+  type: FETCH_SEGMENTS_LEAKS_BEGIN
 });
 
-export const  fetchSegmentsAllLeaksSuccess = (leak) => ({
-	type: FETCH_SEGMENTS_LEAKS_SUCCESS,
-	payload: { leak }
+export const fetchSegmentsAllLeaksSuccess = (leak) => ({
+  type: FETCH_SEGMENTS_LEAKS_SUCCESS,
+  payload: { leak }
 });
 
-export const  fetchSegmentsAllLeaksFailure = (error) => ({
-	type: FETCH_SEGMENTS_LEAKS_FAILURE,
-	payload: { error },
-	
+export const fetchSegmentsAllLeaksFailure = (error) => ({
+  type: FETCH_SEGMENTS_LEAKS_FAILURE,
+  payload: { error },
+
 });
- 
+
 //TODO: Resolve promise hell
 export const fetchSegmentsLeaksById = id => dispatch => {
   dispatch(fetchSegmentsAllLeaksBegin());
@@ -31,11 +32,11 @@ export const fetchSegmentsLeaksById = id => dispatch => {
           fetch(`${Globals.API_URL}/api/segmentleaks/litres/${id}`)
             .then(res => res.json())
             .then(usage => {
-              dispatch(fetchSegmentsAllLeaksSuccess({leak,data,usage}));
+              dispatch(fetchSegmentsAllLeaksSuccess({ leak, data, usage }));
             });
         });
     })
     .catch((error) => {
-			dispatch(fetchSegmentsAllLeaksFailure(error));
-		});
+      dispatch(fetchSegmentsAllLeaksFailure(error));
+    });
 }; 
