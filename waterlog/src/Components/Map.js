@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
-import './../Stylesheets/_map.scss';
 import {sensorFaultIcon, sensorOkIcon} from './../icons/MapIcons';
 
 var markers = [
@@ -15,8 +14,8 @@ export default class MapComponent extends Component {
 	constructor() {
 		super();
 		this.state = {
-			lat: -25.782378,
-			lng: 28.338144,
+			lat: -25.782634,
+			lng: 28.338039,
 			zoom: 19
 		};
 	}
@@ -24,13 +23,13 @@ export default class MapComponent extends Component {
 	render() {
 		const position = [ this.state.lat, this.state.lng ];
 		return (
-			<Map center={position} zoom={this.state.zoom}>
+			<Map center={position} zoom={this.state.zoom} zoomControl={false}>
 				<TileLayer
-					attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+					
 					url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
 				/>
 				{markers.map((marker, index) => (
-					<Marker position={[ marker.lat, marker.lon ]} icon={sensorFaultIcon}>
+					<Marker position={[ marker.lat, marker.lon ]} icon={sensorOkIcon}>
 						<Popup>
 							<span>Marker with index {index}</span>
 						</Popup>
