@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import Wastage from './../Components/Wastage';
 import AlertsMap from './../Components/AlertsMap';

@@ -9,7 +9,7 @@ class TankLevels extends Component {
   };
   render() {
     if (this.props.levels.loading)
-      return <p>LOading...</p>
+      return <p>Loading...</p>
     if (this.props.levels.error)
       return <p>Failed to fetch</p>
 

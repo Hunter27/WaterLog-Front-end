@@ -5,6 +5,8 @@ import LeakLitresReducer from './LeakLitresReducer';
 import LeaksResolvedReducer from './LeaksResolvedReducer';
 import SegmentEventsReducer from './SegmentEventsReducer';
 import PumpsReducer from './PumpsReducer';
+import TankLevelsByIdReducer from './TankLevelsByIdReducer';
+import TankLevelReducer from './TankLevelReducer';
 
 export default combineReducers({
 	leaks: SegmentLeaksReducer,
@@ -12,6 +14,8 @@ export default combineReducers({
 	litres: LeakLitresReducer,
 	leaksResolves: LeaksResolvedReducer,
 	events: SegmentEventsReducer,
+	levels: TankLevelReducer,
+	level: TankLevelsByIdReducer,
     pumps: PumpsReducer
 });
 

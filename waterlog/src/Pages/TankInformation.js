@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TankComponent from '../Components/TankComponent';
+import PumpButton from './../Components/PumpButton'
 
 
 class TankInformation extends Component {
@@ -13,6 +14,7 @@ class TankInformation extends Component {
     return (
       <div>
         <TankComponent  id={this.state.id} />
+        <PumpButton id={this.state.id} />
       </div>
     );
   }
