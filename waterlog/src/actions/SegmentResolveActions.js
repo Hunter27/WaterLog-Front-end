@@ -20,7 +20,7 @@ export const fecthSegmentsResolvesFailure = (error) => ({
     payload: { error },
     loading: false
 });
-
+ 
 //TODO: Resolve promise hell
 export const fetchSegmentsLeaksResolve = id => (dispatch) => {
     dispatch(fecthSegmentsResolvesBegin());
@@ -33,6 +33,4 @@ export const fetchSegmentsLeaksResolve = id => (dispatch) => {
         .catch((error) => {
             dispatch(fecthSegmentsResolvesFailure(error));
         });
-};
-
-
+}; 
