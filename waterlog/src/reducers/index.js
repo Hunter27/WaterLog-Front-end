@@ -5,6 +5,7 @@ import LeakLitresReducer from './LeakLitresReducer';
 import LeaksResolvedReducer from './LeaksResolvedReducer';
 import SegmentEventsReducer from './SegmentEventsReducer';
 import ForecastChartReducer from './ForecastChartReducer';
+import PumpsReducer from './PumpsReducer';
 
 export default combineReducers({
 	leaks: SegmentLeaksReducer,
@@ -12,7 +13,8 @@ export default combineReducers({
 	litres: LeakLitresReducer,
 	leaksResolves: LeaksResolvedReducer,
   events: SegmentEventsReducer,
-  lineParameters: ForecastChartReducer
+  lineParameters: ForecastChartReducer,
+  pumps: PumpsReducer
 });
 
 
