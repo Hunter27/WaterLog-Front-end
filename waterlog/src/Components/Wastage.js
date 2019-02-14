@@ -31,11 +31,11 @@ class Wastage extends Component {
 
     getGraphType = ()=>{
       if(this.state.display==="daily")
-        return <DailyWastageComponent props={this.props.dailywaste}/>
+        return <DailyWastageComponent props={this.props.dailyWaste}/>
       else if(this.state.display==="monthly")  
-        return <MonthlyWastageComponent props={this.props.monthlywaste}/>
+        return <MonthlyWastageComponent props={this.props.monthlyWaste}/>
       else if(this.state.display==="seasonal")
-        return <SeasonalWastageComponent props={this.props.seasonwaste}/>
+        return <SeasonalWastageComponent props={this.props.seasonWaste}/>
       else 
         return <div>Error has occured</div>
 
@@ -73,17 +73,17 @@ class Wastage extends Component {
 
 Wastage.propTypes = {
 	fetchWastageDaily: PropTypes.func.isRequired,
-  dailywaste: PropTypes.object.isRequired,
+  dailyWaste: PropTypes.object.isRequired,
   fetchWastageMonthly: PropTypes.func.isRequired,
-  monthlywaste: PropTypes.object.isRequired,
+  monthlyWaste: PropTypes.object.isRequired,
   fetchWastageSeasonally: PropTypes.func.isRequired,
-  seasonwaste: PropTypes.array.isRequired
+  seasonWaste: PropTypes.array.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  dailywaste: state.dailywaste.item,
-  monthlywaste: state.monthlywaste.item,
-  seasonwaste: state.seasonwaste.items
+  dailyWaste: state.dailyWaste.item,
+  monthlyWaste: state.monthlyWaste.item,
+  seasonWaste: state.seasonWaste.items
 })
 export default connect(mapStateToProps, { fetchWastageDaily,fetchWastageMonthly,fetchWastageSeasonally })(Wastage);
 

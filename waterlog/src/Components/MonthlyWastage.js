@@ -4,14 +4,14 @@ import { Globals } from './../Globals';
 
 const MonthlyWastageComponent = (props) => {
   if(props.props.dataPoints){
-  let datas = props.props.dataPoints.map(a => a.y);
-  var sum = datas.reduce((a, b) => a + b, 0);
+  var dataY = props.props.dataPoints.map(a => a.y);
+  var sum = dataY.reduce((a, b) => a + b, 0);
   var data = {
     labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
     datasets: [
       {
         label: 'Liters',
-        data: datas,
+        data: dataY,
         fill: true,         
         borderColor: 'red'  ,
         backgroundColor: 'rgba(255,0,0,0.4)'

@@ -3,16 +3,16 @@ import { Line, defaults } from 'react-chartjs-2';
 import { Globals } from './../Globals';
 
 const DailyWastageComponent = (props) => {
-  let labels = props.props.dataPoints.map(a => (new Date(a.x).getHours()+":00"));
-  let datas = props.props.dataPoints.map(a => a.y);
-  var sum = datas.reduce((a, b) => a + b, 0);
-  let today =  new Date(Date.now());
+  var labelX = props.props.dataPoints.map(a => (new Date(a.x).getHours()+":00"));
+  var dataY = props.props.dataPoints.map(a => a.y);
+  var sum = dataY.reduce((a, b) => a + b, 0);
+  var today =  new Date(Date.now());
   var data = {
-    labels: labels,
+    labels: labelX,
     datasets: [
       {
         label: 'Liters',
-        data: datas,
+        data: dataY,
         fill: true,         
         borderColor: 'red',
         backgroundColor: 'rgba(255,0,0,0.4)'

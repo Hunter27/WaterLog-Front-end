@@ -4,10 +4,10 @@ import { Globals } from './../Globals';
 export const fetchWastageDaily =() => (dispatch) => {
     fetch(`${Globals.API_URL}/api/segmentevents/dailywastage`) //Change to use either localhost/server
       .then(res => res.json())
-      .then(dailywaste => {
+      .then(dailyWaste => {
         dispatch({
             type: FETCH_WASTAGE_DAILY,
-            payload: dailywaste
+            payload: dailyWaste
         });
     });
   };
@@ -15,10 +15,10 @@ export const fetchWastageDaily =() => (dispatch) => {
   export const fetchWastageMonthly =() => (dispatch) => {
     fetch(`${Globals.API_URL}/api/segmentevents/monthlywastage`) //Change to use either localhost/server
       .then(res => res.json())
-      .then(monthlywaste => {
+      .then(monthlyWaste => {
         dispatch({
             type: FETCH_WASTAGE_MONTHLY,
-            payload: monthlywaste
+            payload: monthlyWaste
         });
     });
   };
@@ -26,10 +26,10 @@ export const fetchWastageDaily =() => (dispatch) => {
   export const fetchWastageSeasonally =() => (dispatch) => {
     fetch(`${Globals.API_URL}/api/segmentevents/seasonallywastage`) //Change to use either localhost/server
       .then(res => res.json())
-      .then(seasonwaste => {
+      .then(seasonWaste => {
         dispatch({
             type: FETCH_WASTAGE_SEASONALLY,
-            payload: seasonwaste
+            payload: seasonWaste
         });
     });
   };
