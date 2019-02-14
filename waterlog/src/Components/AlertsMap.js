@@ -2,9 +2,7 @@ import React from 'react';
 import Loader from './Loader';
 import MapComponent from './Map';
 
-const AlertsMap = (props) => {
-	const { error, loading, sensorLocations } = props;
-
+const AlertsMap = ({ error, loading, sensorLocations }) => {
 	if (error) {
 		return <div>Error! {error.message}</div>;
 	}
