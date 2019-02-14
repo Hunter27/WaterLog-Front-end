@@ -1,22 +1,24 @@
- import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { fetchSegmentsLeaksResolve } from "../actions/SegmentResolveActions";
- 
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchSegmentsLeaksResolve } from '../actions/SegmentResolveActions';
+import { Globals } from './../Globals';
 
 class BtnResolve extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
       text: "Resolve Issue"
     };
   }
+
   componentDidMount() {
     this.props.fetchSegmentsLeaksResolve(this.props.id);
   }
+
   render() {
     const { error, loading, leaksResolves } = this.props;
-
     if (error) {
       return <div>Error! {error.message}</div>;
     }
@@ -24,6 +26,7 @@ class BtnResolve extends Component {
       return <div>Loading...</div>;
     }
     return (
+
       <div>
         <h4>{this.state.text}</h4>
         <button
@@ -39,15 +42,20 @@ class BtnResolve extends Component {
 
   resolve(leaksObject) {
     leaksObject = this.props.leaksResolves;
-    if (leaksObject.resolvedStatus === "unresolved") {
-      this.setState({
-        text: "Leak not resolved"
-      });
-    } else {
-      this.setState({
-        text: "Issue resolved "
-      });
-    }
+    leaksObject.resolvedStatus = "resolved";
+    return fetch(`${Globals.API_URL}/api/segmentleaks/${leaksObject.id}`, {
+      method: "PUT",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      redirect: "follow",
+      referrer: "no-referrer",
+      body: JSON.stringify(leaksObject),
+    })
+      .then(response => response.json());
   }
 }
 
@@ -64,4 +72,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { fetchSegmentsLeaksResolve }
-)(BtnResolve);
+)(BtnResolve); 
