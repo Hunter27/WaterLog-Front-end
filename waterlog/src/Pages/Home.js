@@ -1,11 +1,8 @@
 
 import React, { Component } from 'react';
-import TankComponent from '../Components/TankComponent';
 import Wastage from './../Components/Wastage';
 import AlertsMap from './../Components/AlertsMap';
 import TankLevels from './../Components/TankLevels';
-
-
 class HomeComponent extends Component {
   render() {
     return (
@@ -15,7 +12,6 @@ class HomeComponent extends Component {
         <Wastage />
         <p className="home-text">Tank Levels</p>
         <TankLevels />
-        <TankComponent />
       </div>
     );
   }

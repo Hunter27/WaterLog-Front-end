@@ -2,7 +2,7 @@ import React from 'react';
 import ProgressBar from './ProgressBar';
 
 const WastageSummary = () => {
-  return(
+  return (
     <div className="wastage-summary">
       <p>{40}% or 250&#x2113;</p>
       <p>(of the total water used is being lost due to this pipe)</p>
@@ -12,4 +12,3 @@ const WastageSummary = () => {
   )
 }
 export default WastageSummary;
-

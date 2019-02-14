@@ -10,3 +10,4 @@ it('Tank page renders without crashing', ()=> {
     ReactDOM.render(<Provider store={store}><TankComponent /></Provider>, div);
         ReactDOM.unmountComponentAtNode(div);
 });
+    

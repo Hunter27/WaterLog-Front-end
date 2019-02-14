@@ -20,7 +20,7 @@ import {
     payload: { error }
   });
   
-  export const fetchTankLevels = id => dispatch => {
+  export const fetchTankLevels = () => dispatch => {
     dispatch(fetchTankLevelsBegin());
     fetch(`${Globals.API_URL}/api/Tanklevels`)
       .then(handleErrors)

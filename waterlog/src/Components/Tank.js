@@ -2,31 +2,31 @@ import React from 'react';
 
 const Tank = (props)=>{
   const tankIcon = ()=>{
-    if(props.tank.waterLevel < 50)
+    if(props.tank.percentage < 50)
       return "images/tank_0.png"
-    else if (props.tank.waterLevel >= 50 && props.tank.waterLevel < 75)
+    else if (props.tank.percentage >= 50 && props.tank.percentage < 75)
       return "images/tank_50.png"
-    else if (props.tank.waterLevel >= 75 && props.tank.waterLevel < 95)
+    else if (props.tank.percentage >= 75 && props.tank.percentage < 95)
       return "images/tank_75.png"
     else
     return "images/tank_100.png"
   }
 
   const pumpStatusIndicator = () => {
-    if(props.tank.pumpOn===true && props.tank.waterLevel > 95)
+    if(props.tank.pumpOn===true && props.tank.percentage ===0)
       return "turn pump off";
-    else if(!props.tank.pumpOn && props.tank.waterLevel < 5)
+    else if(!props.tank.pumpOn && props.tank.percentage < 5)
       return "turn pump on";
     else 
       return "leave pump on";  
   }
 
-  return (
+return (
     <div className="tank">
-      <p>{props.tank.name}</p>
+      <p>Tank {props.tank.tank_Id}</p>
       <img src={tankIcon()} alt="100% tank"/>
-      <p>{props.tank.status}</p>
-      <p className="link">{pumpStatusIndicator()}</p>
+      <p>{props.tank.level_Status}</p>
+      <p className="link">{ props.tank.instruction}</p>
     </div>
   )
 }
