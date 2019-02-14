@@ -1,63 +1,75 @@
-import React, { Component } from 'react'
-import { Globals } from './../Globals'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchSegmentsLeaksResolve } from '../actions/SegmentResolveActions';
+import { Globals } from './../Globals';
 
-const APIUri = `${Globals.API_URL}/api/monitors`;
 class BtnResolve extends Component {
-
-  monitorInfo = ["id", "type", "max_flow", "location", "status"];
-  faults = 0;
 
   constructor(props) {
     super(props);
     this.state = {
-      data: [{
-        "id": 0,
-        "type": "xxxx",
-        "max_flow": 0.0,
-        "long": 0.0,
-        "lat": 0.0,
-        "status": "xxx"
-      }],
-      faultyMonitors: 0,
-      text: 'Resolve Issue'
+      text: "Resolve Issue"
     };
   }
 
   componentDidMount() {
-    fetch(APIUri)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({
-          data: data
-        });
-      })
-      .catch(err => {
-        
-      });
-
-  }
-
-  resolve() {
-    for (var i = 0; i < this.state.data.length; i++) {
-      if (this.state.data[i].status === "faulty") {
-        this.setState({
-          text: "Can't resolve " + this.state.data[i].type + " " + this.state.data[i].id + ' is faulty'
-        });
-      } else {
-        this.setState({
-          text: 'Good '
-        });
-      }
-    }
+    this.props.fetchSegmentsLeaksResolve(this.props.id);
   }
 
   render() {
-    return ( 
-    <div>
-      <h1>{this.state.text} </h1>
-      <button onClick = {() => this.resolve()} className = "BtnResolve" > Resolve </button> 
-    </div>
-    )
+    const { error, loading, leaksResolves } = this.props;
+    if (error) {
+      return <div>Error! {error.message}</div>;
+    }
+    if (loading) {
+      return <div>Loading...</div>;
+    }
+    return (
+
+      <div>
+        <h4>{this.state.text}</h4>
+        <button
+          onClick={() => this.resolve(leaksResolves)}
+          className="BtnResolve"
+        >
+
+          Resolve
+        </button>
+      </div>
+    );
+  }
+
+  resolve(leaksObject) {
+    leaksObject = this.props.leaksResolves;
+    leaksObject.resolvedStatus = "resolved";
+    return fetch(`${Globals.API_URL}/api/segmentleaks/${leaksObject.id}`, {
+      method: "PUT",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      redirect: "follow",
+      referrer: "no-referrer",
+      body: JSON.stringify(leaksObject),
+    })
+      .then(response => response.json());
   }
 }
-export default BtnResolve;
+
+BtnResolve.propTypes = {
+  fetchSegmentsLeaksResolve: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+  leaksResolves: state.leaksResolves.items,
+  loading: state.leaksResolves.loading,
+  error: state.leaksResolves.errors
+});
+
+export default connect(
+  mapStateToProps,
+  { fetchSegmentsLeaksResolve }
+)(BtnResolve); 

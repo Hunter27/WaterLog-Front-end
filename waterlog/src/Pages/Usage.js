@@ -3,10 +3,11 @@ import UsageCostComponent from './../Components/Usage-cost';
 
 class UsageComponent extends Component {
   render() {
-    return <div>
-      Usage page
-      <UsageCostComponent />
-      </div>;
+    return( <div>
+        <p>Usage page</p>
+        <UsageCostComponent />
+      </div>
+    )
   }
 }
 export default UsageComponent;
