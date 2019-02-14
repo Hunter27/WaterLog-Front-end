@@ -16,6 +16,6 @@ const AlertsMap = (props) => {
 		);
 	}
 
-	return <MapComponent />
+	return <MapComponent />;
 };
 export default AlertsMap;
