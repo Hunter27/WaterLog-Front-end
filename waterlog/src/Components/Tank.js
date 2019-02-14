@@ -23,9 +23,9 @@ const Tank = (props)=>{
 
 return (
     <div className="tank">
-      <p>Tank {props.tank.tank_Id}</p>
+      <p>Tank {props.tank.tankId}</p>
       <img src={tankIcon()} alt="100% tank"/>
-      <p>{props.tank.level_Status}</p>
+      <p>{props.tank.levelStatus}</p>
       <p className="link">{ props.tank.instruction}</p>
     </div>
   )

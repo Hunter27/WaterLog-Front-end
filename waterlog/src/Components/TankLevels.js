@@ -12,6 +12,8 @@ class TankLevels extends Component {
       return <p>LOading...</p>
     if (this.props.levels.error)
       return <p>Failed to fetch</p>
+
+      console.log(this.props.levels)
     return (
       <div className="tank-container">
         {this.props.levels.map((tank, index) =>

@@ -67,9 +67,9 @@ export class TankComponent extends Component {
     console.log(level)
     return (
       <div className={"tankComponent"}>
-        <h3>{"Tank " + level.tank_Id}</h3>
+        <h3>{"Tank " + level.tankId}</h3>
         {this.getTankImage(level.percentage)}
-        <h5>{level.level_Status}</h5>
+        <h5>{level.levelStatus}</h5>
         <h5> {level.instruction}</h5>
       </div>
     );
