@@ -2,7 +2,6 @@ import L from 'leaflet';
 
 export const sensorOkIcon = new L.icon({
 	iconUrl: require('../images/greenCircleMarker.png'),
-	//iconRetinaUrl: require('../img/marker-pin-person.svg'),
 	iconAnchor: null,
 	popupAnchor: null,
 	shadowUrl: null,
@@ -13,7 +12,6 @@ export const sensorOkIcon = new L.icon({
 
 export const sensorFaultIcon = new L.icon({
 	iconUrl: require('../images/redCircleFaultMarker.png'),
-	//iconRetinaUrl: require('../img/marker-pin-person.svg'),
 	iconAnchor: null,
 	popupAnchor: null,
 	shadowUrl: null,
@@ -24,7 +22,6 @@ export const sensorFaultIcon = new L.icon({
 
 export const sensorRedIcon = new L.icon({
 	iconUrl: require('../images/redCircleMarker.png'),
-	//iconRetinaUrl: require('../img/marker-pin-person.svg'),
 	iconAnchor: null,
 	popupAnchor: null,
 	shadowUrl: null,
