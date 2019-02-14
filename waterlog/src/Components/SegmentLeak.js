@@ -28,10 +28,11 @@ class SegmentLeak extends Component{
     }
   
     render(){
+      console.log(this.props.match)
       return(
         <div>
           <div className="leakInfo">
-                  <h2>Section {2} is Leaking</h2>
+                  <h2>Section {this.props.match.params.id} is Leaking</h2>
                   <p>({111111})</p>
                   <h1>R {400}</h1>
                   <p>is being lost per hour!</p>

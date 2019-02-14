@@ -28,7 +28,7 @@ const DailyWastageComponent = (props) => {
       <div className="wastage-graph">
         <p>R {1000.00} <small>lost so far</small></p>
         <p>({10}% more than normal water usage)</p>
-        <Line options={options} data={data} height="100"/>
+        <Line options={options} data={data}/>
       </div>
     )
 }
