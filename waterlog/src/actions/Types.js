@@ -19,7 +19,6 @@ export const FECTH_FORECAST_BEGIN = 'FECTH_FORECAST_BEGIN';
 export const FECTH_FORECAST_FAILURE = 'FECTH_FORECAST_FAILURE';
 export const FECTH_FORECAST_SUCCESS = 'FECTH_FORECAST_SUCCESS';
 
-
 export const handleErrors = response => {
   if (!response.ok) {
     throw Error(response.statusText);

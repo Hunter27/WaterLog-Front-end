@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { generateLinearForecast, ForecastType } from '../actions/CostForecastActions';
+import { generateLinearForecast } from '../actions/CostForecastActions';
+import ForecastChartComponent from './ForecastChart'
 import Loader from './Loader';
 
 class CostForecastComponent extends Component {
 	componentDidMount() {
-		this.props.generateLinearForecast(ForecastType.DAILY);
+		this.props.generateLinearForecast(this.props.type);
 	}
 
 	render() {
 		const { error, loading, lineParameters } = this.props;
-
 
 		if (error) {
 			return <div>Error! {error.message}</div>;
@@ -21,7 +21,7 @@ class CostForecastComponent extends Component {
 		}
 		return (
 			
-			<div>here</div>	
+			<div className="wastage"><ForecastChartComponent  data={lineParameters}/></div>	
 		);
 	}
 }

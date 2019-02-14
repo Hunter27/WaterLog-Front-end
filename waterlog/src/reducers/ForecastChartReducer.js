@@ -5,7 +5,7 @@ import {
 } from '../actions/Types';
 
 const initialState = {
-  item: {},
+  item: {x:[],y:[]},
   loading: false,
   error: null
 };
@@ -22,7 +22,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         loading: false,
-        item: action.payload.lineParameters,
+        item: action.payload.dataset,
         error: null
       };
     case FECTH_FORECAST_FAILURE:
