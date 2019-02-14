@@ -2,7 +2,7 @@ import {
   FETCH_SEGMENTS_LEAKS_BEGIN,
   FETCH_SEGMENTS_LEAKS_SUCCESS,
   FETCH_SEGMENTS_LEAKS_FAILURE
-} from "../actions/Types";
+} from '../actions/Types';
 
 const initialState = {
   items: [],
