@@ -10,13 +10,9 @@ export default combineReducers({
 	leaks: SegmentLeaksReducer,
 	leak: SegmentLeaksByIdReducer,
 	litres: LeakLitresReducer,
-<<<<<<< HEAD
-    history: SegmentLeaksHistoryReducer,
-	leaksResolves: LeaksResolvedReducer 
-=======
+    	history: SegmentLeaksHistoryReducer,
 	leaksResolves: LeaksResolvedReducer,
 	events: SegmentEventsReducer
->>>>>>> Dev
 });
 
 
