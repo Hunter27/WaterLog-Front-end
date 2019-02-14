@@ -13,7 +13,7 @@ export default combineReducers({
 	leak: SegmentLeaksByIdReducer,
 	litres: LeakLitresReducer,
 	leaksResolves: LeaksResolvedReducer,
-	events: SegmentEventsReducer,dailywa
+	events: SegmentEventsReducer,
 	dailywaste: WastageGraphDailyReducer,
 	monthlywaste: WastageGraphMonthlyReducer,
 	seasonwaste: WastageGraphSeasonallyReducer

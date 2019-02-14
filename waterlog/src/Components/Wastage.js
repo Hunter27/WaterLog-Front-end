@@ -42,7 +42,6 @@ class Wastage extends Component {
     }
 
     render(){
-      console.log(this.props);
       return(
           <div className="wastage">
             <p>Wastage</p>
