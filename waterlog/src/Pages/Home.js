@@ -1,22 +1,19 @@
-import React from 'react';
-// import { BrouserRouter as Router, Route, Link } from "react-router-dom";
+import React, {Component} from 'react';
+import Wastage from './../Components/Wastage';
+import AlertsMap from './../Components/AlertsMap';
+import TankLevels from './../Components/TankLevels';
 
-import TankLevelsContainerComponent from './../Components/TankLevel';
-import MiniMapComponent from './../Components/MiniMap';
-import InformationComponent from '../Components/Information'
-
-//Contains all the components in the home page
-
-class HomeComponent extends React.Component {
+class HomeComponent extends Component {
   render() {
     return (
       <div>
-        <TankLevelsContainerComponent />
-        <InformationComponent />
-        <MiniMapComponent />
+        <p className="home-text">Alerts Map</p>
+      <AlertsMap />
+      <Wastage />
+      <p className="home-text">Tank Levels</p>
+      <TankLevels />
       </div>
     );
   }
 }
-
 export default HomeComponent;

@@ -1,0 +1,51 @@
+
+table {
+	border-collapse: collapse;
+	color: #f6f6f6;
+	margin: 0 auto;
+	width: 90%;
+}
+
+tr {
+	border-bottom: 1px solid lightgrey;
+	width: 100%;
+}
+
+td,
+th {
+	padding: 8px;
+}
+
+tr:hover {
+	cursor: pointer;
+}
+
+th {
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: left;
+	color: white;
+}
+
+h3 {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	text-transform: uppercase;
+	font-size: 1rem;
+	font-weight: bolder;
+}
+
+.fault {
+	background-color: rgb(216, 0, 0);
+}
+
+.alertsH1 {
+	text-align: center;
+	color: white;
+	padding: 5px;
+}
+
+.alerts-map {
+    border: 1px solid grey;
+    margin: 0 20px;
+    min-height: 100px; /* remove after loading content */
+}
