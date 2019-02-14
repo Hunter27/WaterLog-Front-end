@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { fetchSegmentsLeaksResolve } from "../actions/SegmentResolveActions";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchSegmentsLeaksResolve } from '../actions/SegmentResolveActions';
 import { Globals } from './../Globals';
 
 class BtnResolve extends Component {
