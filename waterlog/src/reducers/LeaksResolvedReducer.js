@@ -1,7 +1,7 @@
 import {
     FETCH_SEGMENTS_RESOLVED_BEGIN,
     FETCH_SEGMENTS_RESOLVED_SUCCESS,
-    FETCH_SEGMENTS_RESOLVED_FAILURE
+    FETCH_SEGMENTS_RESOLVED_FAILURE 
   } from "../actions/Types";
   
   const initialState = {
@@ -32,7 +32,7 @@ import {
           ...state,
           loading: false,
           error: action.payload.error 
-        };
+        }; 
       default:
         return state;
     }
