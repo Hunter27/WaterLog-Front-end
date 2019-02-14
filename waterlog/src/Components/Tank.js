@@ -12,15 +12,6 @@ const Tank = (props)=>{
     return "images/tank_100.png"
   }
 
-  const pumpStatusIndicator = () => {
-    if(props.tank.pumpOn===true && props.tank.percentage ===0)
-      return "turn pump off";
-    else if(!props.tank.pumpOn && props.tank.percentage < 5)
-      return "turn pump on";
-    else 
-      return "leave pump on";  
-  }
-
 return (
     <div className="tank">
       <p>Tank {props.tank.tankId}</p>
