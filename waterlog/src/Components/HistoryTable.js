@@ -17,15 +17,29 @@ export const getStatusIcon = function (severity) {
 			return null;
 	}
 };
+
+const formatDate = (date) => {
+	var d = new Date(date),
+	month = '' + (d.getMonth() + 1),
+	day = '' + d.getDate(),
+	year = d.getFullYear();
+	
+	if (month.length < 2) month = '0' + month;
+	if (day.length < 2) day = '0' + day;
+	
+	return [month, day, year].join('/');
+}
+
 class HistoryTableComponent extends Component {
 	constructor(props)
     {
        super(props)
-    }
+	}
+	
 	componentDidMount() {
 		this.props.fetchSegmentsLeaksHistory();
 	}
-
+	
 	historyInfo = ['DATE', 'DESCRIPTION', 'COST', 'STATUS'];
 
 	render() {
@@ -44,13 +58,12 @@ class HistoryTableComponent extends Component {
 					{leaks.map((history) => (
 						<tr
 							key = {history.id}
-							className ="table-row"
-							onClick = {() => (window.location.href = `history/segment/${this.props.match.params.id}`)}
+							className ="table-row"						
 						>
-							<td id ="date">{new Date(history.originalTimeStamp).toDateString()}</td>
+							<td id ="date" className="grey">{formatDate(history.originalTimeStamp)}</td>
 							<td>{"SECTION " + 2 + " LEAK"}</td>
-							<td>{'R ' + history.cost.Item2 + '/hr'}</td>
-							<td>{getStatusIcon(history.severity)}</td>
+							<td className="grey">{'R ' + history.cost.Item2 + '/hr'}</td>
+							<td >{getStatusIcon(history.severity)}</td>
 							
 						</tr>
 					))}
