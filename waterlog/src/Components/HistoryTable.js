@@ -18,6 +18,10 @@ export const getStatusIcon = function (severity) {
 	}
 };
 class HistoryTableComponent extends Component {
+	constructor(props)
+    {
+       super(props)
+    }
 	componentDidMount() {
 		this.props.fetchSegmentsLeaksHistory();
 	}
