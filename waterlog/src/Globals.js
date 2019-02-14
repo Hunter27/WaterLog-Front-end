@@ -1,3 +1,3 @@
 export const Globals = {
-    API_URL: 'https://localhost:44383'
+	API_URL: 'api.iot.retrotest.co.za'
 };
