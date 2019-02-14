@@ -5,16 +5,14 @@ import LeakLitresReducer from './LeakLitresReducer';
 import SegmentLeaksHistoryReducer from './SegmentLeaksHistoryReducer';
 import LeaksResolvedReducer from './LeaksResolvedReducer';
 import SegmentEventsReducer from './SegmentEventsReducer';
-import PumpsReducer from './PumpsReducer';
 
 export default combineReducers({
 	leaks: SegmentLeaksReducer,
 	leak: SegmentLeaksByIdReducer,
 	litres: LeakLitresReducer,
-    history: SegmentLeaksHistoryReducer,
+    	history: SegmentLeaksHistoryReducer,
 	leaksResolves: LeaksResolvedReducer,
-	events: SegmentEventsReducer,
-    pumps: PumpsReducer
+	events: SegmentEventsReducer
 });
 
 
