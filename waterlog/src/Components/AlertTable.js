@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { LowStatusIcon, MediumStatusIcon, HighStatusIcon } from './AlertBox';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchSegmentsLeaks } from '../actions/SegmentLeaksActions';
+import { fetchSegmentEvents } from '../actions/SegmentEventsActions';
 import Loader from './Loader';
 
 export const getStatusIcon = function (severity) {
@@ -17,15 +17,27 @@ export const getStatusIcon = function (severity) {
 			return null;
 	}
 };
+const formatDate = (date) => {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [month, day, year].join('/');
+}
+
 class AlertTableComponent extends Component {
 	componentDidMount() {
-		this.props.fetchSegmentsLeaks();
+		this.props.fetchSegmentEvents();
 	}
 
-	alertInfo = ['DATE', 'DESCRIPTION', 'COST', 'STATUS'];
+	//alertInfo = ['DATE', 'DESCRIPTION', 'COST', 'STATUS'];
 
 	render() {
-		const { error, loading, leaks } = this.props;
+		const { error, loading, events } = this.props;
 
 		if (error) {
 			return <div>Error! {error.message}</div>;
@@ -34,19 +46,18 @@ class AlertTableComponent extends Component {
 			return <Loader />
 		}
 		return (
-			
 			<table>
 				<tbody>
-					{leaks.map((alert) => (
+					{events.map((event) => (
 						<tr
-							key = {alert.id}
-							className ="table-row"
-							onClick = {() => (window.location.href = `alert/segment/${this.props.match.params.id}`)}
+							key = {event.id}
+							className ="table-row table-row-unseen"
+							onClick = {() => (window.location.href = `alert/segment/${event.segmentsId}`)}
 						>
-							<td>{new Date(alert.originalTimeStamp).toDateString()}</td>
-							<td>Section {alert.segmentId} Leak</td>
-							<td>{'R ' + alert.cost.Item2 + '/hr'}</td>
-							<td>{getStatusIcon(alert.severity)}</td>
+							<td className="event-date">{formatDate(event.timeStamp)}</td>
+							<td>{`SEGMENT ${event.segmentsId} LEAK`}</td>
+							<td>{'R ' + 100 + '/hr'}</td>
+							<td>{getStatusIcon('high')}</td>
 						</tr>
 					))}
 				</tbody>
@@ -56,14 +67,14 @@ class AlertTableComponent extends Component {
 }
 
 AlertTableComponent.propTypes = {
-	fetchSegmentsLeaks: PropTypes.func.isRequired,
-	leaks: PropTypes.array.isRequired
+	fetchSegmentEvents: PropTypes.func.isRequired,
+	events: PropTypes.array.isRequired
 };
 
 const mapStateToProps = (state) => ({
-	leaks: state.leaks.items,
-	loading: state.leaks.loading,
-	error: state.leaks.error
+	events: state.events.items,
+	loading: state.events.loading,
+	error: state.events.error
 });
 
-export default connect(mapStateToProps, { fetchSegmentsLeaks })(AlertTableComponent);
+export default connect(mapStateToProps, { fetchSegmentEvents })(AlertTableComponent);
