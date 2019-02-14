@@ -1,4 +1,8 @@
-import { FETCH_LEAK_LITRES_BEGIN, FETCH_LEAK_LITRES_SUCCESS, FETCH_LEAK_LITRES_FAILURE } from '../actions/Types';
+import {
+  FETCH_LEAK_LITRES_BEGIN,
+  FETCH_LEAK_LITRES_SUCCESS,
+  FETCH_LEAK_LITRES_FAILURE
+} from '../actions/Types';
 
 const initialState = {
   item: {},
@@ -12,7 +16,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         loading: true,
-        error: null 
+        error: null
       };
     case FETCH_LEAK_LITRES_SUCCESS:
       return {
