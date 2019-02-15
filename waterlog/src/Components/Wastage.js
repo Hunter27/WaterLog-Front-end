@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import DailyWastageComponent from './DailyWastage';
 import MonthlyWastageComponent from './MonthlyWastage';
 import SeasonalWastageComponent from './SeasonalWastage';
+import { fetchWastageDaily,fetchWastageMonthly,fetchWastageSeasonally } from '../actions/WastageDaily';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 class Wastage extends Component {
     constructor(props){
@@ -14,6 +17,10 @@ class Wastage extends Component {
     }
     componentDidMount(){
       this.openGraph("daily");
+        this.props.fetchWastageMonthly();
+        this.props.fetchWastageDaily();
+        this.props.fetchWastageSeasonally();
+      
     }
   
     openGraph = (graphType) => {
@@ -24,11 +31,11 @@ class Wastage extends Component {
 
     getGraphType = ()=>{
       if(this.state.display==="daily")
-        return <DailyWastageComponent/>
+        return <DailyWastageComponent props={this.props.dailyWaste}/>
       else if(this.state.display==="monthly")  
-        return <MonthlyWastageComponent/>
+        return <MonthlyWastageComponent props={this.props.monthlyWaste}/>
       else if(this.state.display==="seasonal")
-        return <SeasonalWastageComponent/>
+        return <SeasonalWastageComponent props={this.props.seasonWaste}/>
       else 
         return <div>Error has occured</div>
 
@@ -63,6 +70,21 @@ class Wastage extends Component {
       )
     }
 }
-export default Wastage;
+
+Wastage.propTypes = {
+	fetchWastageDaily: PropTypes.func.isRequired,
+  dailyWaste: PropTypes.object.isRequired,
+  fetchWastageMonthly: PropTypes.func.isRequired,
+  monthlyWaste: PropTypes.object.isRequired,
+  fetchWastageSeasonally: PropTypes.func.isRequired,
+  seasonWaste: PropTypes.array.isRequired
+};
+
+const mapStateToProps = (state) => ({
+  dailyWaste: state.dailyWaste.item,
+  monthlyWaste: state.monthlyWaste.item,
+  seasonWaste: state.seasonWaste.items
+})
+export default connect(mapStateToProps, { fetchWastageDaily,fetchWastageMonthly,fetchWastageSeasonally })(Wastage);
 
   
