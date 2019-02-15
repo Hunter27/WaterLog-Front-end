@@ -4,6 +4,8 @@
     border-radius: 5px;
 	padding: 2px;
 	min-height: 200px;
+	color: #4F5B62;
+	size: 14pt;
 }
 
 .wastage > p:first-child{
@@ -42,6 +44,22 @@
 		background-color: #93a4ae;
 		color: #f6f6f6;
 	}
+}
+
+.head{
+	font-size: 15pt;
+	color: red;
+	font-weight: bold;
+}
+
+.subhead{
+	font-size: 12pt;
+	color:red;
+	font-weight: bold;
+}
+
+.date{
+	font-size: 8pt;
 }
 
 #daily {
