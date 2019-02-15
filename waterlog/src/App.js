@@ -11,11 +11,9 @@ class App extends Component {
       <Provider store={store}>
         <div>
           <NavComponent />
-          
         </div>
       </Provider>
     );
   }
 }
-
 export default App;
