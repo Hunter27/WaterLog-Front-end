@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-dom';
 
+
 import AlertComponent from '../Pages/Alert';
 import HomeComponent from '../Pages/Home';
 import MapComponent from '../Pages/Map';
@@ -8,7 +9,7 @@ import UsageComponent from '../Pages/Usage';
 import SegmentLeak from './SegmentLeak';
 import SegmentHistory from './SegmentHistory';
 
-export default class NavComponent extends Component {
+class NavComponent extends Component {
   constructor(props){
     super(props);
 
@@ -39,7 +40,7 @@ export default class NavComponent extends Component {
               </NavLink>
               <NavLink  to="/alert"className="navicon-container" activeClassName="selected-route">
                 <img src="images/alert_icon.png" height="33px" width="33px" alt="alert"/>
-                <span className="badge">{ this.state.notifications }</span>
+                <span className="badge">{0}</span>
               </NavLink>
               <NavLink exact to="/map" className="navicon-container" activeClassName="selected-route">
                 <img src="images/map_icon.png" height="33px" width="33px" alt="map"/>
@@ -65,4 +66,6 @@ export default class NavComponent extends Component {
 		);
 	}
 }
+
+export default NavComponent;
 

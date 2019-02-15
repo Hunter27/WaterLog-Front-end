@@ -62,11 +62,6 @@ class SegmentLeak extends Component{
                 <Link to="/alert/segment-history/1" text="component history" />
                 <p className="wastegeLabel">wastage</p>
                 <WastageSummary litres={leak.usage.Item1}/>
-                <p className={this.state.leakResolved === false ? "default-status" : "leak-unresolved-status"} 
-                  id="resolved-status">
-                  { this.state.leakResolved === false ? "resolve the problem" : 
-                  "there is still a leak, therefore resolving is not yet posible" }
-                </p> 
                 <BtnResolve id={this.props.match.params.id}/>
         </div>
       )

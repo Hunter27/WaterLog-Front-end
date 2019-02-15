@@ -43,10 +43,13 @@ class AlertTableComponent extends Component {
 		if (loading) {
 			return <Loader />
 		}
+		console.log(leaks)
 		return (
+			
 			<table>
 				<tbody>
 					{leaks.map((leak) => (
+						leak.resolvedStatus !== 'resolved' ? 
 						<tr
 							key = {leak.id}
 							className ="table-row table-row-unseen"
@@ -54,9 +57,10 @@ class AlertTableComponent extends Component {
 						>
 							<td className="leak-date">{formatDate(leak.originalTimeStamp)}</td>
 							<td>{`SEGMENT ${leak.segmentsId} LEAK`}</td>
-							<td>{'R ' + 100 + '/hr'}</td>
+							<td>{'R ' + leak.cost.Item2 + '/hr'}</td>
 							<td>{getStatusIcon(leak.severity)}</td>
-						</tr>
+						</tr> : null
+
 					))}
 				</tbody>
 			</table>			
