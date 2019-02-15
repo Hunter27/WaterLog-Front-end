@@ -8,6 +8,7 @@ import MapComponent from '../Pages/Map';
 import UsageComponent from '../Pages/Usage';
 import SegmentLeak from './SegmentLeak';
 import SegmentHistory from './SegmentHistory';
+import TankInformation from '../Pages/TankInformation';
 
 class NavComponent extends Component {
   constructor(props){
@@ -58,6 +59,7 @@ class NavComponent extends Component {
               <Route exact path="/alert/segment-history/:id" component={SegmentHistory} />
               <Route exact path="/map" component={MapComponent} />
               <Route exact path="/usage" component={UsageComponent} />
+              <Route exact path="/usage/tank/:id" render={(props) => <TankInformation {...props} />}/>
               <Route exact path="*" component={HomeComponent} />
             </Switch>
           </div>
