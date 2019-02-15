@@ -1,34 +1,54 @@
 import React from 'react';
 import { Line, defaults } from 'react-chartjs-2';
+import { Globals } from './../Globals';
 
 const DailyWastageComponent = (props) => {
+  var labelX = props.props.dataPoints.map(a => (new Date(a.x).getHours()+":00"));
+  var dataY = props.props.dataPoints.map(a => a.y);
+  var sum = dataY.reduce((a, b) => a + b, 0);
+  var today =  new Date(Date.now());
   var data = {
-    labels: [
-      'Jan', 'Feb', 
-      'Mar', 'Apr', 
-      'May', 'Jun', 
-      'Jul', 'Aug', 
-      'Sept', 'Oct', 
-      'Nov', 'Dec'
-    ],
+    labels: labelX,
     datasets: [
       {
-        label: 'Temperature',
-        data: [10,19,27,23,22,4,100,25,23,24,20,19],
+        label: 'Liters',
+        data: dataY,
         fill: true,         
-        borderColor: 'blue'  
+        borderColor: 'red',
+        backgroundColor: 'rgba(255,0,0,0.4)'
       }
     ]
   }
   var options = {
-    maintainAspectRatio: true,
+    scales: {
+      xAxes: [ {
+        scaleLabel: {
+          display: true,
+          labelString: 'Hours'
+        },
+        ticks: {
+          major: {
+            fontStyle: 'bold',
+            fontColor: '#FF0000'
+          }
+        }
+      } ],
+      yAxes: [ {
+        display: true,
+        scaleLabel: {
+          display: true,
+          labelString: 'Liters'
+        }
+      } ]
+    }
   }
     defaults.global.legend.display = false;
     return (
       <div className="wastage-graph">
-        <p>R {1000.00} <small>lost so far</small></p>
-        <p>({10}% more than normal water usage)</p>
-        <Line options={options} data={data}/>
+
+      <div className="head"><b>R {(Math.round(sum*Globals.WATER_COST))}</b><b className="dailysubhead"> lost so far</b></div>
+      <div className="date">{"Today is : " + today.getDay() + "/" + today.getMonth() + "/" + today.getFullYear()}</div>
+        <Line options={options} data={data} />
       </div>
     )
 }
