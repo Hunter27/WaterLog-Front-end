@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-dom';
 
+
 import AlertComponent from '../Pages/Alert';
 import HomeComponent from '../Pages/Home';
 import MapComponent from '../Pages/Map';
@@ -9,13 +10,28 @@ import SegmentLeak from './SegmentLeak';
 import SegmentHistory from './SegmentHistory';
 import TankInformation from '../Pages/TankInformation';
 
-export default class NavComponent extends Component {
+class NavComponent extends Component {
+  constructor(props){
+    super(props);
+
+    this.updateNotificationBadge = this.updateNotificationBadge.bind(this);
+    this.state={
+      notifications: 10
+    }
+  }
+
+  updateNotificationBadge(){
+    this.setState({
+      notifications: this.state.notifications -1
+    })
+  }
+
+  
 	render() {
 		return (
 			<Router>
         <div className="App">
           <header className="App-header">
-            
             <div className="navicons">
               <div className="logo">
                 <img src="images/logo.png" height="33px" width="33px" alt="logo"/>
@@ -25,7 +41,7 @@ export default class NavComponent extends Component {
               </NavLink>
               <NavLink  to="/alert"className="navicon-container" activeClassName="selected-route">
                 <img src="images/alert_icon.png" height="33px" width="33px" alt="alert"/>
-                <span className="badge">{9}</span>
+                <span className="badge">{0}</span>
               </NavLink>
               <NavLink exact to="/map" className="navicon-container" activeClassName="selected-route">
                 <img src="images/map_icon.png" height="33px" width="33px" alt="map"/>
@@ -38,7 +54,7 @@ export default class NavComponent extends Component {
           <div className="router-outlet">
             <Switch>
               <Route exact path="/" component={HomeComponent} />
-              <Route exact path="/alert" component={AlertComponent} />
+              <Route exact path="/alert" component={AlertComponent} /> 
               <Route exact path="/alert/segment/:id" render={(props) => <SegmentLeak {...props} />} /> 
               <Route exact path="/alert/segment-history/:id" component={SegmentHistory} />
               <Route exact path="/map" component={MapComponent} />
@@ -52,4 +68,6 @@ export default class NavComponent extends Component {
 		);
 	}
 }
+
+export default NavComponent;
 

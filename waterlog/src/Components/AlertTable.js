@@ -11,18 +11,28 @@ export const getStatusIcon = function (severity) {
 			return HighStatusIcon();
 		case 'low':
 			return LowStatusIcon();
-		case 'normal':
+		case 'medium':
 			return MediumStatusIcon();
 		default:
 			return null;
 	}
 };
+const formatDate = (date) => {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [month, day, year].join('/');
+}
+
 class AlertTableComponent extends Component {
 	componentDidMount() {
 		this.props.fetchSegmentsLeaks();
 	}
-
-	alertInfo = ['DATE', 'DESCRIPTION', 'COST', 'STATUS'];
 
 	render() {
 		const { error, loading, leaks } = this.props;
@@ -33,21 +43,24 @@ class AlertTableComponent extends Component {
 		if (loading) {
 			return <Loader />
 		}
+		console.log(leaks)
 		return (
 			
 			<table>
 				<tbody>
-					{leaks.map((alert) => (
+					{leaks.map((leak) => (
+						leak.resolvedStatus !== 'resolved' ? 
 						<tr
-							key = {alert.id}
-							className ="table-row"
-							onClick = {() => (window.location.href = `alert/segment/${this.props.match.params.id}`)}
+							key = {leak.id}
+							className ="table-row table-row-unseen"
+							onClick = {() => (window.location.href = `alert/segment/${leak.id}`)}
 						>
-							<td>{new Date(alert.originalTimeStamp).toDateString()}</td>
-							<td>Section {alert.segmentId} Leak</td>
-							<td>{'R ' + alert.cost.Item2 + '/hr'}</td>
-							<td>{getStatusIcon(alert.severity)}</td>
-						</tr>
+							<td className="leak-date">{formatDate(leak.originalTimeStamp)}</td>
+							<td>{`SEGMENT ${leak.segmentsId} LEAK`}</td>
+							<td>{'R ' + leak.cost.Item2 + '/hr'}</td>
+							<td>{getStatusIcon(leak.severity)}</td>
+						</tr> : null
+
 					))}
 				</tbody>
 			</table>			
