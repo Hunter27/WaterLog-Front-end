@@ -5,6 +5,11 @@ import LeakLitresReducer from './LeakLitresReducer';
 import SegmentLeaksHistoryReducer from './SegmentLeaksHistoryReducer';
 import LeaksResolvedReducer from './LeaksResolvedReducer';
 import SegmentEventsReducer from './SegmentEventsReducer';
+import WastageGraphDailyReducer from './WastageGraphDailyReducer';
+import WastageGraphMonthlyReducer from './WastageGraphMonthlyReducer';
+import WastageGraphSeasonallyReducer from './WastageGraphSeasonallyReducer';
+import PumpsReducer from './PumpsReducer';
+
 
 export default combineReducers({
 	leaks: SegmentLeaksReducer,
@@ -12,7 +17,11 @@ export default combineReducers({
 	litres: LeakLitresReducer,
 	history: SegmentLeaksHistoryReducer,
 	leaksResolves: LeaksResolvedReducer,
-	events: SegmentEventsReducer
+	events: SegmentEventsReducer,
+	dailyWaste: WastageGraphDailyReducer,
+	monthlyWaste: WastageGraphMonthlyReducer,
+	seasonWaste: WastageGraphSeasonallyReducer,
+  pumps: PumpsReducer
 });
 
 

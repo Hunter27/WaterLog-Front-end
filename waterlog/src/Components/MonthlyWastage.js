@@ -1,33 +1,55 @@
 import React from 'react';
-import { Line, defaults } from 'react-chartjs-2';
+import { Bar, defaults } from 'react-chartjs-2';
+import { Globals } from './../Globals';
 
 const MonthlyWastageComponent = (props) => {
+  if(props.props.dataPoints){
+  var dataY = props.props.dataPoints.map(a => a.y);
+  var sum = dataY.reduce((a, b) => a + b, 0);
   var data = {
-    labels: [
-      'Jan', 'Feb', 
-      'Mar', 'Apr', 
-      'May', 'Jun', 
-      'Jul', 'Aug', 
-      'Sept', 'Oct', 
-      'Nov', 'Dec'
-    ],
+    labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
     datasets: [
       {
-        label: 'Temperature',
-        data: [10,19,27,23,22,4,100,25,23,24,20,19],
+        label: 'Liters',
+        data: dataY,
         fill: true,         
-        borderColor: 'blue'  
+        borderColor: 'red'  ,
+        backgroundColor: 'rgba(255,0,0,0.4)'
       }
     ]
   }
   var options = {
     maintainAspectRatio: true,
+    scales: {
+      xAxes: [ {
+        scaleLabel: {
+          display: true,
+          labelString: 'Months'
+        },
+        ticks: {
+          major: {
+            fontStyle: 'bold',
+            fontColor: '#FF0000'
+          }
+        }
+      } ],
+      yAxes: [ {
+        display: true,
+        scaleLabel: {
+          display: true,
+          labelString: 'Liters'
+        }
+      } ]
+    }
+
   }
     defaults.global.legend.display = false;
     return (
       <div className="wastage-graph">
-        <Line options={options} data={ data } />
+      <div className="head"><b>R {(Math.round(sum*Globals.WATER_COST))}</b><b className="dailysubhead"> lost so far</b></div>
+        <Bar options={options} data={ data } />
       </div>
     )
+  }
 }
 export default MonthlyWastageComponent;
