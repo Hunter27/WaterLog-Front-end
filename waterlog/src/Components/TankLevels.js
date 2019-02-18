@@ -32,4 +32,3 @@ const mapStateToProps = (state) => ({
   error: state.levels.errors
 });
 export default connect(mapStateToProps, { fetchTankLevels })(TankLevels);
-//export default TankLevels;
