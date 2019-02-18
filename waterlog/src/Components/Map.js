@@ -3,7 +3,8 @@ import { Map,
         TileLayer, 
         Polyline, 
         CircleMarker, 
-        Popup } from 'react-leaflet';
+        Popup 
+} from 'react-leaflet';
 
 var markers = [
 	{ id: 1, lat: -25.782473, lon: 28.338061, status: 'fault' },
