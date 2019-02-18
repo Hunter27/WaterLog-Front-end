@@ -72,6 +72,7 @@ export class TankComponent extends Component {
 
         
         <h5>{level.levelStatus}</h5>
+
        
       </div>
     );
