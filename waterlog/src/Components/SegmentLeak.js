@@ -35,7 +35,6 @@ class SegmentLeak extends Component{
   
     render(){
       const { error, loading, leak } = this.props;
-      console.log("this is a leak:",leak );
       if (error) {
         return <div>Error! {error.message}</div>;
       }
@@ -46,11 +45,11 @@ class SegmentLeak extends Component{
       return(
         <div>
           <div className="leakInfo">
-                  <h2>Section {this.props.match.params.id} is Leaking</h2>
+                  <h2>Segment {this.props.match.params.id} is Leaking</h2>
                   <p>({leak.leak.severity})</p>
-                  <h1>R {leak.data.Item2}</h1>
+                  <h1>R {leak.data.Item2.toFixed(2)}</h1>
                   <p>is being lost per hour!</p>
-                  <p>Loosing {leak.usage.Item2}&#x2113; per hour</p>
+                  <p>Loosing {leak.usage.Item2.toFixed(0)}&#x2113; per hour</p>
                   <p>no leak would be 0&#x2113; per hour</p>
                 </div>
                 <img src={this.state.mapExpanded === false ? "images/map_expand.png" : "images/map_close.png" } 
@@ -61,7 +60,7 @@ class SegmentLeak extends Component{
                 <hr />
                 <Link to="/alert/segment-history/1" text="component history" />
                 <p className="wastegeLabel">wastage</p>
-                <WastageSummary litres={leak.usage.Item1}/>
+                <WastageSummary litres={leak.usage.Item1.toFixed(0)}/>
                 <BtnResolve id={this.props.match.params.id}/>
         </div>
       )
