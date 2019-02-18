@@ -26,7 +26,6 @@ import {
       .then(handleErrors)
       .then(res => res.json())
       .then(levels => {
-        console.log('levels', levels)
         dispatch(fetchTankLevelsSuccess(levels));
       })
       .catch(error => dispatch(fetchTankLevelsFailure(error)));
