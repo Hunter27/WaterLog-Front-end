@@ -1,9 +1,13 @@
-import React, { Component } from 'react';
-import BtnResolve from '../Components/BtnResolve'; 
+import React, { Component } from "react";
+import UsageCostComponent from './../Components/Usage-cost';
 
 class UsageComponent extends Component {
   render() {
-    return <div><BtnResolve id={1} /></div>;
+    return( <div>
+        <p>Usage page</p>
+        <UsageCostComponent />
+      </div>
+    )
   }
 }
 export default UsageComponent;

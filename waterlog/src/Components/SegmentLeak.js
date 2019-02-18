@@ -1,8 +1,11 @@
-import React, { Component } from 'react';
-
-import Button from './Button';
+import React, { Component } from 'react'; 
 import Link from './Link';
 import WastageSummary from './WastageSummary';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchSegmentsLeaksById } from '../actions/SegmentLeaksByIdActions'; 
+import Loader from './Loader';
+import BtnResolve from './BtnResolve';
 
 class SegmentLeak extends Component{
     constructor(props){
@@ -13,6 +16,9 @@ class SegmentLeak extends Component{
         mapExpanded: false,
         leakResolved: false
       }
+    }
+    componentDidMount() {
+      this.props.fetchSegmentsLeaksById(1);
     }
   
     handleMapExpand(){
@@ -28,14 +34,23 @@ class SegmentLeak extends Component{
     }
   
     render(){
+      const { error, loading, leak } = this.props;
+      console.log("this is a leak:",leak );
+      if (error) {
+        return <div>Error! {error.message}</div>;
+      }
+      if (loading) {
+        return <Loader />
+      }
+      
       return(
         <div>
           <div className="leakInfo">
-                  <h2>Section {2} is Leaking</h2>
-                  <p>({111111})</p>
-                  <h1>R {400}</h1>
+                  <h2>Section {this.props.match.params.id} is Leaking</h2>
+                  <p>({leak.leak.severity})</p>
+                  <h1>R {leak.data.Item2}</h1>
                   <p>is being lost per hour!</p>
-                  <p>Loosing {20}&#x2113; per hour</p>
+                  <p>Loosing {leak.usage.Item2}&#x2113; per hour</p>
                   <p>no leak would be 0&#x2113; per hour</p>
                 </div>
                 <img src={this.state.mapExpanded === false ? "images/map_expand.png" : "images/map_close.png" } 
@@ -46,15 +61,25 @@ class SegmentLeak extends Component{
                 <hr />
                 <Link to="/alert/segment-history/1" text="component history" />
                 <p className="wastegeLabel">wastage</p>
-                <WastageSummary />
-                <p className={this.state.leakResolved === false ? "default-status" : "leak-unresolved-status"} 
-                  id="resolved-status">
-                  { this.state.leakResolved === false ? "resolve the problem" : 
-                  "there is still a leak, therefore resolving is not yet posible" }
-                </p>
-                <Button leakResolved={this.state.leakResolved} click={this.handleResolveClick} text="Resolve"/>
+                <WastageSummary litres={leak.usage.Item1}/>
+                <BtnResolve id={this.props.match.params.id}/>
         </div>
       )
     }
   }
-  export default SegmentLeak;
+
+  SegmentLeak.propTypes = {
+    fetchSegmentsLeaksById: PropTypes.func.isRequired 
+  };
+
+
+  const mapStateToProps = state => ({
+    leak: state.leak.items,
+    loading: state.leak.loading,
+    error: state.leak.errors
+  });
+
+  export default connect(
+    mapStateToProps,
+    { fetchSegmentsLeaksById }
+  )(SegmentLeak); 
