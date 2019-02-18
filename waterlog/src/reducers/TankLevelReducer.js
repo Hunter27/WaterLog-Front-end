@@ -16,15 +16,14 @@ export default function (state = initialState, action) {
                 ...state,
                 loading: true,
                 error: null
-            };
+            }
         case FETCH_TANK_LEVELS_SUCCESS:
             return {
-                ...state,
-                loading: false,
-                items: action.payload.levels,
-                error: null
-            }
-
+                    ...state,
+                    loading: false,
+                    items: action.payload.levels,
+                    error: null
+                }
         case FETCH_TANK_LEVELS_FAILURE:
             return {
                 ...state,

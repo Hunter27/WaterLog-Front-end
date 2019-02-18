@@ -5,15 +5,13 @@ import { connect } from 'react-redux';
 import { fetchTankLevels } from './../actions/TankLevelsActions'
 class TankLevels extends Component {
   componentWillMount() {
-    this.props.fetchTankLevels(this.props.id);
+    this.props.fetchTankLevels();
   };
   render() {
     if (this.props.levels.loading)
       return <p>Loading...</p>
     if (this.props.levels.error)
       return <p>Failed to fetch</p>
-
-      console.log(this.props.levels)
     return (
       <div className="tank-container">
         {this.props.levels.map((tank, index) =>
@@ -33,4 +31,4 @@ const mapStateToProps = (state) => ({
   loading: state.levels.loading,
   error: state.levels.errors
 });
-export default connect(mapStateToProps, { fetchTankLevels })(TankLevels);
+export default connect(mapStateToProps, { fetchTankLevels })(TankLevels)
