@@ -10,7 +10,6 @@ class HomeComponent extends Component {
         <AlertsMap />
         <Wastage />
         <p className="home-text">Tank Levels</p>
-        {/*TODO <TankLevels />*/}
       </div>
     );
   }
