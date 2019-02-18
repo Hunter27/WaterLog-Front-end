@@ -62,7 +62,7 @@ export class TankComponent extends Component {
     if (loading) {
       return <div>Loading...</div>;
     }
-    console.log(level)
+    
     return (
       <div className={"tankComponent"}>
         <h3>{"Tank " + level.tankId}</h3>
