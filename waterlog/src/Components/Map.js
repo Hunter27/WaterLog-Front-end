@@ -24,16 +24,24 @@ export default class MapComponent extends Component {
 	render() {
 		const position = [ this.state.lat, this.state.lng ];
 		return (
-			<Map center={position} zoom={this.state.zoom} zoomControl={false}>
-				<TileLayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png" />
-				{this.state.markers.map((marker, index) => (
-					<Marker position={[ marker.lat, marker.lon ]} icon={sensorOkIcon}>
-						<Popup>
-							<span>Marker with index {index}</span>
-						</Popup>
-					</Marker>
-				))}
-			</Map>
+			<div  className="map-main-div">
+				<div className="map-tile-div">
+					<Map center={position} zoom={this.state.zoom} zoomControl={false}>
+						<TileLayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png" />
+						{this.state.markers.map((marker, index) => (
+							<Marker position={[ marker.lat, marker.lon ]} icon={sensorOkIcon}>
+								<Popup>
+									<span>Marker with index {index}</span>
+								</Popup>
+							</Marker>
+						))}
+					</Map>
+				</div>
+        <div className="map-button-div-layer2 map-button-tab">
+          <button className="map-button">Simplified</button>
+          <button className="map-button">Live Map</button>
+        </div>
+			</div>
 		);
 	}
 }

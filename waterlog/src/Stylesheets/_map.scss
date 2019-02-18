@@ -1,10 +1,59 @@
-
 .leaflet-container {
-  height: 200px;
-  width: 90%;
-  margin: 0 auto;
+	height: 200px;
+	width: 90%;
+	margin: 0 auto;
 }
 
 .leaflet-container {
-  background-color: #253238;
+	background-color: #253238;
+}
+
+.map-button {
+	flex: 1;
+	margin: 5px;
+	background-color: #dee1e2;
+	height: 26px;
+	width: 90px;
+}
+
+.map-nav {
+	display: flex;
+	padding: 0 10px;
+}
+
+.map-button-div-layer2 {
+	z-index: 2;
+	bottom: 0;
+	width: 100%;
+	margin: 9dp auto;
+	position: absolute;
+}
+
+.map-button-tab {
+	overflow: hidden;
+	button {
+		transition: 0.3s;
+		cursor: pointer;
+		border: none;
+		padding: 5px;
+		font-size: 11px;
+		font-weight: bold;
+		color: #4f5b62;
+	}
+	button.active {
+		background-color: #93a4ae;
+		color: #f6f6f6;
+	}
+}
+
+.map-main-div {
+	position: relative;
+	text-align: center;
+}
+
+.map-tile-div {
+	z-index: 1;
+	top: 0;
+	left: 0;
+	position: relative;
 }
