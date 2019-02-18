@@ -17,6 +17,7 @@ export default class MapComponent extends Component {
 			lat: -25.782634,
 			lng: 28.338039,
 			markers: markers,
+			simpleView: false,
 			zoom: 19
 		};
 	}
@@ -24,10 +25,13 @@ export default class MapComponent extends Component {
 	render() {
 		const position = [ this.state.lat, this.state.lng ];
 		return (
-			<div  className="map-main-div">
+			<div className="map-main-div">
 				<div className="map-tile-div">
-					<Map center={position} zoom={this.state.zoom} zoomControl={false}>
-						<TileLayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png" />
+					<Map	center={position} zoom={this.state.zoom} zoomControl={false}>
+						{(() => {
+							if (this.state.simpleView)
+								return <TileLayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png" />;
+						})()}
 						{this.state.markers.map((marker, index) => (
 							<Marker position={[ marker.lat, marker.lon ]} icon={sensorOkIcon}>
 								<Popup>
@@ -37,10 +41,10 @@ export default class MapComponent extends Component {
 						))}
 					</Map>
 				</div>
-        <div className="map-button-div-layer2 map-button-tab">
-          <button className="map-button">Simplified</button>
-          <button className="map-button">Live Map</button>
-        </div>
+				<div className="map-button-div-layer2 map-button-tab">
+					<button className={`map-button ${this.state.simpleView ? "" : "active"}`} onClick={() => {this.setState({simpleView:false})}}>Simplified</button>
+					<button className={`map-button ${this.state.simpleView ? "active" : ""}`} onClick={() => {this.setState({simpleView:true})}}>Live Map</button>
+				</div>
 			</div>
 		);
 	}
