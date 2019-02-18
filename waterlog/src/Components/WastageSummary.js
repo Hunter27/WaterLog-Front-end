@@ -1,7 +1,7 @@
 import React from 'react';
 import ProgressBar from './ProgressBar';
 
-const WastageSummary = () => {
+const WastageSummary = (props) => {
   return (
     <div className="wastage-summary">
       <p>{40}% or {props.litres}&#x2113;</p>

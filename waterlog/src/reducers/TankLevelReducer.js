@@ -12,18 +12,21 @@ const initialState = {
 export default function (state = initialState, action) {
     switch (action.type) {
         case FETCH_TANK_LEVELS_BEGIN:
+            console.log('begin test')
             return {
                 ...state,
                 loading: true,
                 error: null
             };
         case FETCH_TANK_LEVELS_SUCCESS:
+            console.log('levels', action.payload)
+            console.log('levels', action.payload.levels)
             return {
-                ...state,
-                loading: false,
-                items: action.payload.levels,
-                error: null
-            }
+                    ...state,
+                    loading: false,
+                    items: action.payload.levels,
+                    error: null
+                }
 
         case FETCH_TANK_LEVELS_FAILURE:
             return {
