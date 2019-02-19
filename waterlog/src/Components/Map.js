@@ -27,7 +27,7 @@ export default class MapComponent extends Component {
 			<Map center={position} zoom={this.state.zoom} zoomControl={false}>
 				<TileLayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png" />
 				{this.state.markers.map((marker, index) => (
-					<Marker position={[ marker.lat, marker.lon ]} icon={sensorOkIcon}>
+					<Marker key={index} position={[ marker.lat, marker.lon ]} icon={sensorOkIcon}>
 						<Popup>
 							<span>Marker with index {index}</span>
 						</Popup>

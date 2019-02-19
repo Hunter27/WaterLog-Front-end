@@ -3,7 +3,7 @@ import { FETCH_LEAK_HISTORY_BEGIN, FETCH_LEAK_HISTORY_SUCCESS, FETCH_LEAK_HISTOR
 const initialState = {
 	items: [],
 	item: {},
-	loading: true,
+	loading: false,
 	error: null
 };
 
