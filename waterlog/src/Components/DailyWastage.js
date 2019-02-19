@@ -56,6 +56,7 @@ const DailyWastageComponent = (props) => {
     defaults.global.legend.display = false;
     return (
       <div className="wastage-graph">
+
       <div className="head"><b>R {(Math.round(sum*Globals.WATER_COST))}</b><b className="dailysubhead"> lost so far</b></div>
       <div className="date">{"Today is : " + today.getDay() + "/" + today.getMonth() + "/" + today.getFullYear()}</div>
         <Line options={options} data={data} />
