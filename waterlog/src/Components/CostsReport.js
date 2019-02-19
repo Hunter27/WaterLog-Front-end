@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import DailyCostsReports from './DailyCostsReports';
-import { fetchCostsDaily } from '../actions/CostsReportActions';
+import MonthlyCostsReports from './MonthlyCostsReports';
+import { fetchCostsDaily, fetchCostsMonthly } from '../actions/CostsReportActions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 class CostsReport extends Component {
     constructor(props) {
-        super(props);
-
+        super(props); 
         this.openGraph = this.openGraph.bind(this);
         this.state = {
             display: "daily"
@@ -15,29 +15,29 @@ class CostsReport extends Component {
     }
     componentDidMount() {
         this.openGraph("daily");
-        this.props.fetchCostsDaily();
+        this.props.fetchCostsMonthly()
     }
     openGraph = (graphType) => {
         this.setState({
             display: graphType
         })
     }
-    getGraphType = () => {
-        if (this.state.display === "daily")
-            return <DailyCostsReports props={this.props.dailyCost} />
-        else
-            return <div>Error has occured</div>
+    getGraphType = () => { 
+      if(this.state.display==="monthly")  
+        return <MonthlyCostsReports props={this.props.monthlyCost}/> 
+      else 
+        return <div>Error has occured</div>
     }
     render() {
         return (
             <div className="wastage">
                 <p>Cost</p>
                 <div className="graph-nav tab">
-                    <button className={`btn-graph-nav tablinks ${this.state.display === "daily" ? "active" : ""}`}
-                        onClick={(e) => this.openGraph("daily")}
-                        id="openByDefault"
-                    >
-                        Daily
+      
+              <button className={`btn-graph-nav tablinks ${this.state.display === "monthly" ? "active" : ""}`}
+                onClick={(e)=>this.openGraph("monthly")}
+              >
+                Monthly
               </button>
                 </div>
                 <div className="tabcontent">
@@ -49,12 +49,12 @@ class CostsReport extends Component {
 }
 
 CostsReport.propTypes = {
-    fetchCostsDaily: PropTypes.func.isRequired,
-    dailyCost: PropTypes.object
+    fetchCostsMonthly: PropTypes.func.isRequired,
+    monthlyCost: PropTypes.object
 };
 
 const mapStateToProps = (state) => ({
-    dailyCost: state.dailyCost.item
+    monthlyCost: state.monthlyCost.item
 })
 
-export default connect(mapStateToProps, { fetchCostsDaily })(CostsReport)
+export default connect(mapStateToProps, { fetchCostsMonthly })(CostsReport)
