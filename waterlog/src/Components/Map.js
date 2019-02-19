@@ -82,9 +82,11 @@ export default class MapComponent extends Component {
 									</Polyline>
 									<CircleMarker
 										center={[ sensorIn.lat, sensorIn.lon ]}
-										radius={3.3}
+                    radius={5}
+                    opacity={.7}
 										key={sensorIn.id}
-										color={sensorInColor}
+                    color={sensorInColor}
+                    fillOpacity={1}
 									>
 										<Popup>
 											<span>{'sensor ' + sensorIn.id + '\n status ' + sensorIn.status}</span>
@@ -93,9 +95,11 @@ export default class MapComponent extends Component {
 									<CircleMarker
 										fill={true}
 										center={[ sensorOut.lat, sensorOut.lon ]}
-										radius={3}
+										radius={5}
+                    opacity={.7}
 										key={sensorOut.id}
-										color={sensorOutColor}
+                    color={sensorOutColor}
+                    fillOpacity={1}
 									>
 										<Popup>
 											<span>{'sensor ' + sensorOut.id + '\n status ' + sensorOut.status}</span>
