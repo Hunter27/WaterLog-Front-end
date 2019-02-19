@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-do
 
 import AlertComponent from '../Pages/Alert';
 import HomeComponent from '../Pages/Home';
-import MapComponent from '../Pages/Map';
+import MapComponent from '../Components/Map';
 import UsageComponent from '../Pages/Usage';
 import SegmentLeak from './SegmentLeak';
 import SegmentHistory from './SegmentHistory';

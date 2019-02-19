@@ -48,6 +48,18 @@ class MapComponent extends Component {
 
 	render() {
     const { error, loading, mapData } = this.props;
+    if (error) {
+			return <div>Error! {error.message}</div>;
+		}
+		if (loading) {
+			return <Loader />
+    }
+    
+    if(mapData){
+
+    } else {
+      return <div>Error! Failed to fetch</div>;
+    }
     const position = [ this.state.lat, this.state.lng ];
     let defaultColor = this.state.simpleView ? backgroundColor:lighterColor;
 		return (
