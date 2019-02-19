@@ -1,8 +1,7 @@
 import React from 'react';
 import { Line, defaults } from 'react-chartjs-2';
 
-const DailyCostsReports = (props) => {
-  console.log({ props });
+const DailyCostsReports = (props) => { 
   var labelX = props.props.dataPoints.map(a => (new Date(a.x).getHours() + ":00"));
   var dataY = props.props.dataPoints.map(a => a.y);
   var today = new Date(Date.now());

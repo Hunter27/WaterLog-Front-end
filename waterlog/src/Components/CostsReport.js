@@ -35,8 +35,7 @@ class CostsReport extends Component {
         else
             return <div>Error has occured</div>
     }
-    render() {
-        console.log(this.props);
+    render() { 
         return (
             <div className="wastage">
                 <p>Cost</p>
