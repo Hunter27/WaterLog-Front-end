@@ -11,7 +11,7 @@ const MonthlyCostsReports = (props) => {
                     label: 'Rands',
                     data: dataY,
                     fill: true,
-                    borderColor: 'red',
+                    borderColor: 'rgba(255,0,0,0)',
                     backgroundColor: 'rgba(255,0,0,0.4)'
                 }
             ]

@@ -1,8 +1,7 @@
 import React from 'react';
 import { Bar, defaults } from 'react-chartjs-2';
 
-const SeasonalCostReports = (props) => {
-    console.log(props);
+const SeasonalCostReports = (props) => { 
     var dataSummer = props.props.dataPoints[0].y;
     var dataWinter = props.props.dataPoints[1].y;
     var dataSpring = props.props.dataPoints[2].y;
@@ -15,7 +14,7 @@ const SeasonalCostReports = (props) => {
                 label: 'Rands',
                 data: [dataSummer, dataWinter, dataAutumn, dataSpring],
                 fill: true,
-                borderColor: 'red',
+                borderColor: 'rgba(255,0,0,0)',
                 backgroundColor: 'rgba(255,0,0,0.4)'
             }
         ]

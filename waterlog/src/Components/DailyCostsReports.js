@@ -2,17 +2,17 @@ import React from 'react';
 import { Line, defaults } from 'react-chartjs-2';
 
 const DailyCostsReports = (props) => { 
-  var labelX = props.props.dataPoints.map(a => (new Date(a.x).getHours() + ":00"));
-  var dataY = props.props.dataPoints.map(a => a.y);
-  var today = new Date(Date.now());
-  var data = {
+  let labelX = props.props.dataPoints.map(a => (new Date(a.x).getHours() + ":00"));
+  let dataY = props.props.dataPoints.map(a => a.y);
+  let today = new Date(Date.now());
+  let data = {
     labels: labelX,
     datasets: [
       {
         label: 'Rands',
         data: dataY,
         fill: true,
-        borderColor: 'red',
+        borderColor: 'rgba(255,0,0,0)',
         backgroundColor: 'rgba(255,0,0,0.4)'
       }
     ]
