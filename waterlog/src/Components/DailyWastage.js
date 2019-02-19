@@ -62,4 +62,5 @@ const DailyWastageComponent = (props) => {
       </div>
     )
 }
+
 export default DailyWastageComponent;

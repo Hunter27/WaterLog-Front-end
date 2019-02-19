@@ -2,10 +2,10 @@ import React from 'react';
 import { Bar, defaults } from 'react-chartjs-2';
 
 const SeasonalWastageComponent = (props) => {
-  var dataSummer = props.props[0].dataPoints.map(a => a.y);
-  var dataWinter = props.props[1].dataPoints.map(a => a.y);
-  var dataSpring = props.props[2].dataPoints.map(a => a.y);
-  var dataAutumn = props.props[3].dataPoints.map(a => a.y);
+	var dataSummer = props.props[0].dataPoints.map((a) => a.y);
+	var dataWinter = props.props[1].dataPoints.map((a) => a.y);
+	var dataSpring = props.props[2].dataPoints.map((a) => a.y);
+	var dataAutumn = props.props[3].dataPoints.map((a) => a.y);
 
   var data = {
     labels: ['Summer','Winter','Autumn','Spring'],
