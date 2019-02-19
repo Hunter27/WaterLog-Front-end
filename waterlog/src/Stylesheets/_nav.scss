@@ -5,6 +5,8 @@
     opacity: 0.9;
     img {
         padding-top: 5px;
+        width: 33px;
+        height: 33px;
     }
 }
 
@@ -14,6 +16,10 @@
     border-right: 1px solid grey;
     background-color: #253238;
     height: 44px;
+    img {
+        width: 33px;
+        height: 33px;
+    }
     
 }
 
@@ -39,5 +45,3 @@
 .selected-route {
     background-color: #93A4AE;
 }
-
-

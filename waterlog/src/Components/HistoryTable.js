@@ -30,18 +30,10 @@ const formatDate = (date) => {
 	return [month, day, year].join('/');
 }
 
-class HistoryTableComponent extends Component {
-	constructor(props)
-    {
-       super(props)
-	}
-	
+class HistoryTableComponent extends Component {	
 	componentDidMount() {
 		this.props.fetchSegmentsLeaksHistory();
 	}
-	
-	historyInfo = ['DATE', 'DESCRIPTION', 'COST', 'STATUS'];
-
 	render() {
 		const { error, loading, leaks } = this.props;
 
@@ -64,7 +56,6 @@ class HistoryTableComponent extends Component {
 							<td>{"SECTION " + 2 + " LEAK"}</td>
 							<td className="grey">{'R ' + history.cost.Item2 + '/hr'}</td>
 							<td >{getStatusIcon(history.severity)}</td>
-							
 						</tr>
 					))}
 				</tbody>

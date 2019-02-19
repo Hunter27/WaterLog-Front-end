@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
-import { sensorFaultIcon, sensorOkIcon } from './../icons/MapIcons';
+import { sensorOkIcon } from './../icons/MapIcons';
 
 var markers = [
 	{ lat: -25.782473, lon: 28.338061 },

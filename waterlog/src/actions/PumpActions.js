@@ -26,7 +26,6 @@ export const fetchPumps = id => dispatch => {
         .then(handleErrors)
         .then(res => res.json())
         .then(pump => {
-            console.log("pumps",pump)
             dispatch(fetchPumpsSuccess(pump));
         })
         .catch(error => dispatch(fetchPumpsFailure(error)));
