@@ -21,6 +21,10 @@ var segments = [
 	{ id: 4, senseIDIn: 4, senseIDOut: 5, status: 'leak' }
 ];
 
+const backgroundColor = '#253238';
+const errorColor = '#FF1744';
+const lighterColor = '#4F5B62';
+
 export default class MapComponent extends Component {
 	constructor() {
 		super();
@@ -35,7 +39,8 @@ export default class MapComponent extends Component {
 	}
 
 	render() {
-		const position = [ this.state.lat, this.state.lng ];
+    const position = [ this.state.lat, this.state.lng ];
+    let defaultColor = this.state.simpleView ? backgroundColor:lighterColor;
 		return (
 			<div className="map-main-div">
 				<div className="map-tile-div">
@@ -44,24 +49,24 @@ export default class MapComponent extends Component {
 							if (this.state.simpleView)
 								return <TileLayer url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png" />;
 						})()}
-						{this.state.segments.map((segment) => {
+						{this.state.segments.map((segment) => { 
 							let sensorIn = this.state.markers.find((marker) => {
-								if (marker.id === segment.senseIDIn) return marker;
+								if (marker.id === segment.senseIDIn) return marker; else return null;
 							});
 							let sensorOut = this.state.markers.find((marker) => {
-								if (marker.id === segment.senseIDOut) return marker;
+								if (marker.id === segment.senseIDOut) return marker; else return null;
 							});
-							let sensorInColor = '#253238',
-								sensorOutColor = '#253238',
-								segmentColor = '#253238';
+							let sensorInColor = defaultColor,
+								sensorOutColor = defaultColor,
+								segmentColor = defaultColor;
 							if (sensorIn.status.toLowerCase() === 'fault') {
-								sensorInColor = '#FF1744';
+								sensorInColor = errorColor;
 							}
 							if (sensorOut.status.toLowerCase() === 'fault') {
-								sensorOutColor = '#FF1744';
+								sensorOutColor = errorColor;
 							}
 							if (segment.status.toLowerCase() === 'leak') {
-								segmentColor = '#FF1744';
+								segmentColor = errorColor;
 							}
 
 							return (
