@@ -14,7 +14,7 @@ export default function (state = initialState, action) {
     case FETCH_COSTS_DAILY:
       return {
         ...state,
-        item: action.payload
+        item: action.payload.dailyCost
       };
     default:
       return state;

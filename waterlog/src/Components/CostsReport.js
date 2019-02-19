@@ -22,10 +22,27 @@ class CostsReport extends Component {
             display: graphType
         })
     }
+    getGraphType = () => {
+        if (this.state.display === "daily")
+            return <DailyCostsReports props={this.props.dailyCost} />
+        else
+            return <div>Error has occured</div>
+    }
     render() {
         return (
-            <div>
-
+            <div className="wastage">
+                <p>Cost</p>
+                <div className="graph-nav tab">
+                    <button className={`btn-graph-nav tablinks ${this.state.display === "daily" ? "active" : ""}`}
+                        onClick={(e) => this.openGraph("daily")}
+                        id="openByDefault"
+                    >
+                        Daily
+              </button>
+                </div>
+                <div className="tabcontent">
+                    {this.getGraphType()}
+                </div>
             </div>
         )
     }
@@ -33,7 +50,7 @@ class CostsReport extends Component {
 
 CostsReport.propTypes = {
     fetchCostsDaily: PropTypes.func.isRequired,
-    dailyCost: PropTypes.object.isRequired,
+    dailyCost: PropTypes.object
 };
 
 const mapStateToProps = (state) => ({
