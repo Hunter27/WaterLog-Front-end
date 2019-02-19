@@ -12,7 +12,7 @@ const SeasonalCostReports = (props) => {
         labels: ['Summer', 'Winter', 'Autumn', 'Spring'],
         datasets: [
             {
-                label: 'Liters',
+                label: 'Rands',
                 data: [dataSummer, dataWinter, dataAutumn, dataSpring],
                 fill: true,
                 borderColor: 'red',
@@ -38,7 +38,7 @@ const SeasonalCostReports = (props) => {
                 display: true,
                 scaleLabel: {
                     display: true,
-                    labelString: 'Liters'
+                    labelString: 'Rands'
                 }
             }]
         }

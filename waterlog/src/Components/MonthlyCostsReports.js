@@ -8,7 +8,7 @@ const MonthlyCostsReports = (props) => {
             labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
             datasets: [
                 {
-                    label: 'Liters',
+                    label: 'Rands',
                     data: dataY,
                     fill: true,
                     borderColor: 'red',
@@ -35,7 +35,7 @@ const MonthlyCostsReports = (props) => {
                     display: true,
                     scaleLabel: {
                         display: true,
-                        labelString: 'Liters'
+                        labelString: 'Rands'
                     }
                 }]
             }

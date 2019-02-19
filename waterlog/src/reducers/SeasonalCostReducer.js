@@ -1,10 +1,10 @@
 import { FETCH_COSTS_SEASONALLY } from '../actions/Types';
 
 const initialState = {
-    items:[],
+  items: [],
   item: {
     dataPoints: [
-        { x: "0", y: "0"}
+      { x: "0", y: "0" }
     ]
   },
   loading: true

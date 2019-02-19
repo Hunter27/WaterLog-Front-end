@@ -3,7 +3,7 @@ import { FETCH_COSTS_MONTHLY } from '../actions/Types';
 const initialState = {
   item: {
     dataPoints: [
-        { x: "0", y: "0"}
+      { x: "0", y: "0" }
     ]
   },
   loading: true
