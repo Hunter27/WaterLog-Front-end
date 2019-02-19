@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
-import { sensorOkIcon } from './../icons/MapIcons';
 import { Map, 
         TileLayer, 
         Polyline, 
         CircleMarker, 
         Popup 
 } from 'react-leaflet';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchMapsData } from './../actions/MapActions';
+import Loader from './Loader';
 
 
 var markers = [
@@ -27,8 +29,11 @@ var segments = [
 const backgroundColor = '#253238';
 const errorColor = '#FF1744';
 const lighterColor = '#4F5B62';
-
-export default class MapComponent extends Component {
+class MapComponent extends Component {
+  componentDidMount() {
+		this.props.fetchMapsData();
+  }
+  
 	constructor() {
 		super();
 		this.state = {
@@ -42,6 +47,7 @@ export default class MapComponent extends Component {
 	}
 
 	render() {
+    const { error, loading, mapData } = this.props;
     const position = [ this.state.lat, this.state.lng ];
     let defaultColor = this.state.simpleView ? backgroundColor:lighterColor;
 		return (
@@ -135,3 +141,17 @@ export default class MapComponent extends Component {
 		);
 	}
 }
+
+
+MapComponent.propTypes = {
+	fetchMapsData: PropTypes.func.isRequired,
+	mapData: PropTypes.array.isRequired
+};
+
+const mapStateToProps = (state) => ({
+  mapData: state.maps.items,
+	loading: state.maps.loading,
+	error: state.maps.error
+});
+
+export default connect(mapStateToProps, { fetchMapsData })(MapComponent);
