@@ -25,12 +25,12 @@ export default class MapComponent extends Component {
 	constructor() {
 		super();
 		this.state = {
-			lat: -25.782634,
-			lng: 28.338039,
+			lat: -25.783000,
+			lng: 28.337000,
 			markers: markers,
 			simpleView: false,
 			segments: segments,
-			zoom: 19
+			zoom: 17
 		};
 	}
 
@@ -42,7 +42,7 @@ export default class MapComponent extends Component {
 					<Map center={position} zoom={this.state.zoom} zoomControl={false}>
 						{(() => {
 							if (this.state.simpleView)
-								return <TileLayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png" />;
+								return <TileLayer url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png" />;
 						})()}
 						{this.state.segments.map((segment) => {
 							let sensorIn = this.state.markers.find((marker) => {
@@ -51,24 +51,25 @@ export default class MapComponent extends Component {
 							let sensorOut = this.state.markers.find((marker) => {
 								if (marker.id === segment.senseIDOut) return marker;
 							});
-							let sensorInColor = 'black',
-								sensorOutColor = 'black',
-								segmentColor = 'black';
+							let sensorInColor = '#253238',
+								sensorOutColor = '#253238',
+								segmentColor = '#253238';
 							if (sensorIn.status.toLowerCase() === 'fault') {
-								sensorInColor = 'red';
+								sensorInColor = '#FF1744';
 							}
 							if (sensorOut.status.toLowerCase() === 'fault') {
-								sensorOutColor = 'red';
+								sensorOutColor = '#FF1744';
 							}
-							if (segment.status.toLowerCase() == 'leak') {
-								segmentColor = 'red';
+							if (segment.status.toLowerCase() === 'leak') {
+								segmentColor = '#FF1744';
 							}
 
 							return (
 								<div>
 									<Polyline
 										positions={[ [ sensorIn.lat, sensorIn.lon ], [ sensorOut.lat, sensorOut.lon ] ]}
-										color={segmentColor}
+                    color={segmentColor}
+                    width={5}
 									>
 										<Popup>
 											<span>{'segment ' + segment.id + '\n status ' + segment.status}</span>
@@ -76,7 +77,7 @@ export default class MapComponent extends Component {
 									</Polyline>
 									<CircleMarker
 										center={[ sensorIn.lat, sensorIn.lon ]}
-										radius={3}
+										radius={3.3}
 										key={sensorIn.id}
 										color={sensorInColor}
 									>
