@@ -14,12 +14,11 @@ const DailyWastageComponent = (props) => {
         label: 'Liters',
         data: dataY,
         fill: true,         
-        borderColor: 'rgb(255,23,68)',
-        backgroundColor: 'rgba(	255, 23, 68,0.4)',
-        pointBackgroundColor: 'rgb(255,23,68)',
+        borderColor: 'rgba(255,23,68,1)',
+        backgroundColor: 'rgba(255,23,68,0.4)',
+        pointBackgroundColor: 'rgba(255,23,68,1)',
         pointRadius: 5,
-        pointHitRadius: 5,
-        
+        pointHitRadius: 5
       }
     ]
   }
@@ -34,7 +33,7 @@ const DailyWastageComponent = (props) => {
         ticks: {
           major: {
             fontStyle: 'bold',
-            fontColor: '#919191',
+            fontColor: 'rgba(145, 145, 145, 1)'
           }
         },
         gridLines: {
