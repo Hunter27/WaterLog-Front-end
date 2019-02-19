@@ -74,7 +74,7 @@ export default class MapComponent extends Component {
 									<Polyline
 										positions={[ [ sensorIn.lat, sensorIn.lon ], [ sensorOut.lat, sensorOut.lon ] ]}
                     color={segmentColor}
-                    width={5}
+                    weight={6}
 									>
 										<Popup>
 											<span>{'segment ' + segment.id + '\n status ' + segment.status}</span>
