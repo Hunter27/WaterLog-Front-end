@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import DailyCostsReports from './DailyCostsReports';
 import MonthlyCostsReports from './MonthlyCostsReports';
-import { fetchCostsDaily, fetchCostsMonthly, fetchCostsSeasonally } from '../actions/CostsReportActions';
+import {
+    fetchCostsDaily,
+    fetchCostsMonthly,
+    fetchCostsSeasonally
+} from '../actions/CostsReportActions';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SeasonalCostReports from './SeasonalCostReports';
@@ -35,18 +39,18 @@ class CostsReport extends Component {
         else
             return <div>Error has occured</div>
     }
-    render() { 
+    render() {
         return (
             <div className="wastage">
                 <p>Cost</p>
                 <div className="graph-nav tab">
-                <button className={`btn-graph-nav tablinks ${this.state.display === "daily" ? "active" : ""}`}
-                onClick={(e)=>this.openGraph("daily")}
-                id="openByDefault"
-              >
-                Daily
+                    <button className={`btn-graph-nav tablinks ${this.state.display === "daily" ? "active" : ""}`}
+                        onClick={(e) => this.openGraph("daily")}
+                        id="openByDefault"
+                    >
+                        Daily
               </button>
-      
+
                     <button className={`btn-graph-nav tablinks ${this.state.display === "monthly" ? "active" : ""}`}
                         onClick={(e) => this.openGraph("monthly")}
                     >

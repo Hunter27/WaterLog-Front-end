@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import { Popup } from 'react-leaflet';
 import { sensorOkIcon } from './../icons/MapIcons';
 import { Map, 
         TileLayer, 
         Polyline, 
-        CircleMarker, 
-        Popup 
+        CircleMarker 
 } from 'react-leaflet';
 
 
