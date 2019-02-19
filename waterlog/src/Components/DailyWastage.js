@@ -4,7 +4,7 @@ import { Globals } from './../Globals';
 
 const DailyWastageComponent = (props) => {
   var labelX = props.props.dataPoints.map(a => (new Date(a.x).getHours()+":00"));
-  var dataY = props.props.dataPoints.map(a => a.y);
+  var dataY = props.props.dataPoints.map(a => Math.round(a.y));
   var sum = dataY.reduce((a, b) => a + b, 0);
   var today =  new Date(Date.now());
   var data = {
@@ -14,12 +14,16 @@ const DailyWastageComponent = (props) => {
         label: 'Liters',
         data: dataY,
         fill: true,         
-        borderColor: 'red',
-        backgroundColor: 'rgba(255,0,0,0.4)'
+        borderColor: 'rgba(255,23,68,1)',
+        backgroundColor: 'rgba(255,23,68,0.4)',
+        pointBackgroundColor: 'rgba(255,23,68,1)',
+        pointRadius: 5,
+        pointHitRadius: 5
       }
     ]
   }
   var options = {
+    defaultFontFamily: "Roboto",
     scales: {
       xAxes: [ {
         scaleLabel: {
@@ -29,8 +33,11 @@ const DailyWastageComponent = (props) => {
         ticks: {
           major: {
             fontStyle: 'bold',
-            fontColor: '#FF0000'
+            fontColor: 'rgba(145, 145, 145, 1)'
           }
+        },
+        gridLines: {
+          display: false
         }
       } ],
       yAxes: [ {
@@ -38,6 +45,9 @@ const DailyWastageComponent = (props) => {
         scaleLabel: {
           display: true,
           labelString: 'Liters'
+        },
+        gridLines: {
+          display: false
         }
       } ]
     }
