@@ -1,5 +1,7 @@
 import {
-    FETCH_TANK_LEVELS_BEGIN, FETCH_TANK_LEVELS_SUCCESS, FETCH_TANK_LEVELS_FAILURE
+    FETCH_TANK_LEVELS_BEGIN,
+    FETCH_TANK_LEVELS_SUCCESS,
+    FETCH_TANK_LEVELS_FAILURE
 } from '../actions/Types';
 
 const initialState = {
@@ -19,11 +21,11 @@ export default function (state = initialState, action) {
             }
         case FETCH_TANK_LEVELS_SUCCESS:
             return {
-                    ...state,
-                    loading: false,
-                    items: action.payload.levels,
-                    error: null
-                }
+                ...state,
+                loading: false,
+                items: action.payload.levels,
+                error: null
+            }
         case FETCH_TANK_LEVELS_FAILURE:
             return {
                 ...state,
