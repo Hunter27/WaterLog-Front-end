@@ -1,10 +1,9 @@
-import React, { Component } from "react"; 
+import React, { Component } from "react";  
 
 class UsageComponent extends Component {
   render() {
     return( <div>
-        <p>Usage page</p>
- 
+        <p>Usage page</p> 
       </div>
     )
   }
