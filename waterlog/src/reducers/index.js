@@ -7,6 +7,7 @@ import SegmentEventsReducer from './SegmentEventsReducer';
 import WastageGraphDailyReducer from './WastageGraphDailyReducer';
 import WastageGraphMonthlyReducer from './WastageGraphMonthlyReducer';
 import WastageGraphSeasonallyReducer from './WastageGraphSeasonallyReducer';
+import PumpsReducer from './PumpsReducer';
 
 export default combineReducers({
 	leaks: SegmentLeaksReducer,
@@ -16,7 +17,8 @@ export default combineReducers({
 	events: SegmentEventsReducer,
 	dailyWaste: WastageGraphDailyReducer,
 	monthlyWaste: WastageGraphMonthlyReducer,
-	seasonWaste: WastageGraphSeasonallyReducer
+	seasonWaste: WastageGraphSeasonallyReducer,
+  pumps: PumpsReducer
 });
 
 

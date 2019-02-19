@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-
-import Button from './Button';
+import React, { Component } from 'react'; 
 import Link from './Link';
 import WastageSummary from './WastageSummary';
 
@@ -51,8 +49,7 @@ class SegmentLeak extends Component{
                   id="resolved-status">
                   { this.state.leakResolved === false ? "resolve the problem" : 
                   "there is still a leak, therefore resolving is not yet posible" }
-                </p>
-                <Button leakResolved={this.state.leakResolved} click={this.handleResolveClick} text="Resolve"/>
+                </p> 
         </div>
       )
     }
