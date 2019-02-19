@@ -37,9 +37,8 @@ class Usage extends Component {
       else if(this.state.display==="seasonal")
         return <SeasonalUsageComponent props={this.props.seasonUsage}/>
       else 
-        return <div>Error has occured</div>
-
-    }
+        return <div>Error has occured</div> 
+	};
 
     render(){
       return(

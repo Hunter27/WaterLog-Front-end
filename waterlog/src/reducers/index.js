@@ -33,5 +33,3 @@ export default combineReducers({
 	level: TankLevelsByIdReducer,
    	pumps: PumpsReducer
 });
-
-
