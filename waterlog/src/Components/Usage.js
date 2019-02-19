@@ -42,9 +42,8 @@ class Usage extends Component {
     }
 
     render(){
-        console.log(this.props);
       return(
-          <div className="usage">
+          <div className="wastage">
             <p>Usage</p>
             <div className="graph-nav tab">
               <button className={`btn-graph-nav tablinks ${this.state.display === "daily" ? "active" : ""}`}
