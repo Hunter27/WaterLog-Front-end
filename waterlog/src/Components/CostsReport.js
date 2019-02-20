@@ -15,7 +15,7 @@ class CostsReport extends Component {
         super(props);
         this.openGraph = this.openGraph.bind(this);
         this.state = {
-            display:  'daily'
+            display: 'daily'
         }
     }
     componentDidMount() {
@@ -30,11 +30,11 @@ class CostsReport extends Component {
         })
     }
     getGraphType = () => {
-        if (this.state.display ==='daily')
+        if (this.state.display === 'daily')
             return <DailyCostsReports props={this.props.dailyCost} />
-        else if (this.state.display ===   'monthly')
+        else if (this.state.display === 'monthly')
             return <MonthlyCostsReports props={this.props.monthlyCost} />
-        else if (this.state.display ==='seasonal')
+        else if (this.state.display === 'seasonal')
             return <SeasonalCostReports props={this.props.seasonalCost} />
         else
             return <div>Error has occured</div>
@@ -76,8 +76,7 @@ CostsReport.propTypes = {
     fetchCostsMonthly: PropTypes.func.isRequired,
     monthlyCost: PropTypes.object,
     fetchCostsSeasonally: PropTypes.func.isRequired,
-    seasonalCost: PropTypes.array.isRequired
-
+    seasonalCost: PropTypes.array.isRequired 
 };
 
 const mapStateToProps = (state) => ({
