@@ -1,7 +1,7 @@
 import {
   FETCH_COSTS_MONTHLY_BEGIN,
   FETCH_COSTS_MONTHLY_SUCCESS,
-  FETCH_COSTS_MONTHLY_FAILURE,
+  FETCH_COSTS_MONTHLY_FAILURE
 } from '../actions/Types';
 
 const initialState = {
