@@ -13,26 +13,32 @@ export class TankComponent extends Component {
 		this.props.fetchTankLevelById(this.props.id);
 	}
 
-	getTankImage = (percent) => {
-		if (percent > 79 && percent < 100 ) {
+	getTankImage = (level) => {
+		if (level.percentage > 79 && level.percentage < 100 ) {
 			return (
 				<div>
 					<img src={images.tank_green} className="image" alt="tank" />
-					<p id="percentage">{percent}%</p>
+					<p id="percentage">{level.percentage}%</p>
+					<p className="tank_description">{level.levelStatus}<br/><b>{level.instruction}</b></p>
+
 				</div>
 			);
-		} else if (percent >= 1 && percent <= 40) {
+		} else if (level.percentage >= 1 && level.percentage <= 40) {
 			return (
 				<div>
 					<img src={images.tank_yellow} className="image" alt="tank" />
-					<p id="percentage">{percent}%</p>
+					<p id="percentage">{level.percentage}%</p>
+					<p>{level.levelStatus}</p>
+				    <p>{level.instruction}</p>
 				</div>
 			);
-		} else if (percent >= 41 && percent <= 79) {
+		} else if (level.percentage >= 41 && level.percentage <= 79) {
 			return (
 				<div>
 					<img src={images.tank_orange} className="image" alt="tank" />
-					<p id="percentage">{percent}%</p>
+					<p id="percentage">{level.percentage}%</p>
+					<p>{level.levelStatus}</p>
+				    <p>{level.instruction}</p>
 				</div>
 			);
 		}
@@ -50,8 +56,7 @@ export class TankComponent extends Component {
 		return (
 			<div className='tankComponent'>
 				<h3>{'Tank ' + level.tankId}</h3>
-				<div className="tankSize">{this.getTankImage(level.percentage)}</div>
-				<h5>{level.levelStatus}</h5>
+				<div className="tankSize">{this.getTankImage(level)}</div>
 			</div>
 		);
 	}

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import DailyWastageComponent from './DailyWastage';
 import MonthlyWastageComponent from './MonthlyWastage';
 import SeasonalWastageComponent from './SeasonalWastage';
-import { fetchWastageDaily } from '../actions/WastageDaily';//, fetchWastageMonthly, fetchWastageSeasonally
+import { fetchWastageDaily } from '../actions/WastageDaily';
 import { fetchWastageMonthly } from '../actions/WastageMonthly';
 import { fetchWastageSeasonally } from '../actions/WastageSeasonally';
 import PropTypes from 'prop-types';
