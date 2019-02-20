@@ -24,7 +24,7 @@ export const fecthSegmentsResolvesFailure = (error) => ({
 //TODO: Resolve promise hell
 export const fetchSegmentsLeaksResolve = id => (dispatch) => {
     dispatch(fecthSegmentsResolvesBegin());
-    return fetch(`${Globals.API_URL}/api/segmentleaks/${id}`)
+    return fetch(process.env.REACT_APP_API_URL+`/api/segmentleaks/${id}`)
         .then(handleErrors)
         .then((res) => res.json())
         .then((leaksResolves) => {

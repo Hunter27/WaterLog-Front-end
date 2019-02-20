@@ -4,7 +4,6 @@ import {
     FETCH_PUMPS_FAILURE,
     handleErrors
 } from './Types';
-import { Globals } from './../Globals';
 
 export const fetchPumpsBegin = () => ({
     type: FETCH_PUMPS_BEGIN
@@ -22,7 +21,7 @@ export const fetchPumpsFailure = error => ({
 
 export const fetchPumps = id => dispatch => {
     dispatch(fetchPumpsBegin());
-    fetch(`${Globals.API_URL}/api/pumps/${id}`)
+    fetch(process.env.REACT_APP_API_URL+`/api/pumps/${id}`)
         .then(handleErrors)
         .then(res => res.json())
         .then(pump => {

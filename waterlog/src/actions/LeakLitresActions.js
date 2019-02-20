@@ -22,7 +22,7 @@ export const fetchLeakLitresFailure = error => ({
 
 export const fetchLeakLitres = id => dispatch => {
   dispatch(fetchLeakLitresBegin());
-  fetch(`${Globals.API_URL}/api/segmentleaks/litres${id}`)
+  fetch(process.env.REACT_APP_API_URL+`/api/segmentleaks/litres${id}`)
     .then(handleErrors)
     .then(res => res.json())
     .then(leak => {

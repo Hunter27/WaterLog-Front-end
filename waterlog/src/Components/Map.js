@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { sensorOkIcon } from './../icons/MapIcons';
 import { Map, 
         TileLayer, 
         Polyline, 

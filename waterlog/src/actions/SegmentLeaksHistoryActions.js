@@ -4,7 +4,6 @@ import {
     FETCH_LEAK_HISTORY_FAILURE,
 	handleErrors
 } from './Types';
-import { Globals } from './../Globals';
 
 export const fecthSegmentsLeaksHistoryBegin = () => ({
 	type: FETCH_LEAK_HISTORY_BEGIN
@@ -24,13 +23,13 @@ export const fecthSegmentsLeaksHistoryFailure = (error) => ({
 //TODO: Resolve promise hell
 export const fetchSegmentsLeaksHistory = () => (dispatch) => {
 	dispatch(fecthSegmentsLeaksHistoryBegin());
-	return fetch(`${Globals.API_URL}/api/segmentleaks/segment/${2}`) 
+	return fetch(process.env.REACT_APP_API_URL+`/api/segmentleaks/segment/${2}`) 
 		.then((res) => handleErrors(res))
 		.then((res) => res.json())
 		.then((leaks) => {
 			var count = 0;
 			leaks.map((leak) =>
-				fetch(`${Globals.API_URL}/api/segmentleaks/costs/${leak.id}`) 
+				fetch(process.env.REACT_APP_API_URL+`/api/segmentleaks/costs/${leak.id}`) 
 					.then((res) => res.json())
 					.then((cost) => {
 						leaks[count].cost = cost;

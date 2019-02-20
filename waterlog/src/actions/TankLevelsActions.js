@@ -4,9 +4,6 @@ import {
 	FETCH_TANK_LEVELS_FAILURE,
 	handleErrors
 } from './Types';
-import {
-	Globals
-} from './../Globals';
 
 export const fetchTankLevelsBegin = () => ({
 	type: FETCH_TANK_LEVELS_BEGIN
@@ -28,7 +25,7 @@ export const fetchTankLevelsFailure = error => ({
 
 export const fetchTankLevels = () => dispatch => {
 	dispatch(fetchTankLevelsBegin());
-	fetch(`${Globals.API_URL}/api/tanklevels`)
+	fetch(process.env.REACT_APP_API_URL+`/api/tanklevels`)
 		.then(handleErrors)
 		.then(res => res.json())
 		.then(levels => {
