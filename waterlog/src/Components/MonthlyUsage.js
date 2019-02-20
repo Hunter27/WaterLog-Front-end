@@ -45,8 +45,7 @@ const MonthlyUsageComponent = (props) => {
   }
     defaults.global.legend.display = false;
     return (
-      <div className="wastage-graph">
-      <div className="head"><b>R {(Math.round(sum*Globals.WATER_COST))}</b><b className="dailysubhead"> lost so far</b></div>
+      <div className="wastage-graph"> 
         <Bar options={options} data={ data } />
       </div>
     )
