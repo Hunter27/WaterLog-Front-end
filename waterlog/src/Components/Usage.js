@@ -48,6 +48,7 @@ class Usage extends Component {
       return <div>
         <p><b>Cost</b></p>
         <DailyCostsReports props={this.props.dailyCost} />
+        <hr />
         <p><b>Usage</b></p>
         <DailyUsageComponent props={this.props.dailyUsage} />
       </div>
@@ -55,6 +56,7 @@ class Usage extends Component {
       return <div>
         <p><b>Cost</b></p>
         <MonthlyCostsReports props={this.props.monthlyCost} />
+        <hr />
         <p><b>Usage</b></p>
         <MonthlyUsageComponent props={this.props.monthlyUsage} />
       </div>
@@ -62,6 +64,7 @@ class Usage extends Component {
       return <div>
         <p><b>Cost</b></p>
         <SeasonalCostReports props={this.props.seasonalCost} />
+        <hr />
         <p><b>Usage</b></p>
         <SeasonalUsageComponent props={this.props.seasonUsage} />
       </div>
@@ -72,7 +75,7 @@ class Usage extends Component {
   render() {
     return (
       <div className="wastage">
-        <div className="graph-nav tab">
+        <div className="graph-nav tab " id="cost-buttons">
           <button className={`btn-graph-nav tablinks ${this.state.display === "daily" ? "active" : ""}`}
             onClick={(e) => this.openGraph("daily")}
             id="openByDefault"
@@ -122,6 +125,13 @@ const mapStateToProps = (state) => ({
   monthlyCost: state.monthlyCost.item,
   seasonalCost: state.seasonalCost.items
 })
-export default connect(mapStateToProps, { fetchUsageDaily, fetchUsageMonthly, fetchUsageSeasonally, fetchCostsDaily, fetchCostsMonthly, fetchCostsSeasonally })(Usage);
+export default connect(mapStateToProps, {
+  fetchUsageDaily,
+  fetchUsageMonthly,
+  fetchUsageSeasonally,
+  fetchCostsDaily,
+  fetchCostsMonthly,
+  fetchCostsSeasonally
+})(Usage);
 
 
