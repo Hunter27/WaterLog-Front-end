@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Map, 
-        TileLayer, 
-        Polyline, 
-        CircleMarker, 
-        Popup 
+import {
+  Map,
+  TileLayer,
+  Polyline,
+  CircleMarker,
+  Popup
 } from 'react-leaflet';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -16,21 +17,30 @@ const lighterColor = '#4F5B62';
 
 function formatMapData(data) {
   let markers, segments;
-  const todaysLeaks = data.leaks.filter(leak => (
-    (new Date(leak.latestTimeStamp)).getDay() === (new Date(Date.now())).getDay() &&
-    (new Date(leak.latestTimeStamp)).getMonth() === (new Date(Date.now())).getMonth() &&
-    (new Date(leak.latestTimeStamp)).getFullYear() === (new Date(Date.now())).getFullYear()
-  ));
+  let todaysLeaks;
+  if (!data.leaks) {
+    todaysLeaks = [];
+  } else {
+    todaysLeaks = data.leaks.filter(leak => (
+      (new Date(leak.latestTimeStamp)).getDay() === (new Date(Date.now())).getDay() &&
+      (new Date(leak.latestTimeStamp)).getMonth() === (new Date(Date.now())).getMonth() &&
+      (new Date(leak.latestTimeStamp)).getFullYear() === (new Date(Date.now())).getFullYear()
+    ));
+  }
 
-  segments = data.segments.map(seg => {
-    const leak = todaysLeaks.find(leak => leak.segmentsId === seg.id);
-    if (leak) {
-      seg.status = (leak.resolvedStatus.toLowerCase() === "unresolved") ? "leak" : "normal";
-    } else {
-      seg.status = 'normal'
-    }
-    return seg;
-  });
+  if (data.segments) {
+    segments = data.segments.map(seg => {
+      const leak = todaysLeaks.find(leak => leak.segmentsId === seg.id);
+      if (leak) {
+        seg.status = (leak.resolvedStatus.toLowerCase() === "unresolved") ? "leak" : "normal";
+      } else {
+        seg.status = 'normal'
+      }
+      return seg;
+    });
+  } else {
+    return [];
+  }
 
   markers = data.monitors.map(mon => {
     return { id: mon.id, lat: mon.lat, lon: mon.long, status: mon.status }
@@ -40,6 +50,9 @@ function formatMapData(data) {
 
 function generateMapIcons({ segments, markers }, simpleView) {
   const defaultColor = simpleView ? backgroundColor : lighterColor;
+  if (!segments || !markers) {
+    return <div></div>
+  }
   return segments.map((segment) => {
     const sensorIn = markers.find(marker => (marker.id === segment.senseIDIn));
     const sensorOut = markers.find(marker => (marker.id === segment.senseIDOut));
