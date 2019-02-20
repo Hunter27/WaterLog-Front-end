@@ -4,7 +4,6 @@ import {
     FETCH_TANK_LEVEL_SUCCESS
 } from './Types';
 
-
 export const fecthTankLevelBegin = () => ({
     type: FETCH_TANK_LEVEL_BEGIN
 });

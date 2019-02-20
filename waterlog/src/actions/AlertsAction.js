@@ -5,8 +5,6 @@ import {
 	handleErrors
 } from './Types';
 
-import { Globals } from './../Globals';
-
 export const fetchAlertsBegin = () => ({
 	type: FETCH_ALERTS_BEGIN
 });
@@ -29,7 +27,7 @@ export const fetchAlertsFailure = error => ({
 
 export const fetchAlerts = () => dispatch => {
 	dispatch(fetchAlertsBegin());
-	fetch(`${Globals.API_URL}/api/segmentevents/getalerts`)
+	fetch(`${process.env.REACT_APP_API_URL}/api/segmentevents/getalerts`)
 		.then(handleErrors)
 		.then(res => res.json())
 		.then(alerts => {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchAlerts } from '../actions/AlertsAction';
 import Loader from './Loader';
-import { formatDate, getStatusIcon } from './../utils'
+import { formatDate, getStatusIcon } from './../utils';
 
 class AlertTableComponent extends Component {
 	componentDidMount() {
