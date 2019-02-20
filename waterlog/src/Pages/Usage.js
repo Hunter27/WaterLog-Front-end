@@ -1,12 +1,10 @@
-import React, { Component } from "react";
-import CostsReport from './../Components/CostsReport';
+import React, { Component } from "react";  
 
 class UsageComponent extends Component {
   render() {
-    return (<div>
-      <p>Usage page</p>
-      <CostsReport />
-    </div>
+    return( <div>
+        <p>Usage page</p> 
+      </div>
     )
   }
 }
