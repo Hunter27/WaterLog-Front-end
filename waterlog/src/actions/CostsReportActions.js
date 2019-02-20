@@ -6,7 +6,7 @@ import {
 import { Globals } from './../Globals';
 
 export const fetchCostsDaily = () => (dispatch) => {
-  fetch(`${Globals.API_URL}/api/segmentevents/dailyCost`) //Change to use either localhost/server
+  fetch(`${Globals.API_URL}/api/segmentevents/dailyCost`) 
     .then(res => res.json())
     .then(dailyCost => {
       dispatch({
@@ -16,7 +16,7 @@ export const fetchCostsDaily = () => (dispatch) => {
     });
 };
 export const fetchCostsMonthly = () => (dispatch) => {
-  fetch(`${Globals.API_URL}/api/segmentevents/monthlyCost`) //Change to use either localhost/server
+  fetch(`${Globals.API_URL}/api/segmentevents/monthlyCost`)  
     .then(res => res.json())
     .then(monthlyCost => {
       dispatch({
@@ -26,7 +26,7 @@ export const fetchCostsMonthly = () => (dispatch) => {
     });
 };
 export const fetchCostsSeasonally = () => (dispatch) => {
-  fetch(`${Globals.API_URL}/api/segmentevents/seasonallyCost`) //Change to use either localhost/server
+  fetch(`${Globals.API_URL}/api/segmentevents/seasonallyCost`) 
     .then(res => res.json())
     .then(seasonalCost => {
       dispatch({
