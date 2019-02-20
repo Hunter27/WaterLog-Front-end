@@ -9,11 +9,9 @@ import {
 } from '../actions/UsageDaily';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {
-  fetchCostsDaily,
-  fetchCostsMonthly,
-  fetchCostsSeasonally
-} from '../actions/CostsReportActions';
+import { fetchCostsDaily } from '../actions/CostsReportActions';
+import { fetchCostsMonthly } from '../actions/CostsMonthlyReportActions';
+import { fetchCostsSeasonally } from '../actions/CostsSeasonalReportActions';
 import SeasonalCostReports from './SeasonalCostReports';
 import DailyCostsReports from './DailyCostsReports';
 import MonthlyCostsReports from './MonthlyCostsReports';
