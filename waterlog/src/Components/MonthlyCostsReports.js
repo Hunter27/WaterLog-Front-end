@@ -12,7 +12,7 @@ const MonthlyCostsReports = (props) => {
                     data: dataY,
                     fill: true,
                     borderColor: 'rgba(255,0,0,0)',
-                    backgroundColor: 'rgba(255,0,0,0)'
+                    backgroundColor: 'rgba(255,0,0,1)'
                 }
             ]
         }
