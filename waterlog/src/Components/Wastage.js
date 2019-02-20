@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import DailyWastageComponent from './DailyWastage';
 import MonthlyWastageComponent from './MonthlyWastage';
 import SeasonalWastageComponent from './SeasonalWastage';
-import { fetchWastageDaily } from '../actions/WastageDaily';//, fetchWastageMonthly, fetchWastageSeasonally
+import { fetchWastageDaily } from '../actions/WastageDaily';
 import { fetchWastageMonthly } from '../actions/WastageMonthly';
 import { fetchWastageSeasonally } from '../actions/WastageSeasonally';
 import PropTypes from 'prop-types';
@@ -39,14 +39,16 @@ class Wastage extends Component {
 	};
 
 	render() {
-		const { dailyError, dailyLoading, dailyWaste,monthlyError,monthlyWaste,monthlyLoading,seasonalError,seasonalLoading,seasonWaste } = this.props;
+		const { dailyError, dailyLoading, dailyWaste,
+			monthlyError, monthlyWaste, monthlyLoading,
+			seasonalError, seasonalLoading, seasonWaste } = this.props;
 		if (dailyError || monthlyError || seasonalError) {
 			return <div>Error!</div>;
 		}
 		if (dailyLoading || monthlyLoading || seasonalLoading) {
 			return <Loader />
 		}
-		console.log(dailyWaste);
+
 		return (
 			<div className="wastage">
 				<p>Wastage</p>
