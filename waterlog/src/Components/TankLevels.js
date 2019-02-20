@@ -8,6 +8,7 @@ class TankLevels extends Component {
 		this.props.fetchTankLevels();
 	};
 	render() {
+		console.log(this.props.levels);
 		if (this.props.levels.loading)
 			return <p>Loading...</p>
 		if (this.props.levels.error)
@@ -15,7 +16,7 @@ class TankLevels extends Component {
 		return (
 			<div className="tank-container">
 				{this.props.levels.map((tank, index) =>
-					<div key={index} onClick={() => window.location = `/usage/tank/${index + 1}`}><Tank key={index} tank={tank} /></div>
+					<div key={index} onClick={() => window.location = `/usage/tank/${tank.tankId}`}><Tank key={index} tank={tank} /></div>
 				)}
 			</div>
 		)

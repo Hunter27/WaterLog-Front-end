@@ -1,4 +1,5 @@
-import { FETCH_WASTAGE_SEASONALLY } from '../actions/Types';
+//import { FETCH_WASTAGE_SEASONALLY } from '../actions/Types';
+import { FETCH_WASTAGE_SEASONALLY_BEGIN,FETCH_WASTAGE_SEASONALLY_SUCCESS,FETCH_WASTAGE_SEASONALLY_FAILURE } from '../actions/Types';
 
 const initialState = {
 	items: [],
@@ -10,11 +11,27 @@ const initialState = {
 
 export default function(state = initialState, action) {
 	switch (action.type) {
-		case FETCH_WASTAGE_SEASONALLY:
+		case FETCH_WASTAGE_SEASONALLY_BEGIN:
+	       return{
+		
+			...state,
+			loading: true,
+			error: null
+	}
+	case FETCH_WASTAGE_SEASONALLY_SUCCESS:
 			return {
 				...state,
-				items: action.payload
+				item: action.payload.seasonWaste,
+				loading: false,
+
 			};
+	case FETCH_WASTAGE_SEASONALLY_FAILURE:
+	       return {
+			...state,
+			loading: false,
+			error: action.payload.error,
+			items: {}
+		}
 		default:
 			return state;
 	}
