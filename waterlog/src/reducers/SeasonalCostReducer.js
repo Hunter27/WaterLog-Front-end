@@ -1,4 +1,8 @@
-import { FETCH_COSTS_SEASONALLY } from '../actions/Types';
+import {
+  FETCH_COSTS_SEASONALLY_BEGIN,
+  FETCH_COSTS_SEASONALLY_SUCCESS,
+  FETCH_COSTS_SEASONALLY_FAILURE
+} from '../actions/Types';
 
 const initialState = {
   items: [],
@@ -7,17 +11,33 @@ const initialState = {
       { x: "0", y: "0" }
     ]
   },
-  loading: true
+  loading: false,
+	error: null
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case FETCH_COSTS_SEASONALLY:
+    case FETCH_COSTS_SEASONALLY_BEGIN:
       return {
         ...state,
-        items: action.payload
+        loading: true,
+        error: null
       };
+    case FETCH_COSTS_SEASONALLY_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        items: action.payload.seasonalCost,
+        error: null
+      };
+    case FETCH_COSTS_SEASONALLY_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error,
+        items: []
+      }
     default:
       return state;
   }
-}
+} 

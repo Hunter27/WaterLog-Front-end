@@ -4,9 +4,6 @@ import {
 	FETCH_TANK_LEVELS_FAILURE,
 	handleErrors
 } from './Types';
-import {
-	Globals
-} from './../Globals';
 
 export const fetchTankLevelsBegin = () => ({
 	type: FETCH_TANK_LEVELS_BEGIN
