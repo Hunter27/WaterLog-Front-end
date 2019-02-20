@@ -24,13 +24,13 @@ export const fecthSegmentsLeaksFailure = (error) => ({
 //TODO: Resolve promise hell
 export const fetchSegmentsLeaks = () => (dispatch) => {
 	dispatch(fecthSegmentsLeaksBegin());
-	return fetch(`${Globals.API_URL}/api/segmentleaks`) 
+	return fetch(process.env.REACT_APP_API_URL+`/api/segmentleaks`) 
 		.then((res) => handleErrors(res))
 		.then((res) => res.json())
 		.then((leaks) => {
 			var count = 0;
 			leaks.map((leak) =>
-				fetch(`${Globals.API_URL}/api/segmentleaks/costs/${leak.id}`) //is it segmentId or Id?
+				fetch(process.env.REACT_APP_API_URL+`/api/segmentleaks/costs/${leak.id}`) //is it segmentId or Id?
 					.then((res) => res.json())
 					.then((cost) => {
 						leaks[count].cost = cost;

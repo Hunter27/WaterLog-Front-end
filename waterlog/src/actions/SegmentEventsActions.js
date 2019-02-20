@@ -25,7 +25,7 @@ export const fecthSegmentEventsFailure = error => ({
 export const fetchSegmentEvents = () => dispatch => {
   dispatch(fecthSegmentEventsBegin());
 
-  return fetch(`${Globals.API_URL}/api/segmentevents`)
+  return fetch(process.env.REACT_APP_API_URL+`/api/segmentevents`)
     .then(handleErrors)
     .then(res => res.json())
     .then(events => {
