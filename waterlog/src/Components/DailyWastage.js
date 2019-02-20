@@ -29,7 +29,7 @@ const DailyWastageComponent = (props) => {
       xAxes: [ {
         scaleLabel: {
           display: true,
-          labelString: 'Hours'
+          labelString: 'hours'
         },
         ticks: {
           major: {
@@ -45,7 +45,7 @@ const DailyWastageComponent = (props) => {
         display: true,
         scaleLabel: {
           display: true,
-          labelString: 'Liters'
+          labelString: 'liters'
         },
         gridLines: {
           display: false

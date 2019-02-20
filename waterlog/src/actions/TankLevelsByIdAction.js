@@ -1,5 +1,8 @@
-import { FETCH_TANK_LEVEL_BEGIN, FETCH_TANK_LEVEL_FAILURE, FETCH_TANK_LEVEL_SUCCESS } from './Types';
-import { Globals } from './../Globals';
+import {
+    FETCH_TANK_LEVEL_BEGIN,
+    FETCH_TANK_LEVEL_FAILURE,
+    FETCH_TANK_LEVEL_SUCCESS
+} from './Types';
 
 export const fecthTankLevelBegin = () => ({
     type: FETCH_TANK_LEVEL_BEGIN

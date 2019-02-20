@@ -4,7 +4,7 @@ import Filler from './Filler';
 const ProgressBar = props =>{
 	return(
 	  <div className="progress-bar">
-			<Filler percent="40"/>
+			<Filler severity={props.severity} percent={props.percent}/>
 	  </div>
 	)
 }

@@ -11,11 +11,11 @@ const SeasonalUsageComponent = (props) => {
     labels: ['Summer','Winter','Autumn','Spring'],
     datasets: [
       {
-        label: 'Liters',
+        label: 'liters',
         data: [dataSummer,dataWinter,dataAutumn,dataSpring],
         fill: true,         
         borderColor: 'red',
-        backgroundColor: 'rgba(255,0,0,0.4)'
+        backgroundColor: 'rgba(255,0,0,0)'
       }
     ]
   }
@@ -24,7 +24,7 @@ const SeasonalUsageComponent = (props) => {
       xAxes: [ {
         scaleLabel: {
           display: true,
-          labelString: 'Seasons'
+          labelString: 'seasons'
         },
         ticks: {
           major: {
@@ -37,7 +37,7 @@ const SeasonalUsageComponent = (props) => {
         display: true,
         scaleLabel: {
           display: true,
-          labelString: 'Liters'
+          labelString: 'liters'
         }
       } ]
     }
