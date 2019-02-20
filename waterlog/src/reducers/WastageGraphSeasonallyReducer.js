@@ -1,4 +1,3 @@
-//import { FETCH_WASTAGE_SEASONALLY } from '../actions/Types';
 import { FETCH_WASTAGE_SEASONALLY_BEGIN,FETCH_WASTAGE_SEASONALLY_SUCCESS,FETCH_WASTAGE_SEASONALLY_FAILURE } from '../actions/Types';
 
 const initialState = {
