@@ -1,4 +1,9 @@
-import { FETCH_USAGE_SEASONALLY_BEGIN, FETCH_USAGE_SEASONALLY_FAILURE, FETCH_USAGE_SEASONALLY_SUCCESS, handleErrors } from "./Types";
+import {
+    FETCH_USAGE_SEASONALLY_BEGIN,
+    FETCH_USAGE_SEASONALLY_FAILURE,
+    FETCH_USAGE_SEASONALLY_SUCCESS,
+    handleErrors
+} from "./Types";
 import { Globals } from './../Globals';
 export const fetchhUsageSeasonallyBegin = () => ({
     type: FETCH_USAGE_SEASONALLY_BEGIN
@@ -18,7 +23,7 @@ export const fetchUsageSeasonallyFailure = (error) => ({
 
 export const fetchUsageSeasonally = () => (dispatch) => {
     dispatch(fetchhUsageSeasonallyBegin())
-    fetch(process.env.REACT_APP_API_URL + `/api/segmentevents/seasonallyusage`) //Change to use either localhost/server
+    fetch(process.env.REACT_APP_API_URL + `/api/segmentevents/seasonallyusage`)
         .then(handleErrors)
         .then(res => res.json())
         .then(seasonUsage => {

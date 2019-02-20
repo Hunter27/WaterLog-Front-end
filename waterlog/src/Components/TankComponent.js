@@ -15,7 +15,6 @@ export class TankComponent extends Component {
 	componentWillMount() {
 		this.props.fetchTankLevelById(this.props.id);
 	}
-
 	getTankImage = (percent) => {
 		if (percent === 100) {
 			return <img src={images.percent_100} className="image" alt="100% tank" />;
