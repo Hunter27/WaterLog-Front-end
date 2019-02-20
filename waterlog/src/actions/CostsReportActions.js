@@ -32,27 +32,4 @@ export const fetchCostsDaily = () => (dispatch) => {
       dispatch(fetchCostsDailySuccess(dailyCost));
     })
       .catch(error => dispatch(fetchCostsDailyFailure(error)));
-}; 
-
-
-
-/*export const fetchCostsMonthly = () => (dispatch) => {
-  fetch(process.env.REACT_APP_API_URL+`/api/segmentevents/monthlyCost`)  
-    .then(res => res.json())
-    .then(monthlyCost => {
-      dispatch({
-        type: FETCH_COSTS_MONTHLY,
-        payload: monthlyCost
-      });
-    });
-};
-export const fetchCostsSeasonally = () => (dispatch) => {
-  fetch(process.env.REACT_APP_API_URL+`/api/segmentevents/seasonallyCost`) 
-    .then(res => res.json())
-    .then(seasonalCost => {
-      dispatch({
-        type: FETCH_COSTS_SEASONALLY,
-        payload: seasonalCost
-      });
-    });
-};*/
+};  
