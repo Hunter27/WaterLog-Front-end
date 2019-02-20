@@ -1,16 +1,14 @@
 import React from 'react';
-import { Bar, defaults } from 'react-chartjs-2';
-import { Globals } from './../Globals';
+import { Bar, defaults } from 'react-chartjs-2'; 
 
 const MonthlyUsageComponent = (props) => {
   if(props.props.dataPoints){
-  var dataY = props.props.dataPoints.map(a => a.y);
-  var sum = dataY.reduce((a, b) => a + b, 0);
+  var dataY = props.props.dataPoints.map(a => a.y); 
   var data = {
     labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
     datasets: [
       {
-        label: 'Liters',
+        label: 'liters',
         data: dataY,
         fill: true,         
         borderColor: 'red'  ,
@@ -24,7 +22,7 @@ const MonthlyUsageComponent = (props) => {
       xAxes: [ {
         scaleLabel: {
           display: true,
-          labelString: 'Months'
+          labelString: 'months'
         },
         ticks: {
           major: {
@@ -37,7 +35,7 @@ const MonthlyUsageComponent = (props) => {
         display: true,
         scaleLabel: {
           display: true,
-          labelString: 'Liters'
+          labelString: 'liters'
         }
       } ]
     }

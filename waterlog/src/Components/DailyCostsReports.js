@@ -9,7 +9,7 @@ const DailyCostsReports = (props) => {
     labels: labelX,
     datasets: [
       {
-        label: 'Rands',
+        label: 'rands',
         data: dataY,
         fill: true,
         borderColor: 'rgba(255,0,0,0)',
@@ -22,7 +22,7 @@ const DailyCostsReports = (props) => {
       xAxes: [{
         scaleLabel: {
           display: true,
-          labelString: 'Hours'
+          labelString: 'hours'
         },
         ticks: {
           major: {
@@ -35,7 +35,7 @@ const DailyCostsReports = (props) => {
         display: true,
         scaleLabel: {
           display: true,
-          labelString: 'Rands'
+          labelString: 'rands'
         }
       }]
     }

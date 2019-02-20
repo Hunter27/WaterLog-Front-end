@@ -1,17 +1,15 @@
 import React from 'react';
-import { Line, defaults } from 'react-chartjs-2';
-import { Globals } from './../Globals';
+import { Line, defaults } from 'react-chartjs-2'; 
 
 const DailyUsageComponent = (props) => {
   var labelX = props.props.dataPoints.map(a => (new Date(a.x).getHours()+":00"));
-  var dataY = props.props.dataPoints.map(a => a.y);
-  var sum = dataY.reduce((a, b) => a + b, 0);
+  var dataY = props.props.dataPoints.map(a => a.y); 
   var today =  new Date(Date.now());
   var data = {
     labels: labelX,
     datasets: [
       {
-        label: 'Liters',
+        label: 'liters',
         data: dataY,
         fill: true,         
         borderColor: 'red',
@@ -24,7 +22,7 @@ const DailyUsageComponent = (props) => {
       xAxes: [ {
         scaleLabel: {
           display: true,
-          labelString: 'Hours'
+          labelString: 'hours'
         },
         ticks: {
           major: {
@@ -37,7 +35,7 @@ const DailyUsageComponent = (props) => {
         display: true,
         scaleLabel: {
           display: true,
-          labelString: 'Liters'
+          labelString: 'liters'
         }
       } ]
     }
