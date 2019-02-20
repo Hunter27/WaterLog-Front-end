@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import DailyUsageComponent from './DailyUsage';
 import MonthlyUsageComponent from './MonthlyUsage';
 import SeasonalUsageComponent from './SeasonalUsage';
-import { fetchUsageDaily, fetchUsageMonthly, fetchUsageSeasonally } from '../actions/UsageDaily';
+import {
+  fetchUsageDaily,
+  fetchUsageMonthly,
+  fetchUsageSeasonally
+} from '../actions/UsageDaily';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
