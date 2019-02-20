@@ -4,7 +4,6 @@ import {
     FETCH_LEAK_HISTORY_FAILURE,
 	handleErrors
 } from './Types';
-import { Globals } from './../Globals';
 
 export const fecthSegmentsLeaksHistoryBegin = () => ({
 	type: FETCH_LEAK_HISTORY_BEGIN

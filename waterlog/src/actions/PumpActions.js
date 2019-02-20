@@ -4,7 +4,6 @@ import {
     FETCH_PUMPS_FAILURE,
     handleErrors
 } from './Types';
-import { Globals } from './../Globals';
 
 export const fetchPumpsBegin = () => ({
     type: FETCH_PUMPS_BEGIN
