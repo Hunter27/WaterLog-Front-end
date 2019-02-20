@@ -27,7 +27,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         loading: false,
-        item: action.payload,
+        items: action.payload.seasonalCost,
         error: null
       };
     case FETCH_COSTS_SEASONALLY_FAILURE:
@@ -35,8 +35,8 @@ export default function (state = initialState, action) {
         ...state,
         loading: false,
         error: action.payload.error,
-        item: {}
-      };
+        items: []
+      }
     default:
       return state;
   }

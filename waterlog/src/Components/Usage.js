@@ -9,11 +9,9 @@ import {
 } from '../actions/UsageDaily';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {
-  fetchCostsDaily,
-  fetchCostsMonthly,
-  fetchCostsSeasonally
-} from '../actions/CostsReportActions';
+import {fetchCostsDaily} from '../actions/CostsReportActions';
+import {fetchCostsMonthly} from '../actions/CostsMonthlyReportActions';
+import {fetchCostsSeasonally} from '../actions/CostsSeasonalReportActions';
 import SeasonalCostReports from './SeasonalCostReports';
 import DailyCostsReports from './DailyCostsReports';
 import MonthlyCostsReports from './MonthlyCostsReports';
@@ -123,7 +121,7 @@ const mapStateToProps = (state) => ({
   seasonUsage: state.seasonUsage.items,
   dailyCost: state.dailyCost.item,
   monthlyCost: state.monthlyCost.item,
-  seasonalCost: state.seasonalCost.items
+  seasonalCost: state.seasonalCost.items 
 })
 export default connect(mapStateToProps, {
   fetchUsageDaily,

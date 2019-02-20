@@ -15,7 +15,7 @@ const SeasonalCostReports = (props) => {
                 data: [dataSummer, dataWinter, dataAutumn, dataSpring],
                 fill: true,
                 borderColor: 'rgba(255,0,0,0)',
-                backgroundColor: 'rgba(255,0,0,0)'
+                backgroundColor: 'rgba(255,0,0,1)'
             }
         ]
     }

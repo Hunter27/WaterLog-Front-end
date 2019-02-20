@@ -26,7 +26,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         loading: false,
-        item: action.payload,
+        item: action.payload.monthlyCost,
         error: null
       };
     case FETCH_COSTS_MONTHLY_FAILURE:
