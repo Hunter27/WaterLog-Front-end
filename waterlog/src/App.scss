@@ -10,6 +10,15 @@
 @import './Stylesheets/histroryTable';
 @import './Stylesheets/map';
 
+#cost-buttons {
+	padding-top: 18px; 
+}
+
+.btn-graph-nav{
+	height:26px; 
+	width: 84px;
+}
+ 
 .wastageInfo {
 	border-radius: 0;
 	margin-top: 15px;
@@ -73,6 +82,7 @@ hr {
 	margin: 5px;
 	font-size: 15pt;
 	color: #f6f6f6;
+	padding-top: 37px; 
 }
 
 @media (min-width: 600px) {

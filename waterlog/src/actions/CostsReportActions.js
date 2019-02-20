@@ -2,11 +2,10 @@ import {
   FETCH_COSTS_DAILY,
   FETCH_COSTS_MONTHLY,
   FETCH_COSTS_SEASONALLY
-} from './Types';
-import { Globals } from './../Globals';
+} from './Types'; 
 
 export const fetchCostsDaily = () => (dispatch) => {
-  fetch(`${Globals.API_URL}/api/segmentevents/dailyCost`) 
+  fetch(process.env.REACT_APP_API_URL+`/api/segmentevents/dailyCost`) 
     .then(res => res.json())
     .then(dailyCost => {
       dispatch({
@@ -16,7 +15,7 @@ export const fetchCostsDaily = () => (dispatch) => {
     });
 };
 export const fetchCostsMonthly = () => (dispatch) => {
-  fetch(`${Globals.API_URL}/api/segmentevents/monthlyCost`)  
+  fetch(process.env.REACT_APP_API_URL+`/api/segmentevents/monthlyCost`)  
     .then(res => res.json())
     .then(monthlyCost => {
       dispatch({
@@ -26,7 +25,7 @@ export const fetchCostsMonthly = () => (dispatch) => {
     });
 };
 export const fetchCostsSeasonally = () => (dispatch) => {
-  fetch(`${Globals.API_URL}/api/segmentevents/seasonallyCost`) 
+  fetch(process.env.REACT_APP_API_URL+`/api/segmentevents/seasonallyCost`) 
     .then(res => res.json())
     .then(seasonalCost => {
       dispatch({

@@ -8,11 +8,11 @@ const MonthlyCostsReports = (props) => {
             labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
             datasets: [
                 {
-                    label: 'Rands',
+                    label: 'rands',
                     data: dataY,
                     fill: true,
                     borderColor: 'rgba(255,0,0,0)',
-                    backgroundColor: 'rgba(255,0,0,0.4)'
+                    backgroundColor: 'rgba(255,0,0,0)'
                 }
             ]
         }
@@ -22,7 +22,7 @@ const MonthlyCostsReports = (props) => {
                 xAxes: [{
                     scaleLabel: {
                         display: true,
-                        labelString: 'Months'
+                        labelString: 'months'
                     },
                     ticks: {
                         major: {
@@ -35,7 +35,7 @@ const MonthlyCostsReports = (props) => {
                     display: true,
                     scaleLabel: {
                         display: true,
-                        labelString: 'Rands'
+                        labelString: 'rands'
                     }
                 }]
             }
