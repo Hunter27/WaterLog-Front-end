@@ -2,14 +2,24 @@
     display: flex;
     height: 44px;
     background-color: #4f5b62;
-    margin-top: 2px;
     opacity: 0.9;
+    img {
+        padding-top: 5px;
+        width: 33px;
+        height: 33px;
+    }
 }
 
 .logo {
     margin: auto;
     width: 51px;
     border-right: 1px solid grey;
+    background-color: #253238;
+    height: 44px;
+    img {
+        width: 33px;
+        height: 33px;
+    }
     
 }
 
@@ -18,10 +28,10 @@
     margin: auto;
     border-right: 1px solid grey;
     text-decoration: none;
-    height: 40px; 
-    //display: relative;
+    height: 44px; 
+    padding: 0;
     .badge {
-        background-color: #ff4417;
+        background-color: #FF1744;
         color: #f6f6f6;
         font-size: 8pt;
         padding: 2px 5px;
@@ -29,12 +39,9 @@
         position: relative;
         top: -20px;
         margin-left: -15px;
-        
     }
 }
 
 .selected-route {
-    background-color: #253238;
+    background-color: #93A4AE;
 }
-
-

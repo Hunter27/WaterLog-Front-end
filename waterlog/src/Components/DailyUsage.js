@@ -1,34 +1,50 @@
 import React from 'react';
-import { Line, defaults } from 'react-chartjs-2';
+import { Line, defaults } from 'react-chartjs-2'; 
 
 const DailyUsageComponent = (props) => {
+  var labelX = props.props.dataPoints.map(a => (new Date(a.x).getHours()+":00"));
+  var dataY = props.props.dataPoints.map(a => a.y); 
+  var today =  new Date(Date.now());
   var data = {
-    labels: [
-      'Jan', 'Feb', 
-      'Mar', 'Apr', 
-      'May', 'Jun', 
-      'Jul', 'Aug', 
-      'Sept', 'Oct', 
-      'Nov', 'Dec'
-    ],
+    labels: labelX,
     datasets: [
       {
-        label: 'Temperature',
-        data: [10,19,27,23,22,4,100,25,23,24,20,19],
+        label: 'liters',
+        data: dataY,
         fill: true,         
-        borderColor: 'blue'  
+        borderColor: 'red',
+        backgroundColor: 'rgba(255,0,0,0.4)'
       }
     ]
   }
   var options = {
-    maintainAspectRatio: true,
+    scales: {
+      xAxes: [ {
+        scaleLabel: {
+          display: true,
+          labelString: 'hours'
+        },
+        ticks: {
+          major: {
+            fontStyle: 'bold',
+            fontColor: '#FF0000'
+          }
+        }
+      } ],
+      yAxes: [ {
+        display: true,
+        scaleLabel: {
+          display: true,
+          labelString: 'liters'
+        }
+      } ]
+    }
   }
     defaults.global.legend.display = false;
     return (
-      <div className="wastage-graph">
-        <p>R {1000.00} <small>lost so far</small></p>
-        <p>({10}% more than normal water usage)</p>
-        <Line options={options} data={data}/>
+      <div className="wastage-graph"> 
+      <div className="date">{"Today is : " + today.getDay() + "/" + today.getMonth() + "/" + today.getFullYear()}</div>
+        <Line options={options} data={data} />
       </div>
     )
 }

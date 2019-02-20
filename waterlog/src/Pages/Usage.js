@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import UsageCostComponent from './../Components/Usage-cost';
-
+import Usage from './../Components/Usage';
 class UsageComponent extends Component {
   render() {
-    return( <div>
-        <p>Usage page</p>
-        <UsageCostComponent />
-      </div>
+    return (<div>
+      <p className="home-text"><b>WATER USAGE & COST</b></p>
+      <Usage />
+    </div>
     )
   }
 }
