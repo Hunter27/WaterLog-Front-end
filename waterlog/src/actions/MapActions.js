@@ -4,7 +4,6 @@ import {
   FETCH_MAP_DATA_FAILURE, 
   handleErrors 
 } from './Types';
-import { Globals } from '../Globals';
 
 export const fetchMapsDataBegin = () => ({
 	type: FETCH_MAP_DATA_BEGIN
@@ -21,19 +20,19 @@ export const fetchMapsDataFailure = (error) => ({
 });
 
 async function getSegments(){
-  const response = await fetch(`${Globals.API_URL}/api/segments`).then(handleErrors);
+  const response = await fetch(process.env.REACT_APP_API_URL +`/api/segments`).then(handleErrors);
 	const data = await response.json();
 	return data;
 }
 
 async function getLeakInformation(){
-  const response = await fetch(`${Globals.API_URL}/api/segmentleaks`).then(handleErrors);
+  const response = await fetch(process.env.REACT_APP_API_URL +`/api/segmentleaks`).then(handleErrors);
 	const data = await response.json();
 	return data;
 }
 
 async function getMonitors(){
-  const response = await fetch(`${Globals.API_URL}/api/monitors`).then(handleErrors);
+  const response = await fetch(process.env.REACT_APP_API_URL +`/api/monitors`).then(handleErrors);
 	const data = await response.json();
 	return data;
 }
