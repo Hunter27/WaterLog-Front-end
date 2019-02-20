@@ -1,14 +1,11 @@
-import React, { Component } from 'react';
-import UsageCostComponent from './../Components/Usage-cost';
+import React, { Component } from "react";  
 
 class UsageComponent extends Component {
-	render() {
-		return (
-			<div>
-				<p>Usage page</p>
-				<UsageCostComponent />
-			</div>
-		);
-	}
+  render() {
+    return( <div>
+        <p>Usage page</p> 
+      </div>
+    )
+  }
 }
 export default UsageComponent;
