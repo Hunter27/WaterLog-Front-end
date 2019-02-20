@@ -23,13 +23,13 @@ export const fetchSegmentsAllLeaksFailure = (error) => ({
 //TODO: Resolve promise hell
 export const fetchSegmentsLeaksById = id => dispatch => {
   dispatch(fetchSegmentsAllLeaksBegin());
-  fetch(`${Globals.API_URL}/api/segmentleaks/${id}`) //Change to use either localhost/server
+  fetch(process.env.REACT_APP_API_URL+`/api/segmentleaks/${id}`) //Change to use either localhost/server
     .then(res => res.json())
     .then(leak => {
-      fetch(`${Globals.API_URL}/api/segmentleaks/costs/${id}`)
+      fetch(process.env.REACT_APP_API_URL+`/api/segmentleaks/costs/${id}`)
         .then(res => res.json())
         .then(data => {
-          fetch(`${Globals.API_URL}/api/segmentleaks/litres/${id}`)
+          fetch(process.env.REACT_APP_API_URL+`/api/segmentleaks/litres/${id}`)
             .then(res => res.json())
             .then(usage => {
               dispatch(fetchSegmentsAllLeaksSuccess({ leak, data, usage }));

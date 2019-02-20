@@ -22,7 +22,7 @@ export const fecthTankLevelFailure = (error) => ({
 
 export const fetchTankLevelById = (id) => dispatch => {
     dispatch(fecthTankLevelBegin());
-    return fetch(`${Globals.API_URL}/api/TankLevels/${id}`)
+    return fetch(process.env.REACT_APP_API_URL+`/api/TankLevels/${id}`)
         .then(res => res.json())
         .then(level => {
             dispatch(
