@@ -12,6 +12,9 @@ import PumpsReducer from './PumpsReducer';
 import TankLevelReducer from './TankLevelReducer';
 import TankLevelsByIdReducer from './TankLevelsByIdReducer';
 import MapsReducer from './MapsReducer';
+import DailyCostReducer from './DailyCostReducer';
+import MonthlyCostReducer from './MonthlyCostReducer';
+import SeasonalCostReducer from './SeasonalCostReducer';
 import UsageGraphDailyReducer from './UsageGraphDailyReducer';
 import UsageGraphMonthlyReducer from './UsageGraphMonthlyReducer';
 import UsageGraphSeasonallyReducer from './UsageGraphSeasonallyReducer';
@@ -27,6 +30,9 @@ export default combineReducers({
 	dailyWaste: WastageGraphDailyReducer,
 	monthlyWaste: WastageGraphMonthlyReducer,
 	seasonWaste: WastageGraphSeasonallyReducer,
+	dailyCost: DailyCostReducer,
+	monthlyCost: MonthlyCostReducer,
+	seasonalCost: SeasonalCostReducer,
 	dailyUsage: UsageGraphDailyReducer,
 	monthlyUsage: UsageGraphMonthlyReducer,
 	seasonUsage: UsageGraphSeasonallyReducer,

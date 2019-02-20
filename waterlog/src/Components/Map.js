@@ -10,22 +10,6 @@ import { connect } from 'react-redux';
 import { fetchMapsData } from './../actions/MapActions';
 import Loader from './Loader';
 
-
-var markers = [
-	{ id: 1, lat: -25.782473, lon: 28.338061, status: 'fault' },
-	{ id: 2, lat: -25.782454, lon: 28.337993, status: 'ok' },
-	{ id: 3, lat: -25.782456, lon: 28.337866, status: 'ok' },
-	{ id: 4, lat: -25.782634, lon: 28.338039, status: 'ok' },
-	{ id: 5, lat: -25.783408, lon: 28.33618, status: 'fault' }
-];
-
-var segments = [
-	{ id: 1, senseIDIn: 1, senseIDOut: 2, status: 'leak' },
-	{ id: 2, senseIDIn: 2, senseIDOut: 3, status: 'normal' },
-	{ id: 3, senseIDIn: 3, senseIDOut: 4, status: 'normal' },
-	{ id: 4, senseIDIn: 4, senseIDOut: 5, status: 'leak' }
-];
-
 const backgroundColor = '#253238';
 const errorColor = '#FF1744';
 const lighterColor = '#4F5B62';
@@ -124,9 +108,7 @@ class MapComponent extends Component {
 		this.state = {
 			lat: -25.783000,
 			lng: 28.337000,
-			markers: markers,
 			simpleView: false,
-			segments: segments,
 			zoom: 17
 		};
 	}
