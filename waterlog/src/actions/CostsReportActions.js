@@ -23,7 +23,6 @@ export const fetchCostsDailyFailure = error => ({
 	}
 });
 
-
 export const fetchCostsDaily = () => (dispatch) => {
   dispatch(fetchCostsDailyBegin());
   fetch(process.env.REACT_APP_API_URL+`/api/segmentevents/dailyCost`) 
