@@ -11,9 +11,10 @@ import WastageGraphSeasonallyReducer from './WastageGraphSeasonallyReducer';
 import PumpsReducer from './PumpsReducer';
 import TankLevelReducer from './TankLevelReducer';
 import TankLevelsByIdReducer from './TankLevelsByIdReducer';
-
+import AlertsReducer from './AlertsReducer';
 
 export default combineReducers({
+	alerts: AlertsReducer,
 	leaks: SegmentLeaksReducer,
 	leak: SegmentLeaksByIdReducer,
 	litres: LeakLitresReducer,
@@ -25,5 +26,5 @@ export default combineReducers({
 	seasonWaste: WastageGraphSeasonallyReducer,
 	levels: TankLevelReducer,
 	level: TankLevelsByIdReducer,
-   	pumps: PumpsReducer
+   	pumps: PumpsReducer,
 });

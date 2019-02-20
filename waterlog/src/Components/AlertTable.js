@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchSegmentsLeaks } from '../actions/SegmentLeaksActions';
+import { fetchAlerts } from '../actions/AlertsAction';
 import Loader from './Loader';
 import { formatDate, getStatusIcon } from './../utils'
 
 class AlertTableComponent extends Component {
 	componentDidMount() {
-		this.props.fetchSegmentsLeaks();
+		this.props.fetchAlerts();
 	}
 
 	render() {
-		const { error, loading, leaks } = this.props;
+		const { error, loading, alerts } = this.props;
 
 		if (error) {
 			return <div>Error! {error.message}</div>;
@@ -23,19 +23,17 @@ class AlertTableComponent extends Component {
 			
 			<table>
 				<tbody>
-					{leaks.map((leak) => (
-						leak.resolvedStatus !== 'resolved' ? 
+					{alerts.map((alert, index) => (
 						<tr
-							key = {leak.id}
+							key = {index}
 							className ="table-row table-row-unseen"
-							onClick = {() => (window.location.href = `alert/segment/${leak.id}`)}
+							onClick = {() => (window.location.href = `alert/${alert.entityName}/${alert.entityId}`)}
 						>
-							<td className="leak-date">{formatDate(leak.originalTimeStamp)}</td>
-							<td>{`SEGMENT ${leak.segmentsId} LEAK`}</td>
-							<td>{'R ' + leak.cost.Item2 + '/hr'}</td>
-							<td>{getStatusIcon(leak.severity)}</td>
-						</tr> : null
-
+							<td className="leak-date">{formatDate(alert.date)}</td>
+							<td>{`${alert.entityName.toUpperCase()} ${alert.entityId} ${alert.entityType.toUpperCase()}`}</td>
+							<td>{ alert.entityName === 'Segment' ? `R${alert.cost }/hr` : '' }</td>
+							<td>{ alert.entityName === 'Segment' ? getStatusIcon(alert.severity) : '' }</td>
+						</tr>
 					))}
 				</tbody>
 			</table>			
@@ -44,14 +42,15 @@ class AlertTableComponent extends Component {
 }
 
 AlertTableComponent.propTypes = {
-	fetchSegmentsLeaks: PropTypes.func.isRequired,
-	leaks: PropTypes.array.isRequired
+	fetchAlerts: PropTypes.func.isRequired,
+	alerts : PropTypes.array.isRequired,
+	loading : PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({
-	leaks: state.leaks.items,
-	loading: state.leaks.loading,
-	error: state.leaks.error
+	alerts: state.alerts.items,
+	loading: state.alerts.loading,
+	error: state.alerts.error
 });
 
-export default connect(mapStateToProps, { fetchSegmentsLeaks })(AlertTableComponent);
+export default connect(mapStateToProps, { fetchAlerts })(AlertTableComponent);
