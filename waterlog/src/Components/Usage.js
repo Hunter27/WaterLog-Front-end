@@ -133,5 +133,3 @@ export default connect(mapStateToProps, {
   fetchCostsMonthly,
   fetchCostsSeasonally
 })(Usage);
-
-

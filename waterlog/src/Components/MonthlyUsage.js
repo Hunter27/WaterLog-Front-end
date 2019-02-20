@@ -12,7 +12,7 @@ const MonthlyUsageComponent = (props) => {
         data: dataY,
         fill: true,         
         borderColor: 'red'  ,
-        backgroundColor: 'rgba(255,0,0,0.4)'
+        backgroundColor: 'rgba(255,0,0,0)'
       }
     ]
   }

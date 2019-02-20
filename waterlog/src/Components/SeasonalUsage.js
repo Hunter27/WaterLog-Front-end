@@ -15,7 +15,7 @@ const SeasonalUsageComponent = (props) => {
         data: [dataSummer,dataWinter,dataAutumn,dataSpring],
         fill: true,         
         borderColor: 'red',
-        backgroundColor: 'rgba(255,0,0,0.4)'
+        backgroundColor: 'rgba(255,0,0,0)'
       }
     ]
   }
