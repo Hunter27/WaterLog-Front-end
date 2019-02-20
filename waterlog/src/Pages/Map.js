@@ -4,7 +4,7 @@ class MapComponent extends Component {
 	render() {
 		return (
 			<div>
-				Map component 
+				
 			</div>
 		);
 	}
