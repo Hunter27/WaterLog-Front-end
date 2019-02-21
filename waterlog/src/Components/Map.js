@@ -16,7 +16,6 @@ const errorColor = '#FF1744';
 const lighterColor = '#4F5B62';
 
 function formatMapData(data) {
-  console.log(data)
   let markers, segments;
   let todaysLeaks;
   if (!data.leaks) {
@@ -33,14 +32,13 @@ function formatMapData(data) {
     segments = data.segments.map(seg => {
       if (JSON.stringify(Object.keys(seg)) !== JSON.stringify(["id", "senseIDOut", "senseIDIn"])) return [];
       const leak = todaysLeaks.find(leak => leak.segmentsId === seg.id);
-      console.log(leak)
       if (leak) {
         if (leak.resolvedStatus)
-          seg.status = (leak.resolvedStatus.toString().toLowerCase() === "unresolved") ? "leak" : "normal";
+          seg.status = (leak.resolvedStatus === 2) ? "leak" : "normal";
         else
-          seg.status = "normal"
+          seg.status = "normal";
       } else {
-        seg.status = "normal"
+        seg.status = "normal";
       }
       return seg;
     });
