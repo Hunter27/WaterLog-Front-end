@@ -56,8 +56,10 @@ function generateMapIcons({ segments, markers }, simpleView) {
   return segments.map((segment) => {
     const sensorIn = markers.find(marker => (marker.id === segment.senseIDIn));
     const sensorOut = markers.find(marker => (marker.id === segment.senseIDOut));
-
-    if (sensorIn === undefined || sensorOut === undefined) return <div></div>;
+    if(!sensorIn || !sensorOut) return <div></div>;
+    const validSensor = ["id","lat","lon","status"];
+    
+    if ( Object.keys(sensorIn) === validSensor || Object.keys(sensorOut) === validSensor) return <div></div>;
     let sensorInColor = defaultColor,
       sensorOutColor = defaultColor,
       segmentColor = defaultColor;
@@ -147,7 +149,7 @@ class MapComponent extends Component {
           <Map center={position} zoom={this.state.zoom} zoomControl={false}>
             {(() => {
               if (this.state.simpleView)
-                return <TileLayer url="https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png" />;
+                return <TileLayer url='https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png' />;
             })()}
             {icons}
           </Map>
