@@ -45,7 +45,6 @@ class Usage extends Component {
   }
 
   getGraphType = () => {
-    console.log("m",this.props)
     if (this.state.display === "daily")
       return <div>
         <p className="bold">Cost </p>
@@ -57,7 +56,7 @@ class Usage extends Component {
     else if (this.state.display === "monthly")
       return <div>
         <p className="bold">Cost</p>
-        <MonthlyCostsReports props={this.props.monthlyCost} /> 
+        <MonthlyCostsReports props={this.props} /> 
         <hr id="divide"/>
         <p className="bold">Usage</p>
         <MonthlyUsageComponent props={this.props.monthlyUsage} />
