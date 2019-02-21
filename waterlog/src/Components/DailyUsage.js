@@ -3,8 +3,7 @@ import { Line, defaults } from 'react-chartjs-2';
 
 const DailyUsageComponent = (props) => {
   var labelX = props.props.dataPoints.map(a => (new Date(a.x).getHours()+":00"));
-  var dataY = props.props.dataPoints.map(a => a.y); 
-  var today =  new Date(Date.now());
+  var dataY = props.props.dataPoints.map(a => a.y);  
   var data = {
     labels: labelX,
     datasets: [
@@ -51,8 +50,7 @@ const DailyUsageComponent = (props) => {
   }
     defaults.global.legend.display = false;
     return (
-      <div className="wastage-graph"> 
-      <div className="date">{"Today is : " + today.getDay() + "/" + today.getMonth() + "/" + today.getFullYear()}</div>
+      <div className="wastage-graph">  
         <Line options={options} data={data} />
       </div>
     )

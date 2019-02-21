@@ -3,8 +3,7 @@ import { Line, defaults } from 'react-chartjs-2';
 
 const DailyCostsReports = (props) => { 
   let labelX = props.props.dataPoints.map(a => (new Date(a.x).getHours() + ":00"));
-  let dataY = props.props.dataPoints.map(a => a.y);
-  let today = new Date(Date.now());
+  let dataY = props.props.dataPoints.map(a => a.y); 
   let data = {
     labels: labelX,
     datasets: [
@@ -51,8 +50,7 @@ const DailyCostsReports = (props) => {
   }
   defaults.global.legend.display = false;
   return (
-    <div className="costs-graph">
-      <div className="date">{"Today is : " + today.getDay() + "/" + today.getMonth() + "/" + today.getFullYear()}</div>
+    <div className="costs-graph"> 
       <Line options={options} data={data} />
     </div>
   )

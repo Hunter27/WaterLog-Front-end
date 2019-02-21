@@ -5,8 +5,7 @@ import { Globals } from './../Globals';
 const DailyWastageComponent = (props) => {
   var labelX = props.props.dataPoints.map(a => (new Date(a.x).getHours() + ":00"));
   var dataY = props.props.dataPoints.map(a => Math.round(a.y));
-  var sum = dataY.reduce((a, b) => a + b, 0);
-  var today = new Date(Date.now());
+  var sum = dataY.reduce((a, b) => a + b, 0); 
   var data = {
     labels: labelX,
     datasets: [
@@ -56,8 +55,7 @@ const DailyWastageComponent = (props) => {
   return (
     <div className="wastage-graph">
 
-      <div className="head"><b>R {(Math.round(sum * Globals.WATER_COST))}</b><b className="dailysubhead"> lost so far</b></div>
-      <div className="date">{"Today is : " + today.getDay() + "/" + today.getMonth() + "/" + today.getFullYear()}</div>
+      <div className="head"><b>R {(Math.round(sum * Globals.WATER_COST))}</b><b className="dailysubhead"> lost so far</b></div> 
       <Line options={options} data={data} />
     </div>
   )
