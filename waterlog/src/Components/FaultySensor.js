@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
 import Link from './Link';
-import Button from './Button';
-import SensorDiagram from './SensorDiagram'
+import SensorDiagram from './SensorDiagram';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchAlerts } from '../actions/AlertsAction';
+import Loader from './Loader';
 
-export default class FaultySensor extends Component {
-	constructor(){
+class FaultySensor extends Component {
+	constructor() {
 		super();
 		this.handleResolveClick = this.handleResolveClick.bind(this);
 		this.state = {
 			mapExpanded: false,
-			leakResolved: false,
+			leakResolved: false
 		};
+	}
+
+	componentDidMount() {
+		this.props.fetchAlerts();
 	}
 
 	handleMapExpand() {
@@ -19,31 +26,83 @@ export default class FaultySensor extends Component {
 		});
 	}
 
-	handleResolveClick() {
-		this.setState({
-			leakResolved: !this.state.leakResolved
-		});
+	handleResolveClick(data) {
+		
+		fetch(`${process.env.REACT_APP_API_URL}/api/segmentleaks/${this.props.match.params.id}`, {
+			method: "PUT",
+			mode: "cors",
+			cache: "no-cache",
+			headers: {
+				"Content-Type": "application/json",
+			}
+		})
+		.then(res => {
+			res.json();
+			this.setState({
+				leakResolved: !this.state.leakResolved
+			});
+		})
 	}
 
 	render() {
-		return (
-			<div>
-				<div>
-					<h2>Sensor {this.props.match.params.id}</h2>
-					<p>{0}/{0}/hr water flow </p>
-					<p>(surrounding sensors have 100% waterflow)</p>
-				</div>
-				<img id="map-toggle"
-					src={this.state.mapExpanded === false ? 'images/map_expand.png' : 'images/map_close.png'}
-						alt="segment-map"
-						onClick={() => this.handleMapExpand()}
-					/>
-					<hr />
-					<Link to={`/alert/segment-history/${alert.entityId}`} text="component history" />
-					<SensorDiagram />
-					<Button text="RESOLVE" click={this.handleResolveClick} />
-					<small>the problem if fixed, click here</small>
-			</div>
-		);
+		const { error, loading, alerts } = this.props;
+		if ((!alerts || alerts.length === 0) && loading) {
+			return <Loader />;
+		}
+		if (error) {
+			return <div>Error! {error.message}</div>;
+		}
+
+		const sensorInfo = alerts.map((alert, index) => {
+			if (alert.entityId === parseInt(this.props.match.params.id)) {
+				return (
+					<div key={index}>
+						<div>
+							<h2>{`${alert.entityName} ${alert.entityId} ${alert.entityType}`}</h2>
+							<p id="water-flow">
+								{0}/{alert.typeLitres.toFixed(1)}/hr water flow
+							</p>
+							<small>(surrounding sensors have 100% waterflow)</small>
+						</div>
+						<img
+							id="map-toggle"
+							src={this.state.mapExpanded === false ? 'images/map_expand.png' : 'images/map_close.png'}
+							alt="segment-map"
+							onClick={() => this.handleMapExpand()}
+						/>
+						<hr />
+						<Link to={`/alert/segment-history/${alert.entityId}`} text="component history" />
+						<SensorDiagram sensorId={alert.entityId}/>
+						<div className="resolve">
+							<button onClick={this.handleResolveClick}
+								className={`resolve-button ${this.state.leakResolved === true ? "resolved" : "unresolved"}`}
+							>
+								RESOLVE
+							</button>
+							<small
+								className={`resolve-text`} 
+							>
+								the problem if fixed, click here
+							</small>
+						</div>
+					</div>
+				);
+			}
+		});
+
+		return <div>{sensorInfo}</div>;
 	}
 }
+FaultySensor.propTypes = {
+	fetchAlerts: PropTypes.func.isRequired,
+	alerts: PropTypes.array.isRequired,
+	loading: PropTypes.array.isRequired
+};
+
+const mapStateToProps = (state) => ({
+	alerts: state.alerts.items,
+	loading: state.alerts.loading,
+	error: state.alerts.error
+});
+
+export default connect(mapStateToProps, { fetchAlerts })(FaultySensor);
