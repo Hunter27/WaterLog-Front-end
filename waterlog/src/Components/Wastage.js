@@ -31,13 +31,15 @@ class Wastage extends Component {
   };
 
   getGraphType = () => {
-    if (this.state.display === "daily")
+    if (this.state.display === "daily") {
       return <DailyWastageComponent props={this.props.dailyWaste} />;
-    else if (this.state.display === "monthly")
+    } else if (this.state.display === "monthly") {
       return <MonthlyWastageComponent props={this.props.monthlyWaste} />;
-    else if (this.state.display === "seasonal")
+    } else if (this.state.display === "seasonal") {
       return <SeasonalWastageComponent props={this.props.seasonWaste} />;
-    else return <div>Error has occured</div>;
+    } else {
+      return <div>Error has occured</div>;
+    }
   };
 
   render() {
@@ -62,7 +64,6 @@ class Wastage extends Component {
         </div>
       );
     }
-
 
     return (
       <div className="wastage">

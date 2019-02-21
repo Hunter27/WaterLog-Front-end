@@ -13,17 +13,15 @@ const lighterColor = "#4F5B62";
 function formatMapData(data) {
   let markers, segments;
   let todaysLeaks;
+  let date = new Date(Date.now());
   if (!data.leaks) {
     todaysLeaks = [];
   } else {
     todaysLeaks = data.leaks.filter(
       leak =>
-        new Date(leak.latestTimeStamp).getDay() ===
-          new Date(Date.now()).getDay() &&
-        new Date(leak.latestTimeStamp).getMonth() ===
-          new Date(Date.now()).getMonth() &&
-        new Date(leak.latestTimeStamp).getFullYear() ===
-          new Date(Date.now()).getFullYear()
+        new Date(leak.latestTimeStamp).getDay() === date.getDay() &&
+        new Date(leak.latestTimeStamp).getMonth() === date.getMonth() &&
+        new Date(leak.latestTimeStamp).getFullYear() === date.getFullYear()
     );
   }
 
@@ -32,8 +30,9 @@ function formatMapData(data) {
       if (
         JSON.stringify(Object.keys(seg)) !==
         JSON.stringify(["id", "senseIDOut", "senseIDIn"])
-      )
+      ) {
         return [];
+      }
       const leak = todaysLeaks.find(leak => leak.segmentsId === seg.id);
       if (leak) {
         if (leak.resolvedStatus)
@@ -62,14 +61,18 @@ function generateMapIcons({ segments, markers }, simpleView) {
   return segments.map(segment => {
     const sensorIn = markers.find(marker => marker.id === segment.senseIDIn);
     const sensorOut = markers.find(marker => marker.id === segment.senseIDOut);
-    if (!sensorIn || !sensorOut) return <div />;
+    if (!sensorIn || !sensorOut) {
+      return <div />;
+    }
     const validSensor = ["id", "lat", "lon", "status"];
 
     if (
       Object.keys(sensorIn) === validSensor ||
       Object.keys(sensorOut) === validSensor
-    )
+    ) {
       return <div />;
+    }
+
     let sensorInColor = defaultColor,
       sensorOutColor = defaultColor,
       segmentColor = defaultColor;
