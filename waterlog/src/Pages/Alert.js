@@ -8,7 +8,6 @@ class AlertComponent extends Component {
     return (
       <Provider store={store}>
         <div className="App">
-          <h1 className="alertsH1">Alerts</h1>
           <AlertTable />
         </div>
       </Provider>

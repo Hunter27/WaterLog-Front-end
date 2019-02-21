@@ -21,34 +21,37 @@ class AlertTableComponent extends Component {
       return <Loader />;
     }
     return (
-      <table>
-        <tbody>
-          {alerts.map((alert, index) => (
-            <tr
-              key={index}
-              className="table-row table-row-unseen"
-              onClick={() =>
-                (window.location.href = `alert/${alert.entityName}/${
+      <div>
+        <h1 className="alertsH1">Alerts</h1>
+        <table>
+          <tbody>
+            {alerts.map((alert, index) => (
+              <tr
+                key={index}
+                className="table-row table-row-unseen"
+                onClick={() =>
+                  (window.location.href = `alert/${alert.entityName}/${
+                    alert.entityId
+                  }`)
+                }
+              >
+                <td className="leak-date">{formatDate(alert.date)}</td>
+                <td>{`${alert.entityName.toUpperCase()} ${
                   alert.entityId
-                }`)
-              }
-            >
-              <td className="leak-date">{formatDate(alert.date)}</td>
-              <td>{`${alert.entityName.toUpperCase()} ${
-                alert.entityId
-              } ${alert.entityType.toUpperCase()}`}</td>
-              <td>
-                {alert.entityName === "Segment" ? `R${alert.cost}/hr` : ""}
-              </td>
-              <td>
-                {alert.entityName === "Segment"
-                  ? getStatusIcon(alert.severity)
-                  : ""}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+                } ${alert.entityType.toUpperCase()}`}</td>
+                <td>
+                  {alert.entityName === "Segment" ? `R${alert.cost}/hr` : ""}
+                </td>
+                <td>
+                  {alert.entityName === "Segment"
+                    ? getStatusIcon(alert.severity)
+                    : ""}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     );
   }
 }
