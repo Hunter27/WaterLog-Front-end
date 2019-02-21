@@ -24,3 +24,4 @@ chrome-user-data
 *.swp
 *.swo
 /.vs/slnx.sqlite
+/package-lock.json

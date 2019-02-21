@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-do
 
 import AlertComponent from '../Pages/Alert';
 import HomeComponent from '../Pages/Home';
-import MapComponent from '../Pages/Map';
+import MapComponent from '../Components/Map';
 import UsageComponent from '../Pages/Usage';
 import SegmentLeak from './SegmentLeak';
 import SegmentHistory from './SegmentHistory';
@@ -71,7 +71,6 @@ class NavComponent extends Component {
 	}
 }
 
-
 SegmentLeak.propTypes = {
 	fetchAlerts: PropTypes.func.isRequired,
 	total: PropTypes.number.isRequired
@@ -81,5 +80,4 @@ const mapStateToProps = (state) => ({
 	alerts: state.alerts.items,
 	total: state.alerts.total,
 });
-
 export default connect(mapStateToProps, { fetchAlerts })(NavComponent);
