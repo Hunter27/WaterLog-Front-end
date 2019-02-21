@@ -1,23 +1,41 @@
 import React from 'react';
-
-const Tank = (props)=>{
-  const tankIcon = ()=>{
-    if(props.tank.percentage < 50)
-      return "images/tank_0.png"
-    else if (props.tank.percentage >= 50 && props.tank.percentage < 75)
-      return "images/tank_50.png"
-    else if (props.tank.percentage >= 75 && props.tank.percentage < 95)
-      return "images/tank_75.png"
-    else
-    return "images/tank_100.png"
-  }
-
+import '../Stylesheets/_tank.scss';
+const images = {
+	tank_yellow: 'images/tank-yellow.png',
+	tank_orange: 'images/tank-orange.png',
+	tank_green: 'images/tank-green.png'
+};
+const Tank = (props) => {
+  console.log(props.tank.percentage);
+  const getTankImage = (percent)=>{
+		if (percent >= 1 && percent <= 40) {
+			return (
+				<div>
+					<img src={images.tank_yellow} alt="tank" />
+					<p id="homepage_tank_percentage_lightimage">{percent}%</p>
+				</div>
+			);
+		} else if (percent >= 41 && percent <= 79) {
+			return (
+				<div>
+					<img src={images.tank_orange} alt="tank" />
+					<p id="homepage_tank_percentage_lightimage">{percent}%</p>
+				</div>
+			);
+		} else if (percent >= 80 && percent <= 100) {
+			return (
+				<div>
+					<img src={images.tank_green} alt="tank" />
+					<p id="homepage_tank_percentage">{percent}%</p>
+				</div>
+			);
+		}
+	}
+	
 return (
     <div className="tank">
       <p>Tank {props.tank.tankId}</p>
-      <img src={tankIcon()} alt="100% tank"/>
-      <p>{props.tank.levelStatus}</p>
-      <p className="link">{ props.tank.instruction}</p>
+      {getTankImage(props.tank.percentage)}
     </div>
   )
 }

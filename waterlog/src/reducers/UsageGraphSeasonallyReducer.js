@@ -1,10 +1,14 @@
-import { FETCH_USAGE_SEASONALLY } from '../actions/Types';
+import {
+  FETCH_USAGE_SEASONALLY_BEGIN,
+  FETCH_USAGE_SEASONALLY_SUCCESS,
+  FETCH_USAGE_SEASONALLY_FAILURE
+} from '../actions/Types';
 
 const initialState = {
-    items:[],
+  items: [],
   item: {
     dataPoints: [
-        { x: "0", y: "0"}
+      { x: "0", y: "0" }
     ]
   },
   loading: true
@@ -12,11 +16,26 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case FETCH_USAGE_SEASONALLY:
+    case FETCH_USAGE_SEASONALLY_BEGIN:
+      return {
+
+        ...state,
+        loading: true,
+        error: null
+      }
+    case FETCH_USAGE_SEASONALLY_SUCCESS:
       return {
         ...state,
-        items: action.payload
+        items: action.payload.seasonUsage,
+        loading: false
       };
+    case FETCH_USAGE_SEASONALLY_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error,
+        items: []
+      }
     default:
       return state;
   }

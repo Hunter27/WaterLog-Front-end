@@ -2,21 +2,18 @@ import React, { Component } from 'react';
 import DailyUsageComponent from './DailyUsage';
 import MonthlyUsageComponent from './MonthlyUsage';
 import SeasonalUsageComponent from './SeasonalUsage';
-import {
-  fetchUsageDaily,
-  fetchUsageMonthly,
-  fetchUsageSeasonally
-} from '../actions/UsageDaily';
+import { fetchUsageDaily } from '../actions/UsageDaily';
+import { fetchUsageMonthly } from '../actions/UsageMonthly';
+import { fetchUsageSeasonally } from '../actions/UsageSeasonally';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {
-  fetchCostsDaily,
-  fetchCostsMonthly,
-  fetchCostsSeasonally
-} from '../actions/CostsReportActions';
+import { fetchCostsDaily } from '../actions/CostsReportActions';
+import { fetchCostsMonthly } from '../actions/CostsMonthlyReportActions';
+import { fetchCostsSeasonally } from '../actions/CostsSeasonalReportActions';
 import SeasonalCostReports from './SeasonalCostReports';
 import DailyCostsReports from './DailyCostsReports';
 import MonthlyCostsReports from './MonthlyCostsReports';
+import Loader from './Loader';
 
 class Usage extends Component {
   constructor(props) {
@@ -46,26 +43,26 @@ class Usage extends Component {
   getGraphType = () => {
     if (this.state.display === "daily")
       return <div>
-        <p><b>Cost</b></p>
-        <DailyCostsReports props={this.props.dailyCost} />
-        <hr />
-        <p><b>Usage</b></p>
+        <p className="bold">Cost </p>
+        <DailyCostsReports props={this.props.dailyCost} /> 
+        <hr id="divide"/>
+        <p className="bold">Usage</p>
         <DailyUsageComponent props={this.props.dailyUsage} />
       </div>
     else if (this.state.display === "monthly")
       return <div>
-        <p><b>Cost</b></p>
-        <MonthlyCostsReports props={this.props.monthlyCost} />
-        <hr />
-        <p><b>Usage</b></p>
+        <p className="bold">Cost</p>
+        <MonthlyCostsReports props={this.props.monthlyCost} /> 
+        <hr id="divide"/>
+        <p className="bold">Usage</p>
         <MonthlyUsageComponent props={this.props.monthlyUsage} />
       </div>
     else if (this.state.display === "seasonal")
       return <div>
-        <p><b>Cost</b></p>
-        <SeasonalCostReports props={this.props.seasonalCost} />
-        <hr />
-        <p><b>Usage</b></p>
+        <p className="bold">Cost</p>
+        <SeasonalCostReports props={this.props.seasonalCost} /> 
+        <hr id="divide"/>
+        <p className="bold">Usage</p>
         <SeasonalUsageComponent props={this.props.seasonUsage} />
       </div>
     else
@@ -73,6 +70,15 @@ class Usage extends Component {
   };
 
   render() {
+    const { dailyError, dailyLoading,
+      monthlyError, monthlyLoading,
+      seasonalError, seasonalLoading } = this.props;
+    if (dailyError || monthlyError || seasonalError) {
+      return <div>Error!</div>;
+    }
+    if (dailyLoading || monthlyLoading || seasonalLoading) {
+      return <Loader />
+    }
     return (
       <div className="wastage">
         <div className="graph-nav tab " id="cost-buttons">
@@ -123,7 +129,14 @@ const mapStateToProps = (state) => ({
   seasonUsage: state.seasonUsage.items,
   dailyCost: state.dailyCost.item,
   monthlyCost: state.monthlyCost.item,
-  seasonalCost: state.seasonalCost.items
+  seasonalCost: state.seasonalCost.items,
+  dailyLoading: state.dailyUsage.loading,
+  dailyError: state.dailyUsage.error,
+  monthlyLoading: state.monthlyUsage.loading,
+  monthlyError: state.monthlyUsage.error,
+  seasonalLoading: state.seasonUsage.loading,
+  seasonalError: state.seasonUsage.error,
+
 })
 export default connect(mapStateToProps, {
   fetchUsageDaily,

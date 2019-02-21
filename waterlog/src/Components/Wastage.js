@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import DailyWastageComponent from './DailyWastage';
 import MonthlyWastageComponent from './MonthlyWastage';
 import SeasonalWastageComponent from './SeasonalWastage';
-import { fetchWastageDaily, fetchWastageMonthly, fetchWastageSeasonally } from '../actions/WastageDaily';
+import { fetchWastageDaily } from '../actions/WastageDaily';
+import { fetchWastageMonthly } from '../actions/WastageMonthly';
+import { fetchWastageSeasonally } from '../actions/WastageSeasonally';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Loader from './Loader';
 
 class Wastage extends Component {
 	constructor(props) {
 		super(props);
-
 		this.openGraph = this.openGraph.bind(this);
 		this.state = {
 			display: 'daily'
@@ -36,6 +38,20 @@ class Wastage extends Component {
 	};
 
 	render() {
+		const{ dailyError,
+			dailyLoading, 
+			monthlyError, 
+			monthlyLoading,
+			seasonalError,
+			seasonalLoading 
+		    } = this.props;
+		if (dailyError || monthlyError || seasonalError) {
+			return <div>Error!</div>;
+		}
+		if (dailyLoading || monthlyLoading || seasonalLoading) {
+			return <Loader />
+		}
+
 		return (
 			<div className="wastage">
 				<p>Wastage</p>
@@ -78,6 +94,12 @@ Wastage.propTypes = {
 const mapStateToProps = (state) => ({
 	dailyWaste: state.dailyWaste.item,
 	monthlyWaste: state.monthlyWaste.item,
-	seasonWaste: state.seasonWaste.items
+	seasonWaste: state.seasonWaste.items,
+	dailyLoading: state.dailyWaste.loading,
+	dailyError: state.dailyWaste.error,
+	monthlyLoading: state.monthlyWaste.loading,
+	monthlyError: state.monthlyWaste.error,
+	seasonalLoading: state.seasonWaste.loading,
+	seasonalError: state.seasonWaste.error,
 });
 export default connect(mapStateToProps, { fetchWastageDaily, fetchWastageMonthly, fetchWastageSeasonally })(Wastage);
