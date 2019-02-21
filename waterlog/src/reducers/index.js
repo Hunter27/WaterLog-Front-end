@@ -12,13 +12,13 @@ import PumpsReducer from './PumpsReducer';
 import TankLevelReducer from './TankLevelReducer';
 import TankLevelsByIdReducer from './TankLevelsByIdReducer';
 import MapsReducer from './MapsReducer';
+import AlertsReducer from './AlertsReducer';
 import DailyCostReducer from './DailyCostReducer';
 import MonthlyCostReducer from './MonthlyCostReducer';
 import SeasonalCostReducer from './SeasonalCostReducer';
 import UsageGraphDailyReducer from './UsageGraphDailyReducer';
 import UsageGraphMonthlyReducer from './UsageGraphMonthlyReducer';
 import UsageGraphSeasonallyReducer from './UsageGraphSeasonallyReducer';
-
 
 export default combineReducers({
   leaks: SegmentLeaksReducer,
@@ -39,5 +39,6 @@ export default combineReducers({
   levels: TankLevelReducer,
   level: TankLevelsByIdReducer,
   pumps: PumpsReducer,
-  maps: MapsReducer
+  maps: MapsReducer,
+	alerts: AlertsReducer
 });

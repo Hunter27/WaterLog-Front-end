@@ -1,4 +1,8 @@
-import { FETCH_COSTS_MONTHLY } from '../actions/Types';
+import {
+  FETCH_COSTS_MONTHLY_BEGIN,
+  FETCH_COSTS_MONTHLY_SUCCESS,
+  FETCH_COSTS_MONTHLY_FAILURE
+} from '../actions/Types';
 
 const initialState = {
   item: {
@@ -6,15 +10,31 @@ const initialState = {
       { x: "0", y: "0" }
     ]
   },
-  loading: true
+  loading: false,
+	error: null
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case FETCH_COSTS_MONTHLY:
+    case FETCH_COSTS_MONTHLY_BEGIN:
       return {
         ...state,
-        item: action.payload
+        loading: true,
+        error: null
+      };
+    case FETCH_COSTS_MONTHLY_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        item: action.payload.monthlyCost,
+        error: null
+      };
+    case FETCH_COSTS_MONTHLY_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error,
+        item: {}
       };
     default:
       return state;

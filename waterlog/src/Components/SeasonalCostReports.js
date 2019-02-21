@@ -11,11 +11,11 @@ const SeasonalCostReports = (props) => {
         labels: ['Summer', 'Winter', 'Autumn', 'Spring'],
         datasets: [
             {
-                label: 'Rands',
+                label: 'rands',
                 data: [dataSummer, dataWinter, dataAutumn, dataSpring],
                 fill: true,
                 borderColor: 'rgba(255,0,0,0)',
-                backgroundColor: 'rgba(255,0,0,0.4)'
+                backgroundColor: 'rgba(255,0,0,1)'
             }
         ]
     }
@@ -24,7 +24,7 @@ const SeasonalCostReports = (props) => {
             xAxes: [{
                 scaleLabel: {
                     display: true,
-                    labelString: 'Seasons'
+                    labelString: 'seasons'
                 },
                 ticks: {
                     major: {
@@ -37,7 +37,7 @@ const SeasonalCostReports = (props) => {
                 display: true,
                 scaleLabel: {
                     display: true,
-                    labelString: 'Rands'
+                    labelString: 'rands'
                 }
             }]
         }
