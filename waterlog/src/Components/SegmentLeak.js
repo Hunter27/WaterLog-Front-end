@@ -90,5 +90,4 @@ const mapStateToProps = (state) => ({
 	loading: state.alerts.loading,
 	error: state.alerts.error
 });
-
 export default connect(mapStateToProps, { fetchAlerts })(SegmentLeak);
