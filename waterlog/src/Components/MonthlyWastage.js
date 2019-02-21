@@ -4,7 +4,7 @@ import { Globals } from './../Globals';
 
 const MonthlyWastageComponent = (props) => {
   if(props.props.dataPoints){
-  var dataY = props.props.dataPoints.map(a => a.y);
+  var dataY = props.props.dataPoints.map(a => Math.round(a.y));
   var sum = dataY.reduce((a, b) => a + b, 0);
   var data = {
     labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
@@ -14,7 +14,7 @@ const MonthlyWastageComponent = (props) => {
         data: dataY,
         fill: true,         
         borderColor: 'red'  ,
-        backgroundColor: 'rgba(255,0,0,0.4)'
+        backgroundColor: 'rgba(255,0,0,1)'
       }
     ]
   }
@@ -31,6 +31,9 @@ const MonthlyWastageComponent = (props) => {
             fontStyle: 'bold',
             fontColor: 'rgba(255,0,0,1)'
           }
+        },
+        gridLines: {
+          display: false
         }
       } ],
       yAxes: [ {
@@ -38,6 +41,9 @@ const MonthlyWastageComponent = (props) => {
         scaleLabel: {
           display: true,
           labelString: 'Liters'
+        },
+        gridLines: {
+          display: false
         }
       } ]
     }
