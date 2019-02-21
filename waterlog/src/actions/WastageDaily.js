@@ -19,18 +19,6 @@ export const fetchWastageDailyFailure = (error) => ({
 
 export const fetchWastageDaily = () => (dispatch) => {
   dispatch(fetchWastageDailyBegin())
-<<<<<<< HEAD
-  fetch(process.env.REACT_APP_API_URL + '/api/segmentevents/dailywastage') //Change to use either localhost/server
-    .then(handleErrors)
-    .then(res => res.json())
-    .then(dailyWaste => {
-      dispatch(fetchWastageDailySuccess(dailyWaste));
-    })
-    .catch((error) => {
-      dispatch(fetchWastageDailyFailure(error));
-    });
-};
-=======
     fetch(process.env.REACT_APP_API_URL+'/api/segmentevents/dailywastage') 
       .then(handleErrors)
       .then(res => res.json())
@@ -42,4 +30,3 @@ export const fetchWastageDaily = () => (dispatch) => {
         });
 }; 
  
->>>>>>> 734c9e258c23ebac9c7274c3dba368a1e4393837
