@@ -22,6 +22,11 @@ small {
     position: relative;
 }
 
+.faulty {
+    background-color: #ff7714;
+    border: 10px solid red;
+}
+
 #first {
     top: -220px;
 }
@@ -39,5 +44,4 @@ small {
     width: 10px;
     margin: 0 auto;
     background-color: #4F5B62;
-
 }
