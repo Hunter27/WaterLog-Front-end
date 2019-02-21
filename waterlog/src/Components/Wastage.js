@@ -39,14 +39,12 @@ class Wastage extends Component {
 
 	render() {
 		const{ dailyError,
-			dailyLoading,
-			dailyWaste,
-			monthlyError,
-			monthlyWaste,
+			dailyLoading, 
+			monthlyError, 
 			monthlyLoading,
 			seasonalError,
-			seasonalLoading,
-			seasonWaste } = this.props;
+			seasonalLoading 
+		    } = this.props;
 		if (dailyError || monthlyError || seasonalError) {
 			return <div>Error!</div>;
 		}

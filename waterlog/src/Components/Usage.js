@@ -43,26 +43,26 @@ class Usage extends Component {
   getGraphType = () => {
     if (this.state.display === "daily")
       return <div>
-        <p><b>Cost</b></p>
-        <DailyCostsReports props={this.props.dailyCost} />
-        <hr />
-        <p><b>Usage</b></p>
+        <p className="bold">Cost </p>
+        <DailyCostsReports props={this.props.dailyCost} /> 
+        <hr id="divide"/>
+        <p className="bold">Usage</p>
         <DailyUsageComponent props={this.props.dailyUsage} />
       </div>
     else if (this.state.display === "monthly")
       return <div>
-        <p><b>Cost</b></p>
-        <MonthlyCostsReports props={this.props.monthlyCost} />
-        <hr />
-        <p><b>Usage</b></p>
+        <p className="bold">Cost</p>
+        <MonthlyCostsReports props={this.props.monthlyCost} /> 
+        <hr id="divide"/>
+        <p className="bold">Usage</p>
         <MonthlyUsageComponent props={this.props.monthlyUsage} />
       </div>
     else if (this.state.display === "seasonal")
       return <div>
-        <p><b>Cost</b></p>
-        <SeasonalCostReports props={this.props.seasonalCost} />
-        <hr />
-        <p><b>Usage</b></p>
+        <p className="bold">Cost</p>
+        <SeasonalCostReports props={this.props.seasonalCost} /> 
+        <hr id="divide"/>
+        <p className="bold">Usage</p>
         <SeasonalUsageComponent props={this.props.seasonUsage} />
       </div>
     else
@@ -70,9 +70,9 @@ class Usage extends Component {
   };
 
   render() {
-    const { dailyError, dailyLoading, dailyUsage, 
-      monthlyError, monthlyUsage,  monthlyLoading,
-      seasonalError, seasonalLoading, seasonUsage } = this.props;
+    const { dailyError, dailyLoading,
+      monthlyError, monthlyLoading,
+      seasonalError, seasonalLoading } = this.props;
     if (dailyError || monthlyError || seasonalError) {
       return <div>Error!</div>;
     }

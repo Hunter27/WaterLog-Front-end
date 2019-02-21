@@ -3,7 +3,7 @@ import { Bar, defaults } from 'react-chartjs-2';
 
 const MonthlyCostsReports = (props) => {
     if (props.props.dataPoints) {
-        var dataY = props.props.dataPoints.map(a => a.y);
+        var dataY = props.props.dataPoints.map(a => Math.round(a.y));
         var data = {
             labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
             datasets: [
@@ -27,16 +27,22 @@ const MonthlyCostsReports = (props) => {
                     ticks: {
                         major: {
                             fontStyle: 'bold',
-                            fontColor: 'rgba(255,0,0,0)'
+                            fontColor: 'rgba(255,0,0,1)'
                         }
-                    }
+                    },
+                    gridLines: {
+                        display: false
+                      }
                 }],
                 yAxes: [{
                     display: true,
                     scaleLabel: {
                         display: true,
                         labelString: 'rands'
-                    }
+                    },
+                    gridLines: {
+                        display: false
+                      }
                 }]
             }
 
