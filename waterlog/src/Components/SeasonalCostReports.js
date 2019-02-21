@@ -31,14 +31,20 @@ const SeasonalCostReports = (props) => {
                         fontStyle: 'bold',
                         fontColor: 'rgba(255,0,0,0)'
                     }
-                }
+                },
+                gridLines: {
+                    display: false
+                  }
             }],
             yAxes: [{
                 display: true,
                 scaleLabel: {
                     display: true,
                     labelString: 'rands'
-                }
+                },
+                gridLines: {
+                    display: false
+                  }
             }]
         }
     }

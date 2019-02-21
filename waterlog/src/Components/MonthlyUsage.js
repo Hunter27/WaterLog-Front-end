@@ -12,7 +12,7 @@ const MonthlyUsageComponent = (props) => {
         data: dataY,
         fill: true,         
         borderColor: 'red'  ,
-        backgroundColor: 'rgba(255,0,0,0)'
+        backgroundColor: 'rgba(255,0,0,1)'
       }
     ]
   }
@@ -29,6 +29,9 @@ const MonthlyUsageComponent = (props) => {
             fontStyle: 'bold',
             fontColor: '#FF0000'
           }
+        },
+        gridLines: {
+          display: false
         }
       } ],
       yAxes: [ {
@@ -36,6 +39,9 @@ const MonthlyUsageComponent = (props) => {
         scaleLabel: {
           display: true,
           labelString: 'liters'
+        },
+        gridLines: {
+          display: false
         }
       } ]
     }

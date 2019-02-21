@@ -12,8 +12,9 @@ const DailyUsageComponent = (props) => {
         label: 'liters',
         data: dataY,
         fill: true,         
-        borderColor: 'red',
-        backgroundColor: 'rgba(255,0,0,0.4)'
+        borderColor: 'rgba(255,23,68,1)',
+        backgroundColor: 'rgba(255,23,68,0.4)',
+        pointBackgroundColor: 'rgba(255,23,68,1)',
       }
     ]
   }
@@ -29,6 +30,9 @@ const DailyUsageComponent = (props) => {
             fontStyle: 'bold',
             fontColor: '#FF0000'
           }
+        },
+        gridLines: {
+          display: false
         }
       } ],
       yAxes: [ {
@@ -36,8 +40,11 @@ const DailyUsageComponent = (props) => {
         scaleLabel: {
           display: true,
           labelString: 'liters'
+        },
+        gridLines: {
+          display: false
         }
-      } ]
+      }]
     }
   }
     defaults.global.legend.display = false;

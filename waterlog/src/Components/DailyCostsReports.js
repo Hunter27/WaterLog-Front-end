@@ -12,8 +12,11 @@ const DailyCostsReports = (props) => {
         label: 'rands',
         data: dataY,
         fill: true,
-        borderColor: 'rgba(255,0,0,0)',
-        backgroundColor: 'rgba(255,0,0,1)'
+        borderColor: 'rgba(255,23,68,1)',
+        backgroundColor: 'rgba(255,23,68,0.4)',
+        pointBackgroundColor: 'rgba(255,23,68,1)',
+        pointRadius: 5,
+        pointHitRadius: 5
       }
     ]
   }
@@ -29,6 +32,9 @@ const DailyCostsReports = (props) => {
             fontStyle: 'bold',
             fontColor: 'rgba(255,0,0,0)'
           }
+        },
+        gridLines: {
+          display: false
         }
       }],
       yAxes: [{
@@ -36,6 +42,9 @@ const DailyCostsReports = (props) => {
         scaleLabel: {
           display: true,
           labelString: 'rands'
+        },
+        gridLines: {
+          display: false
         }
       }]
     }

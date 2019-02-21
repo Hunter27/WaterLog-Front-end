@@ -16,7 +16,7 @@ const SeasonalWastageComponent = (props) => {
         data: [dataSummer,dataWinter,dataAutumn,dataSpring],
         fill: true,         
         borderColor: 'red',
-        backgroundColor: 'rgba(255,0,0,0.4)'
+        backgroundColor: 'rgba(255,0,0,1)'
       }
     ]
   }
@@ -32,6 +32,9 @@ const SeasonalWastageComponent = (props) => {
             fontStyle: 'bold',
             fontColor: 'rgba(255,0,0,1)'
           }
+        },
+        gridLines: {
+          display: false
         }
       } ],
       yAxes: [ {
@@ -39,6 +42,9 @@ const SeasonalWastageComponent = (props) => {
         scaleLabel: {
           display: true,
           labelString: 'liters'
+        },
+        gridLines: {
+          display: false
         }
       } ]
     }

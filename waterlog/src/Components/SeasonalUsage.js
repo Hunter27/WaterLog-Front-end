@@ -15,7 +15,7 @@ const SeasonalUsageComponent = (props) => {
         data: [dataSummer,dataWinter,dataAutumn,dataSpring],
         fill: true,         
         borderColor: 'red',
-        backgroundColor: 'rgba(255,0,0,0)'
+        backgroundColor: 'rgba(255,0,0,5)'
       }
     ]
   }
@@ -31,6 +31,9 @@ const SeasonalUsageComponent = (props) => {
             fontStyle: 'bold',
             fontColor: '#FF0000'
           }
+        },
+        gridLines: {
+          display: false
         }
       } ],
       yAxes: [ {
@@ -38,6 +41,9 @@ const SeasonalUsageComponent = (props) => {
         scaleLabel: {
           display: true,
           labelString: 'liters'
+        },
+        gridLines: {
+          display: false
         }
       } ]
     }
