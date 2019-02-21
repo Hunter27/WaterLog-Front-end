@@ -1,9 +1,20 @@
 import React from 'react';
 import { Line, defaults } from 'react-chartjs-2';
 
-const DailyCostsReports = (props) => { 
-  let labelX = props.props.dataPoints.map(a => (new Date(a.x).getHours() + ":00"));
-  let dataY = props.props.dataPoints.map(a => Math.round(a.y)); 
+const DailyCostsReports = (props) => {
+  let labelX = props.props.dailyCost.dataPoints.map(a => (new Date(a.x).getHours() + ":00"));
+  let dataY = props.props.dailyCost.dataPoints.map(a => Math.round(a.y)); 
+  const {yIntercept, slope} = props.props.forecastDaily[0];
+
+  const startX = Math.floor((new Date(props.props.dailyCost.dataPoints[0].x).getTime()) / 1000); 
+  const lastX = Math.floor((new Date(props.props.dailyCost.dataPoints[labelX.length-1].x).getTime()) / 1000); 
+
+  let forecast = [];
+  for(let i = startX; i <= lastX; i = i + 3600){
+    forecast.push(slope*i + yIntercept);
+  }
+ 
+  console.log(startX,lastX,yIntercept,slope)
   let data = {
     labels: labelX,
     datasets: [
@@ -16,7 +27,17 @@ const DailyCostsReports = (props) => {
         pointBackgroundColor: 'rgba(255,23,68,1)',
         pointRadius: 5,
         pointHitRadius: 5
+      },
+      {
+        label: 'forecast',
+        data: forecast,
+        fill: true,
+        borderColor: 'rgb(0,191,255)', 
+        pointBackgroundColor: 'rgb(0,191,255)',
+        pointRadius: 5,
+        pointHitRadius: 5
       }
+
     ]
   }
   var options = {

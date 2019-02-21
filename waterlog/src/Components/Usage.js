@@ -13,6 +13,7 @@ import { fetchCostsSeasonally } from '../actions/CostsSeasonalReportActions';
 import SeasonalCostReports from './SeasonalCostReports';
 import DailyCostsReports from './DailyCostsReports';
 import MonthlyCostsReports from './MonthlyCostsReports';
+import { fetchCostsForecastDaily } from "../actions/CostsDailyForecastAction";
 import Loader from './Loader';
 
 class Usage extends Component {
@@ -32,6 +33,7 @@ class Usage extends Component {
     this.props.fetchCostsDaily();
     this.props.fetchCostsMonthly();
     this.props.fetchCostsSeasonally();
+    this.props.fetchCostsForecastDaily();
   }
 
   openGraph = (graphType) => {
@@ -44,7 +46,7 @@ class Usage extends Component {
     if (this.state.display === "daily")
       return <div>
         <p className="bold">Cost </p>
-        <DailyCostsReports props={this.props.dailyCost} /> 
+        <DailyCostsReports props={this.props}/> 
         <hr id="divide"/>
         <p className="bold">Usage</p>
         <DailyUsageComponent props={this.props.dailyUsage} />
@@ -120,7 +122,9 @@ Usage.propTypes = {
   fetchCostsMonthly: PropTypes.func.isRequired,
   monthlyCost: PropTypes.object,
   fetchCostsSeasonally: PropTypes.func.isRequired,
-  seasonalCost: PropTypes.array.isRequired
+  seasonalCost: PropTypes.array.isRequired,
+  fetchCostsForecastDaily: PropTypes.func.isRequired,
+  forecastDaily: PropTypes.array.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -136,7 +140,7 @@ const mapStateToProps = (state) => ({
   monthlyError: state.monthlyUsage.error,
   seasonalLoading: state.seasonUsage.loading,
   seasonalError: state.seasonUsage.error,
-
+  forecastDaily: state.forecastDaily.items
 })
 export default connect(mapStateToProps, {
   fetchUsageDaily,
@@ -144,5 +148,6 @@ export default connect(mapStateToProps, {
   fetchUsageSeasonally,
   fetchCostsDaily,
   fetchCostsMonthly,
-  fetchCostsSeasonally
+  fetchCostsSeasonally,
+  fetchCostsForecastDaily
 })(Usage);
