@@ -1,0 +1,82 @@
+#sensor-diagram {
+    height: 240px;
+    width: 200px;
+    margin: 30px auto 0 auto;
+}
+
+#water-flow {
+    margin: 0;
+    color: #93A4AE;
+}
+
+h2 {
+    color: #FF1744;
+}
+
+small {
+    display: block;
+    padding: 3px;
+    margin: 0;
+    color: #93A4AE;
+}
+
+.sensor-wrapper {
+    width: 100;
+    height: 50px;
+    margin: 5px auto 35px auto;
+    position: relative;
+    bottom: 215px;
+}
+
+.sensor {
+    height: 40px;
+    width: 40px;
+    float: left;
+    background-color: #4F5B62;
+    color: #93A4AE;
+    font-weight: bold;
+    border-radius: 30px;
+    margin-right: 15px;
+    border: 10px solid #4F5B62;
+    p {
+        display: block;
+        margin-top: 10px;
+    }
+}
+
+.flow {
+    color: #93A4AE;
+    text-align: left;
+    height: 40px;
+    display: block;
+    margin-top: 10px;
+    p {
+        margin: 0;
+    }
+}
+
+#line {
+    height: 210px;
+    width: 10px;
+    background-color: #4F5B62;
+    position: relative;
+    left: 25px;
+    top: 9px;
+}
+
+.faulty {
+    background-color: #FF1744;
+    border: 10px solid #dd1717;
+    color: #f6f6f6;
+}
+
+.faulty-text {
+    color: #dd1717;
+    font-weight: bold;
+}
+
+.resolve {
+    position: relative;
+    display: block;
+    right: 85px;
+}

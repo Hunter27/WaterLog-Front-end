@@ -32,7 +32,6 @@ class SegmentLeak extends Component {
 		this.setState({
 			leakResolved: !this.state.leakResolved
 		});
-		console.log('resolved')
 	}
 
 	render() {
