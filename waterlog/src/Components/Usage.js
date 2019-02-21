@@ -70,9 +70,9 @@ class Usage extends Component {
   };
 
   render() {
-    const { dailyError, dailyLoading, dailyUsage, 
-      monthlyError, monthlyUsage,  monthlyLoading,
-      seasonalError, seasonalLoading, seasonUsage } = this.props;
+    const { dailyError, dailyLoading,  
+      monthlyError,monthlyLoading,
+      seasonalError, seasonalLoading} = this.props;
     if (dailyError || monthlyError || seasonalError) {
       return <div>Error!</div>;
     }

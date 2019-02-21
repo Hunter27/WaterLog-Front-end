@@ -23,7 +23,7 @@ export default function (state = initialState, action) {
 		case FETCH_WASTAGE_SEASONALLY_SUCCESS:
 			return {
 				...state,
-				item: action.payload.seasonWaste,
+				items: action.payload.seasonWaste,
 				loading: false,
 
 			};
@@ -32,7 +32,7 @@ export default function (state = initialState, action) {
 				...state,
 				loading: false,
 				error: action.payload.error,
-				items: {}
+				items: []
 			}
 		default:
 			return state;
