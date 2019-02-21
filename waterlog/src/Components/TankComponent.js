@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchTankLevelById } from '../actions/TankLevelsByIdAction';
 import '../Stylesheets/_tank.scss';
-import Loader from './Loader';
 const images = {
 	tank_yellow: 'images/tank-yellow.png',
 	tank_orange: 'images/tank-orange.png',
@@ -13,28 +12,14 @@ export class TankComponent extends Component {
 	componentWillMount() {
 		this.props.fetchTankLevelById(this.props.id);
 	}
-<<<<<<< HEAD
-
-	getTankImage = (level) => {
-		if (level.percentage > 79 && level.percentage < 100 ) {
-=======
-	getTankImage = (percent) => {
-		if (percent === 100) {
-			return <img src={images.percent_100} className="image" alt="100% tank" />;
-		} else if (percent === 50) {
-			return <img src={images.percent_50} className="image" alt="50% tank" />;
-		} else if (percent === 0) {
-			return <img src={images.percent_0} className="image" alt="0% tank" />;
-		} else if (percent === 75) {
-			return <img src={images.percent_75} className="image" alt="75% tank" />;
-		} else if (percent >= 1 && percent <= 40) {
->>>>>>> 734c9e258c23ebac9c7274c3dba368a1e4393837
+getTankImage = (level) => {
+		if (level.percentage > 79 && level.percentage < 100) {
 			return (
 				<div>
 					<img src={images.tank_green} className="image" alt="tank" />
 					<p id="percentage">{level.percentage}%</p>
-					<p className="tank_description">{level.levelStatus}<br/><b>{level.instruction}</b></p>
-
+					<p className="tank_description">{level.levelStatus}{level.instruction}</p>
+					<p className="tank_description"></p>
 				</div>
 			);
 		} else if (level.percentage >= 1 && level.percentage <= 40) {
@@ -43,7 +28,7 @@ export class TankComponent extends Component {
 					<img src={images.tank_yellow} className="image" alt="tank" />
 					<p id="percentage">{level.percentage}%</p>
 					<p>{level.levelStatus}</p>
-				    <p>{level.instruction}</p>
+					<p>{level.instruction}</p>
 				</div>
 			);
 		} else if (level.percentage >= 41 && level.percentage <= 79) {
@@ -52,7 +37,7 @@ export class TankComponent extends Component {
 					<img src={images.tank_orange} className="image" alt="tank" />
 					<p id="percentage">{level.percentage}%</p>
 					<p>{level.levelStatus}</p>
-				    <p>{level.instruction}</p>
+					<p>{level.instruction}</p>
 				</div>
 			);
 		}
@@ -64,7 +49,7 @@ export class TankComponent extends Component {
 			return <div>Error! {error.message}</div>;
 		}
 		if (loading) {
-			return <Loader />;
+			return <div>Loading...</div>;
 		}
 
 		return (
