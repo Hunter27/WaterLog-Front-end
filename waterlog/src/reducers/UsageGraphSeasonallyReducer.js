@@ -34,7 +34,7 @@ export default function (state = initialState, action) {
         ...state,
         loading: false,
         error: action.payload.error,
-        items: {}
+        items: []
       }
     default:
       return state;

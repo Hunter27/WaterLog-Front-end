@@ -3,7 +3,7 @@ import { Bar, defaults } from 'react-chartjs-2';
 
 const MonthlyUsageComponent = (props) => {
   if(props.props.dataPoints){
-  var dataY = props.props.dataPoints.map(a => a.y); 
+  var dataY = props.props.dataPoints.map(a => Math.round(a.y)); 
   var data = {
     labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
     datasets: [
@@ -12,7 +12,7 @@ const MonthlyUsageComponent = (props) => {
         data: dataY,
         fill: true,         
         borderColor: 'red'  ,
-        backgroundColor: 'rgba(255,0,0,0)'
+        backgroundColor: 'rgba(255,0,0,1)'
       }
     ]
   }
@@ -29,6 +29,9 @@ const MonthlyUsageComponent = (props) => {
             fontStyle: 'bold',
             fontColor: '#FF0000'
           }
+        },
+        gridLines: {
+          display: false
         }
       } ],
       yAxes: [ {
@@ -36,6 +39,9 @@ const MonthlyUsageComponent = (props) => {
         scaleLabel: {
           display: true,
           labelString: 'liters'
+        },
+        gridLines: {
+          display: false
         }
       } ]
     }

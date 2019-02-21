@@ -3,8 +3,7 @@ import { Line, defaults } from 'react-chartjs-2';
 
 const DailyUsageComponent = (props) => {
   var labelX = props.props.dataPoints.map(a => (new Date(a.x).getHours()+":00"));
-  var dataY = props.props.dataPoints.map(a => a.y); 
-  var today =  new Date(Date.now());
+  var dataY = props.props.dataPoints.map(a => Math.round(a.y));  
   var data = {
     labels: labelX,
     datasets: [
@@ -12,8 +11,11 @@ const DailyUsageComponent = (props) => {
         label: 'liters',
         data: dataY,
         fill: true,         
-        borderColor: 'red',
-        backgroundColor: 'rgba(255,0,0,0.4)'
+        borderColor: 'rgba(255,23,68,1)',
+        backgroundColor: 'rgba(255,23,68,0.4)',
+        pointBackgroundColor: 'rgba(255,23,68,1)',
+        pointRadius: 5,
+        pointHitRadius: 5
       }
     ]
   }
@@ -29,6 +31,9 @@ const DailyUsageComponent = (props) => {
             fontStyle: 'bold',
             fontColor: '#FF0000'
           }
+        },
+        gridLines: {
+          display: false
         }
       } ],
       yAxes: [ {
@@ -36,14 +41,16 @@ const DailyUsageComponent = (props) => {
         scaleLabel: {
           display: true,
           labelString: 'liters'
+        },
+        gridLines: {
+          display: false
         }
-      } ]
+      }]
     }
   }
     defaults.global.legend.display = false;
     return (
-      <div className="wastage-graph"> 
-      <div className="date">{"Today is : " + today.getDay() + "/" + today.getMonth() + "/" + today.getFullYear()}</div>
+      <div className="wastage-graph">  
         <Line options={options} data={data} />
       </div>
     )
