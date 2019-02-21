@@ -58,7 +58,7 @@ function generateMapIcons({ segments, markers }, simpleView) {
     const sensorOut = markers.find(marker => (marker.id === segment.senseIDOut));
 
     if (sensorIn === undefined || sensorOut === undefined) return <div></div>;
-    const sensorInColor = defaultColor,
+    let sensorInColor = defaultColor,
       sensorOutColor = defaultColor,
       segmentColor = defaultColor;
     if (sensorIn.status.toLowerCase() === 'fault') {
@@ -174,7 +174,6 @@ class MapComponent extends Component {
     );
   }
 }
-
 
 MapComponent.propTypes = {
   fetchMapsData: PropTypes.func.isRequired,
