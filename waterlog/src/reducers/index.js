@@ -19,6 +19,7 @@ import SeasonalCostReducer from './SeasonalCostReducer';
 import UsageGraphDailyReducer from './UsageGraphDailyReducer';
 import UsageGraphMonthlyReducer from './UsageGraphMonthlyReducer';
 import UsageGraphSeasonallyReducer from './UsageGraphSeasonallyReducer';
+import CostsDailyForecastReducer from './CostsDailyForecastReducer';
 
 export default combineReducers({
   leaks: SegmentLeaksReducer,
@@ -40,5 +41,6 @@ export default combineReducers({
   level: TankLevelsByIdReducer,
   pumps: PumpsReducer,
   maps: MapsReducer,
-	alerts: AlertsReducer
+  alerts: AlertsReducer,
+  forecastDaily:CostsDailyForecastReducer
 });
