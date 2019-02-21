@@ -12,6 +12,7 @@ class PumpView extends Component {
 		return <div />;
 	}
 }
+
 PumpView.propTypes = {
 	fetchPumps: PropTypes.func.isRequired,
 	pumps: PropTypes.array.isRequired
@@ -22,5 +23,4 @@ const mapStateToProps = (state) => ({
 	loading: state.pumps.loading,
 	error: state.pumps.errors
 });
-
 export default connect(mapStateToProps, { fetchPumps })(PumpView);
