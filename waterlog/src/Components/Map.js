@@ -147,7 +147,7 @@ class MapComponent extends Component {
           <Map center={position} zoom={this.state.zoom} zoomControl={false}>
             {(() => {
               if (this.state.simpleView)
-                return <TileLayer url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png" />;
+                return <TileLayer url="https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png" />;
             })()}
             {icons}
           </Map>
