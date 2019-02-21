@@ -4,7 +4,7 @@ const Loader = () => {
   return (
     <img
       className="loadingSize"
-      src="images/white on dark loading.svg"
+      src="images/white_on_dark_loading.svg"
       alt="green on dark loader gif"
     />
   );
