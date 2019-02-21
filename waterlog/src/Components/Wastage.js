@@ -63,6 +63,7 @@ class Wastage extends Component {
       );
     }
 
+
     return (
       <div className="wastage">
         <p>Wastage</p>

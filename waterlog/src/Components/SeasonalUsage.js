@@ -2,10 +2,10 @@ import React from 'react';
 import { Bar, defaults } from 'react-chartjs-2';
 
 const SeasonalUsageComponent = (props) => {
-  var dataSummer = props.props[0].dataPoints.map(a => a.y);
-  var dataWinter = props.props[1].dataPoints.map(a => a.y);
-  var dataSpring = props.props[2].dataPoints.map(a => a.y);
-  var dataAutumn = props.props[3].dataPoints.map(a => a.y);
+  var dataSummer = props.props[0].dataPoints.map(a => Math.round(a.y));
+  var dataWinter = props.props[1].dataPoints.map(a => Math.round(a.y));
+  var dataSpring = props.props[2].dataPoints.map(a => Math.round(a.y));
+  var dataAutumn = props.props[3].dataPoints.map(a => Math.round(a.y));
 
   var data = {
     labels: ['Summer','Winter','Autumn','Spring'],
@@ -15,7 +15,7 @@ const SeasonalUsageComponent = (props) => {
         data: [dataSummer,dataWinter,dataAutumn,dataSpring],
         fill: true,         
         borderColor: 'red',
-        backgroundColor: 'rgba(255,0,0,0)'
+        backgroundColor: 'rgba(255,0,0,5)'
       }
     ]
   }
@@ -29,8 +29,11 @@ const SeasonalUsageComponent = (props) => {
         ticks: {
           major: {
             fontStyle: 'bold',
-            fontColor: '#FF0000'
+            fontColor: 'rgba(255,0,0,1)'
           }
+        },
+        gridLines: {
+          display: false
         }
       } ],
       yAxes: [ {
@@ -38,6 +41,9 @@ const SeasonalUsageComponent = (props) => {
         scaleLabel: {
           display: true,
           labelString: 'liters'
+        },
+        gridLines: {
+          display: false
         }
       } ]
     }
