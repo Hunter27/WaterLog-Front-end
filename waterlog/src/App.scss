@@ -85,6 +85,21 @@ hr {
 	padding-top: 37px; 
 }
 
+.tank-graph{
+	background-color: white;
+    margin: 20px;
+    border-radius: 5px;
+	padding: 2px;
+	min-height: 200px;
+	color: #4F5B62;
+	size: 14sp;
+}
+
+.tank-graph h3{
+	size: 14sp;
+	color: #4F5B62;
+}
+
 @media (min-width: 600px) {
 	body {
 		background-color: #fff;
