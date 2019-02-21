@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchTankLevelById } from '../actions/TankLevelsByIdAction';
 import '../Stylesheets/_tank.scss';
+import Loader from './Loader';
 const images = {
 	percent_100: 'images/100_tank.png',
 	percent_75: 'images/75_tank.png',
@@ -15,7 +16,6 @@ export class TankComponent extends Component {
 	componentWillMount() {
 		this.props.fetchTankLevelById(this.props.id);
 	}
-
 	getTankImage = (percent) => {
 		if (percent === 100) {
 			return <img src={images.percent_100} className="image" alt="100% tank" />;
@@ -48,7 +48,7 @@ export class TankComponent extends Component {
 			return <div>Error! {error.message}</div>;
 		}
 		if (loading) {
-			return <div>Loading...</div>;
+			return <Loader />;
 		}
 
 		return (

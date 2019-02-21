@@ -71,7 +71,6 @@ class NavComponent extends Component {
 	}
 }
 
-
 SegmentLeak.propTypes = {
 	fetchAlerts: PropTypes.func.isRequired,
 	total: PropTypes.number.isRequired
@@ -81,5 +80,4 @@ const mapStateToProps = (state) => ({
 	alerts: state.alerts.items,
 	total: state.alerts.total,
 });
-
 export default connect(mapStateToProps, { fetchAlerts })(NavComponent);

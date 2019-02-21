@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import DailyUsageComponent from './DailyUsage';
 import MonthlyUsageComponent from './MonthlyUsage';
 import SeasonalUsageComponent from './SeasonalUsage';
-import {
-  fetchUsageDaily,
-  fetchUsageMonthly,
-  fetchUsageSeasonally
-} from '../actions/UsageDaily';
+import { fetchUsageDaily } from '../actions/UsageDaily';
+import { fetchUsageMonthly } from '../actions/UsageMonthly';
+import { fetchUsageSeasonally } from '../actions/UsageSeasonally';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchCostsDaily } from '../actions/CostsReportActions';
@@ -15,6 +13,7 @@ import { fetchCostsSeasonally } from '../actions/CostsSeasonalReportActions';
 import SeasonalCostReports from './SeasonalCostReports';
 import DailyCostsReports from './DailyCostsReports';
 import MonthlyCostsReports from './MonthlyCostsReports';
+import Loader from './Loader';
 
 class Usage extends Component {
   constructor(props) {
@@ -71,6 +70,15 @@ class Usage extends Component {
   };
 
   render() {
+    const { dailyError, dailyLoading, dailyUsage, 
+      monthlyError, monthlyUsage,  monthlyLoading,
+      seasonalError, seasonalLoading, seasonUsage } = this.props;
+    if (dailyError || monthlyError || seasonalError) {
+      return <div>Error!</div>;
+    }
+    if (dailyLoading || monthlyLoading || seasonalLoading) {
+      return <Loader />
+    }
     return (
       <div className="wastage">
         <div className="graph-nav tab " id="cost-buttons">
@@ -121,7 +129,14 @@ const mapStateToProps = (state) => ({
   seasonUsage: state.seasonUsage.items,
   dailyCost: state.dailyCost.item,
   monthlyCost: state.monthlyCost.item,
-  seasonalCost: state.seasonalCost.items
+  seasonalCost: state.seasonalCost.items,
+  dailyLoading: state.dailyUsage.loading,
+  dailyError: state.dailyUsage.error,
+  monthlyLoading: state.monthlyUsage.loading,
+  monthlyError: state.monthlyUsage.error,
+  seasonalLoading: state.seasonUsage.loading,
+  seasonalError: state.seasonUsage.error,
+
 })
 export default connect(mapStateToProps, {
   fetchUsageDaily,
