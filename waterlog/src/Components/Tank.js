@@ -5,7 +5,7 @@ const images = {
 	tank_orange: 'images/tank-orange.png',
 	tank_green: 'images/tank-green.png'
 };
-const Tank = (props)=>{
+const Tank = (props) => {
   console.log(props.tank.percentage);
   const getTankImage = (percent)=>{
 		if (percent >= 1 && percent <= 40) {

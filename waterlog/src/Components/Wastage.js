@@ -12,7 +12,6 @@ import Loader from './Loader';
 class Wastage extends Component {
 	constructor(props) {
 		super(props);
-
 		this.openGraph = this.openGraph.bind(this);
 		this.state = {
 			display: 'daily'
@@ -54,7 +53,7 @@ class Wastage extends Component {
 		if (dailyLoading || monthlyLoading || seasonalLoading) {
 			return <Loader />
 		}
-		console.log(dailyWaste);
+
 		return (
 			<div className="wastage">
 				<p>Wastage</p>

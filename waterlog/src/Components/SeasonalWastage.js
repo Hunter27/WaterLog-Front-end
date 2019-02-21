@@ -2,7 +2,7 @@ import React from 'react';
 import { Bar, defaults } from 'react-chartjs-2';
 
 const SeasonalWastageComponent = (props) => {
-  if(props.props.length  == 4){
+  if(props.props.length === 4){
 	var dataSummer = props.props[0].dataPoints.map((a) => a.y);
 	var dataWinter = props.props[1].dataPoints.map((a) => a.y);
 	var dataSpring = props.props[2].dataPoints.map((a) => a.y);
