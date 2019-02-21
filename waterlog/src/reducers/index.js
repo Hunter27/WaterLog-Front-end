@@ -20,6 +20,7 @@ import UsageGraphDailyReducer from './UsageGraphDailyReducer';
 import UsageGraphMonthlyReducer from './UsageGraphMonthlyReducer';
 import UsageGraphSeasonallyReducer from './UsageGraphSeasonallyReducer';
 import CostsDailyForecastReducer from './CostsDailyForecastReducer';
+import CostsMonthlyForecastReducer from './CostsMonthlyForecastReducers';
 
 export default combineReducers({
   leaks: SegmentLeaksReducer,
@@ -42,5 +43,6 @@ export default combineReducers({
   pumps: PumpsReducer,
   maps: MapsReducer,
   alerts: AlertsReducer,
-  forecastDaily:CostsDailyForecastReducer
+  forecastDaily:CostsDailyForecastReducer,
+  forecastMonthly:CostsMonthlyForecastReducer
 });
