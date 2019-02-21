@@ -1,7 +1,7 @@
 import L from 'leaflet';
 
 export const sensorOkIcon = new L.icon({
-	iconUrl: require('../images/greenCircleMarker.png'),
+	iconUrl: require('../images/green_sensor_dark.gif'),
 	iconAnchor: null,
 	popupAnchor: null,
 	shadowUrl: null,
@@ -21,7 +21,7 @@ export const sensorFaultIcon = new L.icon({
 });
 
 export const sensorRedIcon = new L.icon({
-	iconUrl: require('../images/redCircleMarker.png'),
+	iconUrl: require('../images/Red_sensor_dark.gif'),
 	iconAnchor: null,
 	popupAnchor: null,
 	shadowUrl: null,

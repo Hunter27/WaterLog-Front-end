@@ -30,7 +30,7 @@ const SeasonalCostReports = (props) => {
                 ticks: {
                     major: {
                         fontStyle: 'bold',
-                        fontColor: 'rgba(255,0,0,0)'
+                        fontColor: 'rgba(255,0,0,1)'
                     }
                 },
                 gridLines: {
