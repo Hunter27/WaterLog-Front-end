@@ -3,9 +3,9 @@ import Link from './Link';
 import WastageSummary from './WastageSummary';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchSegmentsLeaksById } from '../actions/SegmentLeaksByIdActions';
+import { fetchAlerts } from '../actions/AlertsAction';
 import Loader from './Loader';
-import BtnResolve from './BtnResolve';
+import Button from './Button';
 
 class SegmentLeak extends Component {
 	constructor(props) {
@@ -14,11 +14,12 @@ class SegmentLeak extends Component {
 		this.handleResolveClick = this.handleResolveClick.bind(this);
 		this.state = {
 			mapExpanded: false,
-			leakResolved: false
+			leakResolved: false,
 		};
+		
 	}
 	componentDidMount() {
-		this.props.fetchSegmentsLeaksById(1);
+		this.props.fetchAlerts();
 	}
 
 	handleMapExpand() {
@@ -31,50 +32,62 @@ class SegmentLeak extends Component {
 		this.setState({
 			leakResolved: !this.state.leakResolved
 		});
+		console.log('resolved')
 	}
 
 	render() {
-		const { error, loading, leak } = this.props;
+		const { error, loading, alerts} = this.props;
+		if ((!alerts || alerts.length === 0) && loading) {
+			return <Loader />;
+		}
 		if (error) {
 			return <div>Error! {error.message}</div>;
 		}
-		if (loading) {
-			return <Loader />;
-		}
+		
+		const leakInfo = alerts.map((alert,index) => {
+			if(alert.entityId === parseInt(this.props.match.params.id)) {
+				return(
+					<div key={index}>
+						<div className={`leakInfo ${alert.severity}`}>
+							<h2>{`${alert.entityName} ${alert.entityId} ${alert.entityType}`}</h2>
+							<p>({alert.severity})</p>
+							<h1>R {alert.cost.toFixed(2)}</h1>
+							<p>is being lost per hour!</p>
+							<p>Loosing {alert.typeLitres.toFixed(0)}&#x2113; per hour</p>
+							<p>no leak would be 0&#x2113; per hour</p>
+						</div>
+						<img id="map-toggle"
+							src={this.state.mapExpanded === false ? 'images/map_expand.png' : 'images/map_close.png'}
+							alt="segment-map"
+							onClick={() => this.handleMapExpand()}
+						/>
+						<hr />
+						<Link to={`/alert/segment-history/${alert.entityId}`} text="component history" />
+						<p className="wastegeLabel">wastage</p>
+						<WastageSummary severity={alert.severity} litres={alert.typeLitres.toFixed(0)} percent={(alert.typeLitres/alert.totalLitres*100).toFixed(0)} />
+						<Button text="RESOLVE" click={this.handleResolveClick} />
+					</div>
+				)
+			}	
+		}) 
 
 		return (
 			<div>
-				<div className="leakInfo">
-					<h2>Segment {this.props.match.params.id} is Leaking</h2>
-					<p>({leak.leak.severity})</p>
-					<h1>R {leak.data.Item2.toFixed(2)}</h1>
-					<p>is being lost per hour!</p>
-					<p>Loosing {leak.usage.Item2.toFixed(0)}&#x2113; per hour</p>
-					<p>no leak would be 0&#x2113; per hour</p>
-				</div>
-				<img id="map-toggle"
-					src={this.state.mapExpanded === false ? 'images/map_expand.png' : 'images/map_close.png'}
-					alt="segment-map"
-					onClick={() => this.handleMapExpand()}
-				/>
-				<hr />
-				<Link to="/alert/segment-history/1" text="component history" />
-				<p className="wastegeLabel">wastage</p>
-				<WastageSummary litres={leak.usage.Item1.toFixed(0)} />
-				<BtnResolve id={this.props.match.params.id} />
+				{leakInfo}
 			</div>
 		);
 	}
 }
 
 SegmentLeak.propTypes = {
-	fetchSegmentsLeaksById: PropTypes.func.isRequired
+	fetchAlerts: PropTypes.func.isRequired,
+	alerts : PropTypes.array.isRequired,
+	loading : PropTypes.array.isRequired
 };
 
 const mapStateToProps = (state) => ({
-	leak: state.leak.items,
-	loading: state.leak.loading,
-	error: state.leak.errors
+	alerts: state.alerts.items,
+	loading: state.alerts.loading,
+	error: state.alerts.error
 });
-
-export default connect(mapStateToProps, { fetchSegmentsLeaksById })(SegmentLeak);
+export default connect(mapStateToProps, { fetchAlerts })(SegmentLeak);

@@ -64,5 +64,4 @@ const mapStateToProps = (state) => ({
 	loading: state.pumps.loading,
 	error: state.pumps.errors
 });
-
 export default connect(mapStateToProps, { fetchPumps })(PumpButton);
