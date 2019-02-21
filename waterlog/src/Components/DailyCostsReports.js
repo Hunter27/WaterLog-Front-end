@@ -3,7 +3,7 @@ import { Line, defaults } from 'react-chartjs-2';
 
 const DailyCostsReports = (props) => { 
   let labelX = props.props.dataPoints.map(a => (new Date(a.x).getHours() + ":00"));
-  let dataY = props.props.dataPoints.map(a => a.y); 
+  let dataY = props.props.dataPoints.map(a => Math.round(a.y)); 
   let data = {
     labels: labelX,
     datasets: [

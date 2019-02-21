@@ -3,7 +3,7 @@ import { Bar, defaults } from 'react-chartjs-2';
 
 const MonthlyUsageComponent = (props) => {
   if(props.props.dataPoints){
-  var dataY = props.props.dataPoints.map(a => a.y); 
+  var dataY = props.props.dataPoints.map(a => Math.round(a.y)); 
   var data = {
     labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
     datasets: [

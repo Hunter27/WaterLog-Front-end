@@ -53,8 +53,7 @@ const DailyWastageComponent = (props) => {
   }
   defaults.global.legend.display = false;
   return (
-    <div className="wastage-graph">
-
+    <div className="wastage-graph"> 
       <div className="head"><b>R {(Math.round(sum * Globals.WATER_COST))}</b><b className="dailysubhead"> lost so far</b></div> 
       <Line options={options} data={data} />
     </div>

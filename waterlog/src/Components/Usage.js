@@ -45,6 +45,7 @@ class Usage extends Component {
       return <div>
         <p><b>Cost</b></p>
         <DailyCostsReports props={this.props.dailyCost} />
+        <br/>
         <hr />
         <p><b>Usage</b></p>
         <DailyUsageComponent props={this.props.dailyUsage} />
@@ -53,6 +54,7 @@ class Usage extends Component {
       return <div>
         <p><b>Cost</b></p>
         <MonthlyCostsReports props={this.props.monthlyCost} />
+        <br/>
         <hr />
         <p><b>Usage</b></p>
         <MonthlyUsageComponent props={this.props.monthlyUsage} />
@@ -61,6 +63,7 @@ class Usage extends Component {
       return <div>
         <p><b>Cost</b></p>
         <SeasonalCostReports props={this.props.seasonalCost} />
+        <br/>
         <hr />
         <p><b>Usage</b></p>
         <SeasonalUsageComponent props={this.props.seasonUsage} />
@@ -70,9 +73,9 @@ class Usage extends Component {
   };
 
   render() {
-    const { dailyError, dailyLoading,  
-      monthlyError,monthlyLoading,
-      seasonalError, seasonalLoading} = this.props;
+    const { dailyError, dailyLoading,
+      monthlyError, monthlyLoading,
+      seasonalError, seasonalLoading } = this.props;
     if (dailyError || monthlyError || seasonalError) {
       return <div>Error!</div>;
     }

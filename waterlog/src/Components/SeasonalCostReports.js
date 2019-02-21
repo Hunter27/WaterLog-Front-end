@@ -1,11 +1,12 @@
 import React from 'react';
 import { Bar, defaults } from 'react-chartjs-2';
 
-const SeasonalCostReports = (props) => { 
-    var dataSummer = props.props.dataPoints[0].y;
-    var dataWinter = props.props.dataPoints[1].y;
-    var dataSpring = props.props.dataPoints[2].y;
-    var dataAutumn = props.props.dataPoints[3].y;
+const SeasonalCostReports = (props) => {  
+    var dataSummer = Math.round(props.props.dataPoints[0].y);
+    var dataWinter = Math.round(props.props.dataPoints[1].y);
+    var dataSpring = Math.round(props.props.dataPoints[2].y);
+    var dataAutumn = Math.round(props.props.dataPoints[3].y);
+
 
     var data = {
         labels: ['Summer', 'Winter', 'Autumn', 'Spring'],

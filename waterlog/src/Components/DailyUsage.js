@@ -3,7 +3,7 @@ import { Line, defaults } from 'react-chartjs-2';
 
 const DailyUsageComponent = (props) => {
   var labelX = props.props.dataPoints.map(a => (new Date(a.x).getHours()+":00"));
-  var dataY = props.props.dataPoints.map(a => a.y);  
+  var dataY = props.props.dataPoints.map(a => Math.round(a.y));  
   var data = {
     labels: labelX,
     datasets: [
