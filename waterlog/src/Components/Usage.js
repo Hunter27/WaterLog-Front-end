@@ -13,7 +13,8 @@ import { fetchCostsSeasonally } from '../actions/CostsSeasonalReportActions';
 import SeasonalCostReports from './SeasonalCostReports';
 import DailyCostsReports from './DailyCostsReports';
 import MonthlyCostsReports from './MonthlyCostsReports';
-import { fetchCostsForecastDaily } from "../actions/CostsDailyForecastAction";
+import { fetchCostsForecastDaily } from '../actions/CostsDailyForecastAction';
+import {fetchCostsForecastMonthly} from '../actions/CostsMonthlyForecastAction';
 import Loader from './Loader';
 
 class Usage extends Component {
@@ -34,6 +35,7 @@ class Usage extends Component {
     this.props.fetchCostsMonthly();
     this.props.fetchCostsSeasonally();
     this.props.fetchCostsForecastDaily();
+    this.props.fetchCostsForecastMonthly();
   }
 
   openGraph = (graphType) => {
@@ -43,6 +45,7 @@ class Usage extends Component {
   }
 
   getGraphType = () => {
+    console.log("m",this.props)
     if (this.state.display === "daily")
       return <div>
         <p className="bold">Cost </p>
@@ -124,7 +127,9 @@ Usage.propTypes = {
   fetchCostsSeasonally: PropTypes.func.isRequired,
   seasonalCost: PropTypes.array.isRequired,
   fetchCostsForecastDaily: PropTypes.func.isRequired,
-  forecastDaily: PropTypes.array.isRequired
+  forecastDaily: PropTypes.array.isRequired,
+  fetchCostsForecastMonthly: PropTypes.func.isRequired,
+  forecastMonthly: PropTypes.array.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -140,7 +145,8 @@ const mapStateToProps = (state) => ({
   monthlyError: state.monthlyUsage.error,
   seasonalLoading: state.seasonUsage.loading,
   seasonalError: state.seasonUsage.error,
-  forecastDaily: state.forecastDaily.items
+  forecastDaily: state.forecastDaily.items,
+  forecastMonthly: state.forecastMonthly.items
 })
 export default connect(mapStateToProps, {
   fetchUsageDaily,
@@ -149,5 +155,6 @@ export default connect(mapStateToProps, {
   fetchCostsDaily,
   fetchCostsMonthly,
   fetchCostsSeasonally,
-  fetchCostsForecastDaily
+  fetchCostsForecastDaily,
+  fetchCostsForecastMonthly
 })(Usage);

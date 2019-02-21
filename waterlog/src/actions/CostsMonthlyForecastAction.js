@@ -22,14 +22,28 @@ export const fetchCostsForecastMonthlyFailure = error => ({
         error
     }
 });
+async function getMonthlyForecast(dispatch) {
+    let arr = []
+    for (let i = 1; i <= 12; i++) {
+        let f = await getMonthForecast(i).then(seg => arr.push(seg)).catch(error => {
+            dispatch(fetchCostsForecastMonthlyFailure(error));
+        });
+    }
 
-export const fetchCostsForecastMonthly = () => (dispatch) => {
+    return arr;
+}
+
+async function getMonthForecast(id) {
+    const response = await fetch(process.env.REACT_APP_API_URL + `/api/costforecast/monthly/${id}`);
+    const data = await response.json();
+    return data;
+}
+export const fetchCostsForecastMonthly =  () => async (dispatch) => {
     dispatch(fetchCostsForecastMonthlyBegin());
-    fetch(process.env.REACT_APP_API_URL + `/api/costforecast/monthly`)
-        .then(handleErrors)
-        .then(res => res.json())
-        .then(forecastMonthly => {
-            dispatch(fetchCostsForecastMonthlySuccess(forecastMonthly));
-        })
-        .catch(error => dispatch(fetchCostsForecastMonthlyFailure(error)));
+
+    let results = await getMonthlyForecast(dispatch);
+
+
+
+    dispatch(fetchCostsForecastMonthlySuccess(forecastMonthly)
 }; 

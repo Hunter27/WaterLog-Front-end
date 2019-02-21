@@ -14,7 +14,6 @@ const DailyCostsReports = (props) => {
     forecast.push(slope*i + yIntercept);
   }
  
-  console.log(startX,lastX,yIntercept,slope)
   let data = {
     labels: labelX,
     datasets: [
