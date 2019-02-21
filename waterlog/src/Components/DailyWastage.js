@@ -1,6 +1,6 @@
 import React from 'react';
 import { Line, defaults } from 'react-chartjs-2';
-import { Globals } from './../Globals';
+import {Globals } from './../Globals';
 
 const DailyWastageComponent = (props) => {
   var labelX = props.props.dataPoints.map(a => (new Date(a.x).getHours() + ":00"));
