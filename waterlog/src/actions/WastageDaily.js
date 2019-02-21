@@ -1,7 +1,5 @@
-import { FETCH_WASTAGE_DAILY_BEGIN,
-   FETCH_WASTAGE_DAILY_FAILURE,
-   FETCH_WASTAGE_DAILY_SUCCESS,
-   handleErrors} from "./Types";
+import { FETCH_WASTAGE_DAILY_BEGIN, FETCH_WASTAGE_DAILY_FAILURE, FETCH_WASTAGE_DAILY_SUCCESS, handleErrors } from "./Types";
+
 import { Globals } from './../Globals';
 export const fetchWastageDailyBegin = () => ({
   type: FETCH_WASTAGE_DAILY_BEGIN
@@ -19,7 +17,7 @@ export const fetchWastageDailyFailure = (error) => ({
   loading: false
 });
 
-export const fetchWastageDaily =() => (dispatch) => {
+export const fetchWastageDaily = () => (dispatch) => {
   dispatch(fetchWastageDailyBegin())
     fetch(process.env.REACT_APP_API_URL+'/api/segmentevents/dailywastage') 
       .then(handleErrors)
