@@ -101,11 +101,12 @@ export const fetchMapsData = () => (dispatch) => {
   dispatch(fetchMapsDataBegin());
 
   var data = getData(dispatch);
-  data.then(res => {
-    dispatch(fetchMapsDataSuccess(formatMapData(res)));
-  })
+  data
+    .then(handleErrors)
+    .then(res => {
+      dispatch(fetchMapsDataSuccess(formatMapData(res)));
+    })
     .catch(error => {
       dispatch(fetchMapsDataFailure(error));
     });
-
 };
