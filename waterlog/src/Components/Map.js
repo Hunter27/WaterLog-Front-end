@@ -10,49 +10,6 @@ const backgroundColor = "#253238";
 const errorColor = "#FF1744";
 const lighterColor = "#4F5B62";
 
-function formatMapData(data) {
-  let markers, segments;
-  let todaysLeaks;
-  let date = new Date(Date.now());
-  if (!data.leaks) {
-    todaysLeaks = [];
-  } else {
-    todaysLeaks = data.leaks.filter(
-      leak =>
-        new Date(leak.latestTimeStamp).getDay() === date.getDay() &&
-        new Date(leak.latestTimeStamp).getMonth() === date.getMonth() &&
-        new Date(leak.latestTimeStamp).getFullYear() === date.getFullYear()
-    );
-  }
-
-  if (data.segments) {
-    segments = data.segments.map(seg => {
-      if (
-        JSON.stringify(Object.keys(seg)) !==
-        JSON.stringify(["id", "senseIDOut", "senseIDIn"])
-      ) {
-        return [];
-      }
-      const leak = todaysLeaks.find(leak => leak.segmentsId === seg.id);
-      if (leak) {
-        if (leak.resolvedStatus)
-          seg.status = leak.resolvedStatus === 2 ? "leak" : "normal";
-        else seg.status = "normal";
-      } else {
-        seg.status = "normal";
-      }
-      return seg;
-    });
-  } else {
-    return [];
-  }
-
-  markers = data.monitors.map(mon => {
-    return { id: mon.id, lat: mon.lat, lon: mon.long, status: mon.status };
-  });
-  return { markers, segments };
-}
-
 function generateMapIcons({ segments, markers }, simpleView) {
   const defaultColor = simpleView ? backgroundColor : lighterColor;
   if (!segments || !markers) {
@@ -76,10 +33,10 @@ function generateMapIcons({ segments, markers }, simpleView) {
     let sensorInColor = defaultColor,
       sensorOutColor = defaultColor,
       segmentColor = defaultColor;
-    if (sensorIn.status.toLowerCase() === "fault") {
+    if (sensorIn.status.toLowerCase() === "faulty") {
       sensorInColor = errorColor;
     }
-    if (sensorOut.status.toLowerCase() === "fault") {
+    if (sensorOut.status.toLowerCase() === "faulty") {
       sensorOutColor = errorColor;
     }
     if (segment.status.toLowerCase() === "leak") {
@@ -164,7 +121,7 @@ class MapComponent extends Component {
     }
     let icons;
     if (mapData) {
-      icons = generateMapIcons(formatMapData(mapData), this.state.simpleView);
+      icons = generateMapIcons(mapData, this.state.simpleView);
     } else {
       return <Error404 />;
     }

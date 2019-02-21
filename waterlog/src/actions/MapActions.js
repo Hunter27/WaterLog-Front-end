@@ -54,12 +54,55 @@ async function getData(dispatch){
   return {segments, monitors, leaks}
 }
 
+function formatMapData(data) {
+  let markers, segments;
+  let todaysLeaks;
+  let date = new Date(Date.now());
+  if (!data.leaks) {
+    todaysLeaks = [];
+  } else {
+    todaysLeaks = data.leaks.filter(
+      leak =>
+        new Date(leak.latestTimeStamp).getDay() === date.getDay() &&
+        new Date(leak.latestTimeStamp).getMonth() === date.getMonth() &&
+        new Date(leak.latestTimeStamp).getFullYear() === date.getFullYear()
+    );
+  }
+
+  if (data.segments) {
+    segments = data.segments.map(seg => {
+      if (
+        JSON.stringify(Object.keys(seg)) !==
+        JSON.stringify(["id", "senseIDOut", "senseIDIn"])
+      ) {
+        return [];
+      }
+      const leak = todaysLeaks.find(leak => leak.segmentsId === seg.id);
+      if (leak) {
+        if (leak.resolvedStatus)
+          seg.status = leak.resolvedStatus === 2 ? "leak" : "normal";
+        else seg.status = "normal";
+      } else {
+        seg.status = "normal";
+      }
+      return seg;
+    });
+  } else {
+    return [];
+  }
+
+  markers = data.monitors.map(mon => {
+    return { id: mon.id, lat: mon.lat, lon: mon.long, status: mon.status };
+  });
+  return { markers, segments };
+}
+
 export const fetchMapsData = () => (dispatch) => {
 	dispatch(fetchMapsDataBegin());
 
   var data = getData(dispatch);
   data.then(res =>{
-    dispatch(fetchMapsDataSuccess(res))
+    dispatch(fetchMapsDataSuccess(formatMapData(res)));
   })
   .catch(error => {
     dispatch(fetchMapsDataFailure(error));
