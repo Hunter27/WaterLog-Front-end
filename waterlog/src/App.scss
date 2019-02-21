@@ -1,22 +1,23 @@
-@import './variables';
-@import './Stylesheets/wastage';
-@import './Stylesheets/alerts';
-@import './Stylesheets/wastageSummary';
-@import './Stylesheets/tank';
-@import './Stylesheets/nav';
-@import './Stylesheets/tankInfo';
-@import './Stylesheets/progressBar';
-@import './Stylesheets/segmentLeak';
-@import './Stylesheets/histroryTable';
-@import './Stylesheets/map';
+@import "./variables";
+@import "./Stylesheets/wastage";
+@import "./Stylesheets/alerts";
+@import "./Stylesheets/wastageSummary";
+@import "./Stylesheets/tank";
+@import "./Stylesheets/nav";
+@import "./Stylesheets/tankInfo";
+@import "./Stylesheets/progressBar";
+@import "./Stylesheets/segmentLeak";
+@import "./Stylesheets/histroryTable";
+@import "./Stylesheets/map";
+@import "./Stylesheets/error404";
 
 #cost-buttons {
-	padding-top: 18px; 
+  padding-top: 18px;
 }
 
-.btn-graph-nav{
-	height:26px; 
-	width: 84px;
+.btn-graph-nav {
+  height: 26px;
+  width: 84px;
 }
 
 #divide{
@@ -25,76 +26,74 @@
 .bold{
 	font-weight:bold;
 }
-
 .wastageInfo {
-	border-radius: 0;
-	margin-top: 15px;
-	margin-bottom: 15px;
+  border-radius: 0;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .dailysubhead{
 	font-size:15px;
 }
 .progressBar {
-	margin-left: 10px;
+  margin-left: 10px;
 }
 
 .leakageComponent {
-	text-align: "center";
+  text-align: "center";
 }
 
 .primary {
-	background-color: #253238;
+  background-color: #253238;
 }
 
 button {
-	background-color: #dee1e2;
-	border-radius: 5px;
-	text-transform: uppercase;
-	padding: 2px 10px;
-	margin-top: 10px;
+  background-color: #dee1e2;
+  border-radius: 5px;
+  text-transform: uppercase;
+  padding: 2px 10px;
+  margin-top: 10px;
 }
 
 .pump-button {
-    background-color: #dee1e2;
-    border-radius: 2px;
-    text-transform: uppercase;
-    padding: 2px 10px;
-    margin-top: 10px;
+  background-color: #dee1e2;
+  border-radius: 2px;
+  text-transform: uppercase;
+  padding: 2px 10px;
+  margin-top: 10px;
 }
 
 .btn-unresolved {
-	background-color: red;
+  background-color: red;
 }
 
 .nav-btn {
-	background-color: #babdbe;
-	border-radius: 3px;
-	text-transform: uppercase;
-	padding: 2px 10px;
-	margin: 10px;
-	text-decoration: none;
-	font-size: 10pt;
-	display: inline-block;
+  background-color: #babdbe;
+  border-radius: 3px;
+  text-transform: uppercase;
+  padding: 2px 10px;
+  margin: 10px;
+  text-decoration: none;
+  font-size: 10pt;
+  display: inline-block;
 }
 
 .wastegeLabel {
-	color: #f6f6f6;
-	margin: 0;
-	font-weight: bold;
-	font-size: 18pt;
+  color: #f6f6f6;
+  margin: 0;
+  font-weight: bold;
+  font-size: 18pt;
 }
 
 hr {
-	margin: 0 20px;
+  margin: 0 20px;
 }
 
 .home-text {
-	margin: 5px;
-	font-size: 23pt;
-	color: #f6f6f6;
-	padding-top: 37px;
-	font-weight: bold; 
+  margin: 5px;
+  font-size: 15pt;
+  color: #f6f6f6;
+  padding-top: 37px;
 }
 
 .tank-graph{
@@ -113,7 +112,7 @@ hr {
 }
 
 @media (min-width: 600px) {
-	body {
-		background-color: #fff;
-	}
+  body {
+    background-color: #fff;
+  }
 }
