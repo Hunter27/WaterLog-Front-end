@@ -46,26 +46,26 @@ class Usage extends Component {
   getGraphType = () => {
     if (this.state.display === "daily")
       return <div>
-        <p className="bold">Cost </p>
+        <p className = "bold">Cost </p>
         <DailyCostsReports props={this.props} />
-        <hr className="divide" />
-        <p className="bold">Usage</p>
+        <hr className = "divide" />
+        <p className = "bold">Usage</p>
         <DailyUsageComponent props={this.props.dailyUsage} />
       </div>
     else if (this.state.display === "monthly")
       return <div>
-        <p className="bold">Cost</p>
+        <p className = "bold">Cost</p>
         <MonthlyCostsReports props={this.props} />
-        <hr className="divide" />
-        <p className="bold">Usage</p>
+        <hr className = "divide" />
+        <p className = "bold">Usage</p>
         <MonthlyUsageComponent props={this.props.monthlyUsage} />
       </div>
     else if (this.state.display === "seasonal")
       return <div>
-        <p className="bold">Cost</p>
+        <p className = "bold">Cost</p>
         <SeasonalCostReports props={this.props.seasonalCost} />
-        <hr className="divide" />
-        <p className="bold">Usage</p>
+        <hr className = "divide" />
+        <p className = "bold">Usage</p>
         <SeasonalUsageComponent props={this.props.seasonUsage} />
       </div>
     else
@@ -87,7 +87,7 @@ class Usage extends Component {
     }
     return (
       <div className = "wastage">
-        <div className = "graph-nav tab " id = "cost-buttons">
+        <div className = "graph-nav tab" id = "cost-buttons">
           <button className={`btn-graph-nav tablinks ${this.state.display === "daily" ? "active" : ""}`}
             onClick={(e) => this.openGraph("daily")}
             id = "openByDefault"
