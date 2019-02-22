@@ -10,49 +10,6 @@ const backgroundColor = "#253238";
 const errorColor = "#FF1744";
 const lighterColor = "#4F5B62";
 
-function formatMapData(data) {
-  let markers, segments;
-  let todaysLeaks;
-  let date = new Date(Date.now());
-  if (!data.leaks) {
-    todaysLeaks = [];
-  } else {
-    todaysLeaks = data.leaks.filter(
-      leak =>
-        new Date(leak.latestTimeStamp).getDay() === date.getDay() &&
-        new Date(leak.latestTimeStamp).getMonth() === date.getMonth() &&
-        new Date(leak.latestTimeStamp).getFullYear() === date.getFullYear()
-    );
-  }
-
-  if (data.segments) {
-    segments = data.segments.map(seg => {
-      if (
-        JSON.stringify(Object.keys(seg)) !==
-        JSON.stringify(["id", "senseIDOut", "senseIDIn"])
-      ) {
-        return [];
-      }
-      const leak = todaysLeaks.find(leak => leak.segmentsId === seg.id);
-      if (leak) {
-        if (leak.resolvedStatus)
-          seg.status = leak.resolvedStatus === 2 ? "leak" : "normal";
-        else seg.status = "normal";
-      } else {
-        seg.status = "normal";
-      }
-      return seg;
-    });
-  } else {
-    return [];
-  }
-
-  markers = data.monitors.map(mon => {
-    return { id: mon.id, lat: mon.lat, lon: mon.long, status: mon.status };
-  });
-  return { markers, segments };
-}
-
 function generateMapIcons({ segments, markers }, simpleView) {
   const defaultColor = simpleView ? backgroundColor : lighterColor;
   if (!segments || !markers) {
@@ -76,10 +33,10 @@ function generateMapIcons({ segments, markers }, simpleView) {
     let sensorInColor = defaultColor,
       sensorOutColor = defaultColor,
       segmentColor = defaultColor;
-    if (sensorIn.status.toLowerCase() === "fault") {
+    if (sensorIn.status.toLowerCase() === "faulty") {
       sensorInColor = errorColor;
     }
-    if (sensorOut.status.toLowerCase() === "fault") {
+    if (sensorOut.status.toLowerCase() === "faulty") {
       sensorOutColor = errorColor;
     }
     if (segment.status.toLowerCase() === "leak") {
@@ -140,8 +97,8 @@ class MapComponent extends Component {
     this.props.fetchMapsData();
   }
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       lat: -25.783,
       lng: 28.337,
@@ -153,55 +110,55 @@ class MapComponent extends Component {
   render() {
     const { error, loading, mapData } = this.props;
     if (error) {
-      return <div />;
-    } else if (loading) {
+      return <Error404 />;
+    }
+    if (loading) {
       return (
         <div>
           <Loader />
         </div>
       );
-    } else {
-      let icons;
-      if (mapData) {
-        icons = generateMapIcons(formatMapData(mapData), this.state.simpleView);
-      } else {
-        return <div />;
-      }
-      const position = [this.state.lat, this.state.lng];
-      return (
-        <div className="map-main-div">
-          <div className="map-tile-div">
-            <Map center={position} zoom={this.state.zoom} zoomControl={false}>
-              {(() => {
-                if (this.state.simpleView)
-                  return (
-                    <TileLayer url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png" />
-                  );
-              })()}
-              {icons}
-            </Map>
-          </div>
-          <div className="map-button-div-layer2 map-button-tab">
-            <button
-              className={`map-button ${this.state.simpleView ? "" : "active"}`}
-              onClick={() => {
-                this.setState({ simpleView: false });
-              }}
-            >
-              Simplified
-            </button>
-            <button
-              className={`map-button ${this.state.simpleView ? "active" : ""}`}
-              onClick={() => {
-                this.setState({ simpleView: true });
-              }}
-            >
-              Live Map
-            </button>
-          </div>
-        </div>
-      );
     }
+    let icons;
+    if (mapData) {
+      icons = generateMapIcons(mapData, this.state.simpleView);
+    } else {
+      return <Error404 />;
+    }
+    const position = [this.state.lat, this.state.lng];
+    return (
+      <div className="map-main-div">
+        <div className="map-tile-div">
+          <Map center={position} zoom={this.state.zoom} zoomControl={false} style={{height:this.props.height}}>
+            {(() => {
+              if (this.state.simpleView)
+                return (
+                  <TileLayer url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png" />
+                );
+            })()}
+            {icons}
+          </Map>
+        </div>
+        <div className="map-button-div-layer2 map-button-tab">
+          <button
+            className={`map-button ${this.state.simpleView ? "" : "active"}`}
+            onClick={() => {
+              this.setState({ simpleView: false });
+            }}
+          >
+            Simplified
+          </button>
+          <button
+            className={`map-button ${this.state.simpleView ? "active" : ""}`}
+            onClick={() => {
+              this.setState({ simpleView: true });
+            }}
+          >
+            Live Map
+          </button>
+        </div>
+      </div>
+    );
   }
 }
 
