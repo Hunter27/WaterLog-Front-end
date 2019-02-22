@@ -14,12 +14,12 @@ import SeasonalCostReports from './SeasonalCostReports';
 import DailyCostsReports from './DailyCostsReports';
 import MonthlyCostsReports from './MonthlyCostsReports';
 import { fetchCostsForecastDaily } from '../actions/CostsDailyForecastAction';
-import {fetchCostsForecastMonthly} from '../actions/CostsMonthlyForecastAction';
+import { fetchCostsForecastMonthly } from '../actions/CostsMonthlyForecastAction';
 import Loader from './Loader';
 
 class Usage extends Component {
   constructor(props) {
-    super(props); 
+    super(props);
     this.openGraph = this.openGraph.bind(this);
     this.state = {
       display: "daily"
@@ -47,24 +47,24 @@ class Usage extends Component {
     if (this.state.display === "daily")
       return <div>
         <p className="bold">Cost </p>
-        <DailyCostsReports props={this.props}/> 
-        <hr id="divide"/>
+        <DailyCostsReports props={this.props} />
+        <hr className="divide" />
         <p className="bold">Usage</p>
         <DailyUsageComponent props={this.props.dailyUsage} />
       </div>
     else if (this.state.display === "monthly")
       return <div>
         <p className="bold">Cost</p>
-        <MonthlyCostsReports props={this.props} /> 
-        <hr id="divide"/>
+        <MonthlyCostsReports props={this.props} />
+        <hr className="divide" />
         <p className="bold">Usage</p>
         <MonthlyUsageComponent props={this.props.monthlyUsage} />
       </div>
     else if (this.state.display === "seasonal")
       return <div>
         <p className="bold">Cost</p>
-        <SeasonalCostReports props={this.props.seasonalCost} /> 
-        <hr id="divide"/>
+        <SeasonalCostReports props={this.props.seasonalCost} />
+        <hr className="divide" />
         <p className="bold">Usage</p>
         <SeasonalUsageComponent props={this.props.seasonUsage} />
       </div>
@@ -73,9 +73,12 @@ class Usage extends Component {
   };
 
   render() {
-    const { dailyError, dailyLoading,
-      monthlyError, monthlyLoading,
-      seasonalError, seasonalLoading } = this.props;
+    const { dailyError,
+      dailyLoading,
+      monthlyError,
+      monthlyLoading,
+      seasonalError,
+      seasonalLoading } = this.props;
     if (dailyError || monthlyError || seasonalError) {
       return <div>Error!</div>;
     }
@@ -83,16 +86,16 @@ class Usage extends Component {
       return <Loader />
     }
     return (
-      <div className="wastage">
-        <div className="graph-nav tab " id="cost-buttons">
+      <div className = "wastage">
+        <div className = "graph-nav tab " id = "cost-buttons">
           <button className={`btn-graph-nav tablinks ${this.state.display === "daily" ? "active" : ""}`}
             onClick={(e) => this.openGraph("daily")}
-            id="openByDefault"
+            id = "openByDefault"
           >
             Daily
               </button>
 
-          <button className={`btn-graph-nav tablinks ${this.state.display === "monthly" ? "active" : ""}`}
+          <button className = {`btn-graph-nav tablinks ${this.state.display === "monthly" ? "active" : ""}`}
             onClick={(e) => this.openGraph("monthly")}
           >
             Monthly
@@ -103,7 +106,7 @@ class Usage extends Component {
             Seasonal
               </button>
         </div>
-        <div className="tabcontent">
+        <div className = "tabcontent">
           {this.getGraphType()}
         </div>
       </div>

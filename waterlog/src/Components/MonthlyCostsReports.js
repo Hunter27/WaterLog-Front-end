@@ -19,8 +19,8 @@ const MonthlyCostsReports = (props) => {
           label: 'forecast',
           data: forecast,
           fill: true,
-          borderColor: 'rgb(0,191,255)',
-          backgroundColor: 'rgb(0,191,255)'
+          borderColor: 'rgba(0,191,255,1)',
+          backgroundColor: 'rgba(0,191,255,1)'
         }
       ]
     }

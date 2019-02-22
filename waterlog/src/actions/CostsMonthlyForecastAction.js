@@ -23,14 +23,14 @@ export const fetchCostsForecastMonthlyFailure = error => ({
   }
 });
 async function getMonthlyForecast(dispatch) {
-  let arr = []
+  let arrMonth = []
   for (let i = 1; i <= 12; i++) {
-    let f = await getMonthForecast(i).then(seg => arr.push(seg)).catch(error => {
+    let f = await getMonthForecast(i).then(seg => arrMonth.push(seg)).catch(error => {
       dispatch(fetchCostsForecastMonthlyFailure(error));
     });
   }
 
-  return arr;
+  return arrMonth;
 }
 
 async function getMonthForecast(id) {
