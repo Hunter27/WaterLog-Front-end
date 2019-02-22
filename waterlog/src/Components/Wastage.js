@@ -8,6 +8,7 @@ import { fetchWastageSeasonally } from "../actions/WastageSeasonally";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Loader from "./Loader";
+import Error404 from "./Error404";
 
 class Wastage extends Component {
   constructor(props) {
@@ -55,7 +56,7 @@ class Wastage extends Component {
       seasonWaste
     } = this.props;
     if (dailyError || monthlyError || seasonalError) {
-      return <div>Error!</div>;
+      return <Error404 />;
     }
     if (dailyLoading || monthlyLoading || seasonalLoading) {
       return (
