@@ -20,7 +20,7 @@ export default class Error404 extends Component {
           {"Something went wrong"} <br /> {"with your connection"}
         </p>
         <p>
-          <a className="error404White" href="">
+          <a className="error404White" href="/">
             Try to refresh
           </a>
         </p>

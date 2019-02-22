@@ -4,7 +4,7 @@ import {
     FETCH_WASTAGE_SEASONALLY_SUCCESS,
     handleErrors
 } from "./Types";
-import { Globals } from './../Globals';
+
 export const fetchhWastageSeasonallyBegin = () => ({
     type: FETCH_WASTAGE_SEASONALLY_BEGIN
 });

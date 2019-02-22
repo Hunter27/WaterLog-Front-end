@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchAlerts } from '../actions/AlertsAction';
 import Loader from './Loader';
+import Error404 from './Error404';
 
 class FaultySensor extends Component {
 	constructor() {
@@ -92,7 +93,8 @@ class FaultySensor extends Component {
 						</div>
 					</div>
 				);
-			}
+			} else 
+				return <Error404 />
 		});
 
 		return <div>{sensorInfo}</div>;

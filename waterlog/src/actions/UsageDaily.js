@@ -4,7 +4,7 @@ import {
   FETCH_USAGE_DAILY_SUCCESS,
   handleErrors
 } from "./Types";
-import { Globals } from './../Globals';
+
 export const fetchUsageDailyBegin = () => ({
   type: FETCH_USAGE_DAILY_BEGIN
 });

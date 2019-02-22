@@ -4,7 +4,7 @@ import {
     FETCH_USAGE_SEASONALLY_SUCCESS,
     handleErrors
 } from "./Types";
-import { Globals } from './../Globals';
+
 export const fetchhUsageSeasonallyBegin = () => ({
     type: FETCH_USAGE_SEASONALLY_BEGIN
 });
