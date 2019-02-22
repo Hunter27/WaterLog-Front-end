@@ -71,14 +71,29 @@ button {
 }
 
 .nav-btn {
+  height: 25px;
+  width: 50%;
+  color: #253238;
   background-color: #babdbe;
   border-radius: 3px;
   text-transform: uppercase;
-  padding: 2px 10px;
-  margin: 10px;
+  margin: 10px auto;
+  padding-top: 7px;
   text-decoration: none;
   font-size: 10pt;
-  display: inline-block;
+  display: block;
+}
+
+.resolved-leak {
+  background-color: #69f0ae;
+  color: #4f5b62;
+  border: none;
+}
+
+.unresolved-leak {
+  background-color: #ff1744;
+  color: #f6f6f6;
+  border: none;
 }
 
 .wastegeLabel {
