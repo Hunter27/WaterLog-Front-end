@@ -62,11 +62,13 @@ function formatMapData(data) {
     todaysLeaks = [];
   } else {
     todaysLeaks = data.leaks.filter(
-      leak =>
-        new Date(leak.latestTimeStamp).getDay() === date.getDay() &&
-        new Date(leak.latestTimeStamp).getMonth() === date.getMonth() &&
-        new Date(leak.latestTimeStamp).getFullYear() === date.getFullYear()
-    );
+      leak => {
+        let latestTimeStamp = new Date(leak.latestTimeStamp);
+
+        if (latestTimeStamp.getDay() === date.getDay() &&
+          latestTimeStamp.getMonth() === date.getMonth() &&
+          latestTimeStamp.getFullYear() === date.getFullYear()) { return leak };
+      });
   }
 
   if (data.segments) {
@@ -74,14 +76,11 @@ function formatMapData(data) {
       if (
         JSON.stringify(Object.keys(seg)) !==
         JSON.stringify(["id", "senseIDOut", "senseIDIn"])
-      ) {
-        return [];
-      }
+      ) { return []; }
       const leak = todaysLeaks.find(leak => leak.segmentsId === seg.id);
       if (leak) {
-        if (leak.resolvedStatus)
-          seg.status = leak.resolvedStatus === 2 ? "leak" : "normal";
-        else seg.status = "normal";
+        if (leak.resolvedStatus) { seg.status = leak.resolvedStatus === 2 ? "leak" : "normal"; }
+        else { seg.status = "normal"; }
       } else {
         seg.status = "normal";
       }
