@@ -1,29 +1,29 @@
-import React, { Component } from "react";
-import DailyUsageComponent from "./DailyUsage";
-import MonthlyUsageComponent from "./MonthlyUsage";
-import SeasonalUsageComponent from "./SeasonalUsage";
-import { fetchUsageDaily } from "../actions/UsageDaily";
-import { fetchUsageMonthly } from "../actions/UsageMonthly";
-import { fetchUsageSeasonally } from "../actions/UsageSeasonally";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { fetchCostsDaily } from "../actions/CostsReportActions";
-import { fetchCostsMonthly } from "../actions/CostsMonthlyReportActions";
-import { fetchCostsSeasonally } from "../actions/CostsSeasonalReportActions";
-import SeasonalCostReports from "./SeasonalCostReports";
-import DailyCostsReports from "./DailyCostsReports";
-import MonthlyCostsReports from "./MonthlyCostsReports";
-import Loader from "./Loader";
-import Error404 from "./Error404";
+import React, { Component } from 'react';
+import DailyUsageComponent from './DailyUsage';
+import MonthlyUsageComponent from './MonthlyUsage';
+import SeasonalUsageComponent from './SeasonalUsage';
+import { fetchUsageDaily } from '../actions/UsageDaily';
+import { fetchUsageMonthly } from '../actions/UsageMonthly';
+import { fetchUsageSeasonally } from '../actions/UsageSeasonally';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchCostsDaily } from '../actions/CostsReportActions';
+import { fetchCostsMonthly } from '../actions/CostsMonthlyReportActions';
+import { fetchCostsSeasonally } from '../actions/CostsSeasonalReportActions';
+import SeasonalCostReports from './SeasonalCostReports';
+import DailyCostsReports from './DailyCostsReports';
+import MonthlyCostsReports from './MonthlyCostsReports';
+import { fetchCostsForecastDaily } from '../actions/CostsDailyForecastAction';
+import { fetchCostsForecastMonthly } from '../actions/CostsMonthlyForecastAction';
+import Loader from './Loader';
 
 class Usage extends Component {
   constructor(props) {
     super(props);
-
     this.openGraph = this.openGraph.bind(this);
     this.state = {
       display: "daily"
-    };
+    }
   }
   componentDidMount() {
     this.openGraph("daily");
@@ -33,101 +33,88 @@ class Usage extends Component {
     this.props.fetchCostsDaily();
     this.props.fetchCostsMonthly();
     this.props.fetchCostsSeasonally();
+    this.props.fetchCostsForecastDaily();
+    this.props.fetchCostsForecastMonthly();
   }
 
-  openGraph = graphType => {
+  openGraph = (graphType) => {
     this.setState({
       display: graphType
-    });
-  };
+    })
+  }
 
   getGraphType = () => {
     if (this.state.display === "daily")
-      return (
-        <div>
-          <p className="bold">Cost </p>
-          <DailyCostsReports props={this.props.dailyCost} />
-          <hr id="divide" />
-          <p className="bold">Usage</p>
-          <DailyUsageComponent props={this.props.dailyUsage} />
-        </div>
-      );
+      return <div>
+        <p className = "bold">Cost </p>
+        <DailyCostsReports props={this.props} />
+        <hr className = "divide" />
+        <p className = "bold">Usage</p>
+        <DailyUsageComponent props={this.props.dailyUsage} />
+      </div>
     else if (this.state.display === "monthly")
-      return (
-        <div>
-          <p className="bold">Cost</p>
-          <MonthlyCostsReports props={this.props.monthlyCost} />
-          <hr id="divide" />
-          <p className="bold">Usage</p>
-          <MonthlyUsageComponent props={this.props.monthlyUsage} />
-        </div>
-      );
+      return <div>
+        <p className = "bold">Cost</p>
+        <MonthlyCostsReports props={this.props} />
+        <hr className = "divide" />
+        <p className = "bold">Usage</p>
+        <MonthlyUsageComponent props={this.props.monthlyUsage} />
+      </div>
     else if (this.state.display === "seasonal")
-      return (
-        <div>
-          <p className="bold">Cost</p>
-          <SeasonalCostReports props={this.props.seasonalCost} />
-          <hr id="divide" />
-          <p className="bold">Usage</p>
-          <SeasonalUsageComponent props={this.props.seasonUsage} />
-        </div>
-      );
-    else return <div>Error has occured</div>;
+      return <div>
+        <p className = "bold">Cost</p>
+        <SeasonalCostReports props={this.props.seasonalCost} />
+        <hr className = "divide" />
+        <p className = "bold">Usage</p>
+        <SeasonalUsageComponent props={this.props.seasonUsage} />
+      </div>
+    else
+      return <div>Error has occured</div>
   };
 
   render() {
-    const {
-      dailyError,
+    const { dailyError,
       dailyLoading,
       monthlyError,
       monthlyLoading,
       seasonalError,
-      seasonalLoading
-    } = this.props;
-    if (dailyError || monthlyError || seasonalError) {
-      return <Error404 />;
+      dailyCostForecastLoading,
+      dailyCostForecastError,
+      monthlyCostForecastLoading,
+      monthlyCostForecastError,
+      seasonalLoading } = this.props;
+    if (dailyError || monthlyError || seasonalError || dailyCostForecastError || monthlyCostForecastError) {
+      return <div>Error!</div>;
     }
-    if (dailyLoading || monthlyLoading || seasonalLoading) {
-      return <Loader />;
+    if (dailyLoading || monthlyLoading || seasonalLoading || dailyCostForecastLoading || monthlyCostForecastLoading) {
+      return <Loader />
     }
     return (
-      <div>
-        <p className="home-text">
-          <b>WATER USAGE & COST</b>
-        </p>
-        <div className="wastage">
-          <div className="graph-nav tab " id="cost-buttons">
-            <button
-              className={`btn-graph-nav tablinks ${
-                this.state.display === "daily" ? "active" : ""
-              }`}
-              onClick={e => this.openGraph("daily")}
-              id="openByDefault"
-            >
-              Daily
-            </button>
+      <div className = "wastage">
+        <div className = "graph-nav tab" id = "cost-buttons">
+          <button className={`btn-graph-nav tablinks ${this.state.display === "daily" ? "active" : ""}`}
+            onClick={(e) => this.openGraph("daily")}
+            id = "openByDefault"
+          >
+            Daily
+              </button>
 
-            <button
-              className={`btn-graph-nav tablinks ${
-                this.state.display === "monthly" ? "active" : ""
-              }`}
-              onClick={e => this.openGraph("monthly")}
-            >
-              Monthly
-            </button>
-            <button
-              className={`btn-graph-nav tablinks ${
-                this.state.display === "seasonal" ? "active" : ""
-              }`}
-              onClick={e => this.openGraph("seasonal")}
-            >
-              Seasonal
-            </button>
-          </div>
-          <div className="tabcontent">{this.getGraphType()}</div>
+          <button className = {`btn-graph-nav tablinks ${this.state.display === "monthly" ? "active" : ""}`}
+            onClick={(e) => this.openGraph("monthly")}
+          >
+            Monthly
+              </button>
+          <button className={`btn-graph-nav tablinks ${this.state.display === "seasonal" ? "active" : ""}`}
+            onClick={(e) => this.openGraph("seasonal")}
+          >
+            Seasonal
+              </button>
+        </div>
+        <div className = "tabcontent">
+          {this.getGraphType()}
         </div>
       </div>
-    );
+    )
   }
 }
 
@@ -143,10 +130,15 @@ Usage.propTypes = {
   fetchCostsMonthly: PropTypes.func.isRequired,
   monthlyCost: PropTypes.object,
   fetchCostsSeasonally: PropTypes.func.isRequired,
-  seasonalCost: PropTypes.array.isRequired
+  seasonalCost: PropTypes.array.isRequired,
+  fetchCostsForecastDaily: PropTypes.func.isRequired,
+  forecastDaily: PropTypes.array.isRequired,
+  fetchCostsForecastMonthly: PropTypes.func.isRequired,
+  forecastMonthly: PropTypes.array.isRequired,
+
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   dailyUsage: state.dailyUsage.item,
   monthlyUsage: state.monthlyUsage.item,
   seasonUsage: state.seasonUsage.items,
@@ -158,16 +150,21 @@ const mapStateToProps = state => ({
   monthlyLoading: state.monthlyUsage.loading,
   monthlyError: state.monthlyUsage.error,
   seasonalLoading: state.seasonUsage.loading,
-  seasonalError: state.seasonUsage.error
-});
-export default connect(
-  mapStateToProps,
-  {
-    fetchUsageDaily,
-    fetchUsageMonthly,
-    fetchUsageSeasonally,
-    fetchCostsDaily,
-    fetchCostsMonthly,
-    fetchCostsSeasonally
-  }
-)(Usage);
+  seasonalError: state.seasonUsage.error,
+  forecastDaily: state.forecastDaily.items,
+  dailyCostForecastLoading: state.forecastDaily.loading, 
+  dailyCostForecastError: state.forecastDaily.error,
+  forecastMonthly: state.forecastMonthly.items,
+  monthlyCostForecastLoading: state.forecastMonthly.loading,
+  monthlyCostForecastError: state.forecastMonthly.error 
+})
+export default connect(mapStateToProps, {
+  fetchUsageDaily,
+  fetchUsageMonthly,
+  fetchUsageSeasonally,
+  fetchCostsDaily,
+  fetchCostsMonthly,
+  fetchCostsSeasonally,
+  fetchCostsForecastDaily,
+  fetchCostsForecastMonthly
+})(Usage);
