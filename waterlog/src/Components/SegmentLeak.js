@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchAlerts } from '../actions/AlertsAction';
 import Loader from './Loader';
-import Button from './Button';
+import Error404 from './Error404';
 
 class SegmentLeak extends Component {
 	constructor(props) {
@@ -105,6 +105,8 @@ class SegmentLeak extends Component {
 					</div>
 				);
 			}
+			else 
+				return <Error404 />
 		});
 		return <div>{leakInfo}</div>;
 	}

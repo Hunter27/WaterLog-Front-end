@@ -1,6 +1,5 @@
 import { FETCH_WASTAGE_DAILY_BEGIN, FETCH_WASTAGE_DAILY_FAILURE, FETCH_WASTAGE_DAILY_SUCCESS, handleErrors } from "./Types";
 
-import { Globals } from './../Globals';
 export const fetchWastageDailyBegin = () => ({
   type: FETCH_WASTAGE_DAILY_BEGIN
 });

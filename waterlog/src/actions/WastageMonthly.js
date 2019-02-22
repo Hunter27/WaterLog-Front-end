@@ -4,7 +4,7 @@ import {
     FETCH_WASTAGE_MONTHLY_SUCCESS,
     handleErrors
 } from "./Types";
-import { Globals } from './../Globals';
+
 export const fetchhWastageMonthlyBegin = () => ({
     type: FETCH_WASTAGE_MONTHLY_BEGIN
 });
