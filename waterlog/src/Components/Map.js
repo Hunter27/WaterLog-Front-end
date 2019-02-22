@@ -110,14 +110,14 @@ class MapComponent extends Component {
   render() {
     const { error, loading, mapData } = this.props;
     if (error) {
-      return <div />;
-    } else if (loading) {
+      return <Error404 />;
+    }
+    if (loading) {
       return (
         <div>
           <Loader />
         </div>
       );
-<<<<<<< HEAD
     }
     let icons;
     if (mapData) {
@@ -156,50 +156,9 @@ class MapComponent extends Component {
           >
             Live Map
           </button>
-=======
-    } else {
-      let icons;
-      if (mapData) {
-        icons = generateMapIcons(formatMapData(mapData), this.state.simpleView);
-      } else {
-        return <div />;
-      }
-      const position = [this.state.lat, this.state.lng];
-      return (
-        <div className="map-main-div">
-          <div className="map-tile-div">
-            <Map center={position} zoom={this.state.zoom} zoomControl={false}>
-              {(() => {
-                if (this.state.simpleView)
-                  return (
-                    <TileLayer url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png" />
-                  );
-              })()}
-              {icons}
-            </Map>
-          </div>
-          <div className="map-button-div-layer2 map-button-tab">
-            <button
-              className={`map-button ${this.state.simpleView ? "" : "active"}`}
-              onClick={() => {
-                this.setState({ simpleView: false });
-              }}
-            >
-              Simplified
-            </button>
-            <button
-              className={`map-button ${this.state.simpleView ? "active" : ""}`}
-              onClick={() => {
-                this.setState({ simpleView: true });
-              }}
-            >
-              Live Map
-            </button>
-          </div>
->>>>>>> 5dd31a543d1098f7b66a990356c76936272cad2b
         </div>
-      );
-    }
+      </div>
+    );
   }
 }
 
