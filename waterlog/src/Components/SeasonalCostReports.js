@@ -52,7 +52,7 @@ const SeasonalCostReports = (props) => {
     defaults.global.legend.display = false;
     return (
         <div className="cost-graph">
-            <Bar options={options} data={data} />
+            <Bar options={options} data={data} height="100px"/>
         </div>
     )
 }

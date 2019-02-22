@@ -53,7 +53,7 @@ const SeasonalWastageComponent = (props) => {
   defaults.global.legend.display = false;
   return (
     <div className="wastage-graph">
-      <Bar options={options} data={data} />
+      <Bar options={options} data={data} height="100px"/>
     </div>
   )
 }

@@ -51,7 +51,7 @@ const DailyCostsReports = (props) => {
   defaults.global.legend.display = false;
   return (
     <div className="costs-graph"> 
-      <Line options={options} data={data} />
+      <Line options={options} data={data} height="100px"/>
     </div>
   )
 }

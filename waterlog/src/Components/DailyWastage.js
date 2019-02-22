@@ -24,21 +24,21 @@ const DailyWastageComponent = (props) => {
   var options = {
     defaultFontFamily: "Roboto",
     scales: {
-      xAxes: [{
-        scaleLabel: {
-          display: true,
-          labelString: 'hours'
-        },
-        ticks: {
-          major: {
-            fontStyle: 'bold',
-            fontColor: 'rgba(145, 145, 145, 1)'
-          }
-        },
-        gridLines: {
-          display: false
-        }
-      }],
+      // xAxes: [{
+      //   scaleLabel: {
+      //     display: true,
+      //     labelString: 'hours'
+      //   },
+      //   ticks: {
+      //     major: {
+      //       fontStyle: 'bold',
+      //       fontColor: 'rgba(145, 145, 145, 1)'
+      //     }
+      //   },
+      //   gridLines: {
+      //     display: false
+      //   }
+      // }],
       yAxes: [{
         display: true,
         scaleLabel: {
@@ -55,7 +55,7 @@ const DailyWastageComponent = (props) => {
   return (
     <div className="wastage-graph"> 
       <div className="head"><b>R {(Math.round(sum * Globals.WATER_COST))}</b><b className="dailysubhead"> lost so far</b></div> 
-      <Line options={options} data={data} />
+      <Line options={options} data={data} height="100px" />
     </div>
   )
 }

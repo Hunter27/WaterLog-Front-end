@@ -1,15 +1,14 @@
-@import './variables';
-@import './Stylesheets/wastage';
-@import './Stylesheets/alerts';
-@import './Stylesheets/wastageSummary';
-@import './Stylesheets/tank';
-@import './Stylesheets/nav';
-@import './Stylesheets/tankInfo';
-@import './Stylesheets/progressBar';
-@import './Stylesheets/segmentLeak';
-@import './Stylesheets/histroryTable';
-@import './Stylesheets/map';
-@import './Stylesheets/sensor';
+@import "./variables";
+@import "./Stylesheets/wastage";
+@import "./Stylesheets/alerts";
+@import "./Stylesheets/wastageSummary";
+@import "./Stylesheets/tank";
+@import "./Stylesheets/nav";
+@import "./Stylesheets/tankInfo";
+@import "./Stylesheets/progressBar";
+@import "./Stylesheets/segmentLeak";
+@import "./Stylesheets/histroryTable";
+@import "./Stylesheets/map";
 @import "./Stylesheets/error404";
 
 #cost-buttons {
@@ -49,13 +48,11 @@
 }
 
 button {
-	width: 60%;
-	height: 30px;
-	background-color: #dee1e2;
-	border-radius: 5px;
-	text-transform: uppercase;
-	padding: 2px 10px;
-	margin-top: 10px;
+  background-color: #dee1e2;
+  border-radius: 5px;
+  text-transform: uppercase;
+  padding: 2px 10px;
+  margin-top: 10px;
 }
 
 .pump-button {
@@ -88,6 +85,9 @@ button {
   font-size: 18pt;
 }
 
+Line {
+  height:100px
+}
 hr {
   margin: 0 20px;
 }
@@ -96,7 +96,7 @@ hr {
   margin: 5px;
   font-size: 15pt;
   color: #f6f6f6;
-  padding-top: 37px;
+  font-weight: bold;
 }
 
 .tank-graph{
@@ -111,7 +111,7 @@ hr {
 
 .tank-graph h3{
 	size: 14sp;
-	color: #4F5B62;
+	color: white;
 }
 
 @media (min-width: 600px) {
@@ -119,3 +119,4 @@ hr {
     background-color: #fff;
   }
 }
+
