@@ -12,7 +12,7 @@ export const formatDate = (date) => {
 	return [month, day, year].join('/');
 }
 
-export const getStatusIcon = function (severity) {
+export const getStatusIcon = (severity) => {
 	switch (severity.toLowerCase()) {
 		case 'high':
 			return HighStatusIcon();
@@ -24,3 +24,23 @@ export const getStatusIcon = function (severity) {
 			return null;
 	}
 };
+
+export const getSensorLayout = (id) => {
+	const sensors = [];
+	if(id===1){
+		sensors.push(id);
+		sensors.push(id+1);
+		sensors.push(id+2);
+	}
+	else if (id === 6) {
+		sensors.push(id-2);
+		sensors.push(id-1);
+		sensors.push(id);
+	}
+	else {
+		sensors.push(id-1);
+		sensors.push(id);
+		sensors.push(id+1);
+	}
+	return sensors;
+}
