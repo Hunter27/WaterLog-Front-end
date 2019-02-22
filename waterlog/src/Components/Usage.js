@@ -19,8 +19,7 @@ import Loader from './Loader';
 
 class Usage extends Component {
   constructor(props) {
-    super(props);
-
+    super(props); 
     this.openGraph = this.openGraph.bind(this);
     this.state = {
       display: "daily"
