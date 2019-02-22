@@ -71,7 +71,12 @@ function formatMapData(data) {
 
         if (latestTimeStamp.getDay() === date.getDay() &&
           latestTimeStamp.getMonth() === date.getMonth() &&
-          latestTimeStamp.getFullYear() === date.getFullYear()) { return leak };
+          latestTimeStamp.getFullYear() === date.getFullYear()) 
+          { 
+            return leak;
+          }
+          else 
+            return [];
       });
   }
 
