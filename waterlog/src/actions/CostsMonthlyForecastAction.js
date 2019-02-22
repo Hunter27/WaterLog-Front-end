@@ -1,8 +1,7 @@
 import {
   FETCH_COSTS_FORECAST_BEGIN_MONTHLY,
   FETCH_COSTS_FORECAST_SUCCESS_MONTHLY,
-  FETCH_COSTS_FORECAST_FAILURE_MONTHLY,
-  handleErrors
+  FETCH_COSTS_FORECAST_FAILURE_MONTHLY 
 } from './Types';
 
 export const fetchCostsForecastMonthlyBegin = () => ({

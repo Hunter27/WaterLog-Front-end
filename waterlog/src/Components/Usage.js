@@ -78,11 +78,15 @@ class Usage extends Component {
       monthlyError,
       monthlyLoading,
       seasonalError,
+      dailyCostForecastLoading,
+      dailyCostForecastError,
+      monthlyCostForecastLoading,
+      monthlyCostForecastError,
       seasonalLoading } = this.props;
-    if (dailyError || monthlyError || seasonalError) {
+    if (dailyError || monthlyError || seasonalError || dailyCostForecastError || monthlyCostForecastError) {
       return <div>Error!</div>;
     }
-    if (dailyLoading || monthlyLoading || seasonalLoading) {
+    if (dailyLoading || monthlyLoading || seasonalLoading || dailyCostForecastLoading || monthlyCostForecastLoading) {
       return <Loader />
     }
     return (
@@ -130,7 +134,8 @@ Usage.propTypes = {
   fetchCostsForecastDaily: PropTypes.func.isRequired,
   forecastDaily: PropTypes.array.isRequired,
   fetchCostsForecastMonthly: PropTypes.func.isRequired,
-  forecastMonthly: PropTypes.array.isRequired
+  forecastMonthly: PropTypes.array.isRequired,
+
 };
 
 const mapStateToProps = (state) => ({
@@ -147,7 +152,11 @@ const mapStateToProps = (state) => ({
   seasonalLoading: state.seasonUsage.loading,
   seasonalError: state.seasonUsage.error,
   forecastDaily: state.forecastDaily.items,
-  forecastMonthly: state.forecastMonthly.items
+  dailyCostForecastLoading: state.forecastDaily.loading, 
+  dailyCostForecastError: state.forecastDaily.error,
+  forecastMonthly: state.forecastMonthly.items,
+  monthlyCostForecastLoading: state.forecastMonthly.loading,
+  monthlyCostForecastError: state.forecastMonthly.error 
 })
 export default connect(mapStateToProps, {
   fetchUsageDaily,
