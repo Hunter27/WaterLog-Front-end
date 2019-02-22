@@ -1,16 +1,12 @@
 import React, { Component } from "react";
-import AlertTable from "../Components/AlertTable";
-import { Provider } from "react-redux";
-import store from "../Store";
+import AlertTable from "../Components/AlertTable"; 
 
 class AlertComponent extends Component {
   render() {
-    return (
-      <Provider store={store}>
+    return ( 
         <div className="App">
           <AlertTable />
-        </div>
-      </Provider>
+        </div> 
     );
   }
 }

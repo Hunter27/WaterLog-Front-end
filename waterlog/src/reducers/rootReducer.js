@@ -20,7 +20,7 @@ import UsageGraphDailyReducer from './UsageGraphDailyReducer';
 import UsageGraphMonthlyReducer from './UsageGraphMonthlyReducer';
 import UsageGraphSeasonallyReducer from './UsageGraphSeasonallyReducer';
 
-export default combineReducers({
+const rootReducer = combineReducers({
   leaks: SegmentLeaksReducer,
   leak: SegmentLeaksByIdReducer,
   litres: LeakLitresReducer,
@@ -42,3 +42,4 @@ export default combineReducers({
   maps: MapsReducer,
 	alerts: AlertsReducer
 });
+export default rootReducer;
