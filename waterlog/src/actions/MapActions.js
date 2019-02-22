@@ -102,7 +102,6 @@ export const fetchMapsData = () => (dispatch) => {
 
   var data = getData(dispatch);
   data
-    .then(handleErrors)
     .then(res => {
       dispatch(fetchMapsDataSuccess(formatMapData(res)));
     })

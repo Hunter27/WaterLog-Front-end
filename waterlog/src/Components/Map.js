@@ -97,8 +97,8 @@ class MapComponent extends Component {
     this.props.fetchMapsData();
   }
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       lat: -25.783,
       lng: 28.337,
@@ -129,7 +129,7 @@ class MapComponent extends Component {
     return (
       <div className="map-main-div">
         <div className="map-tile-div">
-          <Map center={position} zoom={this.state.zoom} zoomControl={false}>
+          <Map center={position} zoom={this.state.zoom} zoomControl={false} style={{height:this.props.height}}>
             {(() => {
               if (this.state.simpleView)
                 return (
