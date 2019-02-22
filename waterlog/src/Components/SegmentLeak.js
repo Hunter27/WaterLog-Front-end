@@ -29,24 +29,25 @@ class SegmentLeak extends Component {
 	}
 
 	handleResolveClick(id) {
-		fetch(`${process.env.REACT_APP_API_URL}/api/segmentleaks/resolveleaks/${id}`, {
+		var formData = new FormData();
+		formData.append('id', id);
+
+		fetch(`${process.env.REACT_APP_API_URL}/api/segmentleaks/resolveleaks`, {
 			method: 'POST',
-			mode: 'cors',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({ 'id': id })
+			body: formData
 		})
 			.then((res) => {
-				if (res.ok)
+				if (res.ok) {
 					this.setState({
 						leakResolved: !this.state.leakResolved
 					});
+				}
 			})
 			.catch((err) => {
 				this.setState({
 					error: err
 				});
+				alert(String(err));
 			});
 	}
 
@@ -86,20 +87,21 @@ class SegmentLeak extends Component {
 							percent={(alert.typeLitres / alert.totalLitres * 100).toFixed(0)}
 						/>
 						<button onClick={()=>this.handleResolveClick(alert.entityId)}
-							className={`resolve-button ${this.state.leakResolved === true ? "resolved" : "unresolved"}`}
+							disabled={this.state.leakResolved}
+							className={`resolve-button ${!this.state.leakResolved ? "unresolved-leak" : "resolved-leak"}`}
 						>
-							RESOLVE
+							{this.state.leakResolved ? "RESOLVED" : "RESOLVE"}
 						</button>
-						<p
+						<small
 							className={this.state.leakResolved === false ? 'default-status' : 'leak-unresolved-status'}
 							id="resolved-status"
 						>
 							{this.state.leakResolved === false ? (
-								'resolve the problem'
+								'the problem is fixed, click'
 							) : (
-								'there is still a leak, therefore resolving is not yet posible'
+								''
 							)}
-						</p>
+						</small>
 					</div>
 				);
 			}
@@ -111,7 +113,7 @@ class SegmentLeak extends Component {
 SegmentLeak.propTypes = {
 	fetchAlerts: PropTypes.func.isRequired,
 	alerts: PropTypes.array.isRequired,
-	loading: PropTypes.array.isRequired
+	loading: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({
