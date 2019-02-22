@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchTankLevelById } from '../actions/TankLevelsByIdAction';
 import '../Stylesheets/_tank.scss';
+import Loader from './Loader';
+import Error404 from './Error404';
+
 const images = {
 	tank_yellow: 'images/tank-yellow.png',
 	tank_orange: 'images/tank-orange.png',
@@ -12,14 +15,17 @@ export class TankComponent extends Component {
 	componentWillMount() {
 		this.props.fetchTankLevelById(this.props.id);
 	}
-getTankImage = (level) => {
+	getTankImage = (level) => {
 		if (level.percentage > 79 && level.percentage < 100) {
 			return (
 				<div>
 					<img src={images.tank_green} className="image" alt="tank" />
 					<p id="percentage">{level.percentage}%</p>
-					<p className="tank_description">{level.levelStatus}{level.instruction}</p>
-					<p className="tank_description"></p>
+						<p className="tank_description">
+							{level.levelStatus}
+							{level.instruction}
+						</p>
+					<p className="tank_description" />
 				</div>
 			);
 		} else if (level.percentage >= 1 && level.percentage <= 40) {
@@ -46,14 +52,14 @@ getTankImage = (level) => {
 		const { error, loading, level } = this.props;
 
 		if (error) {
-			return <div>Error! {error.message}</div>;
+			return <Error404 />;
 		}
 		if (loading) {
-			return <div>Loading...</div>;
+			return <Loader />;
 		}
 
 		return (
-			<div className='tankComponent'>
+			<div className="tankComponent">
 				<h3>{'Tank ' + level.tankId}</h3>
 				<div className="tankSize">{this.getTankImage(level)}</div>
 			</div>
