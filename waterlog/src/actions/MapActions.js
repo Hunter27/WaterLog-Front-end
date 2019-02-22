@@ -43,13 +43,17 @@ async function getData(dispatch) {
     dispatch(fetchMapsDataFailure(error));
   });
 
-  var monitors = await getMonitors().then(mon => mon).catch(error => {
-    dispatch(fetchMapsDataFailure(error));
-  });
+  var monitors = await getMonitors()
+    .then(mon => mon)
+    .catch(error => {
+      dispatch(fetchMapsDataFailure(error));
+    });
 
-  var leaks = await getLeakInformation().then(leak => leak).catch(error => {
-    dispatch(fetchMapsDataFailure(error));
-  });
+  var leaks = await getLeakInformation()
+    .then(leak => leak)
+    .catch(error => {
+      dispatch(fetchMapsDataFailure(error));
+    });
 
   return { segments, monitors, leaks }
 }

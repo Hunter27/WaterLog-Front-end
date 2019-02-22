@@ -27,21 +27,19 @@ class FaultySensor extends Component {
 	}
 
 	handleResolveClick(data) {
-		
 		fetch(`${process.env.REACT_APP_API_URL}/api/segmentleaks/${this.props.match.params.id}`, {
-			method: "PUT",
-			mode: "cors",
-			cache: "no-cache",
+			method: 'PUT',
+			mode: 'cors',
+			cache: 'no-cache',
 			headers: {
-				"Content-Type": "application/json",
+				'Content-Type': 'application/json'
 			}
-		})
-		.then(res => {
+		}).then((res) => {
 			res.json();
 			this.setState({
 				leakResolved: !this.state.leakResolved
 			});
-		})
+		});
 	}
 
 	render() {
@@ -72,17 +70,24 @@ class FaultySensor extends Component {
 						/>
 						<hr />
 						<Link to={`/alert/segment-history/${alert.entityId}`} text="component history" />
-						<SensorDiagram sensorId={alert.entityId}/>
+						<SensorDiagram sensorId={alert.entityId} />
 						<div className="resolve">
-							<button onClick={this.handleResolveClick}
-								className={`resolve-button ${this.state.leakResolved === true ? "resolved" : "unresolved"}`}
+							<button
+								onClick={() => this.handleResolveClick(alert.entityId)}
+								disabled={this.state.leakResolved}
+								className={`resolve-button ${!this.state.leakResolved
+									? 'unresolved-leak'
+									: 'resolved-leak'}`}
 							>
-								RESOLVE
+								{this.state.leakResolved ? 'RESOLVED' : 'RESOLVE'}
 							</button>
 							<small
-								className={`resolve-text`} 
+								className={
+									this.state.leakResolved === false ? 'default-status' : 'leak-unresolved-status'
+								}
+								id="resolved-status"
 							>
-								the problem if fixed, click here
+								{this.state.leakResolved === false ? 'the problem is fixed, click' : ''}
 							</small>
 						</div>
 					</div>
