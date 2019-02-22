@@ -25,7 +25,7 @@ export const fetchCostsForecastMonthlyFailure = error => ({
 async function getMonthlyForecast(dispatch) {
   let arrMonth = []
   for (let i = 1; i <= 12; i++) {
-    let f = await getMonthForecast(i).then(seg => arrMonth.push(seg)).catch(error => {
+      await getMonthForecast(i).then(seg => arrMonth.push(seg)).catch(error => {
       dispatch(fetchCostsForecastMonthlyFailure(error));
     });
   }
