@@ -57,7 +57,7 @@ class SegmentLeak extends Component {
 			return <Loader />;
 		}
 		if (error) {
-			return <div>Error! {error.message}</div>;
+			return <Error404/>;
 		}
 
 		const leakInfo = alerts.map((alert, index) => {
@@ -105,8 +105,6 @@ class SegmentLeak extends Component {
 					</div>
 				);
 			}
-			else 
-				return <Error404 />
 		});
 		return <div>{leakInfo}</div>;
 	}

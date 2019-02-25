@@ -49,7 +49,7 @@ class FaultySensor extends Component {
 			return <Loader />;
 		}
 		if (error) {
-			return <div>Error! {error.message}</div>;
+			return <Error404/>;
 		}
 
 		const sensorInfo = alerts.map((alert, index) => {
@@ -93,8 +93,7 @@ class FaultySensor extends Component {
 						</div>
 					</div>
 				);
-			} else 
-				return <Error404 />
+			}
 		});
 
 		return <div>{sensorInfo}</div>;
