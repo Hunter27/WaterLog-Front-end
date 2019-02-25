@@ -22,7 +22,6 @@
     "react-bootstrap": "^1.0.0-beta.5",
     "react-chartjs-2": "^2.7.4",
     "react-dom": "^16.7.0",
-    "react-fullscreen": "^0.1.0",
     "react-leaflet": "^2.2.0",
     "react-leaflet-marker-layer": "^0.1.4",
     "react-redux": "^6.0.0",
