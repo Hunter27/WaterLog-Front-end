@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { fetchAlerts } from '../actions/AlertsAction';
 import Loader from './Loader';
 import Error404 from './Error404';
+import Map from './Map';
 
 class FaultySensor extends Component {
 	constructor() {
@@ -43,6 +44,8 @@ class FaultySensor extends Component {
 		});
 	}
 
+	segmentMap = <div className="segment-map"><Map height="400px"/><hr /></div>;
+
 	render() {
 		const { error, loading, alerts } = this.props;
 		if ((!alerts || alerts.length === 0) && loading) {
@@ -70,6 +73,7 @@ class FaultySensor extends Component {
 							onClick={() => this.handleMapExpand()}
 						/>
 						<hr />
+						{this.state.mapExpanded ? this.segmentMap : null}
 						<Link to={`/alert/segment-history/${alert.entityId}`} text="component history" />
 						<SensorDiagram sensorId={alert.entityId} />
 						<div className="resolve">
@@ -80,7 +84,7 @@ class FaultySensor extends Component {
 									? 'unresolved-leak'
 									: 'resolved-leak'}`}
 							>
-								{this.state.leakResolved ? 'RESOLVED' : 'RESOLVE'}
+								{this.state.leakResolved ? 'RESOLVED' : 'LOG RESOLVED ISSUE'}
 							</button>
 							<small
 								className={
@@ -88,7 +92,7 @@ class FaultySensor extends Component {
 								}
 								id="resolved-status"
 							>
-								{this.state.leakResolved === false ? 'the problem is fixed, click' : ''}
+								{this.state.leakResolved === false ? 'the problem is fixed, click here' : ''}
 							</small>
 						</div>
 					</div>

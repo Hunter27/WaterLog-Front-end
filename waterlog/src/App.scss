@@ -85,13 +85,12 @@ button {
 }
 
 .resolved-leak {
-  background-color: #69f0ae;
-  color: #4f5b62;
-  border: none;
+  background-color: $background-color;
+  border: 1px solid $blue;
 }
 
 .unresolved-leak {
-  background-color: #ff1744;
+  background-color: $blue;
   color: #f6f6f6;
   border: none;
 }

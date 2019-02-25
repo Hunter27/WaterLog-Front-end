@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { fetchAlerts } from '../actions/AlertsAction';
 import Loader from './Loader';
 import Error404 from './Error404';
+import Map from './Map';
 
 class SegmentLeak extends Component {
 	constructor(props) {
@@ -51,13 +52,15 @@ class SegmentLeak extends Component {
 			});
 	}
 
+	segmentMap = <div className="segment-map"><Map height="300px"/><hr /></div>;
+
 	render() {
 		const { error, loading, alerts } = this.props;
 		if ((!alerts || alerts.length === 0) && loading) {
 			return <Loader />;
 		}
 		if (error) {
-			return <Error404/>;
+			return <Error404 />;
 		}
 
 		const leakInfo = alerts.map((alert, index) => {
@@ -79,6 +82,7 @@ class SegmentLeak extends Component {
 							onClick={() => this.handleMapExpand()}
 						/>
 						<hr />
+						{this.state.mapExpanded ? this.segmentMap : null}
 						<Link to={`/alert/segment-history/${alert.entityId}`} text="component history" />
 						<p className="wastegeLabel">wastage</p>
 						<WastageSummary
@@ -86,21 +90,24 @@ class SegmentLeak extends Component {
 							litres={alert.typeLitres.toFixed(0)}
 							percent={(alert.typeLitres / alert.totalLitres * 100).toFixed(0)}
 						/>
-						<button onClick={()=>this.handleResolveClick(alert.entityId)}
+						<button
+							onClick={() => this.handleResolveClick(alert.entityId)}
 							disabled={this.state.leakResolved}
-							className={`resolve-button ${!this.state.leakResolved ? "unresolved-leak" : "resolved-leak"}`}
+							className={`resolve-button ${!this.state.leakResolved
+								? 'unresolved-leak'
+								: 'resolved-leak'}`}
 						>
-							{this.state.leakResolved ? "RESOLVED" : "RESOLVE"}
+							{this.state.leakResolved ? (
+								<img src="images/white_on_dark_loading.gif" alt="loading..." className="btn-loader" />
+							) : (
+								'LOG RESOLVED ISSUE'
+							)}
 						</button>
 						<small
 							className={this.state.leakResolved === false ? 'default-status' : 'leak-unresolved-status'}
 							id="resolved-status"
 						>
-							{this.state.leakResolved === false ? (
-								'the problem is fixed, click'
-							) : (
-								''
-							)}
+							{this.state.leakResolved === false ? 'the problem is fixed, click here' : ''}
 						</small>
 					</div>
 				);
