@@ -19,7 +19,6 @@ class SegmentLeak extends Component {
 		};
 	}
 	componentDidMount() {
-		this.props.fetchAlerts();
 	}
 
 	handleMapExpand() {
@@ -57,11 +56,11 @@ class SegmentLeak extends Component {
 			return <Loader />;
 		}
 		if (error) {
-			return <div>Error! {error.message}</div>;
+			return <Error404/>
 		}
-
-		const leakInfo = alerts.map((alert, index) => {
-			if (alert.entityId === parseInt(this.props.match.params.id)) {
+		const leaks = alerts.filter(a => a.entityId === parseInt(this.props.match.params.id));
+		const leakInfo = leaks.map((alert, index) => {
+			if (parseInt(alert.status) === 2) {
 				return (
 					<div key={index}>
 						<div className={`leakInfo ${alert.severity}`}>
@@ -105,10 +104,12 @@ class SegmentLeak extends Component {
 					</div>
 				);
 			}
-			else 
+			else
+				//Need to fetch from API
 				return <Error404 />
 		});
-		return <div>{leakInfo}</div>;
+		//TODO: Fix this map function -> why??
+		return <div>{leakInfo[0]}</div>;
 	}
 }
 

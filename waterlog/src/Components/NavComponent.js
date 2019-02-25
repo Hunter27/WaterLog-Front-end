@@ -6,18 +6,19 @@ import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-do
 
 import AlertComponent from '../Pages/Alert';
 import HomeComponent from '../Pages/Home';
-import MapComponent from '../Components/Map';
 import UsageComponent from '../Pages/Usage';
 import SegmentLeak from './SegmentLeak';
 import SegmentHistory from './SegmentHistory';
 import TankInformation from '../Pages/TankInformation';
 import FaultySensor from './FaultySensor';
+import MapPage from '../Pages/MapPage';
 
 class NavComponent extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			notifications: 0
+			notifications: 0,
+			mode: 0
 		};
 	}
 
@@ -27,8 +28,6 @@ class NavComponent extends Component {
 
 	render() {
 		const { total } = this.props;
-
-		
 		return (
 			<Router>
 				<div className="App">
@@ -60,7 +59,7 @@ class NavComponent extends Component {
 							<Route exact path="/alert/sensor/:id" render={(props) => <FaultySensor {...props} />} />
 							<Route exact path="/alert/tank/:id" render={(props) => <TankInformation {...props} />} />
 							<Route exact path="/alert/segment-history/:id" component={SegmentHistory} />
-							<Route exact path="/map" component={MapComponent} />
+							<Route exact path="/map" render={(props) => <MapPage {...props}/>} />
 							<Route exact path="/usage" component={UsageComponent} />
 							<Route exact path="*" component={HomeComponent} />
 						</Switch>
@@ -71,13 +70,13 @@ class NavComponent extends Component {
 	}
 }
 
-SegmentLeak.propTypes = {
+NavComponent.propTypes = {
 	fetchAlerts: PropTypes.func.isRequired,
 	total: PropTypes.number.isRequired
 };
 
 const mapStateToProps = (state) => ({
 	alerts: state.alerts.items,
-	total: state.alerts.total,
+	total: state.alerts.items.filter(item => item.status === 2).length
 });
 export default connect(mapStateToProps, { fetchAlerts })(NavComponent);

@@ -2,10 +2,9 @@ import React, { Component } from "react";
 import { Map, TileLayer, Polyline, CircleMarker, Popup } from "react-leaflet";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { fetchMapsData } from "./../actions/MapActions";
+import { fetchMapsData } from "../actions/MapActions";
 import Loader from "./Loader";
 import Error404 from "./Error404";
-require('../Stylesheets/_map.scss');
 
 const backgroundColor = "#253238";
 const errorColor = "#FF1744";
@@ -103,7 +102,7 @@ class MapComponent extends Component {
     this.state = {
       lat: -25.783,
       lng: 28.337,
-      simpleView: false,
+      simpleView: true,
       zoom: 17
     };
   }
@@ -128,8 +127,8 @@ class MapComponent extends Component {
     }
     const position = [this.state.lat, this.state.lng];
     return (
-      <div className="map-main-div">
-        <div className="map-tile-div">
+      <div className="map-main-div-fullscreen">
+        <div className="map-tile-div-fullscreen">
           <Map  attributionControl={false} center={position} zoom={this.state.zoom} zoomControl={false} style={{height:this.props.height}}>
             {(() => {
               if (this.state.simpleView)
@@ -139,24 +138,6 @@ class MapComponent extends Component {
             })()}
             {icons}
           </Map>
-        </div>
-        <div className="map-button-div-layer2 map-button-tab">
-          <button
-            className={`map-button ${this.state.simpleView ? "" : "active"}`}
-            onClick={() => {
-              this.setState({ simpleView: false });
-            }}
-          >
-            Simplified
-          </button>
-          <button
-            className={`map-button ${this.state.simpleView ? "active" : ""}`}
-            onClick={() => {
-              this.setState({ simpleView: true });
-            }}
-          >
-            Live Map
-          </button>
         </div>
       </div>
     );

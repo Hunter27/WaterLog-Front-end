@@ -1,7 +1,5 @@
 .leaflet-container {
-	height: 200px;
-	width: 90%;
-	margin: 0 auto;
+	height: 100%;
 }
 
 .leaflet-container {
@@ -56,4 +54,31 @@
 	top: 0;
 	left: 0;
 	position: relative;
+	height: 200px;
+	width: 90%;
+	margin: 0 auto;
+}
+
+.map_main-div-fullscreen{
+	height: 90vh;
+	position: relative;
+	text-align: center;
+	z-index: 0;
+}
+
+.map-tile-div-fullscreen{
+	height: 100vh;
+	width: 100%;
+	margin: 0 auto;
+	z-index: 1;
+	top: 0;
+	left: 0;
+}
+
+.map-button-div-layer2-fullscreen {
+	z-index: 2 !important;
+	bottom: 0;
+	width: 100%;
+	margin: 9dp auto;
+	position: absolute;
 }
