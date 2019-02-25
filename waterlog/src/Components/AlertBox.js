@@ -2,8 +2,8 @@ import React from 'react';
 
 function highStatus() {
 	return (
-		<svg width="15" height="15">
-			<rect x="0" y="0" width="15" height="15" style={{ fill: '#ff1744' }} />
+		<svg width="12" height="12">
+			<rect x="0" y="0" width="12" height="12" style={{ fill: '#ff1744' }} />
 			Sorry, your browser does not support inline SVG.
 		</svg>
 	);
@@ -11,8 +11,8 @@ function highStatus() {
 
 function mediumStatus(props) {
 	return (
-		<svg width="15" height="15">
-			<rect x="0" y="0" width="15" height="15" style={{ fill: '#ffab00'}} />
+		<svg width="12" height="12">
+			<rect x="0" y="0" width="12" height="12" style={{ fill: '#ffab00'}} />
 			Sorry, your browser does not support inline SVG.
 		</svg>
 	);
@@ -20,8 +20,8 @@ function mediumStatus(props) {
 
 function lowStatus(props) {
 	return (
-		<svg width="15" height="15">
-			<rect x="0" y="0" width="15" height="15" style={{ fill: '#ffea00' }} />
+		<svg width="12" height="12">
+			<rect x="0" y="0" width="12" height="12" style={{ fill: '#ffea00' }} />
 			Sorry, your browser does not support inline SVG.
 		</svg>
 	);

@@ -27,7 +27,6 @@ class NavComponent extends Component {
 
 	render() {
 		const { total } = this.props;
-
 		
 		return (
 			<Router>
