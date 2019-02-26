@@ -12,8 +12,8 @@ export const fetchAlertsBegin = () => ({
 export const fetchAlertsSuccess = alerts => ({
 	type: FETCH_ALERTS_SUCCESS,
 	payload: {
-		alerts,
-		total: alerts.length
+		alerts: alerts,
+		total: alerts.filter(alert => alert.status === 2).length
 
 	}
 });

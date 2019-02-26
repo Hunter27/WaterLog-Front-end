@@ -1,4 +1,8 @@
-import { LowStatusIcon, MediumStatusIcon, HighStatusIcon } from './Components/AlertBox';
+const alertImages = {
+	low: 'images/low_severity.png',
+	medium: 'images/medium_severity.png',
+	high: 'images/high_severity.png'
+}
 
 export const formatDate = (date) => {
 	var d = new Date(date),
@@ -15,11 +19,11 @@ export const formatDate = (date) => {
 export const getStatusIcon = (severity) => {
 	switch (severity.toLowerCase()) {
 		case 'high':
-			return HighStatusIcon();
+			return alertImages.high;
 		case 'low':
-			return LowStatusIcon();
+			return alertImages.low;
 		case 'medium':
-			return MediumStatusIcon();
+			return alertImages.medium;
 		default:
 			return null;
 	}

@@ -48,7 +48,7 @@ class AlertTableComponent extends Component {
                 </td>
                 <td>
                   {alert.entityName === "Segment"
-                    ? getStatusIcon(alert.severity)
+                    ? <img alt="severity indicator"src={getStatusIcon(alert.severity)} className="severity-indicator" />
                     : ""}
                 </td>
               </tr>
