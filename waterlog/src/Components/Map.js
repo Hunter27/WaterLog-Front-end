@@ -12,6 +12,8 @@ const backgroundColor = "#253238";
 const errorColor = "#56ccf7";
 const lighterColor = "#4F5B62";
 const cicrle_number = 7;
+var southWest = [-25.784510,28.334360];
+var northEast = [-25.782110,28.338325];
 
 
 function generateMapIcons({ segments, markers }, simpleView) {
@@ -134,7 +136,7 @@ class MapComponent extends Component {
       <div className="map-main-div">
         <div className="map-tile-div">
 			
-     <Map center={position} maxBounds={[[-25.784510,28.334360],[-25.782110,28.338325]]} zoom={this.state.zoom} zoomControl={false} style={{height:this.props.height}}>
+     <Map center={position} maxBounds={[southWest,northEast]} zoom={this.state.zoom} zoomControl={false} style={{height:this.props.height}}>
 			{(() => {
               if (this.state.simpleView)
                 return (
