@@ -44,9 +44,19 @@ class FaultySensor extends Component {
 		});
 	}
 
-	segmentMap = <div className="segment-map"><Map height="400px"/><hr /></div>;
+	segmentMap = (
+		<div className="segment-map">
+			<Map height="400px" />
+			<hr />
+		</div>
+	);
 
-	resolvedDate = <div><h3>(fixed on {formatDate(Date.now())})</h3><p></p></div>
+	dateResolved =(date) => (
+		<div className="date-resolved">
+			<h4>(fixed on {formatDate(Date.now())})</h4>
+			<small>took {date - Date.now()} days</small>
+		</div>
+	);
 
 	render() {
 		const { error, loading, alerts } = this.props;
@@ -54,54 +64,54 @@ class FaultySensor extends Component {
 			return <Loader />;
 		}
 		if (error) {
-			return <Error404/>;
+			return <Error404 />;
 		}
 
-		const sensorInfo = alerts.map((alert, index) => {
-			if (alert.entityId === parseInt(this.props.match.params.id)) {
-				return (
-					<div key={index}>
-						<div>
-							<h2>{`${alert.entityName} ${alert.entityId} ${alert.entityType}`}</h2>
-							<p id="water-flow">
-								{0}% /{alert.typeLitres.toFixed(1)}/hr water flow
-							</p>
-							<small>(surrounding sensors have 100% waterflow)</small>
-						</div>
-						<img
-							id="map-toggle"
-							src={this.state.mapExpanded === false ? 'images/map_expand.png' : 'images/map_close.png'}
-							alt="segment-map"
-							onClick={() => this.handleMapExpand()}
-						/>
-						<hr />
-						{this.state.mapExpanded ? this.segmentMap : null}
-						{alert.status == 1 ? this.resolvedDate : null}
-						<SensorDiagram sensorId={alert.entityId} />
-						{ alert.status == 1 ?
-						<div className="resolve">
-							<button
-								onClick={() => this.handleResolveClick(alert.entityId)}
-								disabled={this.state.leakResolved}
-								className={`resolve-button ${!this.state.leakResolved
-									? 'unresolved-leak'
-									: 'resolved-leak'}`}
-							>
-								{this.state.leakResolved ? 'RESOLVED' : 'LOG RESOLVED ISSUE'}
-							</button>
-							<small
-								className={
-									this.state.leakResolved === false ? 'default-status' : 'leak-unresolved-status'
-								}
-								id="resolved-status"
-							>
-								{this.state.leakResolved === false ? 'the problem is fixed, click here' : ''}
-							</small>
-						</div> : null }
+		const alert = alerts.filter(
+			(alert) =>
+				alert.entityId === parseInt(this.props.match.params.id) && alert.date == this.props.match.params.date
+		)[0];
+
+		const sensorInfo = (
+			<div>
+				<div>
+					<h2 className={alert.status == 1 ? alert.severity.toLowerCase() : 'leak-resolved'}>{`${alert.entityName} ${alert.entityId} ${alert.entityType}`}</h2>
+					<p id="water-flow">
+						{0}% /{alert.typeLitres.toFixed(1)}/hr water flow
+					</p>
+					<small>(surrounding sensors have 100% waterflow)</small>
+				</div>
+				<img
+					id="map-toggle"
+					src={this.state.mapExpanded === false ? 'images/map_expand.png' : 'images/map_close.png'}
+					alt="segment-map"
+					onClick={() => this.handleMapExpand()}
+				/>
+				<hr />
+				{this.state.mapExpanded ? this.segmentMap : null}
+				{alert.status == 2 ? this.dateResolved(alert.date) : null}
+				<SensorDiagram sensorId={alert.entityId} />
+				{alert.status == 2 ? (
+					<div className="resolve">
+						<button
+							onClick={() => this.handleResolveClick(alert.entityId)}
+							disabled={this.state.leakResolved}
+							className={`resolve-button ${!this.state.leakResolved
+								? 'unresolved-leak'
+								: 'resolved-leak'}`}
+						>
+							LOG RESOLVED ISSUE
+						</button>
+						<small
+							className={this.state.leakResolved === false ? 'default-status' : 'leak-unresolved-status'}
+							id="resolved-status"
+						>
+							{this.state.leakResolved === false ? 'the problem is fixed, click here' : ''}
+						</small>
 					</div>
-				);
-			}
-		});
+				) : null}
+			</div>
+		);
 
 		return <div>{sensorInfo}</div>;
 	}

@@ -1,5 +1,5 @@
 #map-toggle {
-    width: 50px;
+    width: 75px;
 }
 
 .leakInfo {
@@ -14,6 +14,11 @@
 }
 .high {
     color: #FF1744;
+}
+
+
+.leak-resolved {
+    color: #69f0ae;
 }
 
 .leakInfo :first-child {
@@ -59,10 +64,6 @@
     font-size: 11pt;
 }
 
-leak-resolved {
-    color: #69f0ae;
-}
-
 .logged-issue-text {
     color: $blue;
     text-transform: uppercase;
@@ -77,4 +78,17 @@ leak-resolved {
 .segment-map {
     height: 400px;
     margin: 25px 0;
+}
+
+.date-resolved {
+    h4 {
+        color: $turquoise-blue;
+        margin: 15px 0 0 0;
+        font-weight: normal;
+    }
+
+    small {
+        margin: 0;
+        color: $trout;
+    }
 }

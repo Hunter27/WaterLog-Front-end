@@ -70,17 +70,12 @@ class SegmentLeak extends Component {
 		const alert = alerts.filter((alert) => alert.entityId === parseInt(this.props.match.params.id) 
 			&& alert.date == this.props.match.params.date )[0];
 		
-		console.log('alert.status', alert.status)
-		console.log('styles', `leakInfo ${parseInt(alert.status) == 2 ? alert.severity : 'leak-resolved'}`)
-		console.log('severity', alert.severity)
-
-
 		const leakInfo = (
 			<div>
 				<div className={`leakInfo ${parseInt(alert.status) == 2 ? alert.severity : 'leak-resolved'}`}>
 					<h2>{`${alert.entityName} ${alert.entityId} ${alert.entityType}`}</h2>
 					<p>({alert.severity})</p>
-					<h1>R {alert.cost.toFixed(2)}</h1>
+					<h1>R {alert.cost.toFixed(2)}</h1> 
 					<p>is being lost per hour!</p>
 					<p>Loosing {alert.litresPerHour.toFixed(0)}&#x2113; per hour</p>
 					<p>no leak would be 0&#x2113; per hour</p>
