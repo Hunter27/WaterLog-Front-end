@@ -84,7 +84,7 @@ function formatMapData(data) {
     segments = data.segments.map(seg => {
       if (
         JSON.stringify(Object.keys(seg)) !==
-        JSON.stringify(["id", "senseIDOut", "senseIDIn"])
+        JSON.stringify(["id", "senseIDOut", "senseIDIn", "faultCount"])
       ) { return []; }
       const leak = todaysLeaks.find(leak => leak.segmentsId === seg.id);
       if (leak) {
