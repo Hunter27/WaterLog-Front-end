@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Link from './Link';
 import SensorDiagram from './SensorDiagram';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -7,6 +6,7 @@ import { fetchAlerts } from '../actions/AlertsAction';
 import Loader from './Loader';
 import Error404 from './Error404';
 import Map from './Map';
+import { formatDate } from './../utils';
 
 class FaultySensor extends Component {
 	constructor() {
@@ -46,6 +46,8 @@ class FaultySensor extends Component {
 
 	segmentMap = <div className="segment-map"><Map height="400px"/><hr /></div>;
 
+	resolvedDate = <div><h3>(fixed on {formatDate(Date.now())})</h3><p></p></div>
+
 	render() {
 		const { error, loading, alerts } = this.props;
 		if ((!alerts || alerts.length === 0) && loading) {
@@ -62,7 +64,7 @@ class FaultySensor extends Component {
 						<div>
 							<h2>{`${alert.entityName} ${alert.entityId} ${alert.entityType}`}</h2>
 							<p id="water-flow">
-								{0}/{alert.typeLitres.toFixed(1)}/hr water flow
+								{0}% /{alert.typeLitres.toFixed(1)}/hr water flow
 							</p>
 							<small>(surrounding sensors have 100% waterflow)</small>
 						</div>
@@ -74,8 +76,9 @@ class FaultySensor extends Component {
 						/>
 						<hr />
 						{this.state.mapExpanded ? this.segmentMap : null}
-						<Link to={`/alert/segment-history/${alert.entityId}`} text="component history" />
+						{alert.status == 1 ? this.resolvedDate : null}
 						<SensorDiagram sensorId={alert.entityId} />
+						{ alert.status == 1 ?
 						<div className="resolve">
 							<button
 								onClick={() => this.handleResolveClick(alert.entityId)}
@@ -94,7 +97,7 @@ class FaultySensor extends Component {
 							>
 								{this.state.leakResolved === false ? 'the problem is fixed, click here' : ''}
 							</small>
-						</div>
+						</div> : null }
 					</div>
 				);
 			}

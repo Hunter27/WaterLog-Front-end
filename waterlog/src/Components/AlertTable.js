@@ -36,7 +36,7 @@ class AlertTableComponent extends Component {
                 onClick={() =>
                   (window.location.href = `alert/${alert.entityName}/${
                     alert.entityId
-                  }`)
+                  }/${alert.date}`)
                 }
               >
                 <td className="event-date">{formatDate(alert.date)}</td>

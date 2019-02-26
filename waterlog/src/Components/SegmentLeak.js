@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Link from './Link';
 import WastageSummary from './WastageSummary';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -52,7 +51,12 @@ class SegmentLeak extends Component {
 			});
 	}
 
-	segmentMap = <div className="segment-map"><Map height="300px"/><hr /></div>;
+	segmentMap = (
+		<div className="segment-map">
+			<Map height="300px" />
+			<hr />
+		</div>
+	);
 
 	render() {
 		const { error, loading, alerts } = this.props;
@@ -63,56 +67,61 @@ class SegmentLeak extends Component {
 			return <Error404 />;
 		}
 
-		const leakInfo = alerts.map((alert, index) => {
-			if (alert.entityId === parseInt(this.props.match.params.id)) {
-				return (
-					<div key={index}>
-						<div className={`leakInfo ${alert.severity}`}>
-							<h2>{`${alert.entityName} ${alert.entityId} ${alert.entityType}`}</h2>
-							<p>({alert.severity})</p>
-							<h1>R {alert.cost.toFixed(2)}</h1>
-							<p>is being lost per hour!</p>
-							<p>Loosing {alert.litresPerHour.toFixed(0)}&#x2113; per hour</p>
-							<p>no leak would be 0&#x2113; per hour</p>
-						</div>
-						<img
-							id="map-toggle"
-							src={this.state.mapExpanded === false ? 'images/map_expand.png' : 'images/map_close.png'}
-							alt="segment-map"
-							onClick={() => this.handleMapExpand()}
-						/>
-						<hr />
-						{this.state.mapExpanded ? this.segmentMap : null}
-						<Link to={`/alert/segment-history/${alert.entityId}`} text="component history" />
-						<p className="wastegeLabel">wastage</p>
-						<WastageSummary
-							severity={alert.severity}
-							litres={alert.typeLitres.toFixed(0)}
-							percent={(alert.typeLitres / alert.totalLitres * 100).toFixed(0)}
-						/>
-						<button
-							onClick={() => this.handleResolveClick(alert.entityId)}
-							disabled={this.state.leakResolved}
-							className={`resolve-button ${!this.state.leakResolved
-								? 'unresolved-leak'
-								: 'resolved-leak'}`}
-						>
-							{this.state.leakResolved ? (
-								<img src="images/white_on_dark_loading.gif" alt="loading..." className="btn-loader" />
-							) : (
-								'LOG RESOLVED ISSUE'
-							)}
-						</button>
-						<small
-							className={this.state.leakResolved === false ? 'default-status' : 'leak-unresolved-status'}
-							id="resolved-status"
-						>
-							{this.state.leakResolved === false ? 'the problem is fixed, click here' : ''}
-						</small>
-					</div>
-				);
-			}
-		});
+		const alert = alerts.filter((alert) => alert.entityId === parseInt(this.props.match.params.id) 
+			&& alert.date == this.props.match.params.date )[0];
+		
+		console.log('alert.status', alert.status)
+		console.log('styles', `leakInfo ${parseInt(alert.status) == 2 ? alert.severity : 'leak-resolved'}`)
+		console.log('severity', alert.severity)
+
+
+		const leakInfo = (
+			<div>
+				<div className={`leakInfo ${parseInt(alert.status) == 2 ? alert.severity : 'leak-resolved'}`}>
+					<h2>{`${alert.entityName} ${alert.entityId} ${alert.entityType}`}</h2>
+					<p>({alert.severity})</p>
+					<h1>R {alert.cost.toFixed(2)}</h1>
+					<p>is being lost per hour!</p>
+					<p>Loosing {alert.litresPerHour.toFixed(0)}&#x2113; per hour</p>
+					<p>no leak would be 0&#x2113; per hour</p>
+				</div>
+				<img
+					id="map-toggle"
+					src={this.state.mapExpanded === false ? 'images/map_expand.png' : 'images/map_close.png'}
+					alt="segment-map"
+					onClick={() => this.handleMapExpand()}
+				/>
+				<hr />
+				{this.state.mapExpanded ? this.segmentMap : null}
+				<p className="wastegeLabel">wastage</p>
+				<WastageSummary
+					severity={alert.severity}
+					litres={alert.typeLitres.toFixed(0)}
+					percent={(alert.typeLitres / alert.totalLitres * 100).toFixed(0)}
+				/>
+				{!this.state.leakResolved ? (
+					<button
+						onClick={() => this.handleResolveClick(alert.entityId)}
+						disabled={this.state.leakResolved}
+						className={`resolve-button ${!this.state.leakResolved ? 'unresolved-leak' : 'resolved-leak'}`}
+					>
+						{this.state.leakResolved ? (
+							<img src="images/white_on_dark_loading.gif" alt="loading..." className="btn-loader" />
+						) : (
+							'LOG RESOLVED ISSUE'
+						)}
+					</button>
+				) : (
+					<p className="logged-issue-text">issue was logged</p>
+				)}
+				<small
+					className={this.state.leakResolved === false ? 'default-status' : 'leak-unresolved-status'}
+					id="resolved-status"
+				>
+					{this.state.leakResolved === false ? 'the problem is fixed, click here' : ''}
+				</small>
+			</div>
+		);
 		return <div>{leakInfo}</div>;
 	}
 }

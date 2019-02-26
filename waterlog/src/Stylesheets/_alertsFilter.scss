@@ -1,0 +1,24 @@
+.filter-contents {
+    background-color: $wild-sand;
+    margin: 20px;
+    padding: 10px;
+    color: $trout;
+    border-radius: 5px;
+    
+    li, ul {
+        list-style-type: none;
+    }
+    
+    hr {
+        margin: 5px 0;
+    }
+    
+    ul {
+        margin: 0;
+    }
+}
+
+input[type=checkbox] {
+    color: $blue;
+    background-color: $blue;
+}

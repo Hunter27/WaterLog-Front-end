@@ -59,6 +59,15 @@
     font-size: 11pt;
 }
 
+leak-resolved {
+    color: #69f0ae;
+}
+
+.logged-issue-text {
+    color: $blue;
+    text-transform: uppercase;
+}
+
 .btn-loader {
     width: 20px;
     height: 20px;

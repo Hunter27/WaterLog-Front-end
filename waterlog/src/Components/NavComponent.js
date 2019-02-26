@@ -55,10 +55,9 @@ class NavComponent extends Component {
 						<Switch>
 							<Route exact path="/" component={HomeComponent} />
 							<Route exact path="/alert" component={AlertComponent} />
-							<Route exact path="/alert/segment/:id" render={(props) => <SegmentLeak {...props} />} />
-							<Route exact path="/alert/sensor/:id" render={(props) => <FaultySensor {...props} />} />
+							<Route exact path="/alert/segment/:id/:date" render={(props) => <SegmentLeak {...props} />} />
+							<Route exact path="/alert/sensor/:id/:date" render={(props) => <FaultySensor {...props} />} />
 							<Route exact path="/alert/tank/:id" render={(props) => <TankInformation {...props} />} />
-							<Route exact path="/alert/segment-history/:id" component={SegmentHistory} />
 							<Route exact path="/map" component={MapComponent} />
 							<Route exact path="/usage" component={UsageComponent} />
 							<Route exact path="*" component={HomeComponent} />
