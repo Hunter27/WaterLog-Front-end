@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-import { Map, TileLayer, Polyline, CircleMarker, Popup } from "react-leaflet";
+import { Map, TileLayer, Polyline, CircleMarker, Popup  } from "react-leaflet";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { fetchMapsData } from "./../actions/MapActions";
 import Loader from "./Loader";
 import Error404 from "./Error404";
+
+
 
 const backgroundColor = "#253238";
 const errorColor = "#56ccf7";
@@ -102,8 +104,8 @@ class MapComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      lat: -25.783,
-      lng: 28.337,
+      lat: -25.783425,
+			lng: 28.336046,
       simpleView: false,
       zoom: 17
     };
@@ -131,8 +133,9 @@ class MapComponent extends Component {
     return (
       <div className="map-main-div">
         <div className="map-tile-div">
-          <Map center={position} zoom={this.state.zoom} zoomControl={false} style={{height:this.props.height}}>
-            {(() => {
+			
+     <Map center={position} maxBounds={[[-25.784510,28.334360],[-25.782110,28.338325]]} zoom={this.state.zoom} zoomControl={false} style={{height:this.props.height}}>
+			{(() => {
               if (this.state.simpleView)
                 return (
                   <TileLayer url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png" />
