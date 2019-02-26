@@ -7,8 +7,10 @@ import Loader from "./Loader";
 import Error404 from "./Error404";
 
 const backgroundColor = "#253238";
-const errorColor = "#FF1744";
+const errorColor = "#56ccf7";
 const lighterColor = "#4F5B62";
+const cicrle_number = 7;
+
 
 function generateMapIcons({ segments, markers }, simpleView) {
   const defaultColor = simpleView ? backgroundColor : lighterColor;
@@ -51,7 +53,7 @@ function generateMapIcons({ segments, markers }, simpleView) {
             [sensorOut.lat, sensorOut.lon]
           ]}
           color={segmentColor}
-          weight={6}
+          weight={7}
         >
           <Popup>
             <span>
@@ -61,7 +63,7 @@ function generateMapIcons({ segments, markers }, simpleView) {
         </Polyline>
         <CircleMarker
           center={[sensorIn.lat, sensorIn.lon]}
-          radius={5}
+          radius={cicrle_number}
           opacity={0.7}
           key={sensorIn.id}
           color={sensorInColor}
@@ -76,7 +78,7 @@ function generateMapIcons({ segments, markers }, simpleView) {
         <CircleMarker
           fill={true}
           center={[sensorOut.lat, sensorOut.lon]}
-          radius={5}
+          radius={cicrle_number}
           opacity={0.7}
           key={sensorOut.id}
           color={sensorOutColor}
