@@ -11,24 +11,12 @@ import {generateMapIcons, levelToIntensity} from "./../utils";
 
 const southWest = [-25.784510, 28.334360];
 const northEast = [-25.782110, 28.338325];
+const maxIntensity = 5;
 
-
-function levelToIntensity(level, maxIntensity = 5) {
-  switch (level.toLowerCase()) {
-    case 'high':
-      return maxIntensity;
-    case 'medium':
-      return Math.ceil(maxIntensity / 2);
-    case 'low':
-      return 1;
-    default:
-      return 0;
-  }
-}
 
 function getHeatMapData({ monitorsCoordinates, segmentCoordinates }) {
-  let monitorMapData = monitorsCoordinates.map(mon => [mon.lat, mon.long, levelToIntensity(mon.faultLevel)]);
-  let segmentMapData = segmentCoordinates.map(seg => [seg.lat, seg.long, levelToIntensity(seg.faultLevel)]);
+  let monitorMapData = monitorsCoordinates.map(mon => [mon.lat, mon.long, levelToIntensity(mon.faultLevel, maxIntensity)]);
+  let segmentMapData = segmentCoordinates.map(seg => [seg.lat, seg.long, levelToIntensity(seg.faultLevel, maxIntensity)]);
 
   let heatMapData = monitorMapData.concat(segmentMapData);
   return heatMapData;

@@ -45,7 +45,6 @@ async function generateSegmentsCoordinates(monitors,dispatch){
         const newCoordinatesLongitude = Math.abs( sensor1.long - sensor2.long )/2 + toAdd(sensor1.long,sensor2.long);
         const newCoordinatesLatitude = Math.abs( sensor1.lat - sensor2.lat )/2 + toAdd(sensor2.lat,sensor1.lat);
 
-        console.log(newCoordinatesLatitude,newCoordinatesLongitude, [sensor1.lat,sensor2.lat], [sensor1.long,sensor2.long])
         let heatIntensity = 'Clear';
         if(seg.faultCount >= 5){
           heatIntensity = 'High';
@@ -56,7 +55,7 @@ async function generateSegmentsCoordinates(monitors,dispatch){
         }
         return {"long":newCoordinatesLongitude,"lat":newCoordinatesLatitude,"faultLevel":heatIntensity};
       }
-      return;
+      return {};
     });
     return data;
 }
