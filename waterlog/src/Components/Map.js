@@ -135,8 +135,10 @@ class MapComponent extends Component {
     return (
       <div className="map-main-div">
         <div className="map-tile-div">
-			
-     <Map center={position} maxBounds={[southWest,northEast]} zoom={this.state.zoom} zoomControl={false} style={{height:this.props.height}}>
+    <Map center={position} maxBounds={[southWest,northEast]}
+    zoom={this.state.zoom} zoomControl={false}
+    style={{height:this.props.height}}
+    >
 			{(() => {
               if (this.state.simpleView)
                 return (
