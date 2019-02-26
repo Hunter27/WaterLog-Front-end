@@ -50,7 +50,8 @@ const DailyCostsReports = (props) => {
         ticks: {
           major: {
             fontStyle: 'bold',
-            fontColor: 'rgba(255,0,0,1)'
+            fontColor: 'rgba(255,0,0,1)',
+            maxTicksLimit: 24
           }
         },
         gridLines: {

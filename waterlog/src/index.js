@@ -14,9 +14,7 @@ const renderApp = () =>
             <App />
         </Provider>,
         document.getElementById('root')
-    )
-if (process.env.NODE_ENV !== 'production' && module.hot) {
-    module.hot.accept('./App.js', renderApp)
-}
+    ) 
+    
 renderApp()
 serviceWorker.register(); 
