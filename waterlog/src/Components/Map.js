@@ -3,8 +3,10 @@ import { Map, TileLayer, Polyline, CircleMarker, Popup } from "react-leaflet";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { fetchMapsData } from "./../actions/MapActions";
+import { fetchHeatMapsData } from "./../actions/HeatMapActions";
 import Loader from "./Loader";
 import Error404 from "./Error404";
+import HeatmapLayer from "react-leaflet-heatmap-layer";
 
 const backgroundColor = "#253238";
 const errorColor = "#FF1744";
@@ -92,9 +94,33 @@ function generateMapIcons({ segments, markers }, simpleView) {
     );
   });
 }
+
+const maxIntensity = 5;
+
+function levelToIntensity(level) {
+  switch (level.toLowerCase()) {
+    case 'high':
+      return maxIntensity;
+    case 'medium':
+      return Math.ceil(maxIntensity / 2);
+    case 'low':
+      return 1;
+    default:
+      return 0;
+  }
+}
+
+function getHeatMapData({ monitorsCoordinates, segmentCoordinates }) {
+  let monitorMapData = monitorsCoordinates.map(mon => [mon.lat, mon.long, levelToIntensity(mon.faultLevel)]);
+  let segmentMapData = segmentCoordinates.map(seg => [seg.lat, seg.long, levelToIntensity(seg.faultLevel)]);
+
+  let heatMapData = monitorMapData.concat(segmentMapData);
+  return heatMapData;
+}
 class MapComponent extends Component {
   componentDidMount() {
     this.props.fetchMapsData();
+    this.props.fetchHeatMapsData();
   }
 
   constructor(props) {
@@ -108,20 +134,31 @@ class MapComponent extends Component {
   }
 
   render() {
-    const { error, loading, mapData } = this.props;
-    if (error) {
+    const { error,
+      loading,
+      mapData,
+      heatError,
+      heatLoading,
+      heatMapData
+    } = this.props;
+    if (error || heatError) {
       return <Error404 />;
     }
-    if (loading) {
+    if (loading || heatLoading) {
       return (
         <div>
           <Loader />
         </div>
       );
     }
-    let icons;
+    let icons, heatPoints;
     if (mapData) {
       icons = generateMapIcons(mapData, this.state.simpleView);
+    } else {
+      return <Error404 />;
+    }
+    if (heatMapData){
+      heatPoints = getHeatMapData(this.props.heatMapData);
     } else {
       return <Error404 />;
     }
@@ -129,11 +166,21 @@ class MapComponent extends Component {
     return (
       <div className="map-main-div">
         <div className="map-tile-div">
-          <Map center={position} zoom={this.state.zoom} zoomControl={false} style={{height:this.props.height}}>
+          <Map center={position} zoom={this.state.zoom} zoomControl={false} maxZoom={18} >
+            <HeatmapLayer
+              points={heatPoints}
+              longitudeExtractor={m => m[1]}
+              latitudeExtractor={m => m[0]}
+              intensityExtractor={m => parseFloat(m[2])}
+              gradient={{ 0.2: 'green', 0.4: 'yellow', 0.8: 'red' }}
+              radius={20}
+              blur={10}
+              max={maxIntensity} />
             {(() => {
               if (this.state.simpleView)
-                return (
-                  <TileLayer url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png" />
+                return (<div>
+                  <TileLayer url="http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png" />
+                </div>
                 );
             })()}
             {icons}
@@ -170,10 +217,16 @@ MapComponent.propTypes = {
 const mapStateToProps = state => ({
   mapData: state.maps.items,
   loading: state.maps.loading,
-  error: state.maps.error
+  error: state.maps.error,
+  heatMapData: state.heatMap.items,
+  heatLoading: state.heatMap.loading,
+  heatError: state.heatMap.error
 });
 
 export default connect(
   mapStateToProps,
-  { fetchMapsData }
+  {
+    fetchMapsData,
+    fetchHeatMapsData
+  }
 )(MapComponent);
