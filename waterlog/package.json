@@ -11,7 +11,6 @@
     "chart.js": "^2.7.3",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.8.0",
-    "jsdom": "^13.2.0",
     "leaflet": "^1.4.0",
     "node-sass": "^4.11.0",
     "prop-types": "^15.6.2",
@@ -40,9 +39,6 @@
     "build": "react-app-rewired build && sw-precache --config=sw-precache-config.js",
     "test": "cross-env CI=true react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": [
     ">0.2%",
