@@ -1,14 +1,20 @@
 import React, { Component } from "react";
-import { Map, TileLayer, Polyline, CircleMarker, Popup } from "react-leaflet";
+import { Map, TileLayer, Polyline, CircleMarker, Popup  } from "react-leaflet";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { fetchMapsData } from "./../actions/MapActions";
 import Loader from "./Loader";
 import Error404 from "./Error404";
 
+
+
 const backgroundColor = "#253238";
-const errorColor = "#FF1744";
+const errorColor = "#56ccf7";
 const lighterColor = "#4F5B62";
+const cicrle_number = 7;
+var southWest = [-25.784510,28.334360];
+var northEast = [-25.782110,28.338325];
+
 
 function generateMapIcons({ segments, markers }, simpleView) {
   const defaultColor = simpleView ? backgroundColor : lighterColor;
@@ -51,7 +57,7 @@ function generateMapIcons({ segments, markers }, simpleView) {
             [sensorOut.lat, sensorOut.lon]
           ]}
           color={segmentColor}
-          weight={6}
+          weight={7}
         >
           <Popup>
             <span>
@@ -61,7 +67,7 @@ function generateMapIcons({ segments, markers }, simpleView) {
         </Polyline>
         <CircleMarker
           center={[sensorIn.lat, sensorIn.lon]}
-          radius={5}
+          radius={cicrle_number}
           opacity={0.7}
           key={sensorIn.id}
           color={sensorInColor}
@@ -76,7 +82,7 @@ function generateMapIcons({ segments, markers }, simpleView) {
         <CircleMarker
           fill={true}
           center={[sensorOut.lat, sensorOut.lon]}
-          radius={5}
+          radius={cicrle_number}
           opacity={0.7}
           key={sensorOut.id}
           color={sensorOutColor}
@@ -100,8 +106,8 @@ class MapComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      lat: -25.783,
-      lng: 28.337,
+      lat: -25.783425,
+			lng: 28.336046,
       simpleView: false,
       zoom: 17
     };
@@ -129,8 +135,11 @@ class MapComponent extends Component {
     return (
       <div className="map-main-div">
         <div className="map-tile-div">
-          <Map center={position} zoom={this.state.zoom} zoomControl={false} style={{height:this.props.height}}>
-            {(() => {
+    <Map center={position} maxBounds={[southWest,northEast]}
+    zoom={this.state.zoom} zoomControl={false}
+    style={{height:this.props.height}}
+    >
+			{(() => {
               if (this.state.simpleView)
                 return (
                   <TileLayer url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png" />
