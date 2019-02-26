@@ -1,14 +1,15 @@
-import {
-  LowStatusIcon,
-  MediumStatusIcon,
-  HighStatusIcon
-} from './Components/AlertBox';
+import React from "react";
 import {
   Polyline,
   CircleMarker,
   Popup
 } from "react-leaflet";
-import React from "react";
+
+const alertImages = {
+	low: 'images/low_severity.png',
+	medium: 'images/medium_severity.png',
+	high: 'images/high_severity.png'
+}
 
 export const formatDate = (date) => {
   var d = new Date(date),
@@ -23,16 +24,16 @@ export const formatDate = (date) => {
 }
 
 export const getStatusIcon = (severity) => {
-  switch (severity.toLowerCase()) {
-    case 'high':
-      return HighStatusIcon();
-    case 'low':
-      return LowStatusIcon();
-    case 'medium':
-      return MediumStatusIcon();
-    default:
-      return null;
-  }
+	switch (severity.toLowerCase()) {
+		case 'high':
+			return alertImages.high;
+		case 'low':
+			return alertImages.low;
+		case 'medium':
+			return alertImages.medium;
+		default:
+			return null;
+	}
 };
 
 export const getSensorLayout = (id) => {
