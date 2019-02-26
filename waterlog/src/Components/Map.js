@@ -7,12 +7,12 @@ import { fetchHeatMapsData } from "./../actions/HeatMapActions";
 import Loader from "./Loader";
 import Error404 from "./Error404";
 import HeatmapLayer from "react-leaflet-heatmap-layer";
-import {generateMapIcons, levelToIntensity} from "./../utils";
+import { generateMapIcons, levelToIntensity } from "./../utils";
 
 const southWest = [-25.784510, 28.334360];
 const northEast = [-25.782110, 28.338325];
 const maxIntensity = 5;
-
+const centerPosition = [-25.783425, 28.336046];
 
 function getHeatMapData({ monitorsCoordinates, segmentCoordinates }) {
   let monitorMapData = monitorsCoordinates.map(mon => [mon.lat, mon.long, levelToIntensity(mon.faultLevel, maxIntensity)]);
@@ -30,15 +30,14 @@ class MapComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      lat: -25.783425,
-      lng: 28.336046,
       simpleView: false,
       zoom: 17
     };
   }
 
   render() {
-    const { error,
+    const {
+      error,
       loading,
       mapData,
       heatError,
@@ -66,12 +65,11 @@ class MapComponent extends Component {
     } else {
       return <Error404 />;
     }
-    const position = [this.state.lat, this.state.lng];
     return (
       <div className="map-main-div">
         <div className="map-tile-div">
           <Map
-            center={position}
+            center={centerPosition}
             maxBounds={[southWest, northEast]}
             zoom={this.state.zoom}
             zoomControl={false}
