@@ -20,16 +20,28 @@
 	padding: 0 10px;
 }
 
-.map-button-div-layer2 {
-	z-index: 2;
-	bottom: 0;
-	width: 100%;
-	margin: 9dp auto;
+.map-icon-button-div-layer2-fullscreen {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 700px;
   position: absolute;
 }
 
+.map-button-div-layer2 {
+  width: 100%;
+  z-index: inherit;
+	margin: 9px auto;
+  position: absolute;
+}
+
+.map-icon-div-layer2-fullscreen {
+	width: 100%;
+  margin: 40px 10px;
+  z-index: 2;
+  position: fixed;
+}
 .map-button-tab {
-	overflow: hidden;
+  overflow: hidden;
 	button {
 		transition: 0.3s;
 		cursor: pointer;
@@ -42,7 +54,8 @@
 	button.active {
 		background-color: #93a4ae;
 		color: #f6f6f6;
-	}
+  }
+  
 }
 
 .map-main-div {
@@ -59,7 +72,7 @@
 
 .map_main-div-fullscreen{
 	position: relative;
-	text-align: center;
+	text-align: left;
 	z-index: 0;
 }
 
@@ -75,6 +88,12 @@
 	z-index: 2;
 	top: 0;
 	width: 100%;
-	margin: 9dp auto;
+	margin: 10px 5px;
 	position: absolute;
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+  margin: 5px 5px;
 }
