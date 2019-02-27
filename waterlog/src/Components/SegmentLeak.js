@@ -79,7 +79,6 @@ class SegmentLeak extends Component {
 							onClick={() => this.handleMapExpand()}
 						/>
 						<hr />
-						<Link to={`/alert/segment-history/${alert.entityId}`} text="component history" />
 						<p className="wastegeLabel">wastage</p>
 						<WastageSummary
 							severity={alert.severity}
@@ -90,7 +89,7 @@ class SegmentLeak extends Component {
 							disabled={this.state.leakResolved}
 							className={`resolve-button ${!this.state.leakResolved ? "unresolved-leak" : "resolved-leak"}`}
 						>
-							{this.state.leakResolved ? "RESOLVED" : "RESOLVE"}
+							{this.state.leakResolved ? "RESOLVED" : "LOG RESOLVED ISSUE"}
 						</button>
 						<small
 							className={this.state.leakResolved === false ? 'default-status' : 'leak-unresolved-status'}

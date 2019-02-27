@@ -31,7 +31,7 @@ class BtnResolve extends Component {
 				onClick={() => this.resolve(leaksResolves)}
 				className="BtnResolve"
 			>
-				Resolve
+				RESOLVE
 			</button>
 		</div>
     );
