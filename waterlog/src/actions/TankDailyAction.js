@@ -16,9 +16,9 @@ export const fetchTankGraphFailure = (error) => ({
   loading: false
 });
 
-export const fetchTankGraphDaily = () => (dispatch) => {
+export const fetchTankGraphDaily = (id) => (dispatch) => {
   dispatch(fetchTankGraphBegin())
-    fetch(process.env.REACT_APP_API_URL+'/api/TankReadings/graph/${id}') 
+    fetch(process.env.REACT_APP_API_URL+`/api/TankReadings/graph/${id}`) 
       .then(handleErrors)
       .then(res => res.json())
       .then(dailytankgraph => {
@@ -28,5 +28,4 @@ export const fetchTankGraphDaily = () => (dispatch) => {
             dispatch(fetchTankGraphFailure(error));
         });
 };
- 
  

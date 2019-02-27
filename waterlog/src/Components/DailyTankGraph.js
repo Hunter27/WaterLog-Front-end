@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import TankGraph from "./TankGraph";
-
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Loader from "./Loader";
 import Error404 from "./Error404";
+import { fetchTankGraphDaily } from '../actions/TankDailyAction';
 
 class DailyTankGraph extends Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class DailyTankGraph extends Component {
   }
   componentDidMount() {
     this.openGraph("day");
-    this.props.fetchTankGraphDaily();
+    this.props.fetchTankGraphDaily(this.props.id);
     ;
   }
 
@@ -31,10 +31,8 @@ class DailyTankGraph extends Component {
       return <TankGraph props={this.props.dailytankgraph} />;
     }
   }
-
   render() {
-    const { error, loading,dailytankgraph  } = this.props;
-
+    const { error, loading, dailytankgraph } = this.props;
     if (error) {
       return <Error404 />;
     }
@@ -44,9 +42,10 @@ class DailyTankGraph extends Component {
 
     return (
       <div className="wastage">
+        <TankGraph props={this.props} />
         <p>Wastage</p>
-        </div>
-        
+      </div>
+
     );
   }
 }
@@ -59,7 +58,6 @@ DailyTankGraph.propTypes = {
 
 const mapStateToProps = state => ({
   dailytankgraph: state.dailytankgraph.item,
-  
   loading: state.dailytankgraph.loading,
   error: state.dailytankgraph.errorr
 });

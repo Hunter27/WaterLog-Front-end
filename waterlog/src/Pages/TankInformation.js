@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TankComponent from '../Components/TankComponent';
 import PumpButton from './../Components/PumpButton';
 import '../Stylesheets/_tankInfo.scss';
-import GraphLine from '../Components/TankGraph';
+import GraphLine from '../Components/DailyTankGraph';
 
 class TankInformation extends Component {
 	constructor(props) {
@@ -16,7 +16,7 @@ class TankInformation extends Component {
 			<div>
 				<TankComponent id={this.state.id} />
 				<PumpButton id={this.state.id} />
-				<GraphLine/>
+				<GraphLine id={this.state.id}/>
 			</div>
 		);
 	}

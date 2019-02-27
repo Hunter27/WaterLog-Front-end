@@ -32,5 +32,4 @@ export const fetchSensorsById = (id) => dispatch => {
       .catch(error => dispatch(
           fecthSensorsFailure(error)
       ))
-
 }
