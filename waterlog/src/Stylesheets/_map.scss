@@ -28,10 +28,11 @@
 }
 
 .map-button-div-layer2 {
-  width: 100%;
-  z-index: inherit;
+  z-index: 2;
+  bottom: 0%;
 	margin: 9px auto;
   position: absolute;
+  width: 100%;
 }
 
 .map-icon-div-layer2-fullscreen {
@@ -39,6 +40,13 @@
   margin: 40px 10px;
   z-index: 2;
   position: fixed;
+}
+
+.map-icon-div-layer2 {
+  z-index: 2;
+  position: absolute;
+  float: right;
+  right: 0;
 }
 
 .invisible {
@@ -49,7 +57,6 @@
 	button {
 		transition: 0.3s;
 		cursor: pointer;
-		border: none;
 		padding: 5px;
 		font-size: 11px;
 		font-weight: bold;
@@ -64,7 +71,6 @@
 
 .map-main-div {
 	position: relative;
-	text-align: center;
 }
 
 .map-tile-div {
@@ -78,6 +84,14 @@
 	position: relative;
 	text-align: left;
 	z-index: 0;
+}
+
+.map-icon-button-div-layer2 {
+  z-index: 2;
+  bottom: 0%;
+  height: 55px;
+  position: absolute;
+  width: 100%;
 }
 
 .map-tile-div-fullscreen{
@@ -100,4 +114,10 @@
   width: 50px;
   height: 50px;
   margin: 5px 5px;
+}
+
+.icon-home {
+  width: 30px;
+  height: 30px;
+  margin: 15px 5px;
 }

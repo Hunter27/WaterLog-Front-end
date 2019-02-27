@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import  { Map, TileLayer } from "react-leaflet";
-import L from "leaflet";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { fetchMapsData } from "../actions/MapActions";
@@ -69,7 +68,6 @@ class MapFullScreenComponent extends Component {
     } else {
       return <Error404 />;
     }
-    console.log(this.state.zoom)
     return (
       <div className="map_main-div-fullscreen">
         <div className="map-icon-button-div-layer2-fullscreen">
@@ -110,6 +108,7 @@ class MapFullScreenComponent extends Component {
           <Map
             ref='map'
             center={centerPosition}
+            attributionControl={false}
             maxBounds={[southWest, northEast]}
             zoom={this.state.zoom}
             zoomControl={false}
