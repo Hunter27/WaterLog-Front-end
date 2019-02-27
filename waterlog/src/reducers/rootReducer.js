@@ -24,8 +24,10 @@ import CostsMonthlyForecastReducer from './CostsMonthlyForecastReducers';
 import SensorsReducer from './SensorsReducer';
 import SensorsByIdReducer from './SensorsByIdReducer';
 import TankGraphReducer from './TankGraphReducer';
+import HeatMapsReducer from './HeatMapsReducer';
 
-export default combineReducers({
+
+const rootReducer = combineReducers({
   leaks: SegmentLeaksReducer,
   leak: SegmentLeaksByIdReducer,
   litres: LeakLitresReducer,
@@ -48,7 +50,10 @@ export default combineReducers({
   alerts: AlertsReducer,
   forecastDaily:CostsDailyForecastReducer,
   forecastMonthly:CostsMonthlyForecastReducer,
+
   sensors:SensorsReducer,
   sensor:SensorsByIdReducer,
-  dailytankgraph:TankGraphReducer
+  dailytankgraph:TankGraphReducer,
+  heatMap:HeatMapsReducer
 });
+export default rootReducer;
