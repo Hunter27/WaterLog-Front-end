@@ -25,7 +25,7 @@ class AlertTableComponent extends Component {
         <h1 className="alerts-header">Alerts</h1>
         <div className="img-container">
           <img className="alert-img" src="images/ascending_descending.png" alt="ascending_descending icon" />
-          <img className="alert-img" src="images/filter_icon.png" alt="filter icon" />
+          <img className="alert-img" src="images/filter_icon.png" alt="filter icon" onClick={this.props.openFilter}/>
         </div>
         <table>
           <tbody>
