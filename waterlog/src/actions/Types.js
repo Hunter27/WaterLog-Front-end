@@ -96,6 +96,13 @@ export const FETCH_COSTS_FORECAST_FAILURE_MONTHLY = 'FETCH_COSTS_FORECAST_FAILUR
 export const FETCH_HEAT_MAP_DATA_BEGIN = 'FETCH_HEAT_MAP_DATA_BEGIN';
 export const FETCH_HEAT_MAP_DATA_SUCCESS = 'FETCH_HEAT_MAP_DATA_SUCCESS';
 export const FETCH_HEAT_MAP_DATA_FAILURE = 'FETCH_HEAT_MAP_DATA_FAILURE';
+//redux saga actions
+export const FETCH_JOKE = 'FETCH_JOKE';
+export const FETCH_JOKE_SUCCESS = 'FETCH_JOKE_SUCCESS';
+export const FETCH_JOKE_FAILURE = 'FETCH_JOKE_FAILURE';
+export const START_POLLING = 'START_POLLING';
+export const STOP_POLLING = 'STOP_POLLING';
+
 
 export const handleErrors = response => {
   if (!response.ok) {

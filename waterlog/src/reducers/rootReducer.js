@@ -21,7 +21,9 @@ import UsageGraphMonthlyReducer from './UsageGraphMonthlyReducer';
 import UsageGraphSeasonallyReducer from './UsageGraphSeasonallyReducer';
 import CostsDailyForecastReducer from './CostsDailyForecastReducer';
 import CostsMonthlyForecastReducer from './CostsMonthlyForecastReducers';
+import { reduxPollingNamespace, reduxPollingReducer } from 'redux-polling';
 import HeatMapsReducer from './HeatMapsReducer';
+import NotisNumberReducer from './NotisNumberReducer';
 
 const rootReducer = combineReducers({
   leaks: SegmentLeaksReducer,
@@ -46,6 +48,8 @@ const rootReducer = combineReducers({
   alerts: AlertsReducer,
   forecastDaily:CostsDailyForecastReducer,
   forecastMonthly:CostsMonthlyForecastReducer,
-  heatMap:HeatMapsReducer
+  heatMap:HeatMapsReducer,
+  [reduxPollingNamespace]: reduxPollingReducer,
+  numNotifs : NotisNumberReducer
 });
 export default rootReducer;
