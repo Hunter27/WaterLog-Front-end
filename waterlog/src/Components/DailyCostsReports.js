@@ -5,14 +5,15 @@ const DailyCostsReports = (props) => {
   let labelX = props.props.dailyCost.dataPoints.map(a => (new Date(a.x).getHours() + ":00"));
   let dataY = props.props.dailyCost.dataPoints.map(a => Math.round(a.y)); 
   const {yIntercept, slope} = props.props.forecastDaily[0];
-  let startDate = new Date(props.props.dailyCost.dataPoints[0].x).getTime();
-  let lastDate = new Date(props.props.dailyCost.dataPoints[labelX.length-1].x).getTime();
+  const today = new Date(); 
+  let startDate = new Date(today.getYear(), today.getMonth(),today.getDay(), 0, 0, 0, 0).getTime();
+  let lastDate = new Date(today.getYear(), today.getMonth(),today.getDay(), 23, 59, 0, 0).getTime();
   const startX = Math.floor( startDate/ 1000); 
   const lastX = Math.floor(lastDate/ 1000); 
 
   let forecast = [];
   for(let i = startX; i <= lastX; i = i + 3600){
-    forecast.push(slope*i + yIntercept);
+    forecast.push(null);
   }
  
   let data = {
@@ -50,8 +51,7 @@ const DailyCostsReports = (props) => {
         ticks: {
           major: {
             fontStyle: 'bold',
-            fontColor: 'rgba(255,0,0,1)',
-            maxTicksLimit: 24
+            fontColor: 'rgba(255,0,0,1)', 
           }
         },
         gridLines: {
