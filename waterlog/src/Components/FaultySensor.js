@@ -75,7 +75,7 @@ class FaultySensor extends Component {
 		const sensorInfo = (
 			<div>
 				<div>
-					<h2 className={alert.status == 1 ? alert.severity.toLowerCase() : 'leak-resolved'}>{`${alert.entityName} ${alert.entityId} ${alert.entityType}`}</h2>
+					<h2 className={alert.status == 2 ? alert.severity.toLowerCase() : 'leak-resolved'}>{`${alert.entityName} ${alert.entityId} ${alert.entityType}`}</h2>
 					<p id="water-flow">
 						{0}% /{alert.typeLitres.toFixed(1)}/hr water flow
 					</p>
@@ -89,8 +89,8 @@ class FaultySensor extends Component {
 				/>
 				<hr />
 				{this.state.mapExpanded ? this.segmentMap : null}
-				{alert.status == 2 ? this.dateResolved(alert.date) : null}
-				<SensorDiagram sensorId={alert.entityId} />
+				{alert.status == 1 ? this.dateResolved(alert.date) : null}
+				<SensorDiagram sensorId={alert.entityId} status={alert.status} />
 				{alert.status == 2 ? (
 					<div className="resolve">
 						<button
@@ -103,10 +103,10 @@ class FaultySensor extends Component {
 							LOG RESOLVED ISSUE
 						</button>
 						<small
-							className={this.state.leakResolved === false ? 'default-status' : 'leak-unresolved-status'}
+							className='default-status'
 							id="resolved-status"
 						>
-							{this.state.leakResolved === false ? 'the problem is fixed, click here' : ''}
+							the problem is fixed, click here
 						</small>
 					</div>
 				) : null}
