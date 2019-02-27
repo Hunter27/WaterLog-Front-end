@@ -31,8 +31,8 @@
     height: 44px; 
     padding: 0;
     .badge {
-        background-color: #FF1744;
-        color: #f6f6f6;
+        background-color: $blue;
+        color: $background-color;
         font-size: 8pt;
         padding: 2px 5px;
         border-radius: 30px;
@@ -43,5 +43,5 @@
 }
 
 .selected-route {
-    background-color: #93A4AE;
+    background-color: $blue;
 }

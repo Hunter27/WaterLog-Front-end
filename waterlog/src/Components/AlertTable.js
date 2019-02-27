@@ -22,29 +22,33 @@ class AlertTableComponent extends Component {
     }
     return (
       <div>
-        <h1 className="alertsH1">Alerts</h1>
+        <h1 className="alerts-header">Alerts</h1>
+        <div className="img-container">
+          <img className="alert-img" src="images/ascending_descending.png" alt="ascending_descending icon" />
+          <img className="alert-img" src="images/filter_icon.png" alt="filter icon" />
+        </div>
         <table>
           <tbody>
             {alerts.map((alert, index) => (
               <tr
                 key={index}
-                className="table-row table-row-unseen"
+                className={`table-row ${parseInt(alert.status) == 2 ? 'table-row-unresolved' : ''}`}
                 onClick={() =>
                   (window.location.href = `alert/${alert.entityName}/${
                     alert.entityId
-                  }`)
+                  }/${alert.date}`)
                 }
               >
-                <td className="leak-date">{formatDate(alert.date)}</td>
+                <td className="event-date">{formatDate(alert.date)}</td>
                 <td>{`${alert.entityName.toUpperCase()} ${
                   alert.entityId
                 } ${alert.entityType.toUpperCase()}`}</td>
                 <td>
-                  {alert.entityName === "Segment" ? `R${alert.cost}/hr` : ""}
+                  {alert.entityName === "Segment" ? `R${0}/hr` : ""} {/*TODO fix decimal !isNaN(alert.cost) && alert.cost.toFixed(2) */}
                 </td>
                 <td>
                   {alert.entityName === "Segment"
-                    ? getStatusIcon(alert.severity)
+                    ? <img alt="severity indicator"src={getStatusIcon(alert.severity)} className="severity-indicator" />
                     : ""}
                 </td>
               </tr>
