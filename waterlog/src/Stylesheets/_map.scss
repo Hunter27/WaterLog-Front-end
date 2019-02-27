@@ -40,6 +40,10 @@
   z-index: 2;
   position: fixed;
 }
+
+.invisible {
+  display: none;
+}
 .map-button-tab {
   overflow: hidden;
 	button {
