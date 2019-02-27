@@ -23,7 +23,7 @@ import CostsDailyForecastReducer from './CostsDailyForecastReducer';
 import CostsMonthlyForecastReducer from './CostsMonthlyForecastReducers';
 import HeatMapsReducer from './HeatMapsReducer';
 
-export default combineReducers({
+const rootReducer = combineReducers({
   leaks: SegmentLeaksReducer,
   leak: SegmentLeaksByIdReducer,
   litres: LeakLitresReducer,
@@ -48,3 +48,4 @@ export default combineReducers({
   forecastMonthly:CostsMonthlyForecastReducer,
   heatMap:HeatMapsReducer
 });
+export default rootReducer;
