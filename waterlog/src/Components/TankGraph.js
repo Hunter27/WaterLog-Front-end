@@ -1,40 +1,83 @@
 import React from 'react';
 import { Line, defaults } from 'react-chartjs-2';
 
-const TankGraph = () => {
-  const data = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-    datasets: [
-      {
-        label: 'rands',
-        fill: false,
-        lineTension: 0.1,
-        backgroundColor: 'rgba(255,0,0,0.4)',
-        borderColor: 'rgba(255,0,0,0.4)',
-        borderCapStyle: 'butt',
-        borderDash: [],
-        borderDashOffset: 0.0,
-        borderJoinStyle: 'miter',
-        pointBorderColor: 'rgba(255,0,0,0.4)',
-        pointBackgroundColor: '#fff',
-        pointBorderWidth: 1,
-        pointHoverRadius: 5,
-        pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-        pointHoverBorderColor: 'rgba(220,220,220,1)',
-        pointHoverBorderWidth: 2,
-        pointRadius: 1,
-        pointHitRadius: 10,
-        data: [65, 59, 80, 81, 56, 55, 40]
+const TankGraph = (props) => {
+ 
+  
+  
+    let labelX = props.props.dailytankgraph.dataPoints.map(a => (new Date(a.x).getHours() + ":00"));
+    let dataY = props.props.dailytankgraph.dataPoints.map(a => Math.round(a.y)); 
+    const {yIntercept, slope} = props.props.forecastDaily[0];
+    let startDate = new Date(props.props.dailytankgraph.dataPoints[0].x).getTime();
+    let lastDate = new Date(props.props.dailytankgraph.dataPoints[labelX.length-1].x).getTime();
+    const startX = Math.floor( startDate/ 1000); 
+    const lastX = Math.floor(lastDate/ 1000); 
+  
+    let forecast = [];
+    for(let i = startX; i <= lastX; i = i + 3600){
+      forecast.push(slope*i + yIntercept);
+    }
+   
+    let data = {
+      labels: labelX,
+      datasets: [
+        {
+          label: 'rands',
+          data: dataY,
+          fill: true,
+          borderColor: 'rgba(255,23,68,1)',
+          backgroundColor: 'rgba(255,23,68,0.4)',
+          pointBackgroundColor: 'rgba(255,23,68,1)',
+          pointRadius: 5,
+          pointHitRadius: 5
+        },
+        {
+          label: 'forecast',
+          data: forecast,
+          fill: true,
+          borderColor: 'rgba(0,191,255,1)', 
+          pointBackgroundColor: 'rgba(0,191,255,1)',
+          pointRadius: 5,
+          pointHitRadius: 5
+        }
+  
+      ]
+    }
+    var options = {
+      scales: {
+        xAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: 'hours'
+          },
+          ticks: {
+            major: {
+              fontStyle: 'bold',
+              fontColor: 'rgba(255,0,0,1)'
+            }
+          },
+          gridLines: {
+            display: false
+          }
+        }],
+        yAxes: [{
+          display: true,
+          scaleLabel: {
+            display: true,
+            labelString: 'rands'
+          },
+          gridLines: {
+            display: false
+          }
+        }]
       }
-    ]
-  };
-  defaults.global.legend.display = false;
-  return (
-    <div className="tank-graph">
-      <h3>Wastage History</h3>
-      <Line data={data} />
-    </div>
-  )
-}
-export default TankGraph;
+    }
+    defaults.global.legend.display = false;
+    return (
+      <div className="Usage"> 
+        <Line options={options} data={data} />
+      </div>
+    )
+  }
 
+export default  TankGraph; 

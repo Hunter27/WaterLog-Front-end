@@ -21,7 +21,7 @@ class TankLevels extends Component {
             {this.props.levels.map((tank, index) => (
               <div
                 key={index}
-                onClick={() => (window.location = `/alert/tank/${tank.tankId}`)}
+                onClick={() => (window.location = `/alert/tank/${tank.id}`)}
               >
                 <Tank key={index} tank={tank} />
               </div>

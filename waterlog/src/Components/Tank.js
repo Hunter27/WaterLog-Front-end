@@ -5,8 +5,16 @@ const images = {
   tank_orange: "images/tank-orange.png",
   tank_green: "images/tank-green.png"
 };
+
+// id: 1
+// optimalLevel: 80
+// percentageLevel: 80
+// pumpId: 1
+// tankMonitorsId: 1
+//timeStamp: "2019-02-06T06:07:17.9317382"
+
 const Tank = props => {
-  const getTankImage = percent => {
+  const getTankImage = (percent) => {
     if (percent >= 1 && percent <= 40) {
       return (
         <div>
@@ -33,8 +41,8 @@ const Tank = props => {
 
   return (
     <div className="tank">
-      <p>Tank {props.tank.tankId}</p>
-      {getTankImage(props.tank.percentage)}
+      <p>Tank {props.tank.id}</p>
+      {getTankImage(props.tank.percentageLevel)}
     </div>
   );
 };
