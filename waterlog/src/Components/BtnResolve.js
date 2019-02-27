@@ -50,12 +50,10 @@ class BtnResolve extends Component {
 			},
 			redirect: "follow",
 			referrer: "no-referrer",
-			body: JSON.stringify(leaksObject),
-		})
-			.then(response => response.json());
+			body: JSON.stringify(leaksObject),}) 
+			.then(response => response.json());		
 	}
 }
-
 BtnResolve.propTypes = {
 	fetchSegmentsLeaksResolve: PropTypes.func.isRequired
 };
