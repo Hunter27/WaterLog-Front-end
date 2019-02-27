@@ -1,12 +1,14 @@
 import React, { Component } from "react";
-import AlertTable from "../Components/AlertTable"; 
+import AlertTable from "../Components/AlertTable";
+import AlertsFilter from "../Components/AlertsFilter";
 
 class AlertComponent extends Component {
   render() {
-    return ( 
-        <div className="App">
+    return (
+        <div >
           <AlertTable />
-        </div> 
+          <AlertsFilter />
+        </div>
     );
   }
 }

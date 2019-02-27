@@ -24,6 +24,7 @@
     "react-chartjs-2": "^2.7.4",
     "react-dom": "^16.7.0",
     "react-leaflet": "^2.2.0",
+    "react-leaflet-heatmap-layer": "^2.0.0",
     "react-leaflet-marker-layer": "^0.1.4",
     "react-redux": "^6.0.0",
     "react-router": "^4.3.1",
