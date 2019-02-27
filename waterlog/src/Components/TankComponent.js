@@ -7,41 +7,41 @@ import Loader from './Loader';
 import Error404 from './Error404';
 
 const images = {
-	tanks_yellow_new: 'images/tank_yellow_new.png',
-	tanks_orange_new: 'images/tanks_orange_new.png',
-	tanks_green_new: 'images/tanks_green_new.png'
+	tank_yellow: 'images/tank-yellow.png',
+	tank_orange: 'images/tank-orange.png',
+	tank_green: 'images/tank-green.png'
 };
 export class TankComponent extends Component {
 	componentWillMount() {
 		this.props.fetchTankLevelById(this.props.id);
-	
+		
 	}
 	getTankImage = (level) => {
 		if (level.percentageLevel > 79 && level.percentageLevel < 100) {
 			return (
 				<div>
-					<img src={images.tanks_green_new} className="image" alt="tank" />
+					<img src={images.tank_green} className="image" alt="tank" />
 					<p id="percentage">{level.percentageLevel}%</p>
-						<p className="tank_description">
-						
-						</p>
-					<p className="tank_description" />
-				</div>
+					<p>{"optimal level"}<br/> {"pump is on"}</p>
+			</div>
 			);
 		} else if (level.percentageLevel >= 1 && level.percentageLevel <= 40) {
 			return (
 				<div>
-					<img src={images.tanks_yellow_new} className="image" alt="tank" />
+					<img src={images.tank_yellow} className="image" alt="tank" />
 					<p id="percentage">{level.percentageLevel}%</p>
-					<p>{level.levelStatus}</p>
-					<p>{level.instruction}</p>
+					<p className="error404Grey">
+          {"tank is empty"} <br /> {"pump should be turn on"} 
+        </p>
 				</div>
 			);
 		} else if (level.percentageLevel >= 41 && level.percentageLevel <= 79) {
 			return (
 				<div>
-					<img src={images.tanks_orange_new} className="image" alt="tank" />
-					<p id="percentage">{level.percentageLevel}%</p>
+					<img src={images.tank_orange} className="image" alt="tank" />
+					<p id="percentage">{level.percentageLevel}%</p>'
+					<p>{"acceptable level"}<br/>{"pump should be turn off"}</p>
+		
 			
 				</div>
 			);
