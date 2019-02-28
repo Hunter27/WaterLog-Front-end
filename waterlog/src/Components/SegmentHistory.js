@@ -10,8 +10,7 @@ class SegmentHistory extends Component {
     }
     render() {
         return ( 
-            <div>
-                {}
+            <div> 
                 <p className="home-text">Segment { this.state.id }</p>
 				<p className="home-text">Alert History</p>
                 <HistoryTable id={this.state.id} />
