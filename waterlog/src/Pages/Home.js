@@ -7,8 +7,7 @@ class HomeComponent extends Component {
   render() {
     return (
       <div>
-        <p className="home-text">Alerts Map</p>
-        <MapComponent />
+        <MapComponent/>
         <Wastage />
         <TankLevels />
       </div>
