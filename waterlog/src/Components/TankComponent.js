@@ -17,10 +17,21 @@ export class TankComponent extends Component {
 		
 	}
 	getTankImage = (level) => {
-		if (level.percentageLevel > 79 && level.percentageLevel < 100) {
+		if(level.percentageLevel===0){
+      return (
+        <div>
+          <img src={images.tank_red} alt="tank"/>
+          <p id="percentage">{level.percentageLevel}%</p>
+					<p className="error404Grey1">
+          {"tank is empty"} <br /> {"pump should be turn on"} 
+        </p>
+        </div>
+      );
+		}
+		else if (level.percentageLevel > 79 && level.percentageLevel < 100) {
 			return (
 				<div>
-					<img src={images.tank_green} className="image" alt="tank" />
+					<img src={images.tank_green} className="image" alt="tank"/>
 					<p id="percentage">{level.percentageLevel}%</p>
 					<p>{"optimal level"}<br/> {"pump is on"}</p>
 			</div>
@@ -28,7 +39,7 @@ export class TankComponent extends Component {
 		} else if (level.percentageLevel >= 1 && level.percentageLevel <= 40) {
 			return (
 				<div>
-					<img src={images.tank_yellow} className="image" alt="tank" />
+					<img src={images.tank_yellow} className="image" alt="tank"/>
 					<p id="percentage">{level.percentageLevel}%</p>
 					<p className="error404Grey">
           {"tank is empty"} <br /> {"pump should be turn on"} 
@@ -38,12 +49,10 @@ export class TankComponent extends Component {
 		} else if (level.percentageLevel >= 41 && level.percentageLevel <= 79) {
 			return (
 				<div>
-					<img src={images.tank_orange} className="image" alt="tank" />
-					<p id="percentage">{level.percentageLevel}%</p>'
+					<img src={images.tank_orange} className="image" alt="tank"/>
+					<p id="percentage">{level.percentageLevel}%</p>
 					<p>{"acceptable level"}<br/>{"pump should be turn off"}</p>
-		
-			
-				</div>
+		      </div>
 			);
 		}
 	};
@@ -56,7 +65,6 @@ export class TankComponent extends Component {
 			return <Loader />;
 		}
 
-		
 		return (
 			<div className="tankComponent">
 				<h3>{'Tank ' + this.props.id}</h3>
