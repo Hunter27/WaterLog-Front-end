@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Map, TileLayer } from "react-leaflet";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { fetchMapsData } from "./../actions/MapActions";
+import { fetchMapsData, fetchPollMapsData } from "./../actions/MapActions";
 import { fetchHeatMapsData } from "./../actions/HeatMapActions";
 import Loader from "./Loader";
 import Error404 from "./Error404";
@@ -22,20 +22,28 @@ function getHeatMapData({ monitorsCoordinates, segmentCoordinates }) {
   return heatMapData;
 }
 class MapComponent extends Component {
-  componentDidMount() {
+  async componentDidMount() {
     this.props.fetchMapsData();
     this.props.fetchHeatMapsData();
+    this.timer = setInterval(async ()=> {
+      this.props.fetchPollMapsData()
+        const {pmapData } = this.props;
+        this.setState({iconState : generateMapIcons(pmapData)});     
+      
+    }, 20000);
   }
 
   constructor(props) {
     super(props);
     this.state = {
       simpleView: false,
-      zoom: 17
+      zoom: 17,
+      iconState : null
     };
   }
 
   render() {
+    console.log(this.props.pmapData);
     const {
       error,
       loading,
@@ -90,7 +98,7 @@ class MapComponent extends Component {
                 </div>
                 );
             })()}
-            {icons}
+            {this.state.iconState}
           </Map>
         </div>
         <div className="map-button-div-layer2 map-button-tab">
@@ -118,10 +126,14 @@ class MapComponent extends Component {
 
 MapComponent.propTypes = {
   fetchMapsData: PropTypes.func.isRequired,
-  mapData: PropTypes.array.isRequired
+  fetchPollMapsData: PropTypes.func,
+  mapData: PropTypes.array.isRequired,
+  pmapData: PropTypes.array
 };
 
 const mapStateToProps = state => ({
+  pmapData: state.pmaps.items,
+  ploading: state.pmaps.loading,
   mapData: state.maps.items,
   loading: state.maps.loading,
   error: state.maps.error,
@@ -134,6 +146,7 @@ export default connect(
   mapStateToProps,
   {
     fetchMapsData,
+    fetchPollMapsData,
     fetchHeatMapsData
   }
 )(MapComponent);

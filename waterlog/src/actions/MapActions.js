@@ -2,6 +2,9 @@ import {
   FETCH_MAP_DATA_BEGIN,
   FETCH_MAP_DATA_SUCCESS,
   FETCH_MAP_DATA_FAILURE,
+  FETCH_PMAP_DATA_BEGIN,
+  FETCH_PMAP_DATA_SUCCESS,
+  FETCH_PMAP_DATA_FAILURE,
   handleErrors
 } from './Types';
 
@@ -16,6 +19,20 @@ export const fetchMapsDataSuccess = (data) => ({
 
 export const fetchMapsDataFailure = (error) => ({
   type: FETCH_MAP_DATA_FAILURE,
+  payload: { error }
+});
+
+export const fetchPMapsDataBegin = () => ({
+  type: FETCH_PMAP_DATA_BEGIN
+});
+
+export const fetchPMapsDataSuccess = (data) => ({
+  type: FETCH_PMAP_DATA_SUCCESS,
+  payload: { data }
+});
+
+export const fetchPMapsDataFailure = (error) => ({
+  type: FETCH_PMAP_DATA_FAILURE,
   payload: { error }
 });
 
@@ -117,3 +134,16 @@ export const fetchMapsData = () => (dispatch) => {
       dispatch(fetchMapsDataFailure(error));
     });
 };
+
+export const fetchPollMapsData = () => (dispatch) => {
+  dispatch(fetchPMapsDataBegin());
+
+  var data = getData(dispatch);
+  data
+    .then(res => {
+      dispatch(fetchPMapsDataSuccess(formatMapData(res)));
+    })
+    .catch(error => {
+      dispatch(fetchPMapsDataFailure(error));
+    });
+}

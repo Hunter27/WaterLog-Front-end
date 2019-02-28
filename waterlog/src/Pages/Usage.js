@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Usage from "./../Components/Usage";
-import TryNumberNotifs from "./../Components/TryNumberNotifs";
+import TryNumberNotifs from "./../Components/JokeComponent";
 class UsageComponent extends Component {
   render() {
     return (
