@@ -22,9 +22,8 @@ export class TankComponent extends Component {
         <div>
           <img src={images.tank_red} alt="tank"/>
           <p id="percentage">{level.percentageLevel}%</p>
-					<p className="error404Grey1">
-          {"tank is empty"} <br /> {"pump should be turn on"} 
-        </p>
+					<p className="Level"> tank is empty </p>
+					<p className="Instruction" > pump should be turn on </p>
         </div>
       );
 		}
@@ -33,7 +32,8 @@ export class TankComponent extends Component {
 				<div>
 					<img src={images.tank_green} className="image" alt="tank"/>
 					<p id="percentage">{level.percentageLevel}%</p>
-					<p>{"optimal level"}<br/> {"pump is on"}</p>
+					<p className="Level">optimal level</p>
+					<p className="Instruction">pump is on</p>
 			</div>
 			);
 		} else if (level.percentageLevel >= 1 && level.percentageLevel <= 40) {
@@ -41,9 +41,9 @@ export class TankComponent extends Component {
 				<div>
 					<img src={images.tank_yellow} className="image" alt="tank"/>
 					<p id="percentage">{level.percentageLevel}%</p>
-					<p className="error404Grey">
-          {"tank is empty"} <br /> {"pump should be turn on"} 
-        </p>
+					<p className="Level">tank is empty  </p>
+					<p className="Instruction">pump should be turn on</p>
+      
 				</div>
 			);
 		} else if (level.percentageLevel >= 41 && level.percentageLevel <= 79) {
@@ -51,7 +51,8 @@ export class TankComponent extends Component {
 				<div>
 					<img src={images.tank_orange} className="image" alt="tank"/>
 					<p id="percentage">{level.percentageLevel}%</p>
-					<p>{"acceptable level"}<br/>{"pump should be turn off"}</p>
+					<p className="Level">acceptable level</p>
+					<p className="Instruction">pump should be turn off</p>
 		      </div>
 			);
 		}

@@ -47,28 +47,36 @@ const TankGraph = (props) => {
       xAxes: [{
         scaleLabel: {
           display: true,
-          labelString: 'Days'
+          labelString: 'Days',
+          fontColor:'rgb(236,239,241)'
 
         },
         ticks: {
+          fontColor:'rgb(236,239,241)',
           major: {
             fontStyle: 'bold',
             fontColor: 'rgba(0,2,5,0.4)'
           }
         },
         gridLines: {
-          display: false
+          display: false,
+          color:'rgb(236,239,241)'
         }
       }],
       yAxes: [{
         display: true,
         scaleLabel: {
           display: true,
-          labelString: 'PercentageLevel'
+          labelString: 'PercentageLevel',
+          fontColor:'rgb(236,239,241)'
         },
+        ticks: {
+          fontColor:'rgb(236,239,241)',
         gridLines: {
-          display: false
+          display: false,
+          color:'rgb(236,239,241)'
         }
+      }
       }]
     }
   }
