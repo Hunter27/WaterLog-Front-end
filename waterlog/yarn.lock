@@ -2,15 +2,6 @@
 # yarn lockfile v1
 
 
-"@aspnet/signalr@^1.1.2":
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/@aspnet/signalr/-/signalr-1.1.2.tgz#eb9cbc758ff5bfe9a2aba6669e05dfc25a6d783d"
-  integrity sha512-Xu2ndFTWYhyE+TOCK3LkPWGmc5xGLezBKgGEchyOA++alJ6fdWJ8P/Wsb4Mmd1buzcxGLlIyjpLfUP20rrCHIg==
-  dependencies:
-    eventsource "^1.0.7"
-    request "^2.88.0"
-    ws "^6.0.0"
-
 "@babel/code-frame@7.0.0", "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.0.0-beta.35":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.0.0.tgz#06e2ab19bdb535385559aabb5ba59729482800f8"
@@ -11940,7 +11931,7 @@ ws@^5.2.0:
   dependencies:
     async-limiter "~1.0.0"
 
-ws@^6.0.0, ws@^6.1.2:
+ws@^6.1.2:
   version "6.1.4"
   resolved "https://registry.yarnpkg.com/ws/-/ws-6.1.4.tgz#5b5c8800afab925e94ccb29d153c8d02c1776ef9"
   integrity sha512-eqZfL+NE/YQc1/ZynhojeV8q+H050oR8AZ2uIev7RU10svA9ZnJUddHcOUZTJLinZ9yEfdA2kSATS2qZK5fhJA==

@@ -88,12 +88,11 @@ function formatMapData(data) {
 
         if (latestTimeStamp.getDay() === date.getDay() &&
           latestTimeStamp.getMonth() === date.getMonth() &&
-          latestTimeStamp.getFullYear() === date.getFullYear()) 
-          { 
-            return leak;
-          }
-          else 
-            return [];
+          latestTimeStamp.getFullYear() === date.getFullYear()) {
+          return leak;
+        }
+        else
+          return [];
       });
   }
 

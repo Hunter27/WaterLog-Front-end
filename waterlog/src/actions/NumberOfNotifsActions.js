@@ -1,8 +1,9 @@
-// action types
 import axios from 'axios';
-export const FETCH_NOTIF = 'FETCH_JOKE';
-export const FETCH_NOTIF_SUCCESS = 'FETCH_JOKE_SUCCESS';
-export const FETCH_NOTIF_FAILURE = 'FETCH_JOKE_FAILURE';
+import {
+  FETCH_NOTIF,
+  FETCH_NOTIF_SUCCESS,
+  FETCH_NOTIF_FAILURE 
+} from './Types';
 
 
 function fetchNotification() {

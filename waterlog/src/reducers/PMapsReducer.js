@@ -1,13 +1,13 @@
 import {
-  FETCH_PMAP_DATA_BEGIN, 
-  FETCH_PMAP_DATA_SUCCESS, 
-  FETCH_PMAP_DATA_FAILURE
+    FETCH_PMAP_DATA_BEGIN,
+    FETCH_PMAP_DATA_SUCCESS,
+    FETCH_PMAP_DATA_FAILURE
 } from '../actions/Types';
 
 const initialState = {
-  items: [],
-  loading: true,
-  error: null
+    items: [],
+    loading: false,
+    error: null
 };
 
 export default function (state = initialState, action) {
@@ -23,7 +23,7 @@ export default function (state = initialState, action) {
                 ...state,
                 loading: false,
                 items: action.payload.data,
-                error:null
+                error: null
             }
 
         case FETCH_PMAP_DATA_FAILURE:
