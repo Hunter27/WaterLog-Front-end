@@ -5,6 +5,7 @@ import SeasonalWastageComponent from "./SeasonalWastage";
 import { fetchWastageDaily } from "../actions/WastageDaily";
 import { fetchWastageMonthly } from "../actions/WastageMonthly";
 import { fetchWastageSeasonally } from "../actions/WastageSeasonally";
+import {fetchPlaceholder} from "../actions/ForecastPlaceholderActions"; 
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Loader from "./Loader";
@@ -23,6 +24,7 @@ class Wastage extends Component {
     this.props.fetchWastageMonthly();
     this.props.fetchWastageDaily();
     this.props.fetchWastageSeasonally();
+    this.props.fetchPlaceholder();
   }
 
   openGraph = graphType => {
@@ -33,7 +35,7 @@ class Wastage extends Component {
 
   getGraphType = () => {
     if (this.state.display === "daily") {
-      return <DailyWastageComponent props={this.props.dailyWaste} />;
+      return <DailyWastageComponent props={this.props} />;
     } else if (this.state.display === "monthly") {
       return <MonthlyWastageComponent props={this.props.monthlyWaste} />;
     } else if (this.state.display === "seasonal") {
@@ -50,12 +52,14 @@ class Wastage extends Component {
       monthlyError,
       monthlyLoading,
       seasonalError,
-      seasonalLoading
+      seasonalLoading,
+      placeholderLoading,
+      placeholderError,
     } = this.props;
-    if (dailyError || monthlyError || seasonalError) {
+    if (dailyError || monthlyError || seasonalError || placeholderError) {
       return <Error404 />;
     }
-    if (dailyLoading || monthlyLoading || seasonalLoading) {
+    if (dailyLoading || monthlyLoading || seasonalLoading || placeholderLoading) {
       return (
         <div>
           <Loader />
@@ -105,7 +109,9 @@ Wastage.propTypes = {
   fetchWastageMonthly: PropTypes.func.isRequired,
   monthlyWaste: PropTypes.object.isRequired,
   fetchWastageSeasonally: PropTypes.func.isRequired,
-  seasonWaste: PropTypes.array.isRequired
+  seasonWaste: PropTypes.array.isRequired,
+  placeholder: PropTypes.array.isRequired,
+  fetchPlaceholder:PropTypes.func.isRequired 
 };
 
 const mapStateToProps = state => ({
@@ -117,9 +123,12 @@ const mapStateToProps = state => ({
   monthlyLoading: state.monthlyWaste.loading,
   monthlyError: state.monthlyWaste.error,
   seasonalLoading: state.seasonWaste.loading,
-  seasonalError: state.seasonWaste.error
+  seasonalError: state.seasonWaste.error,
+  placeholder: state.placeholder.item,
+  placeholderLoading: state.placeholder.loading,
+  placeholderError: state.placeholder.error 
 });
 export default connect(
   mapStateToProps,
-  { fetchWastageDaily, fetchWastageMonthly, fetchWastageSeasonally }
+  { fetchWastageDaily, fetchWastageMonthly, fetchWastageSeasonally, fetchPlaceholder }
 )(Wastage);

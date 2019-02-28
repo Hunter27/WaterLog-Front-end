@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import MapComponent from "./../Components/Map";
+import MapFullScreenComponent from "./../Components/MapFullScreen";
 class MapPage extends Component {
   render() {
     return (
-      <div >
-        <MapComponent height={500}/>
-      </div>
+        <MapFullScreenComponent/>
     );
   }
 }

@@ -12,8 +12,7 @@
 	margin: 5px;
 	background-color: #dee1e2;
 	height: 26px;
-  width: 90px;
-  border: none;
+	width: 90px;
 }
 
 .map-nav {
@@ -37,7 +36,7 @@
 }
 
 .map-icon-div-layer2-fullscreen {
-	width: 50px;
+	width: 100%;
   margin: 40px 10px;
   z-index: 2;
   position: fixed;
@@ -107,15 +106,14 @@
 	z-index: 2;
 	top: 0;
 	width: 100%;
-	margin: 4px 1px;
-  position: absolute;
-  padding-bottom: 5px;
+	margin: 10px 5px;
+	position: absolute;
 }
 
 .icon {
-  width: 30px;
-  height: 30px;
-  margin: 2px 2px;
+  width: 50px;
+  height: 50px;
+  margin: 5px 5px;
 }
 
 .icon-home {

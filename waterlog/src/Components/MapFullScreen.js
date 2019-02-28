@@ -1,32 +1,26 @@
 import React, { Component } from "react";
-import {
-  Map,
-  TileLayer,
-  Rectangle
-} from "react-leaflet";
+import { Map, TileLayer } from "react-leaflet";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import {
-  fetchMapsData,
-  fetchPollMapsData
-} from "../actions/MapActions";
+import { fetchMapsData } from "../actions/MapActions";
 import { fetchHeatMapsData } from "../actions/HeatMapActions";
 import Loader from "./Loader";
 import Error404 from "./Error404";
 import HeatmapLayer from "react-leaflet-heatmap-layer";
 import {
   generateMapIcons,
-  levelToIntensity,
-  mapOptions
+  levelToIntensity
 } from "../utils";
 
+const southWest = [-25.784510, 28.334360];
+const northEast = [-25.782110, 28.338325];
+const maxIntensity = 5;
+const centerPosition = [-25.783425, 28.336046];
+const defaultZoom = 17;
+
 function getHeatMapData({ monitorsCoordinates, segmentCoordinates }) {
-  let monitorMapData = monitorsCoordinates.map(mon => {
-    return [mon.lat, mon.long, levelToIntensity(mon.faultLevel, mapOptions.maxIntensity)]
-  });
-  let segmentMapData = segmentCoordinates.map(seg => {
-    return [seg.lat, seg.long, levelToIntensity(seg.faultLevel, mapOptions.maxIntensity)]
-  });
+  let monitorMapData = monitorsCoordinates.map(mon => [mon.lat, mon.long, levelToIntensity(mon.faultLevel, maxIntensity)]);
+  let segmentMapData = segmentCoordinates.map(seg => [seg.lat, seg.long, levelToIntensity(seg.faultLevel, maxIntensity)]);
 
   let heatMapData = monitorMapData.concat(segmentMapData);
   return heatMapData;
@@ -36,27 +30,15 @@ class MapFullScreenComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      simpleView: true,
+      simpleView: false,
       heatView: false,
-      zoom: mapOptions.defaultZoom
+      zoom: defaultZoom
     };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     this.props.fetchMapsData();
     this.props.fetchHeatMapsData();
-    this.timer = setInterval(() => {
-      this.props.fetchPollMapsData()
-      const { pmapData } = this.props;
-      this.setState({
-        iconState: generateMapIcons(pmapData),
-      });
-
-      if (this.state.iconState) {
-        this.state.contLoading = false;
-      }
-
-    }, 5000);
   }
 
   render() {
@@ -66,13 +48,12 @@ class MapFullScreenComponent extends Component {
       mapData,
       heatError,
       heatLoading,
-      heatMapData,
-      pmapDataError
+      heatMapData
     } = this.props;
-    if (error || heatError || pmapDataError) {
+    if (error || heatError) {
       return <Error404 />;
     }
-    if (loading || heatLoading || this.state.contLoading) {
+    if (loading || heatLoading) {
       return (
         <div>
           <Loader />
@@ -86,7 +67,7 @@ class MapFullScreenComponent extends Component {
       return <Error404 />;
     }
     if (heatMapData) {
-      heatPoints = getHeatMapData(heatMapData);
+      heatPoints = getHeatMapData(this.props.heatMapData);
     } else {
       return <Error404 />;
     }
@@ -112,7 +93,6 @@ class MapFullScreenComponent extends Component {
             </button>
           </div>
           <div className={`map-icon-div-layer2-fullscreen map-button-tab ${this.state.simpleView ? "" : "invisible"}`}>
-            
             <img
               className="icon"
               src={require("../images/heatmap_icon_blue.png")}
@@ -124,16 +104,16 @@ class MapFullScreenComponent extends Component {
               alt="re-center Map"
               onClick={() => {
                 const map = this.refs.map.leafletElement;
-                map.setView(mapOptions.centerPosition, mapOptions.defaultZoom)
+                map.setView(centerPosition, defaultZoom)
               }} />
           </div>
         </div>
         <div className="map-tile-div-fullscreen">
           <Map
             ref='map'
-            center={mapOptions.centerPosition}
+            center={centerPosition}
             attributionControl={false}
-            maxBounds={[mapOptions.southWest, mapOptions.northEast]}
+            maxBounds={[southWest, northEast]}
             zoom={this.state.zoom}
             zoomControl={false}
             maxZoom={18}
@@ -146,25 +126,21 @@ class MapFullScreenComponent extends Component {
                   <TileLayer url="http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png" />
                   {(() => {
                     if (this.state.heatView) {
-                      return (
-                        <div>
-                          <Rectangle bounds={mapOptions.rectangleBounds} color={'#beecff'} opacity={0.5} />
-                          <HeatmapLayer
-                            points={heatPoints}
-                            longitudeExtractor={m => m[1]}
-                            latitudeExtractor={m => m[0]}
-                            intensityExtractor={m => parseFloat(m[2])}
-                            gradient={{ 0.25: '#5ad4de', 0.5: '#6ade5a', 0.75: '#d2de5a', 1: '#de765a' }}
-                            radius={40}
-                            blur={15}
-                            max={mapOptions.maxIntensity} />
-                        </div>);
+                      return <HeatmapLayer
+                        points={heatPoints}
+                        longitudeExtractor={m => m[1]}
+                        latitudeExtractor={m => m[0]}
+                        intensityExtractor={m => parseFloat(m[2])}
+                        gradient={{ 0.2: 'green', 0.4: 'yellow', 0.8: 'red' }}
+                        radius={20}
+                        blur={10}
+                        max={maxIntensity} />
                     }
                   })()}
                 </div>
                 );
             })()}
-            {this.state.iconState}
+            {icons}
           </Map>
         </div>
       </div>
@@ -173,29 +149,22 @@ class MapFullScreenComponent extends Component {
 }
 
 MapFullScreenComponent.propTypes = {
-  fetchMapsData: PropTypes.func.isRequired,
-  fetchPollMapsData: PropTypes.func,
-  mapData: PropTypes.array.isRequired,
-  pmapData: PropTypes.array
+  fetchMapsData: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  pmapData: state.pmaps.items,
   mapData: state.maps.items,
   loading: state.maps.loading,
   error: state.maps.error,
   heatMapData: state.heatMap.items,
   heatLoading: state.heatMap.loading,
-  heatError: state.heatMap.error,
-  pmapDataLoading: state.pmaps.loading,
-  pmapDataError: state.pmaps.error
+  heatError: state.heatMap.error
 });
 
 export default connect(
   mapStateToProps,
   {
     fetchMapsData,
-    fetchPollMapsData,
     fetchHeatMapsData
   }
 )(MapFullScreenComponent);

@@ -6,9 +6,9 @@ import {
 } from "react-leaflet";
 
 const alertImages = {
-  low: 'images/low_severity.png',
-  medium: 'images/medium_severity.png',
-  high: 'images/high_severity.png'
+	low: 'images/low_severity.png',
+	medium: 'images/medium_severity.png',
+	high: 'images/high_severity.png'
 }
 
 export const formatDate = (date) => {
@@ -24,16 +24,16 @@ export const formatDate = (date) => {
 }
 
 export const getStatusIcon = (severity) => {
-  switch (severity.toLowerCase()) {
-    case 'high':
-      return alertImages.high;
-    case 'low':
-      return alertImages.low;
-    case 'medium':
-      return alertImages.medium;
-    default:
-      return null;
-  }
+	switch (severity.toLowerCase()) {
+		case 'high':
+			return alertImages.high;
+		case 'low':
+			return alertImages.low;
+		case 'medium':
+			return alertImages.medium;
+		default:
+			return null;
+	}
 };
 
 export const getSensorLayout = (id) => {
@@ -148,7 +148,7 @@ export function generateMapIcons({ segments, markers }, simpleView, options = {
 }
 
 export function levelToIntensity(level, maxIntensity = 5) {
-  if (!level) { return 0; }
+  if (level === undefined){ return 0;}
   switch (level.toLowerCase()) {
     case 'high':
       return maxIntensity;
@@ -159,18 +159,4 @@ export function levelToIntensity(level, maxIntensity = 5) {
     default:
       return 0;
   }
-}
-
-const southWest = [-25.944586, 28.189546];
-const northEast = [-25.661871, 28.451147];
-const heatBackgroundConst = 0.91;
-
-export const mapOptions = {
-  southWest: southWest,
-  northEast: northEast,
-  maxIntensity: 5,
-  centerPosition: [-25.783425, 28.336046],
-  defaultZoom: 17,
-  heatBackgroundConst: heatBackgroundConst,
-  rectangleBounds: [southWest.map(e => e / heatBackgroundConst), northEast.map(e => e * heatBackgroundConst)]
 }

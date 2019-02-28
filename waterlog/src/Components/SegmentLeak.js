@@ -51,10 +51,6 @@ class SegmentLeak extends Component {
 			});
 	}
 
-    getSeverityClass(severity){
-			return severity.toLowerCase();
-	}
-
 	segmentMap = (
 		<div className="segment-map">
 			<Map height="300px" />
@@ -73,16 +69,16 @@ class SegmentLeak extends Component {
 
 		const alert = alerts.filter((alert) => alert.entityId === parseInt(this.props.match.params.id) 
 			&& alert.date == this.props.match.params.date )[0];
-		const severity_fun = this.getSeverityClass(alert.severity);
+		
 		const leakInfo = (
 			<div>
-				<div>
-					<h2 className={severity_fun}>{`${alert.entityName} ${alert.entityId} ${alert.entityType}`}</h2>
-					<p className={severity_fun}>({alert.severity})</p>
-					<h1 className={severity_fun}>R {alert.cost.toFixed(2)}</h1> 
-					<p className={severity_fun}>is being lost per hour!</p>
-					<p className="static-grey">Loosing {alert.litresPerHour.toFixed(0)}&#x2113; per hour</p>
-					<p className="static-grey"> no leak would be 0&#x2113; per hour</p>
+				<div className={`leakInfo ${parseInt(alert.status) == 2 ? alert.severity : 'leak-resolved'}`}>
+					<h2>{`${alert.entityName} ${alert.entityId} ${alert.entityType}`}</h2>
+					<p>({alert.severity})</p>
+					<h1>R {alert.cost.toFixed(2)}</h1> 
+					<p>is being lost per hour!</p>
+					<p>Loosing {alert.litresPerHour.toFixed(0)}&#x2113; per hour</p>
+					<p>no leak would be 0&#x2113; per hour</p>
 				</div>
 				<img
 					id="map-toggle"
