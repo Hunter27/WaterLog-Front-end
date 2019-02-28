@@ -1,34 +1,33 @@
-import { combineReducers } from 'redux';
-import SegmentLeaksReducer from './SegmentLeaksReducer';
-import SegmentLeaksByIdReducer from './SegmentLeaksByIdReducer';
-import LeakLitresReducer from './LeakLitresReducer';
-import SegmentLeaksHistoryReducer from './SegmentLeaksHistoryReducer';
-import LeaksResolvedReducer from './LeaksResolvedReducer';
-import SegmentEventsReducer from './SegmentEventsReducer';
-import WastageGraphDailyReducer from './WastageGraphDailyReducer';
-import WastageGraphMonthlyReducer from './WastageGraphMonthlyReducer';
-import WastageGraphSeasonallyReducer from './WastageGraphSeasonallyReducer';
-import PumpsReducer from './PumpsReducer';
-import TankLevelReducer from './TankLevelReducer';
-import TankLevelsByIdReducer from './TankLevelsByIdReducer';
-import MapsReducer from './MapsReducer';
-import AlertsReducer from './AlertsReducer';
-import DailyCostReducer from './DailyCostReducer';
-import MonthlyCostReducer from './MonthlyCostReducer';
-import SeasonalCostReducer from './SeasonalCostReducer';
-import UsageGraphDailyReducer from './UsageGraphDailyReducer';
-import UsageGraphMonthlyReducer from './UsageGraphMonthlyReducer';
-import UsageGraphSeasonallyReducer from './UsageGraphSeasonallyReducer';
-import CostsDailyForecastReducer from './CostsDailyForecastReducer';
-import CostsMonthlyForecastReducer from './CostsMonthlyForecastReducers';
-import HeatMapsReducer from './HeatMapsReducer';
-import SegmentReducer from './SegmentReducer';
-import SensorReducer from './SensorReducer';
-import TankReducer from './TankReducer';
-import FilterReducer from './FilterReducer';
+import { combineReducers } from "redux";
+import SegmentLeaksReducer from "./SegmentLeaksReducer";
+import SegmentLeaksByIdReducer from "./SegmentLeaksByIdReducer";
+import LeakLitresReducer from "./LeakLitresReducer";
+import SegmentLeaksHistoryReducer from "./SegmentLeaksHistoryReducer";
+import LeaksResolvedReducer from "./LeaksResolvedReducer";
+import SegmentEventsReducer from "./SegmentEventsReducer";
+import WastageGraphDailyReducer from "./WastageGraphDailyReducer";
+import WastageGraphMonthlyReducer from "./WastageGraphMonthlyReducer";
+import WastageGraphSeasonallyReducer from "./WastageGraphSeasonallyReducer";
+import PumpsReducer from "./PumpsReducer";
+import TankLevelReducer from "./TankLevelReducer";
+import TankLevelsByIdReducer from "./TankLevelsByIdReducer";
+import MapsReducer from "./MapsReducer";
+import AlertsReducer from "./AlertsReducer";
+import DailyCostReducer from "./DailyCostReducer";
+import MonthlyCostReducer from "./MonthlyCostReducer";
+import SeasonalCostReducer from "./SeasonalCostReducer";
+import UsageGraphDailyReducer from "./UsageGraphDailyReducer";
+import UsageGraphMonthlyReducer from "./UsageGraphMonthlyReducer";
+import UsageGraphSeasonallyReducer from "./UsageGraphSeasonallyReducer";
+import CostsDailyForecastReducer from "./CostsDailyForecastReducer";
+import CostsMonthlyForecastReducer from "./CostsMonthlyForecastReducers";
+import HeatMapsReducer from "./HeatMapsReducer";
+import SegmentReducer from "./SegmentReducer";
+import SensorReducer from "./SensorReducer";
+import TankGraphReducer from "./TankGraphReducer";
+import FilterReducer from "./FilterReducer";
+import ForecastPlaceholderReducer from "./ForecastPlaceHolderReducer";
 
-import ForecastPlaceholderReducer from './ForecastPlaceHolderReducer';
-import TankGraphReducer from './TankGraphReducer';
 const rootReducer = combineReducers({
   leaks: SegmentLeaksReducer,
   leak: SegmentLeaksByIdReducer,
@@ -50,14 +49,13 @@ const rootReducer = combineReducers({
   pumps: PumpsReducer,
   maps: MapsReducer,
   alerts: AlertsReducer,
-  forecastDaily:CostsDailyForecastReducer,
-  forecastMonthly:CostsMonthlyForecastReducer,
-  heatMap:HeatMapsReducer,
+  forecastDaily: CostsDailyForecastReducer,
+  forecastMonthly: CostsMonthlyForecastReducer,
+  heatMap: HeatMapsReducer,
   segment: SegmentReducer,
   sensor: SensorReducer,
-  tank: TankReducer,
-  filteredAlerts: FilterReducer, 
-  dailytankgraph:TankGraphReducer, 
-  placeholder:ForecastPlaceholderReducer 
+  filteredAlerts: FilterReducer,
+  dailytankgraph: TankGraphReducer,
+  placeholder: ForecastPlaceholderReducer
 });
 export default rootReducer;
