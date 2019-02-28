@@ -25,7 +25,7 @@ export const fetchTankLevelsFailure = error => ({
 
 export const fetchTankLevels = () => dispatch => {
 	dispatch(fetchTankLevelsBegin());
-	fetch(process.env.REACT_APP_API_URL+`/api/tanklevels`)
+	fetch(process.env.REACT_APP_API_URL+`/api/tankreadings/tankobject`)
 		.then(handleErrors)
 		.then(res => res.json())
 		.then(levels => {

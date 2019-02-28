@@ -1,23 +1,25 @@
 .tank-container {
     display: flex;
     text-align: center;
+    left: 100px
 
 }
 
 .pump-button{
-    width:158dp;
-    height:30dp;
+    width: 200px;
+    height: 30px;
     font-weight: normal;
-    color: #FFECEFF1;
-    background-color:#FF1744;
+    color: black;
+    background-color:#17d1ff;
     text-align: center;
     font-size: 12sp;
-    border-radius: 3px;
+    border-radius: 2px;
     border: none;
     line-height: 16sp;
     box-shadow: black 1dp,1dp,4dp;
-    padding: 2% 7% 2% 7%;
-    
+    padding:0;
+    top:-130px;
+    position: relative;
 }
 .tank {
     flex: 1;
@@ -43,4 +45,17 @@
 
 .tank p:nth-child(4){
     color: #f6f6f6;
+}
+
+.Level{
+    top: -95px;
+    left: 5px;
+    position: relative;
+    color:#93A4AE 
+
+}
+.Instruction{
+    top: -110px;
+    left: 8px;
+    position: relative;
 }

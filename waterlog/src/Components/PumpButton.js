@@ -34,8 +34,8 @@ export default class PumpButton extends Component {
 		return (
 			<div>
 				<small>{this.state.error ? this.state.error : ''}</small>
-				<button onClick={() => this.togglePump(this.props.id)} className="pump-button">
-					{!this.state.pumpOn ? 'TURN PUMP ON' : 'TURN PUMP OFF'}
+				<button  onClick={() => this.togglePump(this.props.id)} className="pump-button">
+					{!this.state.pumpOn ? 'LOG PUMP AS TURNED ON' : 'LOG PUMP AS TURNED OFF'}
 				</button>
 			</div>
 		);
