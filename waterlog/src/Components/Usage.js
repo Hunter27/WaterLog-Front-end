@@ -16,6 +16,7 @@ import MonthlyCostsReports from './MonthlyCostsReports';
 import { fetchCostsForecastDaily } from '../actions/CostsDailyForecastAction';
 import { fetchCostsForecastMonthly } from '../actions/CostsMonthlyForecastAction';
 import Loader from './Loader';
+import { fetchPlaceholder } from "../actions/ForecastPlaceholderActions";
 
 class Usage extends Component {
   constructor(props) {
@@ -35,6 +36,7 @@ class Usage extends Component {
     this.props.fetchCostsSeasonally();
     this.props.fetchCostsForecastDaily();
     this.props.fetchCostsForecastMonthly();
+    this.props.fetchPlaceholder();
   }
 
   openGraph = (graphType) => {
@@ -46,26 +48,26 @@ class Usage extends Component {
   getGraphType = () => {
     if (this.state.display === "daily")
       return <div>
-        <p className = "bold">Cost </p>
+        <p className="bold">Cost </p>
         <DailyCostsReports props={this.props} />
-        <hr className = "divide" />
-        <p className = "bold">Usage</p>
+        <hr className="divide" />
+        <p className="bold">Usage</p>
         <DailyUsageComponent props={this.props.dailyUsage} />
       </div>
     else if (this.state.display === "monthly")
       return <div>
-        <p className = "bold">Cost</p>
+        <p className="bold">Cost</p>
         <MonthlyCostsReports props={this.props} />
-        <hr className = "divide" />
-        <p className = "bold">Usage</p>
+        <hr className="divide" />
+        <p className="bold">Usage</p>
         <MonthlyUsageComponent props={this.props.monthlyUsage} />
       </div>
     else if (this.state.display === "seasonal")
       return <div>
-        <p className = "bold">Cost</p>
+        <p className="bold">Cost</p>
         <SeasonalCostReports props={this.props.seasonalCost} />
-        <hr className = "divide" />
-        <p className = "bold">Usage</p>
+        <hr className="divide" />
+        <p className="bold">Usage</p>
         <SeasonalUsageComponent props={this.props.seasonUsage} />
       </div>
     else
@@ -82,24 +84,32 @@ class Usage extends Component {
       dailyCostForecastError,
       monthlyCostForecastLoading,
       monthlyCostForecastError,
+      placeholderLoading,
+      placeholderError,
       seasonalLoading } = this.props;
-    if (dailyError || monthlyError || seasonalError || dailyCostForecastError || monthlyCostForecastError) {
+
+    if (dailyError || monthlyError
+      || seasonalError || dailyCostForecastError
+      || monthlyCostForecastError || placeholderError) {
       return <div>Error!</div>;
     }
-    if (dailyLoading || monthlyLoading || seasonalLoading || dailyCostForecastLoading || monthlyCostForecastLoading) {
+    if (dailyLoading || monthlyLoading
+      || seasonalLoading || dailyCostForecastLoading
+      || monthlyCostForecastLoading || placeholderLoading) {
       return <Loader />
     }
+    
     return (
-      <div className = "wastage">
-        <div className = "graph-nav tab" id = "cost-buttons">
+      <div className="wastage">
+        <div className="graph-nav tab" id="cost-buttons">
           <button className={`btn-graph-nav tablinks ${this.state.display === "daily" ? "active" : ""}`}
             onClick={(e) => this.openGraph("daily")}
-            id = "openByDefault"
+            id="openByDefault"
           >
             Daily
               </button>
 
-          <button className = {`btn-graph-nav tablinks ${this.state.display === "monthly" ? "active" : ""}`}
+          <button className={`btn-graph-nav tablinks ${this.state.display === "monthly" ? "active" : ""}`}
             onClick={(e) => this.openGraph("monthly")}
           >
             Monthly
@@ -110,7 +120,7 @@ class Usage extends Component {
             Seasonal
               </button>
         </div>
-        <div className = "tabcontent">
+        <div className="tabcontent">
           {this.getGraphType()}
         </div>
       </div>
@@ -135,7 +145,8 @@ Usage.propTypes = {
   forecastDaily: PropTypes.array.isRequired,
   fetchCostsForecastMonthly: PropTypes.func.isRequired,
   forecastMonthly: PropTypes.array.isRequired,
-
+  placeholder: PropTypes.array.isRequired,
+  fetchPlaceholder: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -152,11 +163,14 @@ const mapStateToProps = (state) => ({
   seasonalLoading: state.seasonUsage.loading,
   seasonalError: state.seasonUsage.error,
   forecastDaily: state.forecastDaily.items,
-  dailyCostForecastLoading: state.forecastDaily.loading, 
+  dailyCostForecastLoading: state.forecastDaily.loading,
   dailyCostForecastError: state.forecastDaily.error,
   forecastMonthly: state.forecastMonthly.items,
   monthlyCostForecastLoading: state.forecastMonthly.loading,
-  monthlyCostForecastError: state.forecastMonthly.error 
+  monthlyCostForecastError: state.forecastMonthly.error,
+  placeholder: state.placeholder.item,
+  placeholderLoading: state.placeholder.loading,
+  placeholderError: state.placeholder.error
 })
 export default connect(mapStateToProps, {
   fetchUsageDaily,
@@ -166,5 +180,6 @@ export default connect(mapStateToProps, {
   fetchCostsMonthly,
   fetchCostsSeasonally,
   fetchCostsForecastDaily,
-  fetchCostsForecastMonthly
+  fetchCostsForecastMonthly,
+  fetchPlaceholder
 })(Usage);
