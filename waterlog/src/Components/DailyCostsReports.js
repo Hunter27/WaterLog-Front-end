@@ -22,9 +22,9 @@ const DailyCostsReports = (props) => {
         label: 'rands',
         data: dataY,
         fill: true,
-        borderColor: 'rgb(86, 204, 247)',
-        backgroundColor: 'rgb(86, 204, 247)',
-        pointBackgroundColor: 'rgb(86, 204, 247)',
+        borderColor: '#56ccf7',
+        backgroundColor: '#56ccf7',
+        pointBackgroundColor: '#56ccf7',
         pointRadius: 5,
         pointHitRadius: 5
       },
@@ -32,8 +32,8 @@ const DailyCostsReports = (props) => {
         label: 'forecast',
         data: forecast,
         fill: true,
-        borderColor: 'rgb(236, 239, 241)', 
-        pointBackgroundColor: 'rgb(236, 239, 241)',
+        borderColor: '#eceff1', 
+        pointBackgroundColor: '#eceff1',
         pointRadius: 5,
         pointHitRadius: 5
       }
@@ -46,18 +46,17 @@ const DailyCostsReports = (props) => {
         scaleLabel: {
           display: true,
           labelString: 'hours',
-          fontColor:'rgb(236, 239, 241)'
+          fontColor:'#eceff1'
         },
         ticks: {
-          fontColor:'rgb(236, 239, 241)',
+          fontColor:'#eceff1',
           major: {
             fontStyle: 'bold',
-            fontColor: 'rgba(255,0,0,1)'
           }
         },
         gridLines: {
           display: false,
-          color:'rgb(236, 239, 241)'
+          color:'#eceff1'
         }
       }],
       yAxes: [{
@@ -65,14 +64,14 @@ const DailyCostsReports = (props) => {
         scaleLabel: {
           display: true,
           labelString: 'rands',
-          fontColor:'rgb(236, 239, 241)'
+          fontColor:'#eceff1'
         },
         ticks: {
-          fontColor:'rgb(236, 239, 241)'
+          fontColor:'#eceff1'
         },
         gridLines: {
           display: false,
-          color:'rgb(236, 239, 241)'
+          color:'#eceff1'
         }
       }]
     }

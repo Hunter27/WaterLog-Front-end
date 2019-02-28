@@ -15,7 +15,7 @@ const SeasonalUsageComponent = (props) => {
         data: [dataSummer,dataWinter,dataAutumn,dataSpring],
         fill: true,         
         borderColor: 'red',
-        backgroundColor: 'rgb(86, 204, 247)'
+        backgroundColor: '#56ccf7'
       }
     ]
   }
@@ -25,18 +25,18 @@ const SeasonalUsageComponent = (props) => {
         scaleLabel: {
           display: true,
           labelString: 'seasons',
-          fontColor:'rgb(236, 239, 241)'
+          fontColor:'#eceff1'
         },
         ticks: {
-          fontColor: 'rgb(236, 239, 241)',
+          fontColor: '#eceff1',
           major: {
             fontStyle: 'bold',
-            Color:'rgb(236, 239, 241)',
+            Color:'#eceff1',
           }
         },
         gridLines: {
           display: false,
-          color : 'rgb(236, 239, 241)'
+          color : '#eceff1'
         }
       } ],
       yAxes: [ {
@@ -44,18 +44,18 @@ const SeasonalUsageComponent = (props) => {
         scaleLabel: {
           display: true,
           labelString: 'liters',
-          fontColor:'rgb(236, 239, 241)'
+          fontColor:'#eceff1'
         },
         ticks: {
-          fontColor: 'rgb(236, 239, 241)',
+          fontColor: '#eceff1',
           major: {
             fontStyle: 'bold',
-            Color:'rgb(236, 239, 241)',
+            Color:'#eceff1',
           }
         },
         gridLines: {
           display: false,
-          color : 'rgb(236, 239, 241)'
+          color : '#eceff1'
         }
       } ]
     }

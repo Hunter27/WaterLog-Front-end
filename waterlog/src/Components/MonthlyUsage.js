@@ -12,7 +12,7 @@ const MonthlyUsageComponent = (props) => {
         data: dataY,
         fill: true,         
         borderColor: 'red'  ,
-        backgroundColor: 'rgb(86, 204, 247)'
+        backgroundColor: '#56ccf7'
       }
     ]
   }
@@ -23,18 +23,17 @@ const MonthlyUsageComponent = (props) => {
         scaleLabel: {
           display: true,
           labelString: 'months',
-          fontColor:'rgb(236, 239, 241)'
+          fontColor:'#eceff1'
         },
         ticks: {
-          fontColor:'rgb(236, 239, 241)',
+          fontColor:'#eceff1',
           major: {
             fontStyle: 'bold',
-            fontColor: 'rgb(86, 204, 247)'
           }
         },
         gridLines: {
           display: false,
-          color : 'rgb(236, 239, 241)'
+          color : '#eceff1'
         }
       } ],
       yAxes: [ {
@@ -42,14 +41,14 @@ const MonthlyUsageComponent = (props) => {
         scaleLabel: {
           display: true,
           labelString: 'liters',
-          fontColor:'rgb(236, 239, 241)'
+          fontColor:'#eceff1'
         },
         ticks: {
-          fontColor:'rgb(236, 239, 241)'
+          fontColor:'#eceff1'
         },
         gridLines: {
           display: false,
-          color : 'rgb(236, 239, 241)'
+          color : '#eceff1'
         }
       } ]
     }
