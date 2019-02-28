@@ -36,7 +36,7 @@ class MapFullScreenComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      simpleView: false,
+      simpleView: true,
       heatView: false,
       zoom: mapOptions.defaultZoom
     };
@@ -52,7 +52,7 @@ class MapFullScreenComponent extends Component {
         iconState: generateMapIcons(pmapData),
       });
 
-      if (this.state.iconState.length > 0) {
+      if (this.state.iconState) {
         this.state.contLoading = false;
       }
 
@@ -112,6 +112,7 @@ class MapFullScreenComponent extends Component {
             </button>
           </div>
           <div className={`map-icon-div-layer2-fullscreen map-button-tab ${this.state.simpleView ? "" : "invisible"}`}>
+            
             <img
               className="icon"
               src={require("../images/heatmap_icon_blue.png")}
@@ -147,15 +148,15 @@ class MapFullScreenComponent extends Component {
                     if (this.state.heatView) {
                       return (
                         <div>
-                          <Rectangle bounds={mapOptions.rectangleBounds} color={'Navy'} opacity={0.5} />
+                          <Rectangle bounds={mapOptions.rectangleBounds} color={'#beecff'} opacity={0.5} />
                           <HeatmapLayer
                             points={heatPoints}
                             longitudeExtractor={m => m[1]}
                             latitudeExtractor={m => m[0]}
                             intensityExtractor={m => parseFloat(m[2])}
-                            gradient={{ 0.25: 'Blue', 0.5: 'Green', 0.75: 'Yellow', 1: 'Red' }}
+                            gradient={{ 0.25: '#5ad4de', 0.5: '#6ade5a', 0.75: '#d2de5a', 1: '#de765a' }}
                             radius={40}
-                            blur={10}
+                            blur={15}
                             max={mapOptions.maxIntensity} />
                         </div>);
                     }
