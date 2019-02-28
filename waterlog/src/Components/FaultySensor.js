@@ -3,6 +3,7 @@ import SensorDiagram from './SensorDiagram';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchAlerts } from '../actions/AlertsAction';
+import {fetchSensor } from '../actions/SensorAction';
 import Loader from './Loader';
 import Error404 from './Error404';
 import Map from './Map';
@@ -19,7 +20,7 @@ class FaultySensor extends Component {
 	}
 
 	componentDidMount() {
-		this.props.fetchAlerts();
+		this.props.fetchSensor(this.props.match.params.id,this.props.match.params.date);
 	}
 
 	handleMapExpand() {
@@ -59,25 +60,24 @@ class FaultySensor extends Component {
 	);
 
 	render() {
-		const { error, loading, alerts } = this.props;
-		if ((!alerts || alerts.length === 0) && loading) {
+		const { error, loading, sensor } = this.props;
+		if (loading) {
 			return <Loader />;
-		}
-		if (error) {
+		  }
+		  if (error) {
 			return <Error404 />;
-		}
-
-		const alert = alerts.filter(
-			(alert) =>
-				alert.entityId === parseInt(this.props.match.params.id) && alert.date == this.props.match.params.date
-		)[0];
+		  }
+		  if(!loading && sensor.length < 1){
+			  return <Error404/>;
+		  }
+		const selectedSensor = sensor[0];
 
 		const sensorInfo = (
 			<div>
 				<div>
-					<h2 className={alert.status == 1 ? alert.severity.toLowerCase() : 'leak-resolved'}>{`${alert.entityName} ${alert.entityId} ${alert.entityType}`}</h2>
+					<h2 className={selectedSensor.status == 2 ? selectedSensor.severity.toLowerCase() : 'leak-resolved'}>{`${selectedSensor.entityName} ${selectedSensor.entityId} ${selectedSensor.entityType}`}</h2>
 					<p id="water-flow">
-						{0}% /{alert.typeLitres.toFixed(1)}/hr water flow
+						{0}% /{selectedSensor.typeLitres.toFixed(1)}/hr water flow
 					</p>
 					<small>(surrounding sensors have 100% waterflow)</small>
 				</div>
@@ -89,12 +89,12 @@ class FaultySensor extends Component {
 				/>
 				<hr />
 				{this.state.mapExpanded ? this.segmentMap : null}
-				{alert.status == 2 ? this.dateResolved(alert.date) : null}
-				<SensorDiagram sensorId={alert.entityId} />
-				{alert.status == 2 ? (
+				{selectedSensor.status == 1 ? this.dateResolved(selectedSensor.date) : null}
+				<SensorDiagram sensorId={selectedSensor.entityId} status={selectedSensor.status} />
+				{selectedSensor.status == 2 ? (
 					<div className="resolve">
 						<button
-							onClick={() => this.handleResolveClick(alert.entityId)}
+							onClick={() => this.handleResolveClick(selectedSensor.entityId)}
 							disabled={this.state.leakResolved}
 							className={`resolve-button ${!this.state.leakResolved
 								? 'unresolved-leak'
@@ -103,10 +103,10 @@ class FaultySensor extends Component {
 							LOG RESOLVED ISSUE
 						</button>
 						<small
-							className={this.state.leakResolved === false ? 'default-status' : 'leak-unresolved-status'}
+							className='default-status'
 							id="resolved-status"
 						>
-							{this.state.leakResolved === false ? 'the problem is fixed, click here' : ''}
+							the problem is fixed, click here
 						</small>
 					</div>
 				) : null}
@@ -117,15 +117,15 @@ class FaultySensor extends Component {
 	}
 }
 FaultySensor.propTypes = {
-	fetchAlerts: PropTypes.func.isRequired,
-	alerts: PropTypes.array.isRequired,
+	fetchSensor: PropTypes.func.isRequired,
+	sensor: PropTypes.array.isRequired,
 	loading: PropTypes.array.isRequired
 };
 
 const mapStateToProps = (state) => ({
-	alerts: state.alerts.items,
-	loading: state.alerts.loading,
-	error: state.alerts.error
+	sensor: state.sensor.item,
+	loading: state.sensor.loading,
+	error: state.sensor.error
 });
 
-export default connect(mapStateToProps, { fetchAlerts })(FaultySensor);
+export default connect(mapStateToProps, { fetchSensor })(FaultySensor);

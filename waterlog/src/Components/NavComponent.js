@@ -9,7 +9,6 @@ import HomeComponent from '../Pages/Home';
 import MapFullScreenComponent from '../Components/MapFullScreen';
 import UsageComponent from '../Pages/Usage';
 import SegmentLeak from './SegmentLeak';
-import SegmentHistory from './SegmentHistory';
 import TankInformation from '../Pages/TankInformation';
 import FaultySensor from './FaultySensor';
 
@@ -20,11 +19,6 @@ class NavComponent extends Component {
 			notifications: 0
 		};
 	}
-
-	componentDidMount() {
-		this.props.fetchAlerts();
-	}
-
 	render() {
 		const { total } = this.props;
 		

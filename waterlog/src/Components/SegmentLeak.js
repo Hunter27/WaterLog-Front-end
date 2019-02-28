@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import WastageSummary from './WastageSummary';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchAlerts } from '../actions/AlertsAction';
+import { fetchSegment } from '../actions/SegmentAction';
 import Loader from './Loader';
 import Error404 from './Error404';
 import Map from './Map';
@@ -19,7 +19,7 @@ class SegmentLeak extends Component {
 		};
 	}
 	componentDidMount() {
-		this.props.fetchAlerts();
+		this.props.fetchSegment(this.props.match.params.id, this.props.match.params.date);
 	}
 
 	handleMapExpand() {
@@ -47,7 +47,6 @@ class SegmentLeak extends Component {
 				this.setState({
 					error: err
 				});
-				alert(String(err));
 			});
 	}
 
@@ -59,25 +58,30 @@ class SegmentLeak extends Component {
 	);
 
 	render() {
-		const { error, loading, alerts } = this.props;
-		if ((!alerts || alerts.length === 0) && loading) {
+		const { error, loading, segment } = this.props;
+		if (loading) {
 			return <Loader />;
 		}
 		if (error) {
 			return <Error404 />;
 		}
+		if (!loading && segment.length < 1) {
+			return <Error404 />;
+		}
+		const selectedSegment = segment[0];
 
-		const alert = alerts.filter((alert) => alert.entityId === parseInt(this.props.match.params.id) 
-			&& alert.date == this.props.match.params.date )[0];
-		
 		const leakInfo = (
 			<div>
-				<div className={`leakInfo ${parseInt(alert.status) == 2 ? alert.severity : 'leak-resolved'}`}>
-					<h2>{`${alert.entityName} ${alert.entityId} ${alert.entityType}`}</h2>
-					<p>({alert.severity})</p>
-					<h1>R {alert.cost.toFixed(2)}</h1> 
+				<div
+					className={`leakInfo ${parseInt(selectedSegment.status) == 2
+						? selectedSegment.severity
+						: 'leak-resolved'}`}
+				>
+					<h2>{`${selectedSegment.entityName} ${selectedSegment.entityId} ${selectedSegment.entityType}`}</h2>
+					<p>({selectedSegment.severity})</p>
+					<h1>R {selectedSegment.cost.toFixed(2)}</h1>
 					<p>is being lost per hour!</p>
-					<p>Loosing {alert.litresPerHour.toFixed(0)}&#x2113; per hour</p>
+					<p>Loosing {selectedSegment.litresPerHour.toFixed(0)}&#x2113; per hour</p>
 					<p>no leak would be 0&#x2113; per hour</p>
 				</div>
 				<img
@@ -90,13 +94,13 @@ class SegmentLeak extends Component {
 				{this.state.mapExpanded ? this.segmentMap : null}
 				<p className="wastegeLabel">wastage</p>
 				<WastageSummary
-					severity={alert.severity}
-					litres={alert.typeLitres.toFixed(0)}
-					percent={(alert.typeLitres / alert.totalLitres * 100).toFixed(0)}
+					severity={selectedSegment.severity}
+					litres={selectedSegment.typeLitres.toFixed(0)}
+					percent={(selectedSegment.typeLitres / selectedSegment.totalLitres * 100).toFixed(0)}
 				/>
 				{!this.state.leakResolved ? (
 					<button
-						onClick={() => this.handleResolveClick(alert.entityId)}
+						onClick={() => this.handleResolveClick(selectedSegment.entityId)}
 						disabled={this.state.leakResolved}
 						className={`resolve-button ${!this.state.leakResolved ? 'unresolved-leak' : 'resolved-leak'}`}
 					>
@@ -122,14 +126,14 @@ class SegmentLeak extends Component {
 }
 
 SegmentLeak.propTypes = {
-	fetchAlerts: PropTypes.func.isRequired,
-	alerts: PropTypes.array.isRequired,
+	fetchSegment: PropTypes.func.isRequired,
+	segment: PropTypes.array.isRequired,
 	loading: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({
-	alerts: state.alerts.items,
-	loading: state.alerts.loading,
-	error: state.alerts.error
+	segment: state.segment.item,
+	loading: state.segment.loading,
+	error: state.segment.error
 });
-export default connect(mapStateToProps, { fetchAlerts })(SegmentLeak);
+export default connect(mapStateToProps, { fetchSegment })(SegmentLeak);

@@ -65,13 +65,24 @@ small {
 }
 
 .faulty {
-    background-color: #FF1744;
+    background-color: $blue;
     border: 10px solid #dd1717;
     color: #f6f6f6;
 }
 
+.resolved-sensor {
+    background-color: $turquoise-blue;
+    border: 10px solid rgba(86,204,247,0.64);
+    color: #f6f6f6;
+}
+
 .faulty-text {
-    color: #dd1717;
+    color: $blue;
+    font-weight: bold;
+}
+
+.resolved-text {
+    color: $turquoise-blue;
     font-weight: bold;
 }
 
