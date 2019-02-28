@@ -9,14 +9,14 @@ const SeasonalWastageComponent = (props) => {
     var dataAutumn = props.props[3].dataPoints.map(a => Math.round(a.y));
 
     var data = {
-      labels: ['Summer', 'Winter', 'Autumn', 'Spring'],
-      datasets: [
+      labels:['Summer', 'Winter', 'Autumn', 'Spring'],
+          datasets: [
         {
           label: 'liters',
           data: [dataSummer, dataWinter, dataAutumn, dataSpring],
-          fill: true,
+          fill: true,        
           borderColor: 'red',
-          backgroundColor: 'rgba(255,0,0,1)'
+          backgroundColor: 'rgb(86, 204, 247)'
         }
       ]
     }
@@ -25,26 +25,40 @@ const SeasonalWastageComponent = (props) => {
         xAxes: [{
           scaleLabel: {
             display: true,
-            labelString: 'seasons'
+            labelString: 'seasons',
+            fontColor:'rgb(236, 239, 241)',
           },
           ticks: {
+            fontColor: 'rgb(236, 239, 241)',
             major: {
               fontStyle: 'bold',
-              fontColor: 'rgba(255,0,0,1)'
+              Color:'rgb(236, 239, 241)',
             }
           },
           gridLines: {
-            display: false
+            display: false,
+            color : 'rgb(236, 239, 241)'
           }
+          
+          
         }],
         yAxes: [{
+          ticks: {
+            fontColor: 'rgb(236, 239, 241)',
+            major: {
+              fontStyle: 'bold',
+              Color:'rgb(236, 239, 241)',
+            }
+          },
           display: true,
           scaleLabel: {
             display: true,
-            labelString: 'liters'
+            labelString: 'liters',
+            fontColor:'rgb(236, 239, 241)'
           },
           gridLines: {
-            display: false
+            display: false,
+            color : 'rgb(236, 239, 241)'
           }
         }]
       }

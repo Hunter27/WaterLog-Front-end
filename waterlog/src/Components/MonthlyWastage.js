@@ -14,7 +14,7 @@ const MonthlyWastageComponent = (props) => {
         data: dataY,
         fill: true,         
         borderColor: 'red'  ,
-        backgroundColor: 'rgba(255,0,0,1)'
+        backgroundColor: 'rgb(86, 204, 247)'
       }
     ]
   }
@@ -24,26 +24,35 @@ const MonthlyWastageComponent = (props) => {
       xAxes: [ {
         scaleLabel: {
           display: true,
-          labelString: 'Months'
+          labelString: 'Months',
+          fontColor:'rgb(236, 239, 241)'
         },
         ticks: {
+          fontColor: 'rgb(236, 239, 241)',
           major: {
             fontStyle: 'bold',
-            fontColor: 'rgba(255,0,0,1)'
+            fontColor: 'rgb(86, 204, 247)'
           }
         },
         gridLines: {
-          display: false
+          display: false,
+          color : 'rgb(236, 239, 241)'
+          
         }
       } ],
       yAxes: [ {
         display: true,
         scaleLabel: {
           display: true,
-          labelString: 'Liters'
+          labelString: 'Liters',
+          fontColor:'rgb(236, 239, 241)'
+        },
+        ticks: {
+          fontColor: 'rgb(236, 239, 241)'
         },
         gridLines: {
-          display: false
+          display: false,
+          color : 'rgb(236, 239, 241)'
         }
       } ]
     }
