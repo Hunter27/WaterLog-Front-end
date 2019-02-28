@@ -20,7 +20,7 @@ const DailyCostsReports = (props) => {
     labels: labelX,
     datasets: [
       {
-        label: 'rands',
+        label: 'cost',
         data: dataY,
         fill: true,
         borderColor: '#56ccf7',
@@ -34,6 +34,7 @@ const DailyCostsReports = (props) => {
         data: forecast,
         fill: true,
         borderColor: '#eceff1', 
+        backgroundColor: '#fff',
         pointBackgroundColor: '#eceff1',
         pointRadius: 5,
         pointHitRadius: 5
@@ -46,7 +47,7 @@ const DailyCostsReports = (props) => {
       display: true,
       position:'bottom',
       labels: {
-          fontColor: 'rgb(255, 99, 132)', 
+          fontColor: '#C8C8C8', 
       }
      },
     scales: {
