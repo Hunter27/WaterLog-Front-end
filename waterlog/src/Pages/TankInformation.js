@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TankComponent from '../Components/TankComponent';
 import PumpButton from './../Components/PumpButton';
 import '../Stylesheets/_tankInfo.scss';
-import GraphLine from '../Components/DailyTankGraph';
+import GraphLine from '../Components/TankGraph';
 
 class TankInformation extends Component {
 	constructor(props) {
@@ -11,25 +11,12 @@ class TankInformation extends Component {
 			id: this.props.match.params.id
 		};
 	}
-	handleMapExpand() {
-		this.setState({
-			mapExpanded: !this.state.mapExpanded,
-			mapExpanded: false,
-		});
-	}
-
 	render() {
 		return (
 			<div>
 				<TankComponent id={this.state.id} />
 				<PumpButton id={this.state.id} />
-				<img
-					id="map-toggle"
-					src={this.state.mapExpanded === false ? 'images/map_expand.png' : 'images/map_close.png'}
-					alt="segment-map"
-					onClick={() => this.handleMapExpand()}
-				/>
-				<GraphLine className="UsageTnk" id={this.state.id}/>
+				<GraphLine/>
 			</div>
 		);
 	}

@@ -23,8 +23,7 @@ export const fecthSegmentEventsFailure = error => ({
 
 //TODO: Resolve promise hell
 export const fetchSegmentEvents = () => dispatch => {
-  dispatch(fecthSegmentEventsBegin());
-
+  dispatch(fecthSegmentEventsBegin()); 
   return fetch(process.env.REACT_APP_API_URL+`/api/segmentevents`)
     .then(handleErrors)
     .then(res => res.json())

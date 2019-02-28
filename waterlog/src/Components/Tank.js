@@ -3,21 +3,11 @@ import "../Stylesheets/_tank.scss";
 const images = {
   tank_yellow: "images/tank-yellow.png",
   tank_orange: "images/tank-orange.png",
-  tank_green: "images/tank-green.png",
-  tank_red:"images/tank-red.png"
+  tank_green: "images/tank-green.png"
 };
-
 const Tank = props => {
-  const getTankImage = (percent) => {
-    if(percent===0){
-      return (
-        <div>
-          <img src={images.tank_red} alt="tank" />
-          <p id="homepage_tank_percentage_lightimage">{percent}%</p>
-        </div>
-      );
-    }
-    else if (percent >= 1 && percent <= 40) {
+  const getTankImage = percent => {
+    if (percent >= 1 && percent <= 40) {
       return (
         <div>
           <img src={images.tank_yellow} alt="tank" />
@@ -43,8 +33,8 @@ const Tank = props => {
 
   return (
     <div className="tank">
-      <p>Tank {props.tank.id}</p>
-      {getTankImage(props.tank.percentageLevel)}
+      <p>Tank {props.tank.tankId}</p>
+      {getTankImage(props.tank.percentage)}
     </div>
   );
 };

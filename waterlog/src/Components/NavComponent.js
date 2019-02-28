@@ -6,13 +6,12 @@ import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-do
 
 import AlertComponent from '../Pages/Alert';
 import HomeComponent from '../Pages/Home';
-import MapComponent from '../Components/Map';
+import MapFullScreenComponent from '../Components/MapFullScreen';
 import UsageComponent from '../Pages/Usage';
 import SegmentLeak from './SegmentLeak';
 import SegmentHistory from './SegmentHistory';
 import TankInformation from '../Pages/TankInformation';
 import FaultySensor from './FaultySensor';
-import { fetchNotifications } from '../actions/NumberOfNotifsActions';
 
 class NavComponent extends Component {
 	constructor(props) {
@@ -23,17 +22,12 @@ class NavComponent extends Component {
 	}
 
 	componentDidMount() {
-		this.timer = setInterval(()=>  this.props.fetchNotifications(), 5000);
 		this.props.fetchAlerts();
 	}
 
-	componentWillUnmount() {
-    clearInterval(this.timer)
-    this.timer = null;
-  }
-
 	render() {
-		const { notif } = this.props;
+		const { total } = this.props;
+		
 		return (
 			<Router>
 				<div className="App">
@@ -47,7 +41,7 @@ class NavComponent extends Component {
 							</NavLink>
 							<NavLink to="/alert" className="navicon-container" activeClassName="selected-route">
 								<img src="images/alert_icon.png" alt="alert" />
-								<span className="badge">{this.state.notifications || notif.data}</span>
+								<span className="badge">{this.state.notifications || total}</span>
 							</NavLink>
 							<NavLink exact to="/map" className="navicon-container" activeClassName="selected-route">
 								<img src="images/map_icon.png" alt="map" />
@@ -64,7 +58,7 @@ class NavComponent extends Component {
 							<Route exact path="/alert/segment/:id/:date" render={(props) => <SegmentLeak {...props} />} />
 							<Route exact path="/alert/sensor/:id/:date" render={(props) => <FaultySensor {...props} />} />
 							<Route exact path="/alert/tank/:id" render={(props) => <TankInformation {...props} />} />
-							<Route exact path="/map" component={MapComponent} />
+							<Route exact path="/map" component={MapFullScreenComponent} />
 							<Route exact path="/usage" component={UsageComponent} />
 							<Route exact path="*" component={HomeComponent} />
 						</Switch>
@@ -77,14 +71,11 @@ class NavComponent extends Component {
 
 SegmentLeak.propTypes = {
 	fetchAlerts: PropTypes.func.isRequired,
-	total: PropTypes.number.isRequired,
-	fetchNotifications: PropTypes.func,
-    notif: PropTypes.object.isRequired
+	total: PropTypes.number.isRequired
 };
 
 const mapStateToProps = (state) => ({
 	alerts: state.alerts.items,
-	notif: state.numNotifs.notif.items,
-    isfetching: state.numNotifs.notif.isFetching
+	total: state.alerts.total,
 });
-export default connect(mapStateToProps, { fetchAlerts, fetchNotifications })(NavComponent);
+export default connect(mapStateToProps, { fetchAlerts })(NavComponent);
