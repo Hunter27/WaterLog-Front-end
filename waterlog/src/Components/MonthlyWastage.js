@@ -59,4 +59,3 @@ const MonthlyWastageComponent = (props) => {
   }
 }
 export default MonthlyWastageComponent;
-

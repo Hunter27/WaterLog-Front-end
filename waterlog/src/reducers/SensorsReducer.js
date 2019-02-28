@@ -1,7 +1,7 @@
 import {
-	FETCH_TANK_LEVELS_BEGIN,
-	FETCH_TANK_LEVELS_SUCCESS,
-	FETCH_TANK_LEVELS_FAILURE
+	FETCH_SENSORS_BEGIN,
+	FETCH_SENSORS_SUCCESS,
+	FETCH_SENSORS_FAILURE
 } from '../actions/Types';
 
 const initialState = {
@@ -13,20 +13,20 @@ const initialState = {
 
 export default function (state = initialState, action) {
 	switch (action.type) {
-		case FETCH_TANK_LEVELS_BEGIN:
+		case FETCH_SENSORS_BEGIN:
 			return {
 				...state,
 				loading: true,
 				error: null
 			}
-		case FETCH_TANK_LEVELS_SUCCESS:
+		case FETCH_SENSORS_SUCCESS:
 			return {
 				...state,
 				loading: false,
-				items: action.payload.levels,
+				items: action.payload.sensors,
 				error: null
 			}
-		case FETCH_TANK_LEVELS_FAILURE:
+		case FETCH_SENSORS_FAILURE:
 			return {
 				...state,
 				loading: false,

@@ -8,7 +8,7 @@
 }
 
 h3{
-    color:#F6F6F6;
+    color:#17d1ff;
 }
 
 h5{
@@ -21,34 +21,42 @@ h6{
 
 #percentage {
     position: relative;
-    top: -85px;
+    top: -165px;
     font-weight: bold;
-    color: #F6F6F6;
+    color: black;
+    height:18 ;
+    width:23;
 }
 
 .image{
-    width: 138px;
-    height:181px;
+    width: 118px;
+    height:158px;
+    top: -39px;
+    position: relative;
 }
 
 .tank_description{
     font-size: 14sp;
     font-family: "Roboto";
-    color: #FFDEE1E2;
+    color: rgba(247, 220, 222, 0.886);
 }
 
 #homepage_tank_percentage_lightimage{
     position: relative;
     display: inline-block;
-    top: -60px;
-    color: #253238;
+    top: -44px;
+    right:44px;
+    color: black;
     font-size: 10pt;
+    font-weight: bold;
 }
 
 #homepage_tank_percentage{
     position: relative;
     display: inline-block;
-    top: -60px;
-    color: #FFF;
+    top: -44px;
+    right:39px;
+    color: black;
     font-size: 10pt;
+    font-weight: bold;
 }

@@ -1,5 +1,7 @@
 #map-toggle {
     width: 75px;
+    top: -125px;
+    position: relative;
 }
 
 .leakInfo {
@@ -81,19 +83,19 @@
 }
 
 .segment-map {
-    height: 400px;
-    margin: 25px 0;
+  height: 400px;
+  margin: 25px 0;
 }
 
 .date-resolved {
     h4 {
-        color: $turquoise-blue;
-        margin: 15px 0 0 0;
-        font-weight: normal;
+      color: $turquoise-blue;
+      margin: 15px 0 0 0;
+      font-weight: normal;
     }
 
     small {
-        margin: 0;
-        color: $trout;
+      margin: 0;
+      color: $trout;
     }
 }
