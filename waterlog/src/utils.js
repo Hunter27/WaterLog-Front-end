@@ -148,6 +148,7 @@ export function generateMapIcons({ segments, markers }, simpleView, options = {
 }
 
 export function levelToIntensity(level, maxIntensity = 5) {
+  if(level) {return 0;}
   switch (level.toLowerCase()) {
     case 'high':
       return maxIntensity;
@@ -158,4 +159,18 @@ export function levelToIntensity(level, maxIntensity = 5) {
     default:
       return 0;
   }
+}
+
+const sW = [-25.784510, 28.334360];
+const nE = [-25.782110, 28.338325];
+const hBC = 0.91;
+
+export const mapOptions = {
+  southWest: sW,
+  northEast: nE,
+  maxIntensity: 5,
+  centerPosition: [-25.783425, 28.336046],
+  defaultZoom: 17,
+  heatBackgroundConst: hBC,
+  rectangleBounds: [sW.map(e => e / hBC), nE.map(e => e * hBC)]
 }

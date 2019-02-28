@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Map, TileLayer } from "react-leaflet";
+import { Map, TileLayer, Rectangle } from "react-leaflet";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { fetchMapsData } from "./../actions/MapActions";
@@ -7,17 +7,11 @@ import { fetchHeatMapsData } from "./../actions/HeatMapActions";
 import Loader from "./Loader";
 import Error404 from "./Error404";
 import HeatmapLayer from "react-leaflet-heatmap-layer";
-import { generateMapIcons, levelToIntensity } from "./../utils";
-
-const southWest = [-25.784510, 28.334360];
-const northEast = [-25.782110, 28.338325];
-const maxIntensity = 5;
-const centerPosition = [-25.783425, 28.336046];
-const defaultZoom = 16;
+import { generateMapIcons, levelToIntensity, mapOptions } from "./../utils";
 
 function getHeatMapData({ monitorsCoordinates, segmentCoordinates }) {
-  let monitorMapData = monitorsCoordinates.map(mon => [mon.lat, mon.long, levelToIntensity(mon.faultLevel, maxIntensity)]);
-  let segmentMapData = segmentCoordinates.map(seg => [seg.lat, seg.long, levelToIntensity(seg.faultLevel, maxIntensity)]);
+  let monitorMapData = monitorsCoordinates.map(mon => [mon.lat, mon.long, levelToIntensity(mon.faultLevel, mapOptions.maxIntensity)]);
+  let segmentMapData = segmentCoordinates.map(seg => [seg.lat, seg.long, levelToIntensity(seg.faultLevel, mapOptions.maxIntensity)]);
 
   let heatMapData = monitorMapData.concat(segmentMapData);
   return heatMapData;
@@ -27,7 +21,7 @@ class MapComponent extends Component {
     super(props);
     this.state = {
       simpleView: false,
-      zoom: defaultZoom,
+      zoom: mapOptions.defaultZoom,
       heatView: false
     };
   }
@@ -72,8 +66,8 @@ class MapComponent extends Component {
         <div className="map-tile-div">
           <Map
             ref='map'
-            center={centerPosition}
-            maxBounds={[southWest, northEast]}
+            center={mapOptions.centerPosition}
+            maxBounds={[mapOptions.southWest, mapOptions.northEast]}
             zoom={this.state.zoom}
             zoomControl={false}
             maxZoom={18}
@@ -86,15 +80,19 @@ class MapComponent extends Component {
                   <TileLayer url="http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png" />
                   {(() => {
                     if (this.state.heatView) {
-                      return <HeatmapLayer
+                      return (
+                      <div> 
+                        <Rectangle bounds={mapOptions.rectangleBounds} color={'Navy'} opacity={1}/>
+                        <HeatmapLayer
                         points={heatPoints}
                         longitudeExtractor={m => m[1]}
                         latitudeExtractor={m => m[0]}
                         intensityExtractor={m => parseFloat(m[2])}
-                        gradient={{ 0.2: 'green', 0.4: 'yellow', 0.8: 'red' }}
+                        gradient={{ 0.25: 'Blue', 0.5: 'Green', 0.75: 'Yellow', 1: 'Red'}}
                         radius={20}
                         blur={10}
-                        max={maxIntensity} />
+                        max={mapOptions.maxIntensity} />
+                      </div>);
                     }
                   })()}
                 </div>
@@ -135,7 +133,7 @@ class MapComponent extends Component {
               alt="re-center Map"
               onClick={() => {
                 const map = this.refs.map.leafletElement;
-                map.setView(centerPosition, defaultZoom)
+                map.setView(mapOptions.centerPosition, mapOptions.defaultZoom)
               }} />
           </div>
         </div>
