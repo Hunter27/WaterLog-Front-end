@@ -8,8 +8,18 @@ import { formatDate, getStatusIcon } from "./../utils";
 
 class AlertTableComponent extends Component {
   componentDidMount() {
-    this.props.fetchAlerts();
+    document.addEventListener('scroll', this.trackScrolling);
+    console.log(this.currentPage);
+    this.props.fetchAlerts(this.currentPage);
+    this.currentPage++;
+
   }
+  currentPage = 1;
+nextPage = () => {
+  this.props.fetchAlerts(this.currentPage);
+  this.currentPage++;
+      
+}
 
   render() {
     const { error, loading, alerts } = this.props;
@@ -17,7 +27,8 @@ class AlertTableComponent extends Component {
     if (error) {
       return <Error404 />;
     }
-    if (loading) {
+    if (loading && alerts.length < 1) {
+      console.log(alerts);
       return <Loader />;
     }
     return (
@@ -27,7 +38,7 @@ class AlertTableComponent extends Component {
           <img className="alert-img" src="images/ascending_descending.png" alt="ascending_descending icon" />
           <img className="alert-img" src="images/filter_icon.png" alt="filter icon" onClick={this.props.openFilter}/>
         </div>
-        <table>
+        <table className="alerts-table">
           <tbody>
             {alerts.map((alert, index) => (
               <tr
@@ -55,6 +66,7 @@ class AlertTableComponent extends Component {
             ))}
           </tbody>
         </table>
+        <div onClick={this.nextPage}>Scroll More</div>
       </div>
     );
   }

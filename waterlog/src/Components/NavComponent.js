@@ -22,7 +22,7 @@ class NavComponent extends Component {
 	}
 
 	componentDidMount() {
-		this.props.fetchAlerts();
+		//this.props.fetchAlerts();
 	}
 
 	render() {

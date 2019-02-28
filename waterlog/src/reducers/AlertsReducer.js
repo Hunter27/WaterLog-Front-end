@@ -7,7 +7,7 @@ import {
 const initialState = {
     items: [],
     total: 0,
-    loading: true,
+    loading: null,
     error: null
 }
 
@@ -23,7 +23,7 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 loading: false,
-                items: action.payload.alerts,
+                items: state.items.concat(action.payload.alerts),
                 total: action.payload.total,
                 error: null
             }

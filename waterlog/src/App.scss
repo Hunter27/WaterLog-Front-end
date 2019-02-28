@@ -13,6 +13,17 @@
 @import './Stylesheets/error404';
 @import './Stylesheets/alertsFilter';
 
+.App-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 5;
+}
+
+.router-outlet {
+  margin-top: 44px;
+}
+
 #cost-buttons {
   padding-top: 18px;
 }

@@ -194,10 +194,10 @@ class AlertsFilter extends Component {
 						))
 					) : null}
 					<hr />
-					<button id="filter" onClick={this.resetFilter}>
+					<button id="reset-filter" onClick={this.resetFilter}>
 						Clear All
 					</button>
-					<button onClick={this.submitFilter}>DONE</button>
+					<button id="submit-filter" onClick={this.submitFilter}>DONE</button>
 				</div>
 			</div>
 		);
