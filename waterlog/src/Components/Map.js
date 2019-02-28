@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Map, TileLayer } from "react-leaflet";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { fetchMapsData } from "./../actions/MapActions";
+import { fetchMapsData, fetchPollMapsData } from "./../actions/MapActions";
 import { fetchHeatMapsData } from "./../actions/HeatMapActions";
 import Loader from "./Loader";
 import Error404 from "./Error404";
@@ -22,16 +22,30 @@ function getHeatMapData({ monitorsCoordinates, segmentCoordinates }) {
   return heatMapData;
 }
 class MapComponent extends Component {
-  componentDidMount() {
+  async componentDidMount() {
     this.props.fetchMapsData();
     this.props.fetchHeatMapsData();
+    this.timer = setInterval(() => {
+      this.props.fetchPollMapsData()
+      const { pmapData } = this.props;
+      this.setState({
+        iconState: generateMapIcons(pmapData),
+      });
+
+      if (this.state.iconState.length > 0) {
+        this.state.contLoading = false;
+      }
+
+    }, 5000);
   }
 
   constructor(props) {
     super(props);
     this.state = {
       simpleView: false,
-      zoom: 17
+      zoom: 17,
+      iconState: null,
+      contLoading: true
     };
   }
 
@@ -42,21 +56,22 @@ class MapComponent extends Component {
       mapData,
       heatError,
       heatLoading,
-      heatMapData
+      heatMapData,
+      pmapDataError,
     } = this.props;
-    if (error || heatError) {
+    if (error || heatError || pmapDataError) {
       return <Error404 />;
     }
-    if (loading || heatLoading) {
+    if (loading || heatLoading || this.state.contLoading) {
       return (
         <div>
           <Loader />
         </div>
       );
     }
-    let icons, heatPoints;
+    let heatPoints;
     if (mapData) {
-      icons = generateMapIcons(mapData, this.state.simpleView);
+
     } else {
       return <Error404 />;
     }
@@ -90,7 +105,7 @@ class MapComponent extends Component {
                 </div>
                 );
             })()}
-            {icons}
+            {this.state.iconState}
           </Map>
         </div>
         <div className="map-button-div-layer2 map-button-tab">
@@ -118,22 +133,28 @@ class MapComponent extends Component {
 
 MapComponent.propTypes = {
   fetchMapsData: PropTypes.func.isRequired,
-  mapData: PropTypes.array.isRequired
+  fetchPollMapsData: PropTypes.func,
+  mapData: PropTypes.array.isRequired,
+  pmapData: PropTypes.array
 };
 
 const mapStateToProps = state => ({
+  pmapData: state.pmaps.items,
   mapData: state.maps.items,
   loading: state.maps.loading,
   error: state.maps.error,
   heatMapData: state.heatMap.items,
   heatLoading: state.heatMap.loading,
-  heatError: state.heatMap.error
+  heatError: state.heatMap.error,
+  pmapDataLoading: state.pmaps.loading,
+  pmapDataError: state.pmaps.error
 });
 
 export default connect(
   mapStateToProps,
   {
     fetchMapsData,
+    fetchPollMapsData,
     fetchHeatMapsData
   }
 )(MapComponent);

@@ -9,15 +9,18 @@
     padding: 0;
 }
 .low {
-    color: #FFEA00;
+    color: #FFEA00 !important;
 }
 .medium {
-    color: #FFAB00;
+    color: #FFAB00 !important;
 }
 .high {
-    color: #FF1744;
+    color: #FF1744 !important;
 }
 
+.static-grey{
+    color: #93a4ae;
+}
 
 .leak-resolved {
     color: #69f0ae;
@@ -25,24 +28,26 @@
 
 .leakInfo :first-child {
     font-size: 20pt;
-}
 
-.leakInfo :nth-child(2) {
+ }
+
+ .leakInfo :nth-child(2) {
     margin: 5px;
-    font-weight: bold;
-    font-size: 10pt;
-}
+     font-weight: bold;
+    font-size: 10pt;   
+ }
 
 .leakInfo :nth-child(3) {
     margin: 0;
-    font-weight: bolder;
-}
-.leakInfo :nth-child(4) {
-    margin: 0;
-    margin-bottom: 7px;
+   font-weight: bolder;
+ }
+ .leakInfo :nth-child(4) {
+     margin: 0;
+     margin-bottom: 7px;
     font-weight: bold;
-    font-size: 12pt;
-}
+   font-size: 12pt;
+   
+ }
 .leakInfo :nth-child(5) {
     margin: 0;
     color: #93a4ae;
