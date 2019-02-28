@@ -23,7 +23,7 @@ import CostsDailyForecastReducer from './CostsDailyForecastReducer';
 import CostsMonthlyForecastReducer from './CostsMonthlyForecastReducers';
 import HeatMapsReducer from './HeatMapsReducer';
 import ForecastPlaceholderReducer from './ForecastPlaceHolderReducer';
-
+import TankGraphReducer from './TankGraphReducer';
 const rootReducer = combineReducers({
   leaks: SegmentLeaksReducer,
   leak: SegmentLeaksByIdReducer,
