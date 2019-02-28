@@ -1,9 +1,14 @@
 import React from "react";
 import {
   Polyline,
-  CircleMarker,
+  Marker,
   Popup
 } from "react-leaflet";
+import {
+  sensorFaultIcon,
+  sensorOkLightIcon,
+  sensorOkDarkerIcon
+} from "./icons/MapIcons";
 
 const alertImages = {
   low: 'images/low_severity.png',
@@ -58,14 +63,14 @@ export const getSensorLayout = (id) => {
 
 export function generateMapIcons({ segments, markers }, simpleView, options = {
   colors: {
-    background: "#253238",
+    darkerColor: "#4F5B62",
     errorColor: "#56ccf7",
-    lighterColor: "#4F5B62"
+    lighterColor: "#93a4ae"
   },
   circleSize: 7,
   lineWeight: 5
 }) {
-  const defaultColor = simpleView ? options.colors.backgroundColor : options.colors.lighterColor;
+  const defaultColor = simpleView ? options.colors.darkerColor : options.colors.lighterColor;
   if (!segments || !markers) {
     return <div />;
   }
@@ -83,15 +88,18 @@ export function generateMapIcons({ segments, markers }, simpleView, options = {
     ) {
       return <div />;
     }
-
-    let sensorInColor = defaultColor,
-      sensorOutColor = defaultColor,
+    let defaultIcon = sensorOkLightIcon;
+    if (simpleView){
+      defaultIcon = sensorOkDarkerIcon;
+    }
+    let sensorInColor = defaultIcon,
+      sensorOutColor = defaultIcon,
       segmentColor = defaultColor;
     if (sensorIn.status.toLowerCase() === "faulty") {
-      sensorInColor = options.colors.errorColor;
+      sensorInColor = sensorFaultIcon;
     }
     if (sensorOut.status.toLowerCase() === "faulty") {
-      sensorOutColor = options.colors.errorColor;
+      sensorOutColor = sensorFaultIcon;
     }
     if (segment.status.toLowerCase() === "leak") {
       segmentColor = options.colors.errorColor;
@@ -113,35 +121,30 @@ export function generateMapIcons({ segments, markers }, simpleView, options = {
             </span>
           </Popup>
         </Polyline>
-        <CircleMarker
-          center={[sensorIn.lat, sensorIn.lon]}
-          radius={options.circleSize}
-          opacity={0.7}
+        <Marker
+          position={[sensorIn.lat, sensorIn.lon]}
+          opacity={1}
           key={sensorIn.id}
-          color={sensorInColor}
-          fillOpacity={1}
+          icon={sensorInColor}
         >
           <Popup>
             <span>
               {"sensor " + sensorIn.id + "\n status " + sensorIn.status}
             </span>
           </Popup>
-        </CircleMarker>
-        <CircleMarker
-          fill={true}
-          center={[sensorOut.lat, sensorOut.lon]}
-          radius={options.circleSize}
-          opacity={0.7}
+        </Marker>
+        <Marker
+          position={[sensorOut.lat, sensorOut.lon]}
+          opacity={1}
           key={sensorOut.id}
-          color={sensorOutColor}
-          fillOpacity={1}
+          icon={sensorOutColor}
         >
           <Popup>
             <span>
               {"sensor " + sensorOut.id + "\n status " + sensorOut.status}
             </span>
           </Popup>
-        </CircleMarker>
+        </Marker>
       </div>
     );
   });

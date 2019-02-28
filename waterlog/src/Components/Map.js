@@ -39,7 +39,7 @@ class MapComponent extends Component {
       this.props.fetchPollMapsData()
       const { pmapData } = this.props;
       this.setState({
-        iconState: generateMapIcons(pmapData),
+        iconState: generateMapIcons(pmapData, this.state.simpleView),
       });
 
       if (this.state.iconState ) {

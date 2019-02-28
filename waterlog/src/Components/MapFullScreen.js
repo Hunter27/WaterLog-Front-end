@@ -49,7 +49,7 @@ class MapFullScreenComponent extends Component {
       this.props.fetchPollMapsData()
       const { pmapData } = this.props;
       this.setState({
-        iconState: generateMapIcons(pmapData),
+        iconState: generateMapIcons(pmapData, this.state.simpleView),
       });
 
       if (this.state.iconState) {
@@ -79,12 +79,7 @@ class MapFullScreenComponent extends Component {
         </div>
       );
     }
-    let icons, heatPoints;
-    if (mapData) {
-      icons = generateMapIcons(mapData, this.state.simpleView);
-    } else {
-      return <Error404 />;
-    }
+    let heatPoints;
     if (heatMapData) {
       heatPoints = getHeatMapData(heatMapData);
     } else {
