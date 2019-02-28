@@ -4,7 +4,7 @@ import { Line, defaults } from 'react-chartjs-2';
 const DailyCostsReports = (props) => {
   let labelX = props.props.dailyCost.dataPoints.map(a => (new Date(a.x).getHours() + ":00"));
   let dataY = props.props.dailyCost.dataPoints.map(a => Math.round(a.y)); 
-  const {yIntercept, slope} = props.props.forecastDaily[0];
+ const {yIntercept, slope} = props.props.forecastDaily[0];
   let startDate = new Date(props.props.dailyCost.dataPoints[0].x).getTime();
   let lastDate = new Date(props.props.dailyCost.dataPoints[labelX.length-1].x).getTime();
   const startX = Math.floor( startDate/ 1000); 
@@ -22,9 +22,9 @@ const DailyCostsReports = (props) => {
         label: 'rands',
         data: dataY,
         fill: true,
-        borderColor: 'rgba(255,23,68,1)',
-        backgroundColor: 'rgba(255,23,68,0.4)',
-        pointBackgroundColor: 'rgba(255,23,68,1)',
+        borderColor: 'rgb(86, 204, 247)',
+        backgroundColor: 'rgb(86, 204, 247)',
+        pointBackgroundColor: 'rgb(86, 204, 247)',
         pointRadius: 5,
         pointHitRadius: 5
       },
@@ -32,8 +32,8 @@ const DailyCostsReports = (props) => {
         label: 'forecast',
         data: forecast,
         fill: true,
-        borderColor: 'rgba(0,191,255,1)', 
-        pointBackgroundColor: 'rgba(0,191,255,1)',
+        borderColor: 'rgb(236, 239, 241)', 
+        pointBackgroundColor: 'rgb(236, 239, 241)',
         pointRadius: 5,
         pointHitRadius: 5
       }
@@ -45,26 +45,34 @@ const DailyCostsReports = (props) => {
       xAxes: [{
         scaleLabel: {
           display: true,
-          labelString: 'hours'
+          labelString: 'hours',
+          fontColor:'rgb(236, 239, 241)'
         },
         ticks: {
+          fontColor:'rgb(236, 239, 241)',
           major: {
             fontStyle: 'bold',
             fontColor: 'rgba(255,0,0,1)'
           }
         },
         gridLines: {
-          display: false
+          display: false,
+          color:'rgb(236, 239, 241)'
         }
       }],
       yAxes: [{
         display: true,
         scaleLabel: {
           display: true,
-          labelString: 'rands'
+          labelString: 'rands',
+          fontColor:'rgb(236, 239, 241)'
+        },
+        ticks: {
+          fontColor:'rgb(236, 239, 241)'
         },
         gridLines: {
-          display: false
+          display: false,
+          color:'rgb(236, 239, 241)'
         }
       }]
     }

@@ -12,8 +12,8 @@ const MonthlyCostsReports = (props) => {
           label: 'rands',
           data: dataY,
           fill: true,
-          borderColor: 'rgba(255,0,0,0)',
-          backgroundColor: 'rgba(255,0,0,1)'
+          borderColor: 'rgb(86, 204, 247)',
+          backgroundColor: 'rgb(86, 204, 247)'
         },
         {
           label: 'forecast',
@@ -31,16 +31,19 @@ const MonthlyCostsReports = (props) => {
           stacked: true,
           scaleLabel: {
             display: true,
-            labelString: 'months'
+            labelString: 'months',
+            fontColor:'rgb(236, 239, 241)'
           },
           ticks: {
+            fontColor:'rgb(236, 239, 241)',
             major: {
               fontStyle: 'bold',
               fontColor: 'rgba(255,0,0,1)'
             }
           },
           gridLines: {
-            display: false
+            display: false,
+            color:'rgb(236, 239, 241)'
           }
         }],
         yAxes: [{
@@ -48,10 +51,15 @@ const MonthlyCostsReports = (props) => {
           display: true,
           scaleLabel: {
             display: true,
-            labelString: 'rands'
+            labelString: 'rands',
+            fontColor:'rgb(236, 239, 241)',
+          },
+          ticks: {
+            fontColor:'rgb(236, 239, 241)'
           },
           gridLines: {
-            display: false
+            display: false,
+            color:'rgb(236, 239, 241)'
           }
         }]
       }

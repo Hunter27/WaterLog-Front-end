@@ -11,9 +11,9 @@ const DailyUsageComponent = (props) => {
         label: 'liters',
         data: dataY,
         fill: true,         
-        borderColor: 'rgba(255,23,68,1)',
-        backgroundColor: 'rgba(255,23,68,0.4)',
-        pointBackgroundColor: 'rgba(255,23,68,1)',
+        borderColor: 'rgb(86, 204, 247)',
+        backgroundColor: 'rgb(86, 204, 247)',
+        pointBackgroundColor: 'rgb(86, 204, 247)',
         pointRadius: 5,
         pointHitRadius: 5
       }
@@ -24,26 +24,34 @@ const DailyUsageComponent = (props) => {
       xAxes: [ {
         scaleLabel: {
           display: true,
-          labelString: 'hours'
+          labelString: 'hours',
+          fontColor : 'rgb(236, 239, 241)'
         },
         ticks: {
+          fontColor : 'rgb(236, 239, 241)',
           major: {
             fontStyle: 'bold',
             fontColor: 'rgba(255,0,0,1)'
           }
         },
         gridLines: {
-          display: false
+          display: false,
+          color : 'rgb(236, 239, 241)'
         }
       } ],
       yAxes: [ {
         display: true,
         scaleLabel: {
           display: true,
-          labelString: 'liters'
+          labelString: 'liters',
+          fontColor : 'rgb(236, 239, 241)'
+        },
+        ticks: {
+          fontColor : 'rgb(236, 239, 241)'
         },
         gridLines: {
-          display: false
+          display: false,
+          color : 'rgb(236, 239, 241)'
         }
       }]
     }
