@@ -10,14 +10,14 @@ const TankGraph = (props) => {
   var endT2 = end.setTime("23:59:00");
   let startTime = Math.floor(startT2/1000);
   let endTime =  Math.floor(endT2/1000);
-  var sum = dataY.reduce((a, b) => a + b, 0); 
+
   let forecast = [];
   for(let i = startTime; i <= endTime; i = i + 3600){
     forecast.push(1*i + 80);
   }
   
   let data = {
-    labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12','13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24'],
+    labels: labelX,
     datasets: [
       {
         label: 'forecast',
