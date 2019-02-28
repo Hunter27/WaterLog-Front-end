@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import  { Map, TileLayer } from "react-leaflet";
+import { Map, TileLayer } from "react-leaflet";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { fetchMapsData } from "../actions/MapActions";
@@ -7,7 +7,10 @@ import { fetchHeatMapsData } from "../actions/HeatMapActions";
 import Loader from "./Loader";
 import Error404 from "./Error404";
 import HeatmapLayer from "react-leaflet-heatmap-layer";
-import { generateMapIcons, levelToIntensity } from "../utils";
+import {
+  generateMapIcons,
+  levelToIntensity
+} from "../utils";
 
 const southWest = [-25.784510, 28.334360];
 const northEast = [-25.782110, 28.338325];
@@ -89,7 +92,7 @@ class MapFullScreenComponent extends Component {
               Live Map
             </button>
           </div>
-          <div className={`map-icon-div-layer2-fullscreen map-button-tab ${this.state.simpleView?"":"invisible"}`}>
+          <div className={`map-icon-div-layer2-fullscreen map-button-tab ${this.state.simpleView ? "" : "invisible"}`}>
             <img
               className="icon"
               src={require("../images/heatmap_icon_blue.png")}
@@ -99,9 +102,10 @@ class MapFullScreenComponent extends Component {
               className="icon"
               src={require("../images/recentre_icon_blue.png")}
               alt="re-center Map"
-              onClick={() => {  
+              onClick={() => {
                 const map = this.refs.map.leafletElement;
-                map.setView(centerPosition, defaultZoom) }} />
+                map.setView(centerPosition, defaultZoom)
+              }} />
           </div>
         </div>
         <div className="map-tile-div-fullscreen">

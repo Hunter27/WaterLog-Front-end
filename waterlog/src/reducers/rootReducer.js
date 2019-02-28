@@ -27,6 +27,8 @@ import SensorReducer from './SensorReducer';
 import TankReducer from './TankReducer';
 import FilterReducer from './FilterReducer';
 
+import ForecastPlaceholderReducer from './ForecastPlaceHolderReducer';
+import TankGraphReducer from './TankGraphReducer';
 const rootReducer = combineReducers({
   leaks: SegmentLeaksReducer,
   leak: SegmentLeaksByIdReducer,
@@ -54,6 +56,8 @@ const rootReducer = combineReducers({
   segment: SegmentReducer,
   sensor: SensorReducer,
   tank: TankReducer,
-  filteredAlerts: FilterReducer
+  filteredAlerts: FilterReducer, 
+  dailytankgraph:TankGraphReducer, 
+  placeholder:ForecastPlaceholderReducer 
 });
 export default rootReducer;

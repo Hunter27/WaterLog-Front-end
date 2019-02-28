@@ -54,7 +54,7 @@ class AlertTableComponent extends Component {
                   alert.entityId
                 } ${alert.entityType.toUpperCase()}`}</td>
                 <td>
-                  {alert.entityName === "Segment" ? `R${0}/hr` : ""} {/*TODO fix decimal !isNaN(alert.cost) && alert.cost.toFixed(2) */}
+                  {alert.entityName === "Segment" ? `R${parseInt(alert.cost).toFixed(2)}/hr` : ""}
                 </td>
                 <td>
                   {alert.entityName === "Segment"

@@ -9,14 +9,14 @@ const SeasonalWastageComponent = (props) => {
     var dataAutumn = props.props[3].dataPoints.map(a => Math.round(a.y));
 
     var data = {
-      labels: ['Summer', 'Winter', 'Autumn', 'Spring'],
-      datasets: [
+      labels:['Summer', 'Winter', 'Autumn', 'Spring'],
+          datasets: [
         {
           label: 'liters',
           data: [dataSummer, dataWinter, dataAutumn, dataSpring],
-          fill: true,
+          fill: true,        
           borderColor: 'red',
-          backgroundColor: 'rgba(255,0,0,1)'
+          backgroundColor: '#56ccf7'
         }
       ]
     }
@@ -25,26 +25,40 @@ const SeasonalWastageComponent = (props) => {
         xAxes: [{
           scaleLabel: {
             display: true,
-            labelString: 'seasons'
+            labelString: 'seasons',
+            fontColor:'#eceff1',
           },
           ticks: {
+            fontColor: '#eceff1',
             major: {
               fontStyle: 'bold',
-              fontColor: 'rgba(255,0,0,1)'
+              Color:'#eceff1',
             }
           },
           gridLines: {
-            display: false
+            display: false,
+            color : '#eceff1'
           }
+          
+          
         }],
         yAxes: [{
+          ticks: {
+            fontColor: '#eceff1',
+            major: {
+              fontStyle: 'bold',
+              Color:'#eceff1',
+            }
+          },
           display: true,
           scaleLabel: {
             display: true,
-            labelString: 'liters'
+            labelString: 'liters',
+            fontColor:'#eceff1'
           },
           gridLines: {
-            display: false
+            display: false,
+            color : '#eceff1'
           }
         }]
       }
