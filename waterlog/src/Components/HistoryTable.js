@@ -19,7 +19,6 @@ class HistoryTableComponent extends Component {
 			return <Loader />
 		}
 		return (
-			
 			<table>
 				<tbody>
 					{leaks.map((history) => (
@@ -49,5 +48,4 @@ const mapStateToProps = (state) => ({
 	loading: state.leaks.loading,
 	error: state.leaks.error
 });
-
 export default connect(mapStateToProps, { fetchSegmentsLeaksHistory })(HistoryTableComponent);

@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@aspnet/signalr": "^1.1.2",
     "@material-ui/core": "^3.9.2",
     "@material-ui/icons": "^3.0.2",
     "@material-ui/styles": "^3.0.0-alpha.9",
@@ -12,18 +11,18 @@
     "chart.js": "^2.7.3",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.8.0",
-    "jsdom": "^13.2.0",
     "leaflet": "^1.4.0",
+    "leaflet-heatmap": "^1.0.0",
     "node-sass": "^4.11.0",
     "prop-types": "^15.6.2",
     "proptypes": "^1.1.0",
-    "react": "^16.7.0",
+    "react": "^16.8.3",
     "react-app-rewire-workbox": "^2.0.1",
     "react-app-rewired": "^2.0.3",
     "react-bootstrap": "^1.0.0-beta.5",
     "react-chartjs-2": "^2.7.4",
-    "react-dom": "^16.7.0",
-    "react-leaflet": "^2.2.0",
+    "react-dom": "^16.8.3",
+    "react-leaflet": "^2.2.1",
     "react-leaflet-heatmap-layer": "^2.0.0",
     "react-leaflet-marker-layer": "^0.1.4",
     "react-redux": "^6.0.0",
@@ -33,6 +32,9 @@
     "react-thunk": "^1.0.0",
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.7",
+    "redux-polling": "^1.1.5",
+    "redux-saga": "^1.0.2",
+    "redux-saga-thunk": "^0.7.3",
     "redux-thunk": "^2.3.0",
     "serve": "^10.1.1",
     "sw-precache": "^5.2.1"
@@ -42,9 +44,6 @@
     "build": "react-app-rewired build && sw-precache --config=sw-precache-config.js",
     "test": "cross-env CI=true react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": [
     ">0.2%",

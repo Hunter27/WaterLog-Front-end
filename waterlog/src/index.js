@@ -17,4 +17,5 @@ const renderApp = () =>
     ) 
     
 renderApp()
+
 serviceWorker.register(); 
