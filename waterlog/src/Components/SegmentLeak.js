@@ -19,7 +19,7 @@ class SegmentLeak extends Component {
 		};
 	}
 	componentDidMount() {
-		this.props.fetchSegment(this.props.match.params.id,this.props.match.params.date);
+		this.props.fetchSegment(this.props.match.params.id, this.props.match.params.date);
 	}
 
 	handleMapExpand() {
@@ -59,23 +59,27 @@ class SegmentLeak extends Component {
 
 	render() {
 		const { error, loading, segment } = this.props;
-		  if (loading) {
+		if (loading) {
 			return <Loader />;
-		  }
-		  if (error) {
+		}
+		if (error) {
 			return <Error404 />;
-		  }
-		  if(!loading && segment.length < 1){
-			  return <Error404/>;
-		  }
+		}
+		if (!loading && segment.length < 1) {
+			return <Error404 />;
+		}
 		const selectedSegment = segment[0];
 
 		const leakInfo = (
 			<div>
-				<div className={`leakInfo ${parseInt(selectedSegment.status) == 2 ? selectedSegment.severity : 'leak-resolved'}`}>
+				<div
+					className={`leakInfo ${parseInt(selectedSegment.status) == 2
+						? selectedSegment.severity
+						: 'leak-resolved'}`}
+				>
 					<h2>{`${selectedSegment.entityName} ${selectedSegment.entityId} ${selectedSegment.entityType}`}</h2>
 					<p>({selectedSegment.severity})</p>
-					<h1>R {selectedSegment.cost.toFixed(2)}</h1> 
+					<h1>R {selectedSegment.cost.toFixed(2)}</h1>
 					<p>is being lost per hour!</p>
 					<p>Loosing {selectedSegment.litresPerHour.toFixed(0)}&#x2113; per hour</p>
 					<p>no leak would be 0&#x2113; per hour</p>
