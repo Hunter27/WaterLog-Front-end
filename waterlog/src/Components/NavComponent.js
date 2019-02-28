@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-do
 
 import AlertComponent from '../Pages/Alert';
 import HomeComponent from '../Pages/Home';
-import MapFullScreenComponent from '../Components/MapFullScreen';
+import MapComponent from '../Components/Map';
 import UsageComponent from '../Pages/Usage';
 import SegmentLeak from './SegmentLeak';
 import SegmentHistory from './SegmentHistory';
@@ -64,7 +64,7 @@ class NavComponent extends Component {
 							<Route exact path="/alert/segment/:id/:date" render={(props) => <SegmentLeak {...props} />} />
 							<Route exact path="/alert/sensor/:id/:date" render={(props) => <FaultySensor {...props} />} />
 							<Route exact path="/alert/tank/:id" render={(props) => <TankInformation {...props} />} />
-							<Route exact path="/map" component={MapFullScreenComponent} />
+							<Route exact path="/map" component={MapComponent} />
 							<Route exact path="/usage" component={UsageComponent} />
 							<Route exact path="*" component={HomeComponent} />
 						</Switch>
