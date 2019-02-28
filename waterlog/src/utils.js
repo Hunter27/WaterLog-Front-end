@@ -148,7 +148,7 @@ export function generateMapIcons({ segments, markers }, simpleView, options = {
 }
 
 export function levelToIntensity(level, maxIntensity = 5) {
-  if(level) {return 0;}
+  if(!level) {return 0;}
   switch (level.toLowerCase()) {
     case 'high':
       return maxIntensity;

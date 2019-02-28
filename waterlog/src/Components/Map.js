@@ -57,7 +57,7 @@ class MapComponent extends Component {
       return <Error404 />;
     }
     if (heatMapData) {
-      heatPoints = getHeatMapData(this.props.heatMapData);
+      heatPoints = getHeatMapData(heatMapData);
     } else {
       return <Error404 />;
     }
