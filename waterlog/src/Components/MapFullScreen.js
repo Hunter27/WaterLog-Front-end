@@ -1,19 +1,19 @@
 import React, { Component } from "react";
-import { Map, TileLayer } from "react-leaflet";
+import  { Map, TileLayer } from "react-leaflet";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { fetchMapsData } from "./../actions/MapActions";
-import { fetchHeatMapsData } from "./../actions/HeatMapActions";
+import { fetchMapsData } from "../actions/MapActions";
+import { fetchHeatMapsData } from "../actions/HeatMapActions";
 import Loader from "./Loader";
 import Error404 from "./Error404";
 import HeatmapLayer from "react-leaflet-heatmap-layer";
-import { generateMapIcons, levelToIntensity } from "./../utils";
+import { generateMapIcons, levelToIntensity } from "../utils";
 
 const southWest = [-25.784510, 28.334360];
 const northEast = [-25.782110, 28.338325];
 const maxIntensity = 5;
 const centerPosition = [-25.783425, 28.336046];
-const defaultZoom = 16;
+const defaultZoom = 17;
 
 function getHeatMapData({ monitorsCoordinates, segmentCoordinates }) {
   let monitorMapData = monitorsCoordinates.map(mon => [mon.lat, mon.long, levelToIntensity(mon.faultLevel, maxIntensity)]);
@@ -22,13 +22,14 @@ function getHeatMapData({ monitorsCoordinates, segmentCoordinates }) {
   let heatMapData = monitorMapData.concat(segmentMapData);
   return heatMapData;
 }
-class MapComponent extends Component {
+class MapFullScreenComponent extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
       simpleView: false,
-      zoom: defaultZoom,
-      heatView: false
+      heatView: false,
+      zoom: defaultZoom
     };
   }
 
@@ -68,18 +69,53 @@ class MapComponent extends Component {
       return <Error404 />;
     }
     return (
-      <div className="map-main-div">
-        <div className="map-tile-div">
+      <div className="map_main-div-fullscreen">
+        <div className="map-icon-button-div-layer2-fullscreen">
+          <div className="map-button-div-layer2-fullscreen map-button-tab">
+            <button
+              className={`map-button ${this.state.simpleView ? "" : "active"}`}
+              onClick={() => {
+                this.setState({ simpleView: false });
+              }}
+            >
+              Simplified
+            </button>
+            <button
+              className={`map-button ${this.state.simpleView ? "active" : ""}`}
+              onClick={() => {
+                this.setState({ simpleView: true });
+              }}
+            >
+              Live Map
+            </button>
+          </div>
+          <div className={`map-icon-div-layer2-fullscreen map-button-tab ${this.state.simpleView?"":"invisible"}`}>
+            <img
+              className="icon"
+              src={require("../images/heatmap_icon_blue.png")}
+              alt="heat Toggle"
+              onClick={() => { this.setState({ heatView: !this.state.heatView }) }} />
+            <img
+              className="icon"
+              src={require("../images/recentre_icon_blue.png")}
+              alt="re-center Map"
+              onClick={() => {  
+                const map = this.refs.map.leafletElement;
+                map.setView(centerPosition, defaultZoom) }} />
+          </div>
+        </div>
+        <div className="map-tile-div-fullscreen">
           <Map
             ref='map'
             center={centerPosition}
+            attributionControl={false}
             maxBounds={[southWest, northEast]}
             zoom={this.state.zoom}
             zoomControl={false}
             maxZoom={18}
             minZoom={14}
-            attributionControl={false}
-            style={{ height: "250px" }} >
+            style={{ height: '100vh' }} >
+
             {(() => {
               if (this.state.simpleView)
                 return (<div>
@@ -99,52 +135,16 @@ class MapComponent extends Component {
                   })()}
                 </div>
                 );
-            })()
-            }
+            })()}
             {icons}
           </Map>
-        </div>
-        <div className="map-icon-button-div-layer2">
-          <div className="map-button-div-layer2 map-button-tab">
-            <button
-              className={`map-button ${this.state.simpleView ? "" : "active"}`}
-              onClick={() => {
-                this.setState({ simpleView: false });
-              }}
-            >
-              Simplified
-            </button>
-            <button
-              className={`map-button ${this.state.simpleView ? "active" : ""}`}
-              onClick={() => {
-                this.setState({ simpleView: true });
-              }}
-            >
-              Live Map
-            </button>
-          </div>
-          <div className={`map-icon-div-layer2 ${this.state.simpleView ? "" : "invisible"}`}>
-            <img
-              className="icon-home"
-              src={require("../images/heatmap_icon_blue.png")}
-              alt="heat Toggle"
-              onClick={() => { this.setState({ heatView: !this.state.heatView }) }} />
-            <img
-              className="icon-home"
-              src={require("../images/recentre_icon_blue.png")}
-              alt="re-center Map"
-              onClick={() => {
-                const map = this.refs.map.leafletElement;
-                map.setView(centerPosition, defaultZoom)
-              }} />
-          </div>
         </div>
       </div>
     );
   }
 }
 
-MapComponent.propTypes = {
+MapFullScreenComponent.propTypes = {
   fetchMapsData: PropTypes.func.isRequired
 };
 
@@ -163,4 +163,4 @@ export default connect(
     fetchMapsData,
     fetchHeatMapsData
   }
-)(MapComponent);
+)(MapFullScreenComponent);
