@@ -41,9 +41,14 @@ class DailyTankGraph extends Component {
     }
 
     return (
-      <div className="wastage">
+      <div className="wastageTank">
+        <p>Wastage History</p>
+          <p>R200</p>   
+
+        <p>Wasted this month</p>
+
         <TankGraph props={this.props} />
-        <p>Wastage</p>
+      
       </div>
 
     );

@@ -16,7 +16,7 @@ class TankInformation extends Component {
 			<div>
 				<TankComponent id={this.state.id} />
 				<PumpButton id={this.state.id} />
-				<GraphLine id={this.state.id}/>
+				<GraphLine className="UsageTnk" id={this.state.id}/>
 			</div>
 		);
 	}
