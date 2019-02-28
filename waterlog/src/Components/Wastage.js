@@ -126,7 +126,7 @@ const mapStateToProps = state => ({
   seasonalError: state.seasonWaste.error,
   placeholder: state.placeholder.item,
   placeholderLoading: state.placeholder.loading,
-  placeholderError: state.placeholderError.error 
+  placeholderError: state.placeholder.error 
 });
 export default connect(
   mapStateToProps,
