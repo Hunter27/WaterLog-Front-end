@@ -11,7 +11,7 @@ import { generateMapIcons, levelToIntensity, mapOptions } from "./../utils";
 
 function getHeatMapData({ monitorsCoordinates, segmentCoordinates }) {
   let monitorMapData = monitorsCoordinates.map(mon => {
-     return [mon.lat, mon.long, levelToIntensity(mon.faultLevel, mapOptions.maxIntensity)]
+    return [mon.lat, mon.long, levelToIntensity(mon.faultLevel, mapOptions.maxIntensity)]
   });
   let segmentMapData = segmentCoordinates.map(seg => {
     return [seg.lat, seg.long, levelToIntensity(seg.faultLevel, mapOptions.maxIntensity)]
