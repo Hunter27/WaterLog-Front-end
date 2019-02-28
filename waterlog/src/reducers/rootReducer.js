@@ -22,8 +22,12 @@ import UsageGraphMonthlyReducer from './UsageGraphMonthlyReducer';
 import UsageGraphSeasonallyReducer from './UsageGraphSeasonallyReducer';
 import CostsDailyForecastReducer from './CostsDailyForecastReducer';
 import CostsMonthlyForecastReducer from './CostsMonthlyForecastReducers';
+import SensorsReducer from './SensorsReducer';
+import SensorsByIdReducer from './SensorsByIdReducer';
+import TankGraphReducer from './TankGraphReducer';
 import HeatMapsReducer from './HeatMapsReducer';
 import NotificationsReducer from './NotifNumberReducer';
+
 
 const rootReducer = combineReducers({
   leaks: SegmentLeaksReducer,
@@ -49,6 +53,10 @@ const rootReducer = combineReducers({
   alerts: AlertsReducer,
   forecastDaily:CostsDailyForecastReducer,
   forecastMonthly:CostsMonthlyForecastReducer,
+  sensors:SensorsReducer,
+  sensor:SensorsByIdReducer,
+  dailytankgraph:TankGraphReducer,
+  heatMap:HeatMapsReducer
   heatMap:HeatMapsReducer,
   numNotifs : NotificationsReducer
 });

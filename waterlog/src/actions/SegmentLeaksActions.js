@@ -30,7 +30,7 @@ export const fetchSegmentsLeaks = () => (dispatch) => {
 		.then((leaks) => {
 			var count = 0;
 			leaks.map((leak) =>
-				fetch(process.env.REACT_APP_API_URL+`/api/segmentleaks/costs/${leak.id}`) //is it segmentId or Id?
+				fetch(process.env.REACT_APP_API_URL+`/api/segmentleaks/costs/${leak.id}`) 
 					.then((res) => res.json())
 					.then((cost) => {
 						leaks[count].cost = cost;
@@ -45,6 +45,4 @@ export const fetchSegmentsLeaks = () => (dispatch) => {
 		.catch((error) => {
 			dispatch(fecthSegmentsLeaksFailure(error));
 		});
-
-		
 };
