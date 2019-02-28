@@ -5,43 +5,14 @@
   margin: 0 10px;
 }
 
-.filler-low {
-  background-color: #FFEA00 ;
+.filler {
+  background-color: red;
   height: 32px;
   padding: 0;
   margin: 0;
   border-radius: 0 15px 15px 0;
   color: white;
 }
-
-.filler-medium {
-  background-color: #FFAB00 ;
-  height: 32px;
-  padding: 0;
-  margin: 0;
-  border-radius: 0 15px 15px 0;
-  color: white;
-}
-
-.filler-high {
-  background-color: #FF1744 ;
-  height: 32px;
-  padding: 0;
-  margin: 0;
-  border-radius: 0 15px 15px 0;
-  color: white;
-}
-
-.low {
-  
-}
-.medium {
-  color: #FFAB00 !important;
-}
-.high {
-  color: #FF1744 !important;
-}
-
 
 .percent-label {
   display: inline-block;
