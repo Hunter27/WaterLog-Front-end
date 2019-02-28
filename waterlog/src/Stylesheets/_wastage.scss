@@ -2,27 +2,12 @@
     background-color: #2B3B42;
     margin: 20px;
     border-radius: 5px;
-	  padding: 2px;
-	  min-height: 200px;
-	  color: #4F5B62;
-	  size: 14pt;
+	padding: 2px;
+	min-height: 200px;
+	color: #4F5B62;
+	size: 14pt;
 }
-.wastageTank{
 
-	  background-color:#4F5B62;
-    margin: 20px;
-    border-radius: 5px;
-	  padding: 2px;
-	  min-height: 200px;
-	  color: white;
-		size: 14pt;
-		top:-128px;
-		position: relative;
-		color: #2B3B42;
-}
-.UsageTank{
-	  color:white;
-}
 .wastage > p:first-child{
     margin: 5px 0 0 0;
 	font-weight: bold;
@@ -36,8 +21,8 @@
 
 .btn-graph-nav {
     flex: 1;
- 	  margin: 5px;
-	  background-color: dee1e2;
+	margin: 5px;
+	background-color: dee1e2;
 }
 
 .graph-outlet p{
@@ -45,8 +30,8 @@
 }
 
 .tab {
-	  overflow: hidden;
-	  button {
+	overflow: hidden;
+	button {
 		transition: 0.3s;
 		cursor: pointer;
 		border: none;
@@ -69,19 +54,19 @@
 }
 
 .subhead{
-	  font-size: 12pt;
-	  color:red;
-	  font-weight: bold;
+	font-size: 12pt;
+	color:red;
+	font-weight: bold;
 }
 
 .date{
-	  font-size: 8pt;
+	font-size: 8pt;
 }
 
 #daily {
-	  margin: 0;
-	  padding: 0;
-	  border: 1px solid black;
+	margin: 0;
+	padding: 0;
+	border: 1px solid black;
 
 	p:nth-child(1){
 		color: #ff1744;
