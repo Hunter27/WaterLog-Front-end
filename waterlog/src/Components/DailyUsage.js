@@ -1,9 +1,9 @@
 import React from 'react';
 import { Line, defaults } from 'react-chartjs-2'; 
 
-const DailyUsageComponent = (props) => {
-  let labelX = props.props.placeholder.map(a => (new Date(a).getHours() + ":00"));
-  var dataY = props.props.dailyUsage.dataPoints.map(a => Math.round(a.y));  
+const DailyUsageComponent = (props) => { 
+  let labelX = props.props.placeholder.map(a => (new Date(a).getHours() + ":00")); 
+  let dataY = props.props.dailyUsage.dataPoints.map(a => Math.round(a.y))
   var data = {
     labels: labelX,
     datasets: [

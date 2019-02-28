@@ -52,7 +52,7 @@ class Usage extends Component {
         <DailyCostsReports props={this.props} />
         <hr className="divide" />
         <p className="bold">Usage</p>
-        <DailyUsageComponent props={this.props.dailyUsage} />
+        <DailyUsageComponent props={this.props} />
       </div>
     else if (this.state.display === "monthly")
       return <div>
