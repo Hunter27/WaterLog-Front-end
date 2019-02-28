@@ -1,9 +1,8 @@
 import React from 'react';
 import Filler from './Filler';
-
 const ProgressBar = props =>{
 	return(
-	  <div className="progress-bar">
+	  <div>
 			<Filler severity={props.severity} percent={props.percent}/>
 	  </div>
 	)
