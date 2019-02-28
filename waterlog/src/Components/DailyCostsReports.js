@@ -1,19 +1,21 @@
 import React from 'react';
 import { Line, defaults } from 'react-chartjs-2';
 
-const DailyCostsReports = (props) => { 
+const DailyCostsReports = (props) => {
   let labelX = props.props.placeholder.map(a => (new Date(a).getHours() + ":00"));
-  let dataY = props.props.dailyCost.dataPoints.map(a => Math.round(a.y)); 
-  const {yIntercept, slope} = props.props.forecastDaily[0];
-  let startDate = new Date(props.props.dailyCost.dataPoints[0].x).getTime();
-  let lastDate = new Date(props.props.dailyCost.dataPoints[labelX.length-1].x).getTime();
-  const startX = Math.floor( startDate/ 1000); 
-  const lastX = Math.floor(lastDate/ 1000); 
+  let dataY = props.props.dailyCost.dataPoints.map(a => Math.round(a.y));
+  const { yIntercept, slope } = props.props.forecastDaily[0];
+  const today = new Date(Date.now());
+  let startDate = new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime();
+  let lastDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 23, 59, 59).getTime();
+  const startX = Math.floor(startDate / 1000);
+  const lastX = Math.floor(lastDate / 1000);
 
   let forecast = [];
-  for(let i = startX; i <= lastX; i = i + 3600){
-    forecast.push(slope*i + yIntercept);
-  } 
+  for (let i = startX; i <= lastX; i = i + 3600) {
+    forecast.push(slope * i + yIntercept);
+  }
+
   let data = {
     labels: labelX,
     datasets: [
@@ -27,15 +29,15 @@ const DailyCostsReports = (props) => {
         pointRadius: 5,
         pointHitRadius: 5
       },
-  /*    {
+      {
         label: 'forecast',
         data: forecast,
         fill: true,
-        borderColor: 'rgba(0,191,255,1)', 
+        borderColor: 'rgba(0,191,255,1)',
         pointBackgroundColor: 'rgba(0,191,255,1)',
         pointRadius: 5,
         pointHitRadius: 5
-      }*/
+      }
 
     ]
   }
@@ -70,7 +72,7 @@ const DailyCostsReports = (props) => {
   }
   defaults.global.legend.display = false;
   return (
-    <div className="costs-graph"> 
+    <div className="costs-graph">
       <Line options={options} data={data} />
     </div>
   )
