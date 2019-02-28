@@ -10,8 +10,12 @@ import HeatmapLayer from "react-leaflet-heatmap-layer";
 import { generateMapIcons, levelToIntensity, mapOptions } from "./../utils";
 
 function getHeatMapData({ monitorsCoordinates, segmentCoordinates }) {
-  let monitorMapData = monitorsCoordinates.map(mon => [mon.lat, mon.long, levelToIntensity(mon.faultLevel, mapOptions.maxIntensity)]);
-  let segmentMapData = segmentCoordinates.map(seg => [seg.lat, seg.long, levelToIntensity(seg.faultLevel, mapOptions.maxIntensity)]);
+  let monitorMapData = monitorsCoordinates.map(mon => {
+     return [mon.lat, mon.long, levelToIntensity(mon.faultLevel, mapOptions.maxIntensity)]
+  });
+  let segmentMapData = segmentCoordinates.map(seg => {
+    return [seg.lat, seg.long, levelToIntensity(seg.faultLevel, mapOptions.maxIntensity)]
+  });
 
   let heatMapData = monitorMapData.concat(segmentMapData);
   return heatMapData;
@@ -85,7 +89,8 @@ class MapComponent extends Component {
             maxBounds={[mapOptions.southWest, mapOptions.northEast]}
             zoom={this.state.zoom}
             zoomControl={false}
-            maxZoom={18} >
+            maxZoom={18}
+            attributionControl={false} >
             <HeatmapLayer
               points={heatPoints}
               longitudeExtractor={m => m[1]}
@@ -102,18 +107,18 @@ class MapComponent extends Component {
                   {(() => {
                     if (this.state.heatView) {
                       return (
-                      <div> 
-                        <Rectangle bounds={mapOptions.rectangleBounds} color={'Navy'} opacity={1}/>
-                        <HeatmapLayer
-                        points={heatPoints}
-                        longitudeExtractor={m => m[1]}
-                        latitudeExtractor={m => m[0]}
-                        intensityExtractor={m => parseFloat(m[2])}
-                        gradient={{ 0.25: 'Blue', 0.5: 'Green', 0.75: 'Yellow', 1: 'Red'}}
-                        radius={20}
-                        blur={10}
-                        max={mapOptions.maxIntensity} />
-                      </div>);
+                        <div>
+                          <Rectangle bounds={mapOptions.rectangleBounds} color={'Navy'} opacity={1} />
+                          <HeatmapLayer
+                            points={heatPoints}
+                            longitudeExtractor={m => m[1]}
+                            latitudeExtractor={m => m[0]}
+                            intensityExtractor={m => parseFloat(m[2])}
+                            gradient={{ 0.25: 'Blue', 0.5: 'Green', 0.75: 'Yellow', 1: 'Red' }}
+                            radius={20}
+                            blur={10}
+                            max={mapOptions.maxIntensity} />
+                        </div>);
                     }
                   })()}
                 </div>

@@ -161,16 +161,16 @@ export function levelToIntensity(level, maxIntensity = 5) {
   }
 }
 
-const sW = [-25.784510, 28.334360];
-const nE = [-25.782110, 28.338325];
-const hBC = 0.91;
+const southWest = [-25.784510, 28.334360];
+const northEast = [-25.782110, 28.338325];
+const heatBackgroundConst = 0.91;
 
 export const mapOptions = {
-  southWest: sW,
-  northEast: nE,
+  southWest: southWest,
+  northEast: northEast,
   maxIntensity: 5,
   centerPosition: [-25.783425, 28.336046],
   defaultZoom: 17,
-  heatBackgroundConst: hBC,
-  rectangleBounds: [sW.map(e => e / hBC), nE.map(e => e * hBC)]
+  heatBackgroundConst: heatBackgroundConst,
+  rectangleBounds: [southWest.map(e => e / heatBackgroundConst), northEast.map(e => e * heatBackgroundConst)]
 }

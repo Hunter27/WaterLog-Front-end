@@ -18,8 +18,12 @@ import {
 } from "../utils";
 
 function getHeatMapData({ monitorsCoordinates, segmentCoordinates }) {
-  let monitorMapData = monitorsCoordinates.map(mon => [mon.lat, mon.long, levelToIntensity(mon.faultLevel, mapOptions.maxIntensity)]);
-  let segmentMapData = segmentCoordinates.map(seg => [seg.lat, seg.long, levelToIntensity(seg.faultLevel, mapOptions.maxIntensity)]);
+  let monitorMapData = monitorsCoordinates.map(mon => {
+    return [mon.lat, mon.long, levelToIntensity(mon.faultLevel, mapOptions.maxIntensity)]
+ });
+ let segmentMapData = segmentCoordinates.map(seg => {
+   return [seg.lat, seg.long, levelToIntensity(seg.faultLevel, mapOptions.maxIntensity)]
+ });
 
   let heatMapData = monitorMapData.concat(segmentMapData);
   return heatMapData;
