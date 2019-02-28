@@ -42,6 +42,13 @@ const DailyCostsReports = (props) => {
     ]
   }
   var options = {
+    legend: {
+      display: true,
+      position:'bottom',
+      labels: {
+          fontColor: 'rgb(255, 99, 132)', 
+      }
+     },
     scales: {
       xAxes: [{
         scaleLabel: {
