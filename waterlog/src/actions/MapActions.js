@@ -45,7 +45,7 @@ async function getSegments() {
 async function getLeakInformation() {
   const response = await fetch(process.env.REACT_APP_API_URL + `/api/segmentleaks`).then(handleErrors);
   const data = await response.json();
-  return data;
+  return data.filter(a => a.resolvedStatus === 2);
 }
 
 async function getMonitors() {
