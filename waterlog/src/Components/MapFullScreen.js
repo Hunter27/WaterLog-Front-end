@@ -6,7 +6,10 @@ import {
 } from "react-leaflet";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { fetchMapsData } from "../actions/MapActions";
+import {
+  fetchMapsData,
+  fetchPollMapsData
+} from "../actions/MapActions";
 import { fetchHeatMapsData } from "../actions/HeatMapActions";
 import Loader from "./Loader";
 import Error404 from "./Error404";
@@ -39,9 +42,21 @@ class MapFullScreenComponent extends Component {
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.props.fetchMapsData();
     this.props.fetchHeatMapsData();
+    this.timer = setInterval(() => {
+      this.props.fetchPollMapsData()
+      const { pmapData } = this.props;
+      this.setState({
+        iconState: generateMapIcons(pmapData),
+      });
+
+      if (this.state.iconState.length > 0) {
+        this.state.contLoading = false;
+      }
+
+    }, 5000);
   }
 
   render() {
@@ -51,12 +66,13 @@ class MapFullScreenComponent extends Component {
       mapData,
       heatError,
       heatLoading,
-      heatMapData
+      heatMapData,
+      pmapDataError
     } = this.props;
-    if (error || heatError) {
+    if (error || heatError || pmapDataError) {
       return <Error404 />;
     }
-    if (loading || heatLoading) {
+    if (loading || heatLoading || this.state.contLoading) {
       return (
         <div>
           <Loader />
@@ -70,7 +86,7 @@ class MapFullScreenComponent extends Component {
       return <Error404 />;
     }
     if (heatMapData) {
-      heatPoints = getHeatMapData(this.props.heatMapData);
+      heatPoints = getHeatMapData(heatMapData);
     } else {
       return <Error404 />;
     }
@@ -131,14 +147,14 @@ class MapFullScreenComponent extends Component {
                     if (this.state.heatView) {
                       return (
                         <div>
-                          <Rectangle bounds={mapOptions.rectangleBounds} color={'Navy'} opacity={1} />
+                          <Rectangle bounds={mapOptions.rectangleBounds} color={'Navy'} opacity={0.5} />
                           <HeatmapLayer
                             points={heatPoints}
                             longitudeExtractor={m => m[1]}
                             latitudeExtractor={m => m[0]}
                             intensityExtractor={m => parseFloat(m[2])}
                             gradient={{ 0.25: 'Blue', 0.5: 'Green', 0.75: 'Yellow', 1: 'Red' }}
-                            radius={20}
+                            radius={40}
                             blur={10}
                             max={mapOptions.maxIntensity} />
                         </div>);
@@ -147,7 +163,7 @@ class MapFullScreenComponent extends Component {
                 </div>
                 );
             })()}
-            {icons}
+            {this.state.iconState}
           </Map>
         </div>
       </div>
@@ -156,22 +172,29 @@ class MapFullScreenComponent extends Component {
 }
 
 MapFullScreenComponent.propTypes = {
-  fetchMapsData: PropTypes.func.isRequired
+  fetchMapsData: PropTypes.func.isRequired,
+  fetchPollMapsData: PropTypes.func,
+  mapData: PropTypes.array.isRequired,
+  pmapData: PropTypes.array
 };
 
 const mapStateToProps = state => ({
+  pmapData: state.pmaps.items,
   mapData: state.maps.items,
   loading: state.maps.loading,
   error: state.maps.error,
   heatMapData: state.heatMap.items,
   heatLoading: state.heatMap.loading,
-  heatError: state.heatMap.error
+  heatError: state.heatMap.error,
+  pmapDataLoading: state.pmaps.loading,
+  pmapDataError: state.pmaps.error
 });
 
 export default connect(
   mapStateToProps,
   {
     fetchMapsData,
+    fetchPollMapsData,
     fetchHeatMapsData
   }
 )(MapFullScreenComponent);

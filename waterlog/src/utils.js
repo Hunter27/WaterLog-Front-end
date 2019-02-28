@@ -161,8 +161,8 @@ export function levelToIntensity(level, maxIntensity = 5) {
   }
 }
 
-const southWest = [-25.784510, 28.334360];
-const northEast = [-25.782110, 28.338325];
+const southWest = [-25.944586, 28.189546];
+const northEast = [-25.661871, 28.451147];
 const heatBackgroundConst = 0.91;
 
 export const mapOptions = {
