@@ -14,6 +14,35 @@
   color: white;
 }
 
+.filler-medium {
+  background-color: #FFAB00 ;
+  height: 32px;
+  padding: 0;
+  margin: 0;
+  border-radius: 0 15px 15px 0;
+  color: white;
+}
+
+.filler-high {
+  background-color: #FF1744 ;
+  height: 32px;
+  padding: 0;
+  margin: 0;
+  border-radius: 0 15px 15px 0;
+  color: white;
+}
+
+.low {
+  color: #FFEA00;
+}
+.medium {
+  color: #FFAB00 ;
+}
+.high {
+  color: #FF1744 ;
+}
+
+
 .percent-label {
   display: inline-block;
   color: white;

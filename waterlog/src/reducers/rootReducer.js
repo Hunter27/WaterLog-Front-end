@@ -46,7 +46,8 @@ const rootReducer = combineReducers({
   maps: MapsReducer,
   alerts: AlertsReducer,
   forecastDaily:CostsDailyForecastReducer,
-  forecastMonthly:CostsMonthlyForecastReducer,
+  forecastMonthly:CostsMonthlyForecastReducer, 
+  dailytankgraph:TankGraphReducer,
   heatMap:HeatMapsReducer,
   placeholder:ForecastPlaceholderReducer 
 });
