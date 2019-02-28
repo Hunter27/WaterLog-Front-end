@@ -7,7 +7,7 @@ export const sensorOkIcon = new L.icon({
 	shadowUrl: null,
 	shadowSize: null,
 	shadowAnchor: null,
-	iconSize: new L.Point(60, 75)
+	iconSize: new L.Point(30, 30)
 });
 
 export const sensorFaultIcon = new L.icon({

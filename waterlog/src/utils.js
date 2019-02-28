@@ -2,8 +2,10 @@ import React from "react";
 import {
   Polyline,
   CircleMarker,
+  Marker,
   Popup
 } from "react-leaflet";
+import {sensorOkIcon} from "./icons/MapIcons";
 
 const alertImages = {
 	low: 'images/low_severity.png',
@@ -113,20 +115,19 @@ export function generateMapIcons({ segments, markers }, simpleView, options = {
             </span>
           </Popup>
         </Polyline>
-        <CircleMarker
-          center={[sensorIn.lat, sensorIn.lon]}
-          radius={options.circleSize}
+        <Marker
+          position={[sensorIn.lat, sensorIn.lon]}
           opacity={0.7}
           key={sensorIn.id}
-          color={sensorInColor}
-          fillOpacity={1}
+          attribution={"Sensor"}
+          icon={sensorOkIcon}
         >
           <Popup>
             <span>
               {"sensor " + sensorIn.id + "\n status " + sensorIn.status}
             </span>
           </Popup>
-        </CircleMarker>
+        </Marker>
         <CircleMarker
           fill={true}
           center={[sensorOut.lat, sensorOut.lon]}
