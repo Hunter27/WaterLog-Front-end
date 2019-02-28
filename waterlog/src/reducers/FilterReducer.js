@@ -1,38 +1,35 @@
 import {
-    FETCH_ALERTS_BEGIN,
-    FETCH_ALERTS_SUCCESS,
-    FETCH_ALERTS_FAILURE
+    FETCH_FILTERED_ALERTS_BEGIN,
+    FETCH_FILTERED_ALERTS_SUCCESS,
+    FETCH_FILTERED_ALERTS_FAILURE
 } from '../actions/Types';
 
 const initialState = {
     items: [],
-    total: 0,
     loading: null,
     error: null
 }
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case FETCH_ALERTS_BEGIN:
+        case FETCH_FILTERED_ALERTS_BEGIN:
             return {
                 ...state,
                 loading: true,
                 error: null
             }
-        case FETCH_ALERTS_SUCCESS:
+        case FETCH_FILTERED_ALERTS_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                items: state.items.concat(action.payload.alerts),
-                total: action.payload.total,
+                items: action.payload.filteredAlerts,
                 error: null
             }
-        case FETCH_ALERTS_FAILURE:
+        case FETCH_FILTERED_ALERTS_FAILURE:
             return {
                 ...state,
                 loading: false,
-                error: action.payload.error,
-        
+                error: action.payload.error
             }
         default:
             return state;

@@ -15,11 +15,10 @@ class AlertTableComponent extends Component {
 
   }
   currentPage = 1;
-nextPage = () => {
-  this.props.fetchAlerts(this.currentPage);
-  this.currentPage++;
-      
-}
+  nextPage = () => {
+    this.props.fetchAlerts(this.currentPage);
+    this.currentPage++;
+  }
 
   render() {
     const { error, loading, alerts } = this.props;
@@ -28,9 +27,9 @@ nextPage = () => {
       return <Error404 />;
     }
     if (loading && alerts.length < 1) {
-      console.log(alerts);
       return <Loader />;
     }
+
     return (
       <div>
         <h1 className="alerts-header">Alerts</h1>

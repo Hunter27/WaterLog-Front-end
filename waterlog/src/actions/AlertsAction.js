@@ -32,7 +32,6 @@ export const fetchAlerts = (id) => dispatch => {
 		.then(res => res.json())
 		.then(alerts => {
 			dispatch(fetchAlertsSuccess(alerts));
-			console.log(id);
 		})
 		.catch(error => dispatch(fetchAlertsFailure(error)));
 };
