@@ -56,7 +56,6 @@ const rootReducer = combineReducers({
   sensors:SensorsReducer,
   sensor:SensorsByIdReducer,
   dailytankgraph:TankGraphReducer,
-  heatMap:HeatMapsReducer
   heatMap:HeatMapsReducer,
   numNotifs : NotificationsReducer
 });
