@@ -113,7 +113,7 @@ class MapComponent extends Component {
               }}
             >
               Simplified
-          </button>
+            </button>
             <button
               className={`map-button ${this.state.simpleView ? "active" : ""}`}
               onClick={() => {
@@ -121,7 +121,7 @@ class MapComponent extends Component {
               }}
             >
               Live Map
-          </button>
+            </button>
           </div>
           <div className={`map-icon-div-layer2 ${this.state.simpleView ? "" : "invisible"}`}>
             <img
