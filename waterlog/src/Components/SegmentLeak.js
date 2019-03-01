@@ -70,19 +70,16 @@ class SegmentLeak extends Component {
 		}
 		const selectedSegment = segment[0];
 
+		const severity_fun = this.getSeverityClass(alert.severity);
 		const leakInfo = (
 			<div>
-				<div
-					className={`leakInfo ${parseInt(selectedSegment.status) == 2
-						? selectedSegment.severity
-						: 'leak-resolved'}`}
-				>
-					<h2>{`${selectedSegment.entityName} ${selectedSegment.entityId} ${selectedSegment.entityType}`}</h2>
-					<p>({selectedSegment.severity})</p>
-					<h1>R {selectedSegment.cost.toFixed(2)}</h1>
-					<p>is being lost per hour!</p>
-					<p>Loosing {selectedSegment.litresPerHour.toFixed(0)}&#x2113; per hour</p>
-					<p>no leak would be 0&#x2113; per hour</p>
+				<div> 
+					<h2 className={severity_fun}>{`${alert.entityName} ${alert.entityId} ${alert.entityType}`}</h2>
+					<p className={severity_fun}>({alert.severity})</p>
+					<h1 className={severity_fun}>R {alert.cost.toFixed(2)}</h1> 
+					<p className={severity_fun}>is being lost per hour!</p>
+					<p className="static-grey">Loosing {alert.litresPerHour.toFixed(0)}&#x2113; per hour</p>
+					<p className="static-grey"> no leak would be 0&#x2113; per hour</p>
 				</div>
 				<img
 					id="map-toggle"
