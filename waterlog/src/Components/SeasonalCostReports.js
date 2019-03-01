@@ -15,8 +15,8 @@ const SeasonalCostReports = (props) => {
                 label: 'rands',
                 data: [dataSummer, dataWinter, dataAutumn, dataSpring],
                 fill: true,
-                borderColor: 'rgba(255,0,0,0)',
-                backgroundColor: 'rgba(255,0,0,1)'
+                borderColor: '#56ccf7',
+                backgroundColor: '#56ccf7'
             }
         ]
     }
@@ -25,26 +25,33 @@ const SeasonalCostReports = (props) => {
             xAxes: [{
                 scaleLabel: {
                     display: true,
-                    labelString: 'seasons'
+                    labelString: 'seasons',
+                    fontColor:'#eceff1'
                 },
                 ticks: {
+                    fontColor:'#eceff1',
                     major: {
                         fontStyle: 'bold',
-                        fontColor: 'rgba(255,0,0,1)'
                     }
                 },
                 gridLines: {
-                    display: false
+                    display: false,
+                    color:'#eceff1'
                   }
             }],
             yAxes: [{
                 display: true,
                 scaleLabel: {
                     display: true,
-                    labelString: 'rands'
+                    labelString: 'rands',
+                    fontColor:'#eceff1'
+                },
+                ticks: {
+                    fontColor:'#eceff1'
                 },
                 gridLines: {
-                    display: false
+                    display: false,
+                    color:'#eceff1'
                   }
             }]
         }

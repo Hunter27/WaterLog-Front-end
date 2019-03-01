@@ -1,7 +1,5 @@
 #map-toggle {
     width: 75px;
-    top: -125px;
-    position: relative;
 }
 
 .leakInfo {
@@ -9,18 +7,15 @@
     padding: 0;
 }
 .low {
-    color: #FFEA00 !important;
+    color: #FFEA00;
 }
 .medium {
-    color: #FFAB00 !important;
+    color: #FFAB00;
 }
 .high {
-    color: #FF1744 !important;
+    color: #FF1744;
 }
 
-.static-grey{
-    color: #93a4ae;
-}
 
 .leak-resolved {
     color: #69f0ae;
@@ -28,26 +23,24 @@
 
 .leakInfo :first-child {
     font-size: 20pt;
+}
 
- }
-
- .leakInfo :nth-child(2) {
+.leakInfo :nth-child(2) {
     margin: 5px;
-     font-weight: bold;
-    font-size: 10pt;   
- }
+    font-weight: bold;
+    font-size: 10pt;
+}
 
 .leakInfo :nth-child(3) {
     margin: 0;
-   font-weight: bolder;
- }
- .leakInfo :nth-child(4) {
-     margin: 0;
-     margin-bottom: 7px;
+    font-weight: bolder;
+}
+.leakInfo :nth-child(4) {
+    margin: 0;
+    margin-bottom: 7px;
     font-weight: bold;
-   font-size: 12pt;
-   
- }
+    font-size: 12pt;
+}
 .leakInfo :nth-child(5) {
     margin: 0;
     color: #93a4ae;
@@ -83,8 +76,8 @@
 }
 
 .segment-map {
-  height: 400px;
-  margin: 25px 0;
+    height: 400px;
+    margin: 25px 0;
 }
 .segment-map2 {
     .segment-map {
@@ -97,13 +90,13 @@
 
 .date-resolved {
     h4 {
-      color: $turquoise-blue;
-      margin: 15px 0 0 0;
-      font-weight: normal;
+        color: $turquoise-blue;
+        margin: 15px 0 0 0;
+        font-weight: normal;
     }
 
     small {
-      margin: 0;
-      color: $trout;
+        margin: 0;
+        color: $trout;
     }
 }
