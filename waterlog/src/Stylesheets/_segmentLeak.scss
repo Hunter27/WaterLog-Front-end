@@ -8,12 +8,23 @@
 }
 .low {
     color: #FFEA00;
+    
 }
 .medium {
     color: #FFAB00;
 }
 .high {
     color: #FF1744;
+}
+
+.lowf {
+    background-color: #FFEA00;    
+}
+.mediumf {
+    background-color: #FFAB00;
+}
+.highf {
+    background-color: #FF1744;
 }
 
 
@@ -67,6 +78,11 @@
 .logged-issue-text {
     color: $blue;
     text-transform: uppercase;
+}
+
+.resolved-leak-button {
+    background-color: $blue;
+	font-weight: bold
 }
 
 .btn-loader {

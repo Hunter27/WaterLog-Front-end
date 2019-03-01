@@ -57,6 +57,7 @@ class SegmentLeak extends Component {
 		</div>
 	);
 
+	getSeverityClass = (severity) => severity.toLowerCase();
 	render() {
 		const { error, loading, segment } = this.props;
 		if (loading) {
@@ -69,16 +70,16 @@ class SegmentLeak extends Component {
 			return <Error404 />;
 		}
 		const selectedSegment = segment[0];
-
-		const severity_fun = this.getSeverityClass(alert.severity);
+		
+		const severity_fun = this.getSeverityClass(selectedSegment.severity);
 		const leakInfo = (
 			<div>
 				<div> 
-					<h2 className={severity_fun}>{`${alert.entityName} ${alert.entityId} ${alert.entityType}`}</h2>
-					<p className={severity_fun}>({alert.severity})</p>
-					<h1 className={severity_fun}>R {alert.cost.toFixed(2)}</h1> 
+					<h2 className={severity_fun}>{`${selectedSegment.entityName} ${selectedSegment.entityId} ${selectedSegment.entityType}`}</h2>
+					<p className={severity_fun}>({selectedSegment.severity})</p>
+					<h1 className={severity_fun}>R {selectedSegment.cost.toFixed(2)}</h1> 
 					<p className={severity_fun}>is being lost per hour!</p>
-					<p className="static-grey">Loosing {alert.litresPerHour.toFixed(0)}&#x2113; per hour</p>
+					<p className="static-grey">Loosing {selectedSegment.litresPerHour.toFixed(0)}&#x2113; per hour</p>
 					<p className="static-grey"> no leak would be 0&#x2113; per hour</p>
 				</div>
 				<img
@@ -95,30 +96,23 @@ class SegmentLeak extends Component {
 					litres={selectedSegment.typeLitres.toFixed(0)}
 					percent={(selectedSegment.typeLitres / selectedSegment.totalLitres * 100).toFixed(0)}
 				/>
-				{!this.state.leakResolved ? (
-					<button
-						onClick={() => this.handleResolveClick(selectedSegment.entityId)}
-						disabled={this.state.leakResolved}
-						className={`resolve-button ${!this.state.leakResolved ? 'unresolved-leak' : 'resolved-leak'}`}
-					>
-						{this.state.leakResolved ? (
-							<img src="images/white_on_dark_loading.gif" alt="loading..." className="btn-loader" />
-						) : (
-							'LOG RESOLVED ISSUE'
-						)}
-					</button>
+				{selectedSegment.status == 2 ? (
+					<div>
+						<button
+							onClick={() => this.handleResolveClick(selectedSegment.entityId)}
+							disabled={this.state.leakResolved}
+							className='resolved-leak-button'
+						>
+							LOG AS RESOLVED
+						</button>
+						<small>the problem is fixed click here</small>
+					</div>
 				) : (
-					<p className="logged-issue-text">issue was logged</p>
+					<p className="logged-issue-text">ISSUE WAS LOGGED</p>
 				)}
-				<small
-					className={this.state.leakResolved === false ? 'default-status' : 'leak-unresolved-status'}
-					id="resolved-status"
-				>
-					{this.state.leakResolved === false ? 'the problem is fixed, click here' : ''}
-				</small>
-			</div>
+				</div>
 		);
-		return <div>{leakInfo}</div>;
+		return <div>{leakInfo}</div> ;
 	}
 }
 
