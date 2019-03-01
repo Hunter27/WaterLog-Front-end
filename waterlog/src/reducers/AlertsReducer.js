@@ -7,6 +7,7 @@ import {
 const initialState = {
     items: [],
     total: 0,
+    page: 1,
     loading: null,
     error: null
 }
@@ -23,8 +24,9 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 loading: false,
-                items: state.items.concat(action.payload.alerts),
+                items: state.items.concat(action.payload.alerts).sort((a, b) => b.status - a.status),
                 total: action.payload.total,
+                page : state.page + 1,
                 error: null
             }
         case FETCH_ALERTS_FAILURE:
