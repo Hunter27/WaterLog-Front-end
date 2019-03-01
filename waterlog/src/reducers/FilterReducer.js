@@ -1,38 +1,37 @@
 import {
-    FETCH_COSTS_FORECAST_BEGIN_MONTHLY,
-    FETCH_COSTS_FORECAST_SUCCESS_MONTHLY,
-    FETCH_COSTS_FORECAST_FAILURE_MONTHLY,
+    FETCH_FILTERED_ALERTS_BEGIN,
+    FETCH_FILTERED_ALERTS_SUCCESS,
+    FETCH_FILTERED_ALERTS_FAILURE
 } from '../actions/Types';
 
 const initialState = {
     items: [],
-    loading: false,
+    loading: null,
     error: null
-};
+}
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case FETCH_COSTS_FORECAST_BEGIN_MONTHLY:
+        case FETCH_FILTERED_ALERTS_BEGIN:
             return {
                 ...state,
                 loading: true,
                 error: null
-            };
-        case FETCH_COSTS_FORECAST_SUCCESS_MONTHLY:
+            }
+        case FETCH_FILTERED_ALERTS_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                items: action.payload.forecastMonthly,
+                items: action.payload.filteredAlerts,
                 error: null
-            };
-        case FETCH_COSTS_FORECAST_FAILURE_MONTHLY:
+            }
+        case FETCH_FILTERED_ALERTS_FAILURE:
             return {
                 ...state,
                 loading: false,
-                error: action.payload.error,
-                items: []
-            };
+                error: action.payload.error
+            }
         default:
             return state;
     }
-}  
+}

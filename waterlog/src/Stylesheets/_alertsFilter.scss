@@ -1,24 +1,48 @@
 .filter-contents {
-    background-color: $wild-sand;
-    margin: 20px;
-    padding: 10px;
-    color: $trout;
-    border-radius: 5px;
-    
-    li, ul {
-        list-style-type: none;
-    }
-    
-    hr {
-        margin: 5px 0;
-    }
-    
-    ul {
-        margin: 0;
-    }
+	background-color: $bg-filter;
+	box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.5);
+	margin: 20px;
+	padding: 10px;
+	color: $wild-sand;
+	border-radius: 5px;
+
+	li,
+	ul {
+		list-style-type: none;
+	}
+
+	hr {
+		margin: 5px 0;
+	}
+
+	ul {
+		margin: 0;
+	}
 }
 
 input[type=checkbox] {
-    color: $blue;
-    background-color: $blue;
+	color: $blue;
+	background-color: $blue;
+}
+
+#reset-filter {
+	background-color: $wild-sand;
+	text-transform: capitalize;
+	width: 100px;
+	display: block;
+	margin: 5px auto;
+	border: none;
+}
+
+#submit-filter {
+	background-color: $blue;
+	font-weight: bold;
+	width: 120px;
+	display: block;
+	margin: 25px auto;
+	border: none;
+}
+
+img {
+	width: 20px;
 }

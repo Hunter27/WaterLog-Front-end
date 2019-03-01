@@ -8,7 +8,16 @@ import { formatDate, getStatusIcon } from "./../utils";
 
 class AlertTableComponent extends Component {
   componentDidMount() {
-    this.props.fetchAlerts();
+    document.addEventListener('scroll', this.trackScrolling);
+    console.log(this.currentPage);
+    this.props.fetchAlerts(this.currentPage);
+    this.currentPage++;
+
+  }
+  currentPage = 1;
+  nextPage = () => {
+    this.props.fetchAlerts(this.currentPage);
+    this.currentPage++;
   }
 
   render() {
@@ -17,17 +26,18 @@ class AlertTableComponent extends Component {
     if (error) {
       return <Error404 />;
     }
-    if (loading) {
+    if (loading && alerts.length < 1) {
       return <Loader />;
     }
+
     return (
       <div>
         <h1 className="alerts-header">Alerts</h1>
         <div className="img-container">
           <img className="alert-img" src="images/ascending_descending.png" alt="ascending_descending icon" />
-          <img className="alert-img" src="images/filter_icon.png" alt="filter icon" />
+          <img className="alert-img" src="images/filter_icon.png" alt="filter icon" onClick={this.props.openFilter}/>
         </div>
-        <table>
+        <table className="alerts-table">
           <tbody>
             {alerts.map((alert, index) => (
               <tr
@@ -44,7 +54,7 @@ class AlertTableComponent extends Component {
                   alert.entityId
                 } ${alert.entityType.toUpperCase()}`}</td>
                 <td>
-                  {alert.entityName === "Segment" ? `R${0}/hr` : ""} {/*TODO fix decimal !isNaN(alert.cost) && alert.cost.toFixed(2) */}
+                  {alert.entityName === "Segment" ? `R${parseInt(alert.cost).toFixed(2)}/hr` : ""}
                 </td>
                 <td>
                   {alert.entityName === "Segment"
@@ -55,6 +65,7 @@ class AlertTableComponent extends Component {
             ))}
           </tbody>
         </table>
+        <div onClick={this.nextPage}>Scroll More</div>
       </div>
     );
   }
