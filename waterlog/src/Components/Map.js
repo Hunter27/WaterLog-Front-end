@@ -42,7 +42,7 @@ class MapComponent extends Component {
         iconState: generateMapIcons(pmapData, this.state.simpleView),
       });
 
-      if (this.state.iconState) {
+      if (this.state.iconState ) {
         this.state.contLoading = false;
       }
 
@@ -60,11 +60,6 @@ class MapComponent extends Component {
     };
   }
 
-  componentDidMount() {
-    this.props.fetchMapsData();
-    this.props.fetchHeatMapsData();
-  }
-
   render() {
     const {
       error,
@@ -75,19 +70,19 @@ class MapComponent extends Component {
       heatMapData,
       pmapDataError
     } = this.props;
-    if (error || heatError) {
+    if (error || heatError || pmapDataError) {
       return <Error404 />;
     }
-    if (loading || heatLoading) {
+    if (loading || heatLoading || this.state.contLoading) {
       return (
         <div>
           <Loader />
         </div>
       );
     }
-    let icons, heatPoints;
+    let heatPoints;
     if (mapData) {
-      icons = generateMapIcons(mapData, this.state.simpleView);
+
     } else {
       return <Error404 />;
     }
@@ -130,9 +125,8 @@ class MapComponent extends Component {
                   })()}
                 </div>
                 );
-            })()
-            }
-            {icons}
+            })()}
+            {this.state.iconState}
           </Map>
         </div>
         <div className="map-icon-button-div-layer2">
@@ -176,22 +170,29 @@ class MapComponent extends Component {
 }
 
 MapComponent.propTypes = {
-  fetchMapsData: PropTypes.func.isRequired
+  fetchMapsData: PropTypes.func.isRequired,
+  fetchPollMapsData: PropTypes.func,
+  mapData: PropTypes.array.isRequired,
+  pmapData: PropTypes.array
 };
 
 const mapStateToProps = state => ({
+  pmapData: state.pmaps.items,
   mapData: state.maps.items,
   loading: state.maps.loading,
   error: state.maps.error,
   heatMapData: state.heatMap.items,
   heatLoading: state.heatMap.loading,
-  heatError: state.heatMap.error
+  heatError: state.heatMap.error,
+  pmapDataLoading: state.pmaps.loading,
+  pmapDataError: state.pmaps.error
 });
 
 export default connect(
   mapStateToProps,
   {
     fetchMapsData,
+    fetchPollMapsData,
     fetchHeatMapsData
   }
 )(MapComponent);
