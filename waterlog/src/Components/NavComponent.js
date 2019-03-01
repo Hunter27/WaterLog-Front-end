@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchAlerts } from '../actions/AlertsAction';
 import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-dom';
-
 import AlertComponent from '../Pages/Alert';
 import HomeComponent from '../Pages/Home';
 import MapComponent from '../Components/MapFullScreen';
@@ -84,6 +83,7 @@ SegmentLeak.propTypes = {
 const mapStateToProps = (state) => ({
   alerts: state.alerts.items,
   notif: state.numNotifs.notif.items,
-  isfetching: state.numNotifs.notif.isFetching
+  isfetching: state.numNotifs.notif.isFetching,
+	total: state.alerts.total
 });
 export default connect(mapStateToProps, { fetchAlerts, fetchNotifications })(NavComponent);

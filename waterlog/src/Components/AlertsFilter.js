@@ -61,15 +61,6 @@ class AlertsFilter extends Component {
 					sensorNumber: parseInt(this.tankSensorInput.value)
 				});
 		}
-
-		/* Still testing with this */
-		console.log('filterCriteria', {
-			segmentNumber: this.state.segmentNumber,
-			sensorType: this.state.sensorType,
-			sensorNumber: this.state.sensorNumber,
-			severity: this.state.severity
-		});
-
 		this.props.close();
 	};
 

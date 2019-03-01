@@ -9,30 +9,32 @@ export const fetchFilteredAlertsBegin = () => ({
 	type: FETCH_FILTERED_ALERTS_BEGIN
 });
 
-export const fetchFilteredAlertsSuccess = filteredAlerts => ({
+export const fetchFilteredAlertsSuccess = (filteredAlerts) => ({
 	type: FETCH_FILTERED_ALERTS_SUCCESS,
 	payload: {
 		filteredAlerts
 	}
 });
 
-export const fetchFilteredAlertsFailure = error => ({
+export const fetchFilteredAlertsFailure = (error) => ({
 	type: FETCH_FILTERED_ALERTS_FAILURE,
 	payload: {
 		error
 	}
 });
 
-export const fetchFilteredAlerts = (criteria) => dispatch => {
+export const fetchFilteredAlerts = (criteria) => (dispatch) => {
 	dispatch(fetchFilteredAlertsBegin());
-	fetch(`${process.env.REACT_APP_API_URL}/api/segmentevents/getalertsfilter`,{
+	fetch(`${process.env.REACT_APP_API_URL}/api/segmentevents/getalertsfilter`, {
 		method: 'GET',
-		body: criteria
-	} )
+		body: JSON.stringify(criteria)
+	})
 		.then(handleErrors)
-		.then(res => res.json())
-		.then(sensor => {
-			dispatch(fetchFilteredAlertsSuccess(sensor));
+		.then((res) => res.json())
+		.then((_alerts) => {
+			dispatch(fetchFilteredAlertsSuccess(_alerts));
 		})
-		.catch(error => dispatch(fetchFilteredAlertsFailure(error)));
+		.catch((error) => {
+			dispatch(fetchFilteredAlertsFailure(error));
+		});
 };
