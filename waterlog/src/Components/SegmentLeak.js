@@ -69,7 +69,6 @@ class SegmentLeak extends Component {
 			return <Error404 />;
 		}
 		const selectedSegment = segment[0];
-
 		const leakInfo = (
 			<div>
 				<div

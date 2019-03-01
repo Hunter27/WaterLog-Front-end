@@ -27,6 +27,7 @@ import TankGraphReducer from "./TankGraphReducer";
 import FilterReducer from "./FilterReducer";
 import ForecastPlaceholderReducer from "./ForecastPlaceHolderReducer";
 import NotificationsReducer from "./NotifNumberReducer";
+import SegmentReducer from './SegmentReducer';
 
 const rootReducer = combineReducers({
   leaks: SegmentLeaksReducer,
@@ -57,6 +58,7 @@ const rootReducer = combineReducers({
   numNotifs : NotificationsReducer,
   filteredAlerts: FilterReducer,
   dailytankgraph: TankGraphReducer,
-  placeholder: ForecastPlaceholderReducer
+  placeholder: ForecastPlaceholderReducer,
+  segment: SegmentReducer
 });
 export default rootReducer;
