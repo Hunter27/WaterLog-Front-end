@@ -8,6 +8,7 @@ class TankLevels extends Component {
     this.props.fetchTankLevels();
   }
   render() {
+    console.log("Error check", this.props);
     const { error, loading } = this.props;
     if (loading) {
       return <div />;

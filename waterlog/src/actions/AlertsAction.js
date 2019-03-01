@@ -25,9 +25,9 @@ export const fetchAlertsFailure = error => ({
 	}
 });
 
-export const fetchAlerts = () => dispatch => {
+export const fetchAlerts = (id) => dispatch => {
 	dispatch(fetchAlertsBegin());
-	fetch(`${process.env.REACT_APP_API_URL}/api/segmentevents/getalerts`)
+	fetch(`${process.env.REACT_APP_API_URL}/api/segmentevents/getalerts/`+id)
 		.then(handleErrors)
 		.then(res => res.json())
 		.then(alerts => {

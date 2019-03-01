@@ -1,38 +1,37 @@
 import {
-    FETCH_COSTS_FORECAST_BEGIN_MONTHLY,
-    FETCH_COSTS_FORECAST_SUCCESS_MONTHLY,
-    FETCH_COSTS_FORECAST_FAILURE_MONTHLY,
+    FETCH_SENSOR_BEGIN,
+    FETCH_SENSOR_SUCCESS,
+    FETCH_SENSOR_FAILURE
 } from '../actions/Types';
 
 const initialState = {
-    items: [],
-    loading: false,
+    item: [],
+    loading: null,
     error: null
-};
+}
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case FETCH_COSTS_FORECAST_BEGIN_MONTHLY:
+        case FETCH_SENSOR_BEGIN:
             return {
                 ...state,
                 loading: true,
                 error: null
-            };
-        case FETCH_COSTS_FORECAST_SUCCESS_MONTHLY:
+            }
+        case FETCH_SENSOR_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                items: action.payload.forecastMonthly,
+                item: action.payload.sensor,
                 error: null
-            };
-        case FETCH_COSTS_FORECAST_FAILURE_MONTHLY:
+            }
+        case FETCH_SENSOR_FAILURE:
             return {
                 ...state,
                 loading: false,
-                error: action.payload.error,
-                items: []
-            };
+                error: action.payload.error
+            }
         default:
             return state;
     }
-}  
+}

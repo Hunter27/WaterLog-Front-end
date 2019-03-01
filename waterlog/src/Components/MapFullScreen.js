@@ -107,7 +107,6 @@ class MapFullScreenComponent extends Component {
             </button>
           </div>
           <div className={`map-icon-div-layer2-fullscreen map-button-tab ${this.state.simpleView ? "" : "invisible"}`}>
-            
             <img
               className="icon"
               src={require("../images/heatmap_icon_blue.png")}

@@ -1,36 +1,34 @@
 import {
-    FETCH_PMAP_DATA_BEGIN,
-    FETCH_PMAP_DATA_SUCCESS,
-    FETCH_PMAP_DATA_FAILURE
+    FETCH_SEGMENT_BEGIN,
+    FETCH_SEGMENT_SUCCESS,
+    FETCH_SEGMENT_FAILURE
 } from '../actions/Types';
 
 const initialState = {
-    items: [],
-    loading: false,
+    item: [],
+    loading: null,
     error: null
-};
+}
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case FETCH_PMAP_DATA_BEGIN:
+        case FETCH_SEGMENT_BEGIN:
             return {
                 ...state,
                 loading: true,
                 error: null
-            };
-        case FETCH_PMAP_DATA_SUCCESS:
+            }
+        case FETCH_SEGMENT_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                items: action.payload.data,
+                item: action.payload.segment,
                 error: null
             }
-
-        case FETCH_PMAP_DATA_FAILURE:
+        case FETCH_SEGMENT_FAILURE:
             return {
                 ...state,
                 loading: false,
-                items: [],
                 error: action.payload.error
             }
         default:
