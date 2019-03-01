@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchAlerts } from '../actions/AlertsAction';
 import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-dom';
-
 import AlertComponent from '../Pages/Alert';
 import HomeComponent from '../Pages/Home';
 import MapFullScreenComponent from '../Components/MapFullScreen';
@@ -69,7 +68,6 @@ SegmentLeak.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-	alerts: state.alerts.items,
 	total: state.alerts.total,
 });
 export default connect(mapStateToProps, { fetchAlerts })(NavComponent);

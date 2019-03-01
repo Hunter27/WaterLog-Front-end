@@ -43,6 +43,15 @@ input[type=checkbox] {
 	border: none;
 }
 
+#moreAlerts {
+	background-color: $blue;
+	font-weight: bold;
+	width: 120px;
+	display: block;
+	margin: 0 auto 20px auto;
+	border: none;
+}
+
 img {
 	width: 20px;
 }
