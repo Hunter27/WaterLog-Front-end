@@ -12,6 +12,7 @@ import PumpsReducer from "./PumpsReducer";
 import TankLevelReducer from "./TankLevelReducer";
 import TankLevelsByIdReducer from "./TankLevelsByIdReducer";
 import MapsReducer from "./MapsReducer";
+import PMapsReducer from "./PMapsReducer";
 import AlertsReducer from "./AlertsReducer";
 import DailyCostReducer from "./DailyCostReducer";
 import MonthlyCostReducer from "./MonthlyCostReducer";
@@ -47,13 +48,13 @@ const rootReducer = combineReducers({
   level: TankLevelsByIdReducer,
   pumps: PumpsReducer,
   maps: MapsReducer,
+  pmaps: PMapsReducer,
   alerts: AlertsReducer,
   forecastDaily:CostsDailyForecastReducer,
   forecastMonthly:CostsMonthlyForecastReducer,
   dailytankgraph:TankGraphReducer,
   heatMap:HeatMapsReducer,
   numNotifs : NotificationsReducer,
-  heatMap: HeatMapsReducer,
   filteredAlerts: FilterReducer,
   dailytankgraph: TankGraphReducer,
   placeholder: ForecastPlaceholderReducer

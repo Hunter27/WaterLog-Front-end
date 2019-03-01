@@ -11,6 +11,7 @@ import UsageComponent from '../Pages/Usage';
 import SegmentLeak from './SegmentLeak';
 import TankInformation from '../Pages/TankInformation';
 import FaultySensor from './FaultySensor';
+import { fetchNotifications } from '../actions/NumberOfNotifsActions';
 
 class NavComponent extends Component {
   constructor(props) {
@@ -85,4 +86,4 @@ const mapStateToProps = (state) => ({
   notif: state.numNotifs.notif.items,
   isfetching: state.numNotifs.notif.isFetching
 });
-export default connect(mapStateToProps, { fetchAlerts })(NavComponent);
+export default connect(mapStateToProps, { fetchAlerts, fetchNotifications })(NavComponent);
