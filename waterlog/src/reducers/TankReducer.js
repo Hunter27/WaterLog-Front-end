@@ -1,40 +1,35 @@
 import {
-    FETCH_ALERTS_BEGIN,
-    FETCH_ALERTS_SUCCESS,
-    FETCH_ALERTS_FAILURE
+    FETCH_TANK_BEGIN,
+    FETCH_TANK_SUCCESS,
+    FETCH_TANK_FAILURE
 } from '../actions/Types';
 
 const initialState = {
-    items: [],
-    total: 0,
-    page: 1,
+    item: [],
     loading: null,
     error: null
 }
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        case FETCH_ALERTS_BEGIN:
+        case FETCH_TANK_BEGIN:
             return {
                 ...state,
                 loading: true,
                 error: null
             }
-        case FETCH_ALERTS_SUCCESS:
+        case FETCH_TANK_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                items: state.items.concat(action.payload.alerts).sort((a, b) => b.status - a.status),
-                total: action.payload.total,
-                page : state.page + 1,
+                item: action.payload.tank,
                 error: null
             }
-        case FETCH_ALERTS_FAILURE:
+        case FETCH_TANK_FAILURE:
             return {
                 ...state,
                 loading: false,
-                error: action.payload.error,
-        
+                error: action.payload.error
             }
         default:
             return state;

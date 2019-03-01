@@ -1,40 +1,35 @@
 import {
-  FETCH_TANK_GRAPH_BEGIN,
-	FETCH_TANK_GRAPH_SUCCESS,
-	FETCH_TANK_GRAPH_FAILURE
+	FETCH_FILTERED_ALERTS_BEGIN,
+	FETCH_FILTERED_ALERTS_SUCCESS,
+	FETCH_FILTERED_ALERTS_FAILURE
 } from '../actions/Types';
 
 const initialState = {
-  item: {
-    dataPoints: [
-      { x: "0", y: "0" }
-    ]
-  },
-  loading: false,
+	items: [],
+	loading: null,
 	error: null
 };
 
 export default function(state = initialState, action) {
 	switch (action.type) {
-		case FETCH_TANK_GRAPH_BEGIN:
+		case FETCH_FILTERED_ALERTS_BEGIN:
 			return {
 				...state,
 				loading: true,
 				error: null
 			};
-		case FETCH_TANK_GRAPH_SUCCESS:
+		case FETCH_FILTERED_ALERTS_SUCCESS:
 			return {
 				...state,
 				loading: false,
-				item: action.payload.dailytankgraph,
+				items: action.payload.filteredAlerts,
 				error: null
 			};
-		case 	FETCH_TANK_GRAPH_FAILURE:
+		case FETCH_FILTERED_ALERTS_FAILURE:
 			return {
 				...state,
 				loading: false,
-				items: {},
-				error: action.payload.error
+				error: action.payload.error.message
 			};
 		default:
 			return state;
