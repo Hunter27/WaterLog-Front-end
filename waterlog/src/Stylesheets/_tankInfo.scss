@@ -1,26 +1,12 @@
 .tank-container {
 	display: flex;
 	text-align: center;
-	left: 100px;
-}
-
-.pump-button {
-	width: 200px;
-	height: 30px;
-	font-weight: normal;
-	color: black;
-	background-color: #17d1ff;
-	text-align: center;
-	font-size: 12sp;
-	border-radius: 2px;
-	border: none;
-	line-height: 16sp;
-	box-shadow: black 1dp, 1dp, 4dp;
 }
 
 .tank {
 	flex: 1;
-	margin: 5px;
+	margin: 0;
+	color: $gull-gray;
 }
 
 .tank img {
@@ -32,26 +18,32 @@
 	margin: 0;
 }
 
-.tank p:nth-child(1) {
-	color: #93a4ae;
-}
-
 .tank p:nth-child(3) {
-	color: #93a4ae;
+	color: $background-color;
 	font-size: 10pt;
-}
-
-.tank p:nth-child(4) {
-	color: #f6f6f6;
+	position: relative;
+	bottom: 60px;
+	right: 1px;
+	font-weight: bold;
 }
 
 .Level {
 	left: 5px;
 	position: relative;
-	color: #93a4ae;
+	color: $gull-gray;
 }
 
 .Instruction {
 	left: 8px;
 	position: relative;
+}
+.pump-button {
+	width: 200px;
+	height: 30px;
+	font-weight: normal;
+	color: $black;
+	background-color: $blue;
+	font-size: 12sp;
+	border-radius: 2px;
+	box-shadow: $black 1dp, 1dp, 4dp;
 }

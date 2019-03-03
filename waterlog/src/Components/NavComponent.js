@@ -39,7 +39,7 @@ class NavComponent extends Component {
 					<header className="app-header">
 						<div className="navicons">
 							<div className="logo">
-								<img src="images/logo_white.png" alt="logo" />
+								<img src="images/logo_blue.png" alt="logo" />
 							</div>
 							<NavLink exact to="/" className="navicon-container" activeClassName="selected-route">
 								<img src="images/home_icon.png" alt="home" />

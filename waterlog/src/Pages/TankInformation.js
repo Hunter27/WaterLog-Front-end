@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import TankComponent from "../Components/TankComponent";
 import PumpButton from "./../Components/PumpButton";
-import "../Stylesheets/_tankInfo.scss";
 import GraphLine from "../Components/DailyTankGraph";
 
 class TankInformation extends Component {
