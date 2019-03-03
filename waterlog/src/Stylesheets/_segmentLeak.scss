@@ -1,110 +1,84 @@
-#map-toggle {
-    width: 75px;
+.resolved-leak-button {
+	background-color: $trout;
+	color: $background-color;
+	font-weight: bold;
+	width: 160px;
+	height: 30px;
+	border-radius: 2px;
+	margin-top: 10px;
 }
 
-.leakInfo {
-    margin: 0 20px;
-    padding: 0;
+.leak-info {
+	padding-top: 10px;
 }
+
+.leak-info :first-child {
+	font-size: 20pt;
+}
+
+.leak-info :nth-child(2) {
+	margin: 5px;
+	font-weight: bold;
+	font-size: 10pt;
+}
+
+.leak-info :nth-child(3) {
+	margin: 0;
+	font-weight: bolder;
+}
+
+.leak-info :nth-child(4) {
+	margin: 0;
+	margin-bottom: 7px;
+	font-weight: bold;
+	font-size: 12pt;
+}
+
+.leak-info :nth-child(5) {
+	margin: 0;
+	color: $gull-gray;
+	font-weight: bold;
+	font-size: 12pt;
+}
+
+.leak-info :nth-child(6) {
+	margin-top: 0;
+	color: $gull-gray;
+	font-size: 10pt;
+}
+
 .low {
-    color: #FFEA00;
-    
+	color: $alert-low;
 }
+
 .medium {
-    color: #FFAB00;
+	color: $alert-medium;
 }
+
 .high {
-    color: #FF1744;
+	color: $alert-high;
 }
-
-.lowf {
-    background-color: #FFEA00;    
-}
-.mediumf {
-    background-color: #FFAB00;
-}
-.highf {
-    background-color: #FF1744;
-}
-
 
 .leak-resolved {
-    color: #69f0ae;
+	color: $turquoise-blue;
 }
 
-.leakInfo :first-child {
-    font-size: 20pt;
-}
-
-.leakInfo :nth-child(2) {
-    margin: 5px;
-    font-weight: bold;
-    font-size: 10pt;
-}
-
-.leakInfo :nth-child(3) {
-    margin: 0;
-    font-weight: bolder;
-}
-.leakInfo :nth-child(4) {
-    margin: 0;
-    margin-bottom: 7px;
-    font-weight: bold;
-    font-size: 12pt;
-}
-.leakInfo :nth-child(5) {
-    margin: 0;
-    color: #93a4ae;
-    font-weight: bold;
-    font-size: 12pt;
-}
-.leakInfo :nth-child(6) {
-    margin-top: 0;
-    color: #93a4ae;
-    font-size: 10pt;
-}
-
-.default-status {
-    color: #93a4ae;
-    margin: 0;
-}
-
-.leak-unresolved-status {
-    color: red;
-    margin: 0;
-    font-size: 11pt;
-}
-
-.logged-issue-text {
-    color: $blue;
-    text-transform: uppercase;
-}
-
-.resolved-leak-button {
-    background-color: $blue;
-	font-weight: bold
-}
-
-.btn-loader {
-    width: 20px;
-    height: 20px;
-    margin-top: 2px;
+#map-toggle {
+	width: 75px;
 }
 
 .segment-map {
-    height: 400px;
-    margin: 25px 0;
+	margin: 25px 0;
 }
 
-.date-resolved {
-    h4 {
-        color: $turquoise-blue;
-        margin: 15px 0 0 0;
-        font-weight: normal;
-    }
+.logged-issue-text {
+	color: $blue;
+	text-transform: uppercase;
+}
 
-    small {
-        margin: 0;
-        color: $trout;
-    }
+.wastage-label {
+	color: $wild-sand;
+	margin: 10px 0;
+	font-weight: bold;
+	font-size: 18pt;
 }
