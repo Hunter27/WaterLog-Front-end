@@ -40,6 +40,10 @@ class TankInformation extends Component {
     return (
       <div className="tank-info">
 				<Tank tank={level} />
+				{true ? <p>optimal level</p> : null}
+				<p>pump is {true ? 'on' : 'off'}</p>
+				{true ? <p>the tank is being overfilled</p> : null}
+				{true ? <p>the tank is empty</p> : null}
         <PumpButton id={this.state.id} />
         <img
           id="map-toggle"

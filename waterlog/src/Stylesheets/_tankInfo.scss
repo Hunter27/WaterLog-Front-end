@@ -40,21 +40,13 @@
 	}
 	.tank:last-child {
 		color: $wild-sand;
-		bottom: 150px;
+		//bottom: 200px;
 	}
 }
 
-.exclamation {
-	height: 50px;
-}
-
 .pump-button {
-	width: 200px;
+	width: 220px;
 	height: 30px;
-	font-weight: normal;
-	color: $black;
 	background-color: $blue;
-	font-size: 12sp;
 	border-radius: 2px;
-	box-shadow: $black 1dp, 1dp, 4dp;
 }
