@@ -1,52 +1,71 @@
 .progress-bar {
-  background-color: #eceff1;
-  height: 32px;
-  padding: 0;
-  margin: 0 10px;
+	background-color: $porcelain;
+	height: 32px;
+	padding: 0;
+	margin: 0 10px;
+	color: $trout;
 }
 
 .filler {
-  background-color: red;
-  height: 32px;
-  padding: 0;
-  margin: 0;
-  border-radius: 0 15px 15px 0;
-  color: white;
+	height: 32px;
+	padding: 0;
+	margin: 0;
+	border-radius: 0 15px 15px 0;
+}
+
+.filler-low {
+	background-color: $alert-low;
+	height: 32px;
+	padding: 0;
+	margin: 0;
 }
 
 .filler-medium {
-  background-color: #FFAB00 ;
-  height: 32px;
-  padding: 0;
-  margin: 0;
-  border-radius: 0 15px 15px 0;
-  color: white;
+	background-color: $alert-medium;
+	height: 32px;
+	padding: 0;
+	margin: 0;
+	border-radius: 0 15px 15px 0;
+	color: white;
 }
 
 .filler-high {
-  background-color: #FF1744 ;
-  height: 32px;
-  padding: 0;
-  margin: 0;
-  border-radius: 0 15px 15px 0;
-  color: white;
+	background-color: $alert-high;
+	height: 32px;
+	padding: 0;
+	margin: 0;
+	border-radius: 0 15px 15px 0;
+	color: $wild-sand;
 }
 
 .low {
-  color: #FFEA00;
-}
-.medium {
-  color: #FFAB00 ;
-}
-.high {
-  color: #FF1744 ;
+	color: $alert-low;
 }
 
+.medium {
+	color: $alert-medium;
+}
+
+.high {
+	color: $alert-high;
+}
+
+.lowf {
+	background-color: $alert-low;
+}
+
+.mediumf {
+	background-color: $alert-medium;
+}
+
+.highf {
+	background-color: $alert-high;
+}
 
 .percent-label {
-  display: inline-block;
-  color: white;
-  font-size: 15pt;
-  padding: 0;
-  margin-top: 5px;
+	display: inline-block;
+	font-size: 15pt;
+	padding: 0;
+	margin-top: 5px;
+	color: $trout;
 }

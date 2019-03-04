@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { fetchTankLevelById } from "../actions/TankLevelsByIdAction";
-import "../Stylesheets/_tank.scss";
 import Loader from "./Loader";
 import Error404 from "./Error404";
 

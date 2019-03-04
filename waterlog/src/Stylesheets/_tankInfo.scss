@@ -1,57 +1,52 @@
 .tank-container {
-  display: flex;
-  text-align: center;
-  left: 100px;
+	display: flex;
+	text-align: center;
 }
 
-.pump-button {
-  width: 200px;
-  height: 30px;
-  font-weight: normal;
-  color: black;
-  background-color: #17d1ff;
-  text-align: center;
-  font-size: 12sp;
-  border-radius: 2px;
-  border: none;
-  line-height: 16sp;
-  box-shadow: black 1dp, 1dp, 4dp;
-}
 .tank {
-  flex: 1;
-  margin: 5px;
+	flex: 1;
+	margin: 0;
+	color: $gull-gray;
 }
 
 .tank img {
-  height: 80px;
-  width: 60px;
+	height: 80px;
+	width: 60px;
 }
 
 .tank p {
-  margin: 0;
-}
-
-.tank p:nth-child(1) {
-  color: #93a4ae;
+	margin: 0;
 }
 
 .tank p:nth-child(3) {
-  color: #93a4ae;
-  font-size: 10pt;
+	color: $background-color;
+	font-size: 10pt;
+	position: relative;
+	bottom: 60px;
+	right: 1px;
+	font-weight: bold;
 }
 
-.tank p:nth-child(4) {
-  color: #f6f6f6;
+.tank-info {
+	padding-top: 20px;
+	.tank:first-child {
+		font-size: 20px;
+		font-weight: bold;
+		color: $blue;
+	}
+	.tank img {
+		height: 158px;
+		width:  118px;
+	}
+	.tank:last-child {
+		color: $wild-sand;
+		//bottom: 200px;
+	}
 }
 
-.Level {
-  //top: -95px;
-  left: 5px;
-  position: relative;
-  color: #93a4ae;
-}
-.Instruction {
-  //top: -110px;
-  left: 8px;
-  position: relative;
+.pump-button {
+	width: 220px;
+	height: 30px;
+	background-color: $blue;
+	border-radius: 2px;
 }
