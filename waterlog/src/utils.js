@@ -28,6 +28,17 @@ export const formatDate = (date) => {
   return [month, day, year].join('/');
 }
 
+export const mapataTime = (myData) =>
+{
+  let index = [];
+  let dataY = new Array(24).fill(null);;
+  myData.map(d=>{
+    index.push( new Date(d.x).getHours()); 
+  }); 
+  index.map((i, position) => dataY[i]=myData[position].y)
+  return dataY;
+}
+ 
 export const getStatusIcon = (severity) => {
   switch (severity.toLowerCase()) {
     case 'high':
