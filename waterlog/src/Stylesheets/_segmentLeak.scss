@@ -1,27 +1,29 @@
 #map-toggle {
     width: 75px;
 }
+
 #map-toggle1 {
     width: 75px;
     position: relative;
-    top:-115px;
-   
+    top:-115px; 
 }
 
 .leakInfo {
     margin: 0 20px;
     padding: 0;
 }
+
 .low {
     color: #FFEA00;
 }
+
 .medium {
     color: #FFAB00;
 }
+
 .high {
     color: #FF1744;
 }
-
 
 .leak-resolved {
     color: #69f0ae;
@@ -41,18 +43,21 @@
     margin: 0;
     font-weight: bolder;
 }
+
 .leakInfo :nth-child(4) {
     margin: 0;
     margin-bottom: 7px;
     font-weight: bold;
     font-size: 12pt;
 }
+
 .leakInfo :nth-child(5) {
     margin: 0;
     color: #93a4ae;
     font-weight: bold;
     font-size: 12pt;
 }
+
 .leakInfo :nth-child(6) {
     margin-top: 0;
     color: #93a4ae;
@@ -85,14 +90,6 @@
     height: 400px;
     margin: 25px 0;
 }
-.segment-map2 {
-    .segment-map {
-        height: 200px;
-        margin: 25px 0;
-        position: relative;
-        top:90px;
-      }
-  }
 
 .date-resolved {
     h4 {

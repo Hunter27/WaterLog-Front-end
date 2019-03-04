@@ -17,7 +17,7 @@ class TankInformation extends Component {
 	}
 	handleMapExpand() {
 		this.setState({
-			mapExpanded: !this.state.mapExpanded,
+			mapExpanded: !this.state.mapExpanded
 		});
 	}
 

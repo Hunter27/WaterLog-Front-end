@@ -58,6 +58,6 @@ const rootReducer = combineReducers({
   placeholder:ForecastPlaceholderReducer,
   numNotifs : NotificationsReducer,
   filteredAlerts: FilterReducer,
-  dailytankgraph: TankGraphReducer,
+  dailytankgraph: TankGraphReducer
 });
 export default rootReducer;

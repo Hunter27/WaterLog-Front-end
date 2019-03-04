@@ -32,7 +32,7 @@ const TankGraph = (props) => {
       },
       
       {
-        label: 'rands',
+        label: '%',
         data: dataY,
         fill: true,
         borderColor: '#17D1FF',
@@ -49,11 +49,11 @@ const TankGraph = (props) => {
         scaleLabel: {
           display: true,
           labelString: 'days',
-          fontColor:'rgb(236,239,241)'
+          fontColor:'#ECEFF1'
 
         },
         ticks: {
-          fontColor:'rgb(236,239,241)',
+          fontColor:'#ECEFF1',
           major: {
             fontStyle: 'bold',
             fontColor: '#000205'
@@ -72,11 +72,11 @@ const TankGraph = (props) => {
           fontColor:'#ECEFF1'
         },
         ticks: {
-          fontColor:'rgb(236,239,241)',
+          fontColor:'#ECEFF1',
         },
         gridLines: {
           display: false,
-          color:'rgb(236,239,241)'
+          color:'#ECEFF1'
         }
     
       }]
