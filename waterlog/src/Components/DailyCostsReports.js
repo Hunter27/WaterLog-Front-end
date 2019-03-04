@@ -22,24 +22,24 @@ const DailyCostsReports = (props) => {
     labels: labelX,
     datasets: [
       {
-        label: 'cost',
+        label: 'current cost',
         data: dataY,
         fill: true,
         borderColor: '#56ccf7',
         backgroundColor: '#56ccf7',
         pointBackgroundColor: '#56ccf7',
-        pointRadius: 5,
-        pointHitRadius: 5
+        pointRadius: 3,
+        pointHitRadius: 3
       },
       {
-        label: 'forecast',
+        label: 'forecast cost',
         data: forecast,
         fill: true,
-        borderColor: '#eceff1', 
-        backgroundColor: '#fff',
-        pointBackgroundColor: '#eceff1',
-        pointRadius: 5,
-        pointHitRadius: 5
+        borderColor: '#C0C0C0', 
+        backgroundColor: '#C0C0C0',
+        pointBackgroundColor: '#C0C0C0',
+        pointRadius: 3,
+        pointHitRadius: 3
       }
 
     ]

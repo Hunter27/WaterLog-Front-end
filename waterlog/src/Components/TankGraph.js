@@ -17,8 +17,8 @@ const TankGraph = (props) => {
         borderColor: 'rgba(23,209,255,1)',
         backgroundColor: 'rgba(79,91,98,0.4)',
         pointBackgroundColor: 'rgba(23,209,255,1)',
-        pointRadius: 5,
-        pointHitRadius: 5
+        pointRadius: 3,
+        pointHitRadius: 3
       }
     ]
   }

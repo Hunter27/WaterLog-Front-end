@@ -9,18 +9,16 @@ const MonthlyCostsReports = (props) => {
       labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
       datasets: [
         {
-          label: 'cost',
+          label: 'current cost',
           data: dataY,
-          fill: true,
-          borderColor: '#56ccf7',
+          fill: true, 
           backgroundColor: '#56ccf7'
         },
         {
-          label: 'forecast',
+          label: 'forecast cost',
           data: forecast,
-          fill: true,
-          borderColor: '#eceff1',
-          backgroundColor: '#eceff1'
+          fill: true, 
+          backgroundColor: '#778899'
         }
       ]
     }

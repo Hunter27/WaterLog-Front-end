@@ -16,8 +16,8 @@ const DailyUsageComponent = (props) => {
         borderColor:  '#56ccf7',
         backgroundColor:  '#56ccf7',
         pointBackgroundColor: '#56ccf7',
-        pointRadius: 5,
-        pointHitRadius: 5
+        pointRadius: 3,
+        pointHitRadius: 3
       }
     ]
   }
