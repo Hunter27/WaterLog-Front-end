@@ -28,7 +28,7 @@ export const formatDate = (date) => {
   return [month, day, year].join('/');
 }
 
-export const mapataTime = (myData) =>
+export const mapDataTime = (myData) =>
 {
   let index = [];
   let dataY = new Array(24).fill(null);;

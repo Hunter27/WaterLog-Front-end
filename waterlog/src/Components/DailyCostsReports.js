@@ -1,9 +1,11 @@
 import React from 'react';
 import { Line, defaults } from 'react-chartjs-2';
+import {mapDataTime} from '../utils';
 
 const DailyCostsReports = (props) => {
   let labelX = props.props.placeholder.map(a => (new Date(a).getHours() + ":00"));
-  let dataY = props.props.dailyCost.dataPoints.map(a => Math.round(a.y));
+  let myData = props.props.dailyCost.dataPoints;
+  let dataY = mapDataTime(myData); 
   const { yIntercept, slope } = props.props.forecastDaily[0];
   const today = new Date(Date.now());
   let startDate = new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime();

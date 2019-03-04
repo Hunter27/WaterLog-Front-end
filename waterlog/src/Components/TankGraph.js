@@ -1,12 +1,12 @@
 import React from 'react';
 import { Line, defaults } from 'react-chartjs-2';
-import {mapataTime} from '../utils';
+import {mapDataTime} from '../utils';
 
 const TankGraph = (props) => { 
-  
+
   let labelX = props.props.placeholder.map(a => (new Date(a).getHours() + ":00"));
   let myData = props.props.dailytankgraph.dataPoints;
-  let dataY = mapataTime(myData); 
+  let dataY = mapDataTime(myData); 
   let data = {
     labels: labelX,
     datasets: [ 
