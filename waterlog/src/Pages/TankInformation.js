@@ -4,6 +4,8 @@ import PumpButton from './../Components/PumpButton';
 import '../Stylesheets/_tankInfo.scss';
 import GraphLine from '../Components/DailyTankGraph';
 import Map from '../Components/Map';
+import HomeComponent from  '../Pages/Home';
+import Home from './Home';
 
 class TankInformation extends Component {
 	constructor(props) {
@@ -29,10 +31,14 @@ class TankInformation extends Component {
 	render() {
 		return (
 			<div>
+				<img className = "backIcon" 
+				src = 'images/back_button.png'
+				alt = "backButton"
+				onClick={() => window.location =<Home/>}/>
 				<TankComponent id={this.state.id} />
 				<PumpButton id={this.state.id} />
 				<img
-					id="map-toggle"
+					id="map-toggle1"
 					src={this.state.mapExpanded === false ? 'images/map_expand.png' : 'images/map_close.png'}
 					alt="segment-map"
 					onClick={() => this.handleMapExpand()}

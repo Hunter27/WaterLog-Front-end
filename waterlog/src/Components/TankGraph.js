@@ -23,9 +23,10 @@ const TankGraph = (props) => {
         label: 'forecast',
         data: forecast,
         fill: true,
-        borderColor: 'rgba(0,191,255,1)', 
-        backgroundColor: 'rgba(255,23,68,0.4)',
-        pointBackgroundColor: 'rgba(0,191,255,1)',
+        borderColor: '#00BFFF',
+        backgroundColor: '#FF1744',
+
+        pointBackgroundColor: '#00BFFF',
         pointRadius: 5,
         pointHitRadius: 5
       },
@@ -34,9 +35,9 @@ const TankGraph = (props) => {
         label: 'rands',
         data: dataY,
         fill: true,
-        borderColor: 'rgba(23,209,255,1)',
-        backgroundColor: 'rgba(79,91,98,0.4)',
-        pointBackgroundColor: 'rgba(23,209,255,1)',
+        borderColor: '#17D1FF',
+        backgroundColor: '#4F5B62',
+        pointBackgroundColor: '#17D1FF',
         pointRadius: 5,
         pointHitRadius: 5
       }
@@ -47,7 +48,7 @@ const TankGraph = (props) => {
       xAxes: [{
         scaleLabel: {
           display: true,
-          labelString: 'Days',
+          labelString: 'days',
           fontColor:'rgb(236,239,241)'
 
         },
@@ -55,28 +56,29 @@ const TankGraph = (props) => {
           fontColor:'rgb(236,239,241)',
           major: {
             fontStyle: 'bold',
-            fontColor: 'rgba(0,2,5,0.4)'
+            fontColor: '#000205'
           }
         },
         gridLines: {
           display: false,
-          color:'rgb(236,239,241)'
+          color:'#ECEFF1'
         }
       }],
       yAxes: [{
         display: true,
         scaleLabel: {
           display: true,
-          labelString: 'PercentageLevel',
-          fontColor:'rgb(236,239,241)'
+          labelString: 'percentage level',
+          fontColor:'#ECEFF1'
         },
         ticks: {
           fontColor:'rgb(236,239,241)',
+        },
         gridLines: {
           display: false,
           color:'rgb(236,239,241)'
         }
-      }
+    
       }]
     }
   }

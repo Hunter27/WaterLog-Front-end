@@ -17,6 +17,7 @@ import { fetchCostsForecastDaily } from '../actions/CostsDailyForecastAction';
 import { fetchCostsForecastMonthly } from '../actions/CostsMonthlyForecastAction';
 import Loader from './Loader';
 import { fetchPlaceholder } from "../actions/ForecastPlaceholderActions";
+import Error404 from './Error404';
 
 class Usage extends Component {
   constructor(props) {
@@ -91,7 +92,7 @@ class Usage extends Component {
     if (dailyError || monthlyError
       || seasonalError || dailyCostForecastError
       || monthlyCostForecastError || placeholderError) {
-      return <div>Error!</div>;
+      return <div><Error404/></div>;
     }
     if (dailyLoading || monthlyLoading
       || seasonalLoading || dailyCostForecastLoading

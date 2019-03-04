@@ -16,6 +16,8 @@
   border: none;
   line-height: 16sp;
   box-shadow: black 1dp, 1dp, 4dp;
+  top:-125px;
+  position: relative;
 }
 .tank {
   flex: 1;
@@ -45,13 +47,19 @@
 }
 
 .Level {
-  //top: -95px;
+  top: -95px;
   left: 5px;
   position: relative;
   color: #93a4ae;
 }
 .Instruction {
-  //top: -110px;
+  top: -110px;
   left: 8px;
   position: relative;
+}
+.backIcon{
+  width: 26px;
+  position: absolute;
+  left: 11px;
+  bottom: 560px;
 }
