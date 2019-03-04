@@ -11,6 +11,7 @@ import { fetchHeatMapsData } from "./../actions/HeatMapActions";
 import Loader from "./Loader";
 import Error404 from "./Error404";
 import HeatmapLayer from "react-leaflet-heatmap-layer";
+import MapUI from "./MapComponent";
 import {
   generateMapIcons,
   levelToIntensity,
@@ -53,7 +54,8 @@ class MapComponent extends Component {
       zoom: mapOptions.defaultZoom,
       heatView: false,
       iconState: null,
-      contLoading: true
+      contLoading: true,
+      reCenter: false
     };
   }
 
@@ -80,43 +82,18 @@ class MapComponent extends Component {
     } else {
       return <Error404 />;
     }
+    console.log("refd",this.refs )
     return (
       <div className="map-main-div">
         <div className="map-tile-div">
-          <Map
-            ref='map'
-            center={mapOptions.centerPosition}
-            maxBounds={[mapOptions.southWest, mapOptions.northEast]}
-            zoom={this.state.zoom}
-            zoomControl={false}
-            maxZoom={18}
-            attributionControl={false} >
-            {(() => {
-              if (this.state.simpleView)
-                return (<div>
-                  <TileLayer url="http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png" />
-                  {(() => {
-                    if (this.state.heatView) {
-                      return (
-                        <div>
-                          <Rectangle bounds={mapOptions.rectangleBounds} color={'#beecff'} opacity={0.5} />
-                          <HeatmapLayer
-                            points={heatPoints}
-                            longitudeExtractor={m => m[1]}
-                            latitudeExtractor={m => m[0]}
-                            intensityExtractor={m => parseFloat(m[2])}
-                            gradient={{ 0.25: '#5ad4de', 0.5: '#6ade5a', 0.75: '#d2de5a', 1: '#de765a' }}
-                            radius={40}
-                            blur={15}
-                            max={mapOptions.maxIntensity} />
-                        </div>);
-                    }
-                  })()}
-                </div>
-                );
-            })()}
-            {this.state.iconState}
-          </Map>
+         <MapUI
+         setView ={this.state.simpleView}
+         heatView = {this.state.heatView}
+         heatIcons = {heatPoints}
+         icons = {this.state.iconState}
+         reCenter = {this.state.reCenter}
+         ref='map'
+         />
         </div>
         <div className="map-icon-button-div-layer2">
           <div className="map-button-div-layer2 map-button-tab">
@@ -148,8 +125,7 @@ class MapComponent extends Component {
               src={require("../images/recentre_icon_blue.png")}
               alt="re-center Map"
               onClick={() => {
-                const map = this.refs.map.leafletElement;
-                map.setView(mapOptions.centerPosition, mapOptions.defaultZoom)
+                this.refs.map.reCenter()
               }} />
           </div>
         </div>

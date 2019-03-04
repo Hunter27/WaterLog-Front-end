@@ -164,6 +164,18 @@ export function levelToIntensity(level, maxIntensity = 5) {
   }
 }
 
+function getHeatMapData({ monitorsCoordinates, segmentCoordinates }) {
+  let monitorMapData = monitorsCoordinates.map(mon => {
+    return [mon.lat, mon.long, levelToIntensity(mon.faultLevel, mapOptions.maxIntensity)]
+  });
+  let segmentMapData = segmentCoordinates.map(seg => {
+    return [seg.lat, seg.long, levelToIntensity(seg.faultLevel, mapOptions.maxIntensity)]
+  });
+
+  let heatMapData = monitorMapData.concat(segmentMapData);
+  return heatMapData;
+}
+
 const southWest = [-25.944586, 28.189546];
 const northEast = [-25.661871, 28.451147];
 const heatBackgroundConst = 0.91;
