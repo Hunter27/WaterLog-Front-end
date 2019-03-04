@@ -1,4 +1,8 @@
-import { FETCH_PMAP_DATA_BEGIN, FETCH_PMAP_DATA_SUCCESS, FETCH_PMAP_DATA_FAILURE } from '../actions/Types';
+import {
+	FETCH_PMAP_DATA_BEGIN,
+	FETCH_PMAP_DATA_SUCCESS,
+	FETCH_PMAP_DATA_FAILURE
+} from '../actions/Types';
 
 const initialState = {
 	items: [],

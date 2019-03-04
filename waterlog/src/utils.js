@@ -1,12 +1,20 @@
 import React from 'react';
-import { Polyline, Marker, Popup } from 'react-leaflet';
-import { sensorFaultIcon, sensorOkLightIcon, sensorOkDarkerIcon } from './icons/MapIcons';
+import {
+	Polyline,
+	Marker,
+	Popup
+} from 'react-leaflet';
+import {
+	sensorFaultIcon,
+	sensorOkLightIcon,
+	sensorOkDarkerIcon
+} from './icons/MapIcons';
 
 const images = {
 	tank_yellow: 'images/tank-yellow.png',
 	tank_orange: 'images/tank-orange.png',
 	tank_green: 'images/tank-green.png',
-	tank_red: 'images/tank-red-exclamation_.png'
+	tank_red: 'images/tank-red-exclamation.png'
 };
 
 export const getTankImage = (percent) => {
