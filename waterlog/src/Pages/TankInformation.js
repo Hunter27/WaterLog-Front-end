@@ -42,7 +42,7 @@ class TankInformation extends Component {
 				<img className = "back-icon" 
 				src = 'images/back_button.png'
 				alt = "backButton"
-				onClick={() => window.location =<Home/>}/>
+				onClick={() => window.location.href ='/'}/>
 				<Tank tank={level} />
 				{true ? <p>optimal level</p> : null}
 				<p>pump is {true ? 'on' : 'off'}</p>

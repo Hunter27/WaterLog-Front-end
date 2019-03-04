@@ -6,6 +6,7 @@ import { fetchSegment } from '../actions/SegmentAction';
 import Loader from './Loader';
 import Error404 from './Error404';
 import Map from './Map';
+import AlertComponent from './../Pages/Alert';
 
 class SegmentLeak extends Component {
 	constructor(props) {
@@ -83,7 +84,11 @@ class SegmentLeak extends Component {
 		const resolved = parseInt(status) === 1 ? true : false;
 		const leakInfo = (
 			<div>
-				<div className="leak-info">
+      	<img className = "back-icon" 
+				src = 'images/back_button.png'
+				alt = "backButton"
+				onClick={() => window.location.href ='/alert' }/>
+        <div className="leak-info">
 					<h2 className={!resolved ? severity_fun : 'leak-resolved'}>
 						{`Segment ${entityId} ${resolved ? 'was' : 'is'} Leaking`}
 					</h2>
