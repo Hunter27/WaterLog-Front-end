@@ -6,10 +6,7 @@ import {
 } from "react-leaflet";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import {
-  fetchMapsData,
-  fetchPollMapsData
-} from "./../actions/MapActions";
+import { fetchPollMapsData } from "./../actions/MapActions";
 import { fetchHeatMapsData } from "./../actions/HeatMapActions";
 import Loader from "./Loader";
 import Error404 from "./Error404";
@@ -33,10 +30,10 @@ function getHeatMapData({ monitorsCoordinates, segmentCoordinates }) {
 }
 class MapComponent extends Component {
   async componentDidMount() {
-    this.props.fetchMapsData();
     this.props.fetchHeatMapsData();
+    this.props.fetchPollMapsData();
     this.timer = setInterval(() => {
-      this.props.fetchPollMapsData()
+      this.props.fetchPollMapsData();
       const { pmapData } = this.props;
       this.setState({
         iconState: generateMapIcons(pmapData, this.state.simpleView),
@@ -62,18 +59,15 @@ class MapComponent extends Component {
 
   render() {
     const {
-      error,
-      loading,
-      mapData,
       heatError,
       heatLoading,
       heatMapData,
       pmapDataError
     } = this.props;
-    if (error || heatError || pmapDataError) {
+    if (heatError || pmapDataError) {
       return <Error404 />;
     }
-    if (loading || heatLoading || this.state.contLoading) {
+    if (heatLoading || this.state.contLoading) {
       return (
         <div>
           <Loader />
@@ -81,11 +75,6 @@ class MapComponent extends Component {
       );
     }
     let heatPoints;
-    if (mapData) {
-
-    } else {
-      return <Error404 />;
-    }
     if (heatMapData) {
       heatPoints = getHeatMapData(heatMapData);
     } else {
@@ -170,17 +159,12 @@ class MapComponent extends Component {
 }
 
 MapComponent.propTypes = {
-  fetchMapsData: PropTypes.func.isRequired,
   fetchPollMapsData: PropTypes.func,
-  mapData: PropTypes.array.isRequired,
   pmapData: PropTypes.array
 };
 
 const mapStateToProps = state => ({
   pmapData: state.pmaps.items,
-  mapData: state.maps.items,
-  loading: state.maps.loading,
-  error: state.maps.error,
   heatMapData: state.heatMap.items,
   heatLoading: state.heatMap.loading,
   heatError: state.heatMap.error,
@@ -191,7 +175,6 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
-    fetchMapsData,
     fetchPollMapsData,
     fetchHeatMapsData
   }
