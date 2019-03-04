@@ -1,9 +1,11 @@
 import React from 'react';
 import { Line, defaults } from 'react-chartjs-2'; 
+import {mapDataTime} from '../utils';
 
 const DailyUsageComponent = (props) => { 
   let labelX = props.props.placeholder.map(a => (new Date(a).getHours() + ":00")); 
-  let dataY = props.props.dailyUsage.dataPoints.map(a => Math.round(a.y))
+  let myData = props.props.dailyUsage.dataPoints;
+  let dataY = mapDataTime(myData); 
   var data = {
     labels: labelX,
     datasets: [
