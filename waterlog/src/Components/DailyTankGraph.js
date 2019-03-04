@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import Loader from "./Loader";
 import Error404 from "./Error404";
 import { fetchTankGraphDaily } from '../actions/TankDailyAction';
+import { fetchPlaceholder } from "../actions/ForecastPlaceholderActions";
 
 class DailyTankGraph extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class DailyTankGraph extends Component {
   componentDidMount() {
     this.openGraph("day");
     this.props.fetchTankGraphDaily(this.props.id);
+    this.props.fetchPlaceholder();
     ;
   }
 
@@ -44,7 +46,7 @@ class DailyTankGraph extends Component {
       <div className="wastageTank">
         <p>Water Level History</p>
         <TankGraph props={this.props} />
-      
+
       </div>
 
     );
@@ -54,15 +56,23 @@ class DailyTankGraph extends Component {
 DailyTankGraph.propTypes = {
   fetchTankGraphDaily: PropTypes.func.isRequired,
   dailytankgraph: PropTypes.object,
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
+  placeholder: PropTypes.array.isRequired,
+  fetchPlaceholder: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   dailytankgraph: state.dailytankgraph.item,
   loading: state.dailytankgraph.loading,
-  error: state.dailytankgraph.errorr
+  error: state.dailytankgraph.errorr,
+  placeholder: state.placeholder.item,
+  placeholderLoading: state.placeholder.loading,
+  placeholderError: state.placeholder.error
 });
 export default connect(
   mapStateToProps,
-  { fetchTankGraphDaily }
+  {
+    fetchTankGraphDaily,
+    fetchPlaceholder
+  }
 )(DailyTankGraph);
