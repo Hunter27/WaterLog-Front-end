@@ -1,40 +1,37 @@
 .wastage {
-    background-color: #2B3B42;
-    margin: 20px;
-    border-radius: 5px;
+	background-color: $bg-filter;
+	margin: 20px;
+	border-radius: 5px;
 	padding: 2px;
 	min-height: 200px;
-	color: #4F5B62;
+	color: $trout;
 	size: 14pt;
 }
-.wastageTank{
 
-	top:-100px;
-	position: relative;
-}
-.wastage > p:first-child{
-    margin: 5px 0 0 0;
+.wastage>p:first-child {
+	margin: 5px 0 0 0;
 	font-weight: bold;
-	color: #93A4AE;
+	color: $gull-gray;
 }
 
 .graph-nav {
-    display: flex;
-    padding: 0 10px;
+	display: flex;
+	padding: 0 10px;
 }
 
 .btn-graph-nav {
-    flex: 1;
+	flex: 1;
 	margin: 5px;
-	background-color: dee1e2;
+	background-color: $map-btn;
 }
 
-.graph-outlet p{
-    margin: 0;
+.graph-outlet p {
+	margin: 0;
 }
 
 .tab {
 	overflow: hidden;
+
 	button {
 		transition: 0.3s;
 		cursor: pointer;
@@ -42,46 +39,46 @@
 		padding: 5px;
 		font-size: 11px;
 		font-weight: bold;
-		color: #4f5b62;
+		color: $trout;
 	}
+
 	button.active {
-		background-color: #93a4ae;
-		color: #f6f6f6;
+		background-color: $gull-gray;
+		color: $wild-sand;
 	}
 }
 
-
-.head{
+.head {
 	font-size: 15pt;
-	color: #ECEFF1;
+	color: $porcelain;
 	font-weight: bold;
 }
 
-.subhead{
+.subhead {
 	font-size: 12pt;
-	color:red;
+	color: $alert-high;
 	font-weight: bold;
 }
 
-.date{
+.date {
 	font-size: 8pt;
 }
 
 #daily {
 	margin: 0;
 	padding: 0;
-	border: 1px solid black;
+	border: 1px solid $black;
 
-	p:nth-child(1){
-		color: #ff1744;
+	p:nth-child(1) {
+		color: $alert-high;
 		font-size: 15pt;
 		font-weight: bold;
 		margin: 5px 0 0 0;
 	}
-	p:nth-child(2){
+
+	p:nth-child(2) {
 		font-weight: bold;
 		margin: inherit;
-		color: #4f5b62;
-
+		color: $trout;
 	}
 }
