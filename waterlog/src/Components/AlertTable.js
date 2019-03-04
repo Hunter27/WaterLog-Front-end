@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchAlerts } from '../actions/AlertsAction';
+import { fetchFilteredAlerts } from '../actions/FilterAction';
 import Loader from './Loader';
 import Error404 from './Error404';
 import { formatDate, getStatusIcon } from './../utils';
@@ -15,8 +16,9 @@ class AlertTableComponent extends Component {
 		};
 	}
 	componentDidMount() {
-		document.addEventListener('scroll', this.trackScrolling);
-		if (this.props.alerts.length == 0) this.props.fetchAlerts(this.props.page);
+		if (this.props.alerts.length === 0) {
+			this.props.fetchAlerts(this.props.page);
+		}
 	}
 	nextPage = () => {
 		this.props.fetchAlerts(this.props.page);
@@ -31,7 +33,7 @@ class AlertTableComponent extends Component {
 		if (loading && alerts.length < 1) {
 			return <Loader />;
 		}
-
+		
 		const sortAlerts = () => {
 			this.state.ascending ? alerts.sort((a, b) => b.status - a.status) : alerts.sort((a, b) => a.status - b.status);
 			this.setState({ ascending: !this.state.ascending });
@@ -47,14 +49,14 @@ class AlertTableComponent extends Component {
 						alt="ascending_descending icon"
 						onClick={() => sortAlerts()}
 					/>
-					<img className="alert-img"  src="images/filter_icon.png" alt="filter icon"/>
+					<img className="alert-img" src="images/filter_icon.png" alt="filter icon" />
 				</div>
 				<table className="alerts-table">
 					<tbody>
 						{alerts.map((alert, index) => (
 							<tr
 								key={index}
-								className={`table-row ${parseInt(alert.status) == 2 ? 'table-row-unresolved' : ''}`}
+								className={`table-row ${parseInt(alert.status) === 2 ? 'table-row-unresolved' : ''}`}
 								onClick={() => (window.location.href = `alert/${alert.entityName}/${alert.entityId}/${alert.date}`)}
 							>
 								<td className="event-date">{formatDate(alert.date)}</td>
@@ -94,4 +96,4 @@ const mapStateToProps = (state) => ({
 	error: state.alerts.error
 });
 
-export default connect(mapStateToProps, { fetchAlerts })(AlertTableComponent);
+export default connect(mapStateToProps, { fetchAlerts, fetchFilteredAlerts })(AlertTableComponent);

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import Tank from "./Tank";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -6,30 +6,24 @@ import { fetchTankLevels } from "./../actions/TankLevelsActions";
 class TankLevels extends Component {
   componentWillMount() {
     this.props.fetchTankLevels();
-  }
-  render() {
-    console.log("Error check", this.props);
-    const { error, loading } = this.props;
-    if (loading) {
-      return <div />;
+	}
+
+	render() {
+    const { error, levels, loading } = this.props;
+    if (loading && levels.length === 0) {
+      return <div>Loading tank info...</div>;
     } else if (error) {
-      return <div />;
+      return <div>Failed to load tank info...</div>;
     } else {
       return (
-        <div>
+        <Fragment>
           <p className="home-text">Tank Levels</p>
           <div className="tank-container">
-            {this.props.levels.map((tank, index) => (
-              <div
-                className="tank"
-                key={index}
-                onClick={() => (window.location = `/alert/tank/${tank.id}`)}
-              >
-                <Tank key={index} tank={tank} />
-              </div>
+            {levels.map((tank, index) => (
+              <Tank key={index} tank={tank} />
             ))}
           </div>
-        </div>
+        </Fragment>
       );
     }
   }
