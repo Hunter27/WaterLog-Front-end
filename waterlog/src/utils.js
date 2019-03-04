@@ -6,14 +6,14 @@ const images = {
 	tank_yellow: 'images/tank-yellow.png',
 	tank_orange: 'images/tank-orange.png',
 	tank_green: 'images/tank-green.png',
-	tank_red: 'images/tank-red.png'
+	tank_red: 'images/tank-red-exclamation_.png'
 };
 
 export const getTankImage = (percent) => {
-	if (percent === 0) return images.tank_red;
+	if (percent === 0 || percent > 80) return images.tank_red;
 	else if (percent >= 1 && percent <= 40) return images.tank_yellow;
 	else if (percent >= 41 && percent <= 79) return images.tank_orange;
-	else if (percent >= 80 && percent <= 100) return images.tank_green;
+	else if (percent === 80) return images.tank_green;
 };
 
 const alertImages = {

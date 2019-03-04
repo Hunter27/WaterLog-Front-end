@@ -11,7 +11,7 @@ class TankLevels extends Component {
 	render() {
     const { error, levels, loading } = this.props;
     if (loading && levels.length === 0) {
-      return <div>Loading tank info</div>;
+      return <div>Loading tank info...</div>;
     } else if (error) {
       return <div>Failed to load tank info...</div>;
     } else {

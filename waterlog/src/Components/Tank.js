@@ -7,6 +7,7 @@ const Tank = props => {
 		<div className="tank" onClick={() => (window.location = `/alert/tank/${id}`)}>
 			<p>Tank {props.tank.id}</p>
 			<img src={getTankImage(percentageLevel)}
+				className={(percentageLevel === 0 || percentageLevel > 80) ? 'exlamation': ''}
 				alt={`${percentageLevel}% tank`}/>
 			<p>{percentageLevel}%</p>
     </div>

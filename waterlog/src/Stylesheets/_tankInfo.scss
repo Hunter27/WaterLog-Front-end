@@ -27,6 +27,27 @@
 	font-weight: bold;
 }
 
+.tank-info {
+	padding-top: 20px;
+	.tank:first-child {
+		font-size: 20px;
+		font-weight: bold;
+		color: $blue;
+	}
+	.tank img {
+		height: 158px;
+		width:  118px;
+	}
+	.tank:last-child {
+		color: $wild-sand;
+		bottom: 150px;
+	}
+}
+
+.exclamation {
+	height: 50px;
+}
+
 .Level {
 	left: 5px;
 	position: relative;
