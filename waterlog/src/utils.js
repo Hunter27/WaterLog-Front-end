@@ -45,7 +45,7 @@ export const formatDate = (date) => {
 export const mapDataTime = (myData) =>
 {
   let index = [];
-  let dataY = new Array(24).fill(null);;
+  let dataY = new Array(24).fill(null);
   myData.map(d=>{
     index.push( new Date(d.x).getHours()); 
   }); 
