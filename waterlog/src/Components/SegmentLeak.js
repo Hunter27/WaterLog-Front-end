@@ -87,7 +87,7 @@ class SegmentLeak extends Component {
       	<img className = "back-icon" 
 				src = 'images/back_button.png'
 				alt = "backButton"
-				onClick={() => window.location.href ='/alert' }/>
+				onClick={() => this.props.history.push('/alert') }/>
         <div className="leak-info">
 					<h2 className={!resolved ? severity_fun : 'leak-resolved'}>
 						{`Segment ${entityId} ${resolved ? 'was' : 'is'} Leaking`}
