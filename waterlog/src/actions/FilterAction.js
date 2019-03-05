@@ -36,5 +36,6 @@ export const fetchFilteredAlerts = (criteria) => (dispatch) => {
 		})
 		.catch((error) => {
 			dispatch(fetchFilteredAlertsFailure(error));
-		});
+			console.log(error.message);
+		})
 };

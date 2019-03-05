@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import { 
   FETCH_NOTIF,
-   FETCH_NOTIF_SUCCESS, 
-   FETCH_NOTIF_FAILURE 
+  FETCH_NOTIF_SUCCESS, 
+  FETCH_NOTIF_FAILURE 
   } from '../actions/Types';
 
 const defaultStateList = {

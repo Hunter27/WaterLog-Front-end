@@ -10,7 +10,6 @@ import Map from './Map';
 class SegmentLeak extends Component {
 	constructor(props) {
 		super(props);
-
 		this.handleResolveClick = this.handleResolveClick.bind(this);
 		this.state = {
 			mapExpanded: false,
@@ -52,10 +51,11 @@ class SegmentLeak extends Component {
 
 	segmentMap = (
 		<div className="segment-map">
-			<Map height="300px" />
-			<hr />
+			<Map height="400px" />
 		</div>
 	);
+
+	getSeverityClass = (severity) => severity.toLowerCase();
 
 	render() {
 		const { error, loading, segment } = this.props;
@@ -69,55 +69,66 @@ class SegmentLeak extends Component {
 			return <Error404 />;
 		}
 		const selectedSegment = segment[0];
+		const {
+			status,
+			entityId,
+			severity,
+			cost,
+			litresPerHour,
+			typeLitres,
+			totalLitres
+		} = selectedSegment;
+
+		const severity_fun = this.getSeverityClass(severity);
+		const resolved = parseInt(status) === 1 ? true : false;
 		const leakInfo = (
 			<div>
-				<div
-					className={`leakInfo ${parseInt(selectedSegment.status) == 2
-						? selectedSegment.severity
-						: 'leak-resolved'}`}
-				>
-					<h2>{`${selectedSegment.entityName} ${selectedSegment.entityId} ${selectedSegment.entityType}`}</h2>
-					<p>({selectedSegment.severity})</p>
-					<h1>R {selectedSegment.cost.toFixed(2)}</h1>
-					<p>is being lost per hour!</p>
-					<p>Loosing {selectedSegment.litresPerHour.toFixed(0)}&#x2113; per hour</p>
-					<p>no leak would be 0&#x2113; per hour</p>
+				<div className="leak-info">
+					<h2 className={!resolved ? severity_fun : 'leak-resolved'}>
+						{`Segment ${entityId} ${resolved ? 'was' : 'is'} Leaking`}
+					</h2>
+					<p className={!resolved ? severity_fun : ''}>
+						{severity}
+					</p>
+					<h1 className={!resolved ? severity_fun : 'leak-resolved'}>
+						R {cost.toFixed(2)}
+					</h1>
+					<p className={!resolved ? severity_fun : 'leak-resolved'}>
+						is being lost per hour!
+					</p>
+					<p>Loosing {litresPerHour.toFixed(0)}&#x2113; per hour</p>
+					<p> no leak would be 0&#x2113; per hour</p>
 				</div>
 				<img
 					id="map-toggle"
-					src={this.state.mapExpanded === false ? 'images/map_expand.png' : 'images/map_close.png'}
+					src={this.state.mapExpanded === false ?
+						'images/map_expand.png' :
+						'images/map_close.png'}
 					alt="segment-map"
 					onClick={() => this.handleMapExpand()}
 				/>
 				<hr />
 				{this.state.mapExpanded ? this.segmentMap : null}
-				<p className="wastegeLabel">wastage</p>
+				<p className="wastage-label">wastage</p>
 				<WastageSummary
-					severity={selectedSegment.severity}
-					litres={selectedSegment.typeLitres.toFixed(0)}
-					percent={(selectedSegment.typeLitres / selectedSegment.totalLitres * 100).toFixed(0)}
+					severity={severity}
+					litres={typeLitres.toFixed(0)}
+					percent={(typeLitres / totalLitres * 100).toFixed(0)}
 				/>
-				{!this.state.leakResolved ? (
-					<button
-						onClick={() => this.handleResolveClick(selectedSegment.entityId)}
-						disabled={this.state.leakResolved}
-						className={`resolve-button ${!this.state.leakResolved ? 'unresolved-leak' : 'resolved-leak'}`}
-					>
-						{this.state.leakResolved ? (
-							<img src="images/white_on_dark_loading.gif" alt="loading..." className="btn-loader" />
-						) : (
-							'LOG RESOLVED ISSUE'
-						)}
-					</button>
+				{!resolved ? (
+					<div>
+						<button
+							onClick={() => this.handleResolveClick(entityId)}
+							disabled={this.state.leakResolved}
+							className="resolved-leak-button"
+						>
+							LOG AS RESOLVED
+						</button>
+						<small>the problem is fixed click here</small>
+					</div>
 				) : (
-					<p className="logged-issue-text">issue was logged</p>
+					<p className="logged-issue-text">ISSUE WAS LOGGED</p>
 				)}
-				<small
-					className={this.state.leakResolved === false ? 'default-status' : 'leak-unresolved-status'}
-					id="resolved-status"
-				>
-					{this.state.leakResolved === false ? 'the problem is fixed, click here' : ''}
-				</small>
 			</div>
 		);
 		return <div>{leakInfo}</div>;
