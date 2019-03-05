@@ -9,22 +9,27 @@ const MonthlyCostsReports = (props) => {
       labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
       datasets: [
         {
-          label: 'rands',
+          label: 'current cost',
           data: dataY,
-          fill: true,
-          borderColor: '#56ccf7',
+          fill: true, 
           backgroundColor: '#56ccf7'
         },
         {
-          label: 'forecast',
+          label: 'forecast cost',
           data: forecast,
-          fill: true,
-          borderColor: '#eceff1',
-          backgroundColor: '#eceff1'
+          fill: true, 
+          backgroundColor: '#778899'
         }
       ]
     }
     var options = {
+      legend: {
+        display: true,
+        position:'bottom',
+        labels: {
+            fontColor: '#C8C8C8', 
+        }
+       },
       maintainAspectRatio: true,
       scales: {
         xAxes: [{

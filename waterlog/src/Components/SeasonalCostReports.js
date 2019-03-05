@@ -12,7 +12,7 @@ const SeasonalCostReports = (props) => {
         labels: ['Summer', 'Winter', 'Autumn', 'Spring'],
         datasets: [
             {
-                label: 'rands',
+                label: 'current cost',
                 data: [dataSummer, dataWinter, dataAutumn, dataSpring],
                 fill: true,
                 borderColor: '#56ccf7',
@@ -21,6 +21,13 @@ const SeasonalCostReports = (props) => {
         ]
     }
     var options = {
+        legend: {
+            display: true,
+            position:'bottom',
+            labels: {
+                fontColor: '#C8C8C8', 
+            }
+           },
         scales: {
             xAxes: [{
                 scaleLabel: {

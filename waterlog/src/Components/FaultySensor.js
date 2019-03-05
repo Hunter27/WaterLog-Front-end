@@ -78,9 +78,13 @@ class FaultySensor extends Component {
 		} = selectedSensor;
 
 		const resolved = parseInt(status) === 1 ? true : false;
-
-		const sensorInfo = (
-			<div className="faulty-sensor">
+    const sensorInfo = (
+			<div>
+				<img className="back-icon"
+					src='images/back_button.png'
+					alt="backButton"
+					onClick={() => this.props.history.push('/alert')} 
+				/>
 				<div>
 					<h2
 						className={!resolved ? 'sensor-unresolved' : 'sensor-resolved'}
