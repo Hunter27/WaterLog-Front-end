@@ -86,16 +86,25 @@ class Usage extends Component {
       monthlyCostForecastError,
       placeholderLoading,
       placeholderError,
+      dailyUsage,
+      dailyCost,
+      monthlyUsage,
+      monthlyCost,
+      seasonUsage,
+      seasonalCost,
+      forecastDaily,
+      forecastMonthly,
       seasonalLoading } = this.props;
 
-    if (dailyError || monthlyError
+    if ((dailyError || monthlyError
       || seasonalError || dailyCostForecastError
-      || monthlyCostForecastError || placeholderError) {
+      || monthlyCostForecastError || placeholderError)&& (dailyUsage.length < 1)&& (monthlyUsage.length < 1)&& (seasonUsage.length < 1)
+      && (dailyCost.length < 1)&& (monthlyCost.length < 1)&& (seasonalCost.length < 1)) {
       return <div>Error!</div>;
     }
-    if (dailyLoading || monthlyLoading
+    if ((dailyLoading || monthlyLoading
       || seasonalLoading || dailyCostForecastLoading
-      || monthlyCostForecastLoading || placeholderLoading) {
+      || monthlyCostForecastLoading || placeholderLoading)&& (forecastDaily.length < 1)&& (forecastMonthly.length < 1)){
       return <Loader />
     }
     
