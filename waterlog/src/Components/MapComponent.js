@@ -3,19 +3,20 @@ import {
   Map,
   TileLayer,
   Rectangle,
-  Circle
+  Marker
 } from "react-leaflet";
 import HeatmapLayer from "react-leaflet-heatmap-layer";
 import { mapOptions } from "../utils";
+import { selectedComponentIcon } from "../icons/MapIcons";
 
 class MapComponent extends Component {
   constructor(props) {
     super(props);
     this.reCenter = this.reCenter.bind(this);
     this.ref = this.refs.map;
+    this.weight = 2;
+    this.sign = 1;
   }
-
-
   reCenter() {
     const map = this.refs.map.leafletElement;
     map.setView(mapOptions.centerPosition, mapOptions.defaultZoom);
@@ -60,12 +61,11 @@ class MapComponent extends Component {
           })()}
           {(() => {
             let icons = [];
-            icons = this.props.icons;
-            if(this.props.focus && icons){
-              const circle = <Circle weight center={this.props.focus} radius={15} fillOpacity={0}></Circle>;
+            if (this.props.focus) {
+              const circle = <Marker position={this.props.focus} icon={selectedComponentIcon}></Marker>;
               icons.push(circle);
             }
-            return icons;
+            return this.props.icons.concat(icons);
           })()}
         </Map>
       </div>

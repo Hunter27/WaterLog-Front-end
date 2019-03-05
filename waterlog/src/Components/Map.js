@@ -33,7 +33,7 @@ class MapComponent extends Component {
   async componentDidMount() {
     this.props.fetchHeatMapsData();
     this.props.fetchPollMapsData();
-    this.timer = setTimeout(() => {
+    setTimeout(() => {
       this.props.fetchPollMapsData();
       const { pmapData } = this.props;
       this.setState({
@@ -92,7 +92,7 @@ class MapComponent extends Component {
             heatIcons={heatPoints}
             icons={this.state.iconState}
             reCenter={this.state.reCenter}
-            focus={[-25.783155,28.336761]}
+            focus={[-25.783155, 28.336761]}
             ref='map'
           />
         </div>
@@ -117,23 +117,23 @@ class MapComponent extends Component {
           </div>
           <div className={`map-icon-div-layer2 ${this.state.simpleView ? "" : "invisible"}`}>
             <img
-              className={`icon-home + ${this.state.moreOptions? "": "invisible"}`}
+              className={`icon-home + ${this.state.moreOptions ? "" : "invisible"}`}
               src={require("../images/heatmap_icon_blue.png")}
               alt="heat Toggle"
               onClick={() => { this.setState({ heatView: !this.state.heatView }) }} />
             <img
-              className={`icon-home + ${this.state.moreOptions? "": "invisible"}`}
+              className={`icon-home + ${this.state.moreOptions ? "" : "invisible"}`}
               src={require("../images/recentre_icon_blue.png")}
               alt="re-center Map"
               onClick={() => {
                 this.refs.map.reCenter()
               }} />
-              <img
+            <img
               className="icon-home"
               src={require("../images/more_map_icon.png")}
               alt="more options"
               onClick={() => {
-                this.setState({moreOptions: !this.state.moreOptions});
+                this.setState({ moreOptions: !this.state.moreOptions });
               }} />
           </div>
         </div>

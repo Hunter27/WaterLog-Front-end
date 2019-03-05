@@ -30,12 +30,12 @@ export const sensorFaultIcon = new L.icon({
   iconSize: new L.Point(25, 25)
 });
 
-export const sensorRedIcon = new L.icon({
-  iconUrl: require('../images/Red_sensor_dark.gif'),
-  iconAnchor: null,
+export const selectedComponentIcon = new L.icon({
+  iconUrl: require('../images/selectedComponent.png'),
+  iconAnchor: new L.Point(10, 10),
   popupAnchor: null,
   shadowUrl: null,
   shadowSize: null,
   shadowAnchor: null,
-  iconSize: new L.Point(60, 75)
+  iconSize: new L.Point(20, 20)
 });
