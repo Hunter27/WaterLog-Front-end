@@ -51,12 +51,12 @@ class AlertsFilter extends Component {
 		}
 
 		if (this.state.sensorFilterOpen) {
-			if (this.state.sensorType == 1)
+			if (this.state.sensorType === 1)
 				this.setState({
 					sensorNumber: parseInt(this.pipeSensorInput.value)
 				});
 
-			if (this.state.sensorType == 2)
+			if (this.state.sensorType === 2)
 				this.setState({
 					sensorNumber: parseInt(this.tankSensorInput.value)
 				});
@@ -121,7 +121,7 @@ class AlertsFilter extends Component {
 										/>
 										<label for="tank-filter">tank sensor</label>
 									</div>
-									{this.state.sensorType == 2 ? (
+									{this.state.sensorType === 2 ? (
 										<input
 											type="number"
 											ref={(input) => (this.tankSensorInput = input)}
@@ -145,7 +145,7 @@ class AlertsFilter extends Component {
 										/>
 										<label for="pipe-filter">pipe sensor</label>
 									</div>
-									{this.state.sensorType == 1 ? (
+									{this.state.sensorType === 1 ? (
 										<input
 											type="number"
 											ref={(input) => (this.pipeSensorInput = input)}
@@ -174,11 +174,7 @@ class AlertsFilter extends Component {
 					</div>
 					{this.state.severityFilterOpen ? (
 						this.severity.map((item, index) => (
-							<div
-								onClick={() => this.handleSeverityClick(index + 1)}
-								className="severity-selector"
-								key={index}
-							>
+							<div onClick={() => this.handleSeverityClick(index + 1)} className="severity-selector" key={index}>
 								{item}
 								<img src={getStatusIcon(item)} alt="severity indicator" />
 							</div>
@@ -188,7 +184,9 @@ class AlertsFilter extends Component {
 					<button id="reset-filter" onClick={this.resetFilter}>
 						Clear All
 					</button>
-					<button id="submit-filter" onClick={this.submitFilter}>DONE</button>
+					<button id="submit-filter" onClick={this.submitFilter}>
+						DONE
+					</button>
 				</div>
 			</div>
 		);

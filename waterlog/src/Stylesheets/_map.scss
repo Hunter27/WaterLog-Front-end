@@ -4,13 +4,13 @@
 }
 
 .leaflet-container {
-	background-color: #253238;
+	background-color: $background-color;
 }
 
 .map-button {
 	flex: 1;
 	margin: 5px;
-	background-color: #dee1e2;
+	background-color: $map-btn;
 	height: 30px;
   width: 90px;
   border: none;
@@ -22,52 +22,55 @@
 }
 
 .map-icon-button-div-layer2-fullscreen {
-  width: 100%;
-  margin: 0 auto;
-  max-width: 700px;
-  position: absolute;
+	width: 100%;
+	margin: 0 auto;
+	max-width: 700px;
+	position: absolute;
 }
 
 .map-button-div-layer2 {
-  z-index: 2;
-  bottom: 0%;
+	z-index: 2;
+	bottom: 0%;
 	margin: 9px auto;
-  position: absolute;
-  width: 100%;
+	position: absolute;
+	width: 100%;
 }
 
 .map-icon-div-layer2-fullscreen {
 	width: 50px;
-  margin: 40px 10px;
-  z-index: 2;
-  position: fixed;
+	margin: 40px 10px;
+	z-index: 2;
+	position: fixed;
 }
 
 .map-icon-div-layer2 {
-  z-index: 2;
-  position: absolute;
-  float: right;
-  right: 0;
+	z-index: 2;
+	position: absolute;
+	float: right;
+	right: 0;
 }
 
 .invisible {
-  display: none;
+	display: none;
 }
+
 .map-button-tab {
-  overflow: hidden;
+	overflow: hidden;
+
 	button {
 		transition: 0.3s;
 		cursor: pointer;
 		padding: 5px;
 		font-size: 13px;
 		font-weight: bold;
-		color: #4f5b62;
+		color: $trout;
 	}
+
 	button.active {
-		background-color: #93a4ae;
-		color: #f6f6f6;
-  }
-  
+		background-color: $gull-gray;
+		color: $wild-sand;
+	}
+
 }
 
 .map-main-div {
@@ -81,22 +84,22 @@
 	position: relative;
 }
 
-.map_main-div-fullscreen{
+.map_main-div-fullscreen {
 	position: relative;
 	text-align: left;
 	z-index: 0;
 }
 
 .map-icon-button-div-layer2 {
-  z-index: 2;
-  bottom: 0%;
-  height: 55px;
-  position: absolute;
-  width: 100%;
+	z-index: 2;
+	bottom: 0%;
+	height: 55px;
+	position: absolute;
+	width: 100%;
 }
 
-.map-tile-div-fullscreen{
-  position: relative;
+.map-tile-div-fullscreen {
+	position: relative;
 	margin: 0 auto;
 	z-index: 1;
 	top: 0;
@@ -108,8 +111,8 @@
 	top: 0;
 	width: 100%;
 	margin: 4px 1px;
-  position: absolute;
-  padding-bottom: 5px;
+	position: absolute;
+	padding-bottom: 5px;
 }
 
 .icon {

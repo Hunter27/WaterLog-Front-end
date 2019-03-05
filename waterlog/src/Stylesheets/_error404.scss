@@ -1,37 +1,37 @@
 .error404Red {
-  color: #ff1744;
-  font: "Roboto";
-  font-size: 25px;
-  font-weight: 500;
-  margin: 0;
-  padding: 0;
+	color: $alert-high;
+	font-size: 25px;
+	font-weight: 500;
+	margin: 0;
+	padding: 0;
 }
+
 .error404Blue {
-  color: #17d1ff;
-  font: "Roboto";
-  font-size: 25px;
-  font-weight: 500;
-  margin: 0;
-  padding: 0;
+	color: $blue;
+	font-size: 25px;
+	font-weight: 500;
+	margin: 0;
+	padding: 0;
 }
 
 .error404Grey {
-  color: rgba(147, 164, 174, 1);
-  margin: 0;
-  padding: 0;
+	color: $gull-gray;
+	margin: 0;
+	padding: 0;
 }
 
 .error404White {
-  color: rgb(255, 255, 255);
+	color: $wild-sand;
 }
+
 .imageError {
-  padding-top: 150px;
-  width: 104px;
-  height: 104px;
+	padding-top: 150px;
+	width: 104px;
+	height: 104px;
 }
 
 .loadingSize {
-  margin-top: 250px;
-  width: 50px;
-  height: 50px;
+	margin-top: 250px;
+	width: 50px;
+	height: 50px;
 }

@@ -1,10 +1,12 @@
 import React from 'react';
 import { Line, defaults } from 'react-chartjs-2';
 import {Globals } from './../Globals';
+import {mapDataTime} from '../utils';
 
 const DailyWastageComponent = (props) => { 
   var labelX = props.props.placeholder.map(a => (new Date(a).getHours() + ":00"));
-  var dataY = props.props.dailyWaste.dataPoints.map(a => Math.round(a.y));
+  var myData = props.props.dailyWaste.dataPoints;
+  let dataY = mapDataTime(myData); 
   var sum = dataY.reduce((a, b) => a + b, 0); 
   var data = {
     labels: labelX,
@@ -16,8 +18,8 @@ const DailyWastageComponent = (props) => {
         borderColor: '#56ccf7',
         backgroundColor: '#56ccf7',
         pointBackgroundColor: '#56ccf7',
-        pointRadius: 5,
-        pointHitRadius: 5
+        pointRadius: 3,
+        pointHitRadius: 3
       }
     ]
   }

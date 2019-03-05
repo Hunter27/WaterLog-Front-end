@@ -12,14 +12,14 @@ export default class SensorDiagram extends Component {
 				<div id="first" className="sensor-wrapper">
 					<div
 						className={`sensor ${parseInt(faultySensor) === sensorSetup[0]
-							? resolvedStatus == 1 ? 'resolved-sensor' : 'faulty'
+							? parseInt(resolvedStatus) === 1 ? 'resolved-sensor' : 'faulty'
 							: ''}`}
 					>
 						<p>{sensorSetup[0]}</p>
 					</div>
 					<div
 						className={`flow ${parseInt(faultySensor) === sensorSetup[0]
-							? resolvedStatus == 1 ? 'resolved-text' : 'faulty-text'
+							? parseInt(resolvedStatus) === 1 ? 'resolved-text' : 'faulty-text'
 							: ''}`}
 					>
 						<p>{100}%</p>
@@ -29,14 +29,14 @@ export default class SensorDiagram extends Component {
 				<div id="mid" className="sensor-wrapper">
 					<div
 						className={`sensor ${parseInt(faultySensor) === sensorSetup[1]
-							? resolvedStatus == 1 ? 'resolved-sensor' : 'faulty'
+							? parseInt(resolvedStatus) === 1 ? 'resolved-sensor' : 'faulty'
 							: ''}`}
 					>
 						<p>{sensorSetup[1]}</p>
 					</div>
 					<div
 						className={`flow ${parseInt(faultySensor) === sensorSetup[1]
-							? resolvedStatus == 1 ? 'resolved-text' : 'faulty-text'
+							? parseInt(resolvedStatus) === 1 ? 'resolved-text' : 'faulty-text'
 							: ''}`}
 					>
 						<p>{100}%</p>
@@ -47,14 +47,14 @@ export default class SensorDiagram extends Component {
 				<div id="last" className="sensor-wrapper">
 					<div
 						className={`sensor ${parseInt(faultySensor) === sensorSetup[2]
-							? resolvedStatus == 1 ? 'resolved-sensor' : 'faulty'
+							? parseInt(resolvedStatus) === 1 ? 'resolved-sensor' : 'faulty'
 							: ''}`}
 					>
 						<p>{sensorSetup[2]}</p>
 					</div>
 					<div
 						className={`flow ${parseInt(faultySensor) === sensorSetup[2]
-							? resolvedStatus == 1 ? 'resolved-text' : 'faulty-text'
+							? parseInt(resolvedStatus) === 1 ? 'resolved-text' : 'faulty-text'
 							: ''}`}
 					>
 						<p>{100}%</p>

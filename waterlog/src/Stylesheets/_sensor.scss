@@ -1,93 +1,109 @@
 #sensor-diagram {
-    height: 240px;
-    width: 200px;
-    margin: 30px auto 0 auto;
+	height: 240px;
+	width: 200px;
+	margin: 30px auto 0 auto;
 }
 
 #water-flow {
-    margin: 0;
-    color: #93A4AE;
+	margin: 0;
+	color: $gull-gray;
 }
 
+//TODO: make class since it affects h2 in other pages
 h2 {
-    color: #FF1744;
+	color: $alert-high;
 }
 
 small {
-    display: block;
-    padding: 3px;
-    margin: 0;
-    color: #93A4AE;
+	display: block;
+	padding: 3px;
+	margin: 0;
+	color: $gull-gray;
 }
 
 .sensor-wrapper {
-    width: 100;
-    height: 50px;
-    margin: 5px auto 35px auto;
-    position: relative;
-    bottom: 215px;
+	width: 100;
+	height: 50px;
+	margin: 5px auto 35px auto;
+	position: relative;
+	bottom: 215px;
 }
 
 .sensor {
-    height: 40px;
-    width: 40px;
-    float: left;
-    background-color: #4F5B62;
-    color: #93A4AE;
-    font-weight: bold;
-    border-radius: 30px;
-    margin-right: 15px;
-    border: 10px solid #4F5B62;
-    p {
-        display: block;
-        margin-top: 10px;
-    }
+	height: 40px;
+	width: 40px;
+	float: left;
+	background-color: $trout;
+	color: $gull-gray;
+	font-weight: bold;
+	border-radius: 30px;
+	margin-right: 15px;
+	border: 10px solid $trout;
+
+	p {
+		display: block;
+		margin-top: 10px;
+	}
 }
 
 .flow {
-    color: #93A4AE;
-    text-align: left;
-    height: 40px;
-    display: block;
-    margin-top: 10px;
-    p {
-        margin: 0;
-    }
+	color: $gull-gray;
+	text-align: left;
+	height: 40px;
+	display: block;
+	margin-top: 10px;
+
+	p {
+		margin: 0;
+	}
 }
 
 #line {
-    height: 210px;
-    width: 10px;
-    background-color: #4F5B62;
-    position: relative;
-    left: 25px;
-    top: 9px;
+	height: 210px;
+	width: 10px;
+	background-color: $trout;
+	position: relative;
+	left: 25px;
+	top: 9px;
 }
 
 .faulty {
-    background-color: $blue;
-    border: 10px solid #dd1717;
-    color: #f6f6f6;
+	background-color: $blue;
+	border: 10px solid $alert-high;
+	color: $wild-sand;
 }
 
 .resolved-sensor {
-    background-color: $turquoise-blue;
-    border: 10px solid rgba(86,204,247,0.64);
-    color: #f6f6f6;
+	background-color: $turquoise-blue;
+	border: 10px solid $blue;
+	color: $wild-sand;
 }
 
 .faulty-text {
-    color: $blue;
-    font-weight: bold;
+	color: $blue;
+	font-weight: bold;
 }
 
 .resolved-text {
-    color: $turquoise-blue;
-    font-weight: bold;
+	color: $turquoise-blue;
+	font-weight: bold;
 }
 
 .resolve {
-    position: relative;
-    display: block;
-    right: 85px;
+	position: relative;
+	display: block;
+	right: 85px;
+}
+
+.date-resolved {
+	h4 {
+		color: $turquoise-blue;
+		margin: 15px 0 0 0;
+		font-weight: normal;
+	}
+
+	small {
+		margin: 0;
+		color: $trout;
+	}
 }

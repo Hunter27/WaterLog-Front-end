@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import SensorDiagram from './SensorDiagram';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchAlerts } from '../actions/AlertsAction';
-import {fetchSensor } from '../actions/SensorAction';
+import { fetchSensor } from '../actions/SensorAction';
 import Loader from './Loader';
 import Error404 from './Error404';
 import Map from './Map';
@@ -20,7 +19,7 @@ class FaultySensor extends Component {
 	}
 
 	componentDidMount() {
-		this.props.fetchSensor(this.props.match.params.id,this.props.match.params.date);
+		this.props.fetchSensor(this.props.match.params.id, this.props.match.params.date);
 	}
 
 	handleMapExpand() {
@@ -46,13 +45,12 @@ class FaultySensor extends Component {
 	}
 
 	segmentMap = (
-		<div className="segment-map">
+		<div>
 			<Map height="400px" />
-			<hr />
 		</div>
 	);
 
-	dateResolved =(date) => (
+	dateResolved = (date) => (
 		<div className="date-resolved">
 			<h4>(fixed on {formatDate(Date.now())})</h4>
 			<small>took {date - Date.now()} days</small>
@@ -63,21 +61,33 @@ class FaultySensor extends Component {
 		const { error, loading, sensor } = this.props;
 		if (loading) {
 			return <Loader />;
-		  }
-		  if (error) {
+		}
+		if (error) {
 			return <Error404 />;
-		  }
-		  if(!loading && sensor.length < 1){
-			  return <Error404/>;
-		  }
+		}
+		if (!loading && sensor.length < 1) {
+			return <Error404 />;
+		}
+
 		const selectedSensor = sensor[0];
+		const {
+			status,
+			entityId,
+			severity,
+			date,
+			typeLitres
+		} = selectedSensor;
+
+		const resolved = parseInt(status) === 1 ? true : false;
 
 		const sensorInfo = (
 			<div>
 				<div>
-					<h2 className={selectedSensor.status == 2 ? selectedSensor.severity.toLowerCase() : 'leak-resolved'}>{`${selectedSensor.entityName} ${selectedSensor.entityId} ${selectedSensor.entityType}`}</h2>
+					<h2
+						className={!resolved ? severity.toLowerCase() : 'leak-resolved'}
+					>{`Sensor ${entityId} is Faulty`}</h2>
 					<p id="water-flow">
-						{0}% /{selectedSensor.typeLitres.toFixed(1)}/hr water flow
+						{0}% /{typeLitres.toFixed(1)}/hr water flow
 					</p>
 					<small>(surrounding sensors have 100% waterflow)</small>
 				</div>
@@ -89,23 +99,17 @@ class FaultySensor extends Component {
 				/>
 				<hr />
 				{this.state.mapExpanded ? this.segmentMap : null}
-				{selectedSensor.status == 1 ? this.dateResolved(selectedSensor.date) : null}
-				<SensorDiagram sensorId={selectedSensor.entityId} status={selectedSensor.status} />
-				{selectedSensor.status == 2 ? (
+				{resolved ? this.dateResolved(date) : null}
+				<SensorDiagram sensorId={entityId} status={status} />
+				{!resolved ? (
 					<div className="resolve">
 						<button
-							onClick={() => this.handleResolveClick(selectedSensor.entityId)}
-							disabled={this.state.leakResolved}
-							className={`resolve-button ${!this.state.leakResolved
-								? 'unresolved-leak'
-								: 'resolved-leak'}`}
+							onClick={() => this.handleResolveClick(entityId)}
+							className={`resolve-button ${!this.state.leakResolved ? 'unresolved-leak' : 'resolved-leak'}`}
 						>
 							LOG RESOLVED ISSUE
 						</button>
-						<small
-							className='default-status'
-							id="resolved-status"
-						>
+						<small className="default-status" id="resolved-status">
 							the problem is fixed, click here
 						</small>
 					</div>
