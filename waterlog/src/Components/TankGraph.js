@@ -10,9 +10,7 @@ const TankGraph = (props) => {
   let data = {
     labels: labelX,
     datasets: [
-     
-      
-      {
+    {
         label: '%',
         data: dataY,
         fill: true,
@@ -70,5 +68,4 @@ const TankGraph = (props) => {
     </div>
   )
 }
-
 export default TankGraph; 

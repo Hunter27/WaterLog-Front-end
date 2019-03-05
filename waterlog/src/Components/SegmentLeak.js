@@ -84,7 +84,7 @@ class SegmentLeak extends Component {
 		const resolved = parseInt(status) === 1 ? true : false;
 		const leakInfo = (
 			<div>
-      	<img className = "back-icon" 
+        <img className = "back-icon" 
 				src = 'images/back_button.png'
 				alt = "backButton"
 				onClick={() => this.props.history.push('/alert') }/>

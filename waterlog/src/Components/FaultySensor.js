@@ -79,13 +79,12 @@ class FaultySensor extends Component {
 		} = selectedSensor;
 
 		const resolved = parseInt(status) === 1 ? true : false;
-
-		const sensorInfo = (
+    const sensorInfo = (
 			<div>
-	     <img className = "back-icon" 
-				src = 'images/back_button.png'
-				alt = "backButton"
-				onClick={() => window.location.href ='/alert'}/>
+				<img className="back-icon"
+					src='images/back_button.png'
+					alt="backButton"
+					onClick={() => window.location.href = '/alert'} />
 				<div>
 					<h2
 						className={!resolved ? severity.toLowerCase() : 'leak-resolved'}
