@@ -40,7 +40,7 @@ export const fetchAlertsSuccess = alerts => ({
 export const fetchAlertsFailure = error => ({
 	type: FETCH_ALERTS_FAILURE,
 	payload: {
-		error: error.message
+		error 
 	}
 });
 
@@ -49,6 +49,7 @@ export const fetPageNumber = () => ({
 });
 
 export const fetchAlerts = (id) => dispatch => {
+
 	dispatch(fetchAlertsBegin());
 	fetch(`${process.env.REACT_APP_API_URL}/api/segmentevents/getalerts/`+id)
 		.then(handleErrors)
@@ -59,13 +60,14 @@ export const fetchAlerts = (id) => dispatch => {
 		.catch(error => dispatch(fetchAlertsFailure(error)));
 };
 
-export const fetchFilteredAlerts =(segment, sensorId, sensortype, severity) => dispatch =>{
+export const fetchFilteredAlerts =(segment, sensorId, sensortype, severity) => dispatch =>{ 
 	dispatch(fetchFilteredAlertsBegin());
-	fetch(`${process.env.REACT_APP_API_URL}api/segmentevents/getalertsfilter?segment=${segment}&sensorId=${sensorId}&sensortype=${sensortype}&severity=${severity}`)
+	fetch(`${process.env.REACT_APP_API_URL}/api/segmentevents/getalertsfilter?segment=${segment}&sensorId=${sensorId}&sensortype=${sensortype}&severity=${severity}`)
 	.then(handleErrors)
 	.then(res => res.json())
 	.then(alerts=>{
-		dispatch(fetchAlertsSuccess(alerts));
+	
+		dispatch(fetchFilteredAlertsSuccess(alerts));
 	})
 	.catch(error => dispatch(fetchFilteredAlertsFailure(error)))
 };
