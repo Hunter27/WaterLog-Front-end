@@ -62,7 +62,8 @@ class Wastage extends Component {
     if (dailyError || monthlyError || seasonalError || placeholderError) {
       return <Error404 />;
     }
-    if ((dailyLoading || monthlyLoading || seasonalLoading || placeholderLoading) && (dailyWaste.length < 1) && (monthlyWaste.length < 1)&& (seasonWaste.length < 1)) {
+    if ((dailyLoading || monthlyLoading || seasonalLoading ||placeholderLoading) && 
+    (dailyWaste.length < 1) && (monthlyWaste.length < 1)&& (seasonWaste.length < 1)) {
       return (
         <div>
           <Loader />
