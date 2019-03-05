@@ -57,7 +57,7 @@ class Wastage extends Component {
       placeholderError,
       dailyWaste,
       monthlyWaste,
-      seasonWaste,
+      seasonWaste
     } = this.props;
     if (dailyError || monthlyError || seasonalError || placeholderError) {
       return <Error404 />;
