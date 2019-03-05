@@ -25,7 +25,7 @@ class AlertTableComponent extends Component {
 	};
 
 	render() {
-		const { error, loading, alerts } = this.props;
+		const { error, loading, alerts, hist, openFilter } = this.props;
 
 		if (error) {
 			return <Error404 />;
@@ -49,7 +49,11 @@ class AlertTableComponent extends Component {
 						alt="ascending_descending icon"
 						onClick={() => sortAlerts()}
 					/>
-					<img className="alert-img" src="images/filter_icon.png" alt="filter icon" />
+					<img className="alert-img"
+						src="images/filter_icon.png"
+						alt="filter icon"
+						onClick={openFilter}
+					/>
 				</div>
 				<table className="alerts-table">
 					<tbody>
@@ -57,16 +61,20 @@ class AlertTableComponent extends Component {
 							<tr
 								key={index}
 								className={`table-row ${parseInt(alert.status) === 2 ? 'table-row-unresolved' : ''}`}
-								onClick={() => (window.location.href = `alert/${alert.entityName}/${alert.entityId}/${alert.date}`)}
+								onClick={() => (hist.push(`alert/${alert.entityName}/${alert.entityId}/${alert.date}`))}
 							>
 								<td className="event-date">{formatDate(alert.date)}</td>
 								<td>{`${alert.entityName.toUpperCase()} ${alert.entityId} ${alert.entityType.toUpperCase()}`}</td>
-								<td>{alert.entityName === 'Segment' ? `R${parseInt(alert.cost).toFixed(2)}/hr` : ''}</td>
+								<td>
+									{alert.entityName === 'Segment'
+										? `R${parseInt(alert.cost).toFixed(2)}/hr`
+										: null}
+								</td>
 								<td>
 									{alert.entityName === 'Segment' ? (
 										<img alt="severity indicator" src={getStatusIcon(alert.severity)} className="severity-indicator" />
 									) : (
-										''
+										null
 									)}
 								</td>
 							</tr>

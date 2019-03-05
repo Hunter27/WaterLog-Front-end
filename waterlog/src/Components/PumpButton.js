@@ -33,11 +33,11 @@ export default class PumpButton extends Component {
       <div>
         <button
           onClick={() => this.togglePump(this.props.id)}
-          className={'pump-button'}
+          className={pumpOn ? 'pump-button': ''}
         >
 					{!pumpOn ? "LOG PUMP AS TURNED OFF" : "LOG PUMP AS TURNED ON"}
 				</button>
-				{error ? <small>error.message</small> : null}
+				{error ? <small>error.message </small> : null}
       </div>
     );
   }

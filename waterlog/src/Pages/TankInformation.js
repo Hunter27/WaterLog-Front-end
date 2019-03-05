@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import TankComponent from "../Components/TankComponent";
 import Tank from './../Components/Tank';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -36,8 +35,7 @@ class TankInformation extends Component {
 			return <Loader />;
 		}
 
-		console.log('level', level)
-    return (
+		return (
       <div className="tank-info">
 				<Tank tank={level} />
 				{true ? <p>optimal level</p> : null}

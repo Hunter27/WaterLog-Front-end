@@ -3,23 +3,22 @@ import { getSensorLayout } from './../utils';
 
 export default class SensorDiagram extends Component {
 	render() {
-		const faultySensor = this.props.sensorId;
-		const sensorSetup = getSensorLayout(parseInt(faultySensor));
-		const resolvedStatus = this.props.status;
+		const { sensorId, status } = this.props;
+		const sensorSetup = getSensorLayout(parseInt(sensorId));
 		return (
 			<div id="sensor-diagram">
 				<div id="line" />
 				<div id="first" className="sensor-wrapper">
 					<div
-						className={`sensor ${parseInt(faultySensor) === sensorSetup[0]
-							? parseInt(resolvedStatus) === 1 ? 'resolved-sensor' : 'faulty'
+						className={`sensor ${parseInt(sensorId) === sensorSetup[0]
+							? (status ? 'sensor-diagram-resolved' : 'sensor-diagram-unresolved')
 							: ''}`}
 					>
 						<p>{sensorSetup[0]}</p>
 					</div>
 					<div
-						className={`flow ${parseInt(faultySensor) === sensorSetup[0]
-							? parseInt(resolvedStatus) === 1 ? 'resolved-text' : 'faulty-text'
+						className={`flow ${parseInt(sensorId) === sensorSetup[0]
+							? (status ? 'resolved-text' : 'faulty-text')
 							: ''}`}
 					>
 						<p>{100}%</p>
@@ -28,15 +27,15 @@ export default class SensorDiagram extends Component {
 				</div>
 				<div id="mid" className="sensor-wrapper">
 					<div
-						className={`sensor ${parseInt(faultySensor) === sensorSetup[1]
-							? parseInt(resolvedStatus) === 1 ? 'resolved-sensor' : 'faulty'
-							: ''}`}
-					>
+						className={`sensor ${parseInt(sensorId) === sensorSetup[1]
+							? (status ? 'sensor-diagram-resolved' : 'sensor-diagram-unresolved')
+					: ''}`}
+			>
 						<p>{sensorSetup[1]}</p>
 					</div>
 					<div
-						className={`flow ${parseInt(faultySensor) === sensorSetup[1]
-							? parseInt(resolvedStatus) === 1 ? 'resolved-text' : 'faulty-text'
+						className={`flow ${parseInt(sensorId) === sensorSetup[1]
+							? (status ? 'resolved-text' : 'faulty-text')
 							: ''}`}
 					>
 						<p>{100}%</p>
@@ -46,15 +45,15 @@ export default class SensorDiagram extends Component {
 
 				<div id="last" className="sensor-wrapper">
 					<div
-						className={`sensor ${parseInt(faultySensor) === sensorSetup[2]
-							? parseInt(resolvedStatus) === 1 ? 'resolved-sensor' : 'faulty'
+						className={`sensor ${parseInt(sensorId) === sensorSetup[2]
+							? (status ? 'sensor-diagram-resolved' : 'sensor-diagram-unresolved')
 							: ''}`}
 					>
 						<p>{sensorSetup[2]}</p>
 					</div>
 					<div
-						className={`flow ${parseInt(faultySensor) === sensorSetup[2]
-							? parseInt(resolvedStatus) === 1 ? 'resolved-text' : 'faulty-text'
+						className={`flow ${parseInt(sensorId) === sensorSetup[2]
+							? (status ? 'resolved-text' : 'faulty-text')
 							: ''}`}
 					>
 						<p>{100}%</p>

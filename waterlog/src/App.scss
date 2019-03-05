@@ -22,6 +22,7 @@ button {
 	text-transform: uppercase;
 	padding: 2px 10px;
 	border: none;
+	display: block;
 }
 
 #cost-buttons {
@@ -79,19 +80,20 @@ button {
 .resolved-leak {
 	background-color: $background-color;
 	border: 1px solid $blue;
+	margin: 0 auto;
 }
 
 .unresolved-leak {
 	background-color: $blue;
 	color: $wild-sand;
 	border: none;
+	margin: 0 auto;
 }
 
 .home-text {
 	margin: 5px;
 	font-size: 15pt;
 	color: $wild-sand;
-	padding-top: 37px;
 }
 
 .tank-graph {

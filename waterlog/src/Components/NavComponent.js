@@ -10,7 +10,6 @@ import UsageComponent from '../Pages/Usage';
 import SegmentLeak from './SegmentLeak';
 import TankInformation from '../Pages/TankInformation';
 import FaultySensor from './FaultySensor';
-import { fetchNotifications } from '../actions/NumberOfNotifsActions';
 
 class NavComponent extends Component {
 	constructor(props) {
@@ -21,7 +20,6 @@ class NavComponent extends Component {
 	}
 
 	componentDidMount() {
-		this.timer = setInterval(() => this.props.fetchNotifications(), 5000);
 		this.props.fetchAlerts();
 	}
 
@@ -46,7 +44,7 @@ class NavComponent extends Component {
 							</NavLink>
 							<NavLink to="/alert" className="navicon-container" activeClassName="selected-route">
 								<img src="images/alert_icon.png" alt="alert" />
-								<span className="badge">{this.state.notifications || notif.data}</span>
+								<span className="badge">{this.state.notifications || this.props.total}</span>
 							</NavLink>
 							<NavLink exact to="/map" className="navicon-container" activeClassName="selected-route">
 								<img src="images/map_icon.png" alt="map" />
@@ -75,16 +73,10 @@ class NavComponent extends Component {
 }
 
 SegmentLeak.propTypes = {
-	fetchAlerts: PropTypes.func.isRequired,
-	total: PropTypes.number.isRequired,
-	fetchNotifications: PropTypes.func,
-	notif: PropTypes.object.isRequired
+	total: PropTypes.number.isRequired
 };
 
 const mapStateToProps = (state) => ({
-	alerts: state.alerts.items,
-	notif: state.numNotifs.notif.items,
-	isfetching: state.numNotifs.notif.isFetching,
 	total: state.alerts.total
 });
-export default connect(mapStateToProps, { fetchAlerts, fetchNotifications })(NavComponent);
+export default connect(mapStateToProps, { fetchAlerts })(NavComponent);
