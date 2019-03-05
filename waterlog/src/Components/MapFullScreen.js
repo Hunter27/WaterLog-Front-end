@@ -16,21 +16,12 @@ import Error404 from "./Error404";
 import HeatmapLayer from "react-leaflet-heatmap-layer";
 import {
   generateMapIcons,
-  levelToIntensity,
+  getHeatMapData,
   mapOptions
 } from "../utils";
+import MapUI from "./MapComponent";
 
-function getHeatMapData({ monitorsCoordinates, segmentCoordinates }) {
-  let monitorMapData = monitorsCoordinates.map(mon => {
-    return [mon.lat, mon.long, levelToIntensity(mon.faultLevel, mapOptions.maxIntensity)]
-  });
-  let segmentMapData = segmentCoordinates.map(seg => {
-    return [seg.lat, seg.long, levelToIntensity(seg.faultLevel, mapOptions.maxIntensity)]
-  });
 
-  let heatMapData = monitorMapData.concat(segmentMapData);
-  return heatMapData;
-}
 class MapFullScreenComponent extends Component {
 
   constructor(props) {
@@ -38,7 +29,8 @@ class MapFullScreenComponent extends Component {
     this.state = {
       simpleView: true,
       heatView: false,
-      zoom: mapOptions.defaultZoom
+      zoom: mapOptions.defaultZoom,
+      moreOptions: false
     };
   }
 
@@ -107,60 +99,38 @@ class MapFullScreenComponent extends Component {
             </button>
           </div>
           <div className={`map-icon-div-layer2-fullscreen map-button-tab ${this.state.simpleView ? "" : "invisible"}`}>
-            
+
             <img
-              className="icon"
+              className="icon-home"
+              src={require("../images/more_map_icon.png")}
+              alt="more options"
+              onClick={() => {
+                this.setState({ moreOptions: !this.state.moreOptions });
+              }} />
+            <img
+              className={`icon + ${this.state.moreOptions ? "" : "invisible"}`}
               src={require("../images/heatmap_icon_blue.png")}
               alt="heat Toggle"
               onClick={() => { this.setState({ heatView: !this.state.heatView }) }} />
             <img
-              className="icon"
+              className={`icon + ${this.state.moreOptions ? "" : "invisible"}`}
               src={require("../images/recentre_icon_blue.png")}
               alt="re-center Map"
               onClick={() => {
-                const map = this.refs.map.leafletElement;
-                map.setView(mapOptions.centerPosition, mapOptions.defaultZoom)
+                this.refs.map.reCenter();
               }} />
           </div>
         </div>
         <div className="map-tile-div-fullscreen">
-          <Map
+          {(() => console.log("icon", this.state.iconState))()}
+          <MapUI
+            setView={this.state.simpleView}
+            heatView={this.state.heatView}
+            heatIcons={heatPoints}
+            icons={this.state.iconState}
+            height={'100vh'}
             ref='map'
-            center={mapOptions.centerPosition}
-            attributionControl={false}
-            maxBounds={[mapOptions.southWest, mapOptions.northEast]}
-            zoom={this.state.zoom}
-            zoomControl={false}
-            maxZoom={18}
-            minZoom={14}
-            style={{ height: '100vh' }} >
-
-            {(() => {
-              if (this.state.simpleView)
-                return (<div>
-                  <TileLayer url="http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png" />
-                  {(() => {
-                    if (this.state.heatView) {
-                      return (
-                        <div>
-                          <Rectangle bounds={mapOptions.rectangleBounds} color={'#beecff'} opacity={0.5} />
-                          <HeatmapLayer
-                            points={heatPoints}
-                            longitudeExtractor={m => m[1]}
-                            latitudeExtractor={m => m[0]}
-                            intensityExtractor={m => parseFloat(m[2])}
-                            gradient={{ 0.25: '#5ad4de', 0.5: '#6ade5a', 0.75: '#d2de5a', 1: '#de765a' }}
-                            radius={40}
-                            blur={15}
-                            max={mapOptions.maxIntensity} />
-                        </div>);
-                    }
-                  })()}
-                </div>
-                );
-            })()}
-            {this.state.iconState}
-          </Map>
+          />
         </div>
       </div>
     );

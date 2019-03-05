@@ -171,7 +171,7 @@ export function levelToIntensity(level, maxIntensity = 5) {
 	}
 }
 
-function getHeatMapData({ monitorsCoordinates, segmentCoordinates }) {
+export function getHeatMapData({ monitorsCoordinates, segmentCoordinates }) {
   let monitorMapData = monitorsCoordinates.map(mon => {
     return [mon.lat, mon.long, levelToIntensity(mon.faultLevel, mapOptions.maxIntensity)]
   });
