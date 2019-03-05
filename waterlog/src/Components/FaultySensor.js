@@ -84,7 +84,8 @@ class FaultySensor extends Component {
 				<img className="back-icon"
 					src='images/back_button.png'
 					alt="backButton"
-					onClick={() => window.location.href = '/alert'} />
+					onClick={() => this.props.history.push('/alert')} 
+				/>
 				<div>
 					<h2
 						className={!resolved ? severity.toLowerCase() : 'leak-resolved'}
