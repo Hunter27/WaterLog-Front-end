@@ -143,6 +143,8 @@ export const FETCH_SEGMENT_BEGIN = "FETCH_SEGMENT_BEGIN";
 export const FETCH_SEGMENT_SUCCESS = "FETCH_SEGMENT_SUCCESS";
 export const FETCH_SEGMENT_FAILURE = "FETCH_SEGMENT_FAILURE";
 
+export const GET_PAGE_NUMBER = "GET_PAGE_NUMBER";
+
 export const handleErrors = response => {
   if (!response.ok) {
     throw Error(response.statusText);
