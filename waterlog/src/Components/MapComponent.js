@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import {
   Map,
   TileLayer,
@@ -14,9 +13,7 @@ import { selectedComponentIcon } from "../icons/MapIcons";
 import { Globals } from "../Globals";
 
 const components = Globals.COMPONENT_TYPES;
-const calculateMidPointBetweenSensors = (id1, id2, sensorData) => {
 
-}
 const generateHighlightIcon = (mapData, type, id) => {
   const sensors = mapData.markers;
   const segments = mapData.segments;
@@ -27,7 +24,6 @@ const generateHighlightIcon = (mapData, type, id) => {
       const sensor1 = sensors.find(sensor => segment.senseIDIn === sensor.id);
       const sensor2 = sensors.find(sensor => segment.senseIDOut === sensor.id);
       coordinates = [];
-
       return <Polyline
         positions={[[sensor1.lat, sensor1.lon], [sensor2.lat, sensor2.lon]]}
         color={'#57CCF7'}
@@ -49,8 +45,6 @@ class MapComponent extends Component {
     super(props);
     this.reCenter = this.reCenter.bind(this);
     this.ref = this.refs.map;
-    this.weight = 2;
-    this.sign = 1;
   }
   reCenter() {
     const map = this.refs.map.leafletElement;
@@ -62,7 +56,7 @@ class MapComponent extends Component {
       <div>
         <Map
           ref='map'
-          center={this.props.focus ? this.props.focus : mapOptions.centerPosition}
+          center={mapOptions.centerPosition}
           maxBounds={[mapOptions.southWest, mapOptions.northEast]}
           zoom={this.props.currentZoom ? this.props.currentZoom : 17}
           zoomControl={false}
@@ -96,13 +90,12 @@ class MapComponent extends Component {
           })()}
           {(() => {
             let icons = [];
-            console.log("g", this.props.mapsData)
             if (this.props.focus && this.props.mapsData) {
-              const circle = generateHighlightIcon(this.props.mapsData, components.SEGMENT, 3);
-              icons.push(circle);
+              const icon = generateHighlightIcon(this.props.mapsData, this.props.focus.type, this.props.focus.id);
+              icons.push(icon);
             }
             if (this.props.icons) {
-              icons = this.props.icons.concat(icons);
+              return this.props.icons.concat(icons);
             }
             return icons;
           })()}
@@ -112,8 +105,4 @@ class MapComponent extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  mapsData: state.pmaps.items
-})
-
-export default connect(mapStateToProps)(MapComponent);
+export default MapComponent;

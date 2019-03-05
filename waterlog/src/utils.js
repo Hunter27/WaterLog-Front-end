@@ -93,7 +93,7 @@ export function generateMapIcons(
       lighterColor: '#93a4ae'
     },
     circleSize: 7,
-    lineWeight: 5
+    lineWeight: 8
   }
 ) {
   const defaultColor = simpleView ? options.colors.darkerColor : options.colors.lighterColor;

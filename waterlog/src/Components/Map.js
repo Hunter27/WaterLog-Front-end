@@ -37,7 +37,6 @@ class MapComponent extends Component {
       if (this.state.iconState) {
         this.state.contLoading = false;
       }
-
     }, 2000);
   }
 
@@ -83,7 +82,11 @@ class MapComponent extends Component {
             heatView={this.state.heatView}
             heatIcons={heatPoints}
             icons={this.state.iconState}
-            focus={[-25.783155, 28.336761]}
+            focus={{
+              type: this.props.type ? this.props.type : 0,
+              id: this.props.id ? this.props.id : 0
+            }}
+            mapsData={this.props.pmapData}
             ref='map'
           />
         </div>
