@@ -1,9 +1,11 @@
 import React from 'react';
 import { Line, defaults } from 'react-chartjs-2';
+import {mapDataTime} from '../utils';
 
 const DailyCostsReports = (props) => {
   let labelX = props.props.placeholder.map(a => (new Date(a).getHours() + ":00"));
-  let dataY = props.props.dailyCost.dataPoints.map(a => Math.round(a.y));
+  let myData = props.props.dailyCost.dataPoints;
+  let dataY = mapDataTime(myData); 
   const { yIntercept, slope } = props.props.forecastDaily[0];
   const today = new Date(Date.now());
   let startDate = new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime();
@@ -20,24 +22,24 @@ const DailyCostsReports = (props) => {
     labels: labelX,
     datasets: [
       {
-        label: 'cost',
+        label: 'current cost',
         data: dataY,
         fill: true,
         borderColor: '#56ccf7',
         backgroundColor: '#56ccf7',
         pointBackgroundColor: '#56ccf7',
-        pointRadius: 5,
-        pointHitRadius: 5
+        pointRadius: 3,
+        pointHitRadius: 3
       },
       {
-        label: 'forecast',
+        label: 'forecast cost',
         data: forecast,
         fill: true,
-        borderColor: '#eceff1', 
-        backgroundColor: '#fff',
-        pointBackgroundColor: '#eceff1',
-        pointRadius: 5,
-        pointHitRadius: 5
+        borderColor: '#C0C0C0', 
+        backgroundColor: '#C0C0C0',
+        pointBackgroundColor: '#C0C0C0',
+        pointRadius: 3,
+        pointHitRadius: 3
       }
 
     ]

@@ -1,35 +1,16 @@
 import React from 'react';
 import { Line, defaults } from 'react-chartjs-2';
+import {mapDataTime} from '../utils';
 
-const TankGraph = (props) => {
-  let labelX = props.props.dailytankgraph.dataPoints.map(a => (new Date(a.x).getHours() + ":00"));
-  let dataY = props.props.dailytankgraph.dataPoints.map(a => Math.round(a.y));
-  var start = new Date(Date.now());
-  var end = new Date(Date.now());
-  var startT2 = start.setTime("00:00:01");
-  var endT2 = end.setTime("23:59:00");
-  let startTime = Math.floor(startT2/1000);
-  let endTime =  Math.floor(endT2/1000);
+const TankGraph = (props) => { 
 
-  let forecast = [];
-  for(let i = startTime; i <= endTime; i = i + 3600){
-    forecast.push(1*i + 80);
-  }
-  
+  let labelX = props.props.placeholder.map(a => (new Date(a).getHours() + ":00"));
+  let myData = props.props.dailytankgraph.dataPoints;
+  let dataY = mapDataTime(myData); 
   let data = {
     labels: labelX,
     datasets: [
-      {
-        label: 'forecast',
-        data: forecast,
-        fill: true,
-        borderColor: '#00BFFF',
-        backgroundColor: '#FF1744',
-
-        pointBackgroundColor: '#00BFFF',
-        pointRadius: 5,
-        pointHitRadius: 5
-      },
+     
       
       {
         label: '%',
