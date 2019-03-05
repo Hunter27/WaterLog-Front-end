@@ -33,18 +33,18 @@ class MapComponent extends Component {
   async componentDidMount() {
     this.props.fetchHeatMapsData();
     this.props.fetchPollMapsData();
-    this.timer = setInterval(() => {
+    this.timer = setTimeout(() => {
       this.props.fetchPollMapsData();
       const { pmapData } = this.props;
       this.setState({
         iconState: generateMapIcons(pmapData, this.state.simpleView),
       });
 
-      if (this.state.iconState ) {
+      if (this.state.iconState) {
         this.state.contLoading = false;
       }
 
-    }, 5000);
+    }, 2000);
   }
 
   constructor(props) {
@@ -82,18 +82,18 @@ class MapComponent extends Component {
     } else {
       return <Error404 />;
     }
-    console.log("refd",this.refs )
     return (
       <div className="map-main-div">
         <div className="map-tile-div">
-         <MapUI
-         setView ={this.state.simpleView}
-         heatView = {this.state.heatView}
-         heatIcons = {heatPoints}
-         icons = {this.state.iconState}
-         reCenter = {this.state.reCenter}
-         ref='map'
-         />
+          <MapUI
+            setView={this.state.simpleView}
+            heatView={this.state.heatView}
+            heatIcons={heatPoints}
+            icons={this.state.iconState}
+            reCenter={this.state.reCenter}
+            focus={[-25.783155,28.336761]}
+            ref='map'
+          />
         </div>
         <div className="map-icon-button-div-layer2">
           <div className="map-button-div-layer2 map-button-tab">
