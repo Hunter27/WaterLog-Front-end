@@ -9,16 +9,16 @@ const TankGraph = (props) => {
   let dataY = mapDataTime(myData); 
   let data = {
     labels: labelX,
-    datasets: [ 
-      {
-        label: 'rands',
-        data:  dataY,
+    datasets: [
+    {
+        label: '%',
+        data: dataY,
         fill: true,
-        borderColor: 'rgba(23,209,255,1)',
-        backgroundColor: 'rgba(79,91,98,0.4)',
-        pointBackgroundColor: 'rgba(23,209,255,1)',
-        pointRadius: 3,
-        pointHitRadius: 3
+        borderColor: '#17D1FF',
+        backgroundColor: '#4F5B62',
+        pointBackgroundColor: '#17D1FF',
+        pointRadius: 5,
+        pointHitRadius: 5
       }
     ]
   }
@@ -27,36 +27,37 @@ const TankGraph = (props) => {
       xAxes: [{
         scaleLabel: {
           display: true,
-          labelString: 'Days',
-          fontColor:'rgb(236,239,241)'
+          labelString: 'days',
+          fontColor:'#ECEFF1'
 
         },
         ticks: {
-          fontColor:'rgb(236,239,241)',
+          fontColor:'#ECEFF1',
           major: {
             fontStyle: 'bold',
-            fontColor: 'rgba(0,2,5,0.4)'
+            fontColor: '#000205'
           }
         },
         gridLines: {
           display: false,
-          color:'rgb(236,239,241)'
+          color:'#ECEFF1'
         }
       }],
       yAxes: [{
         display: true,
         scaleLabel: {
           display: true,
-          labelString: 'PercentageLevel',
-          fontColor:'rgb(236,239,241)'
+          labelString: 'percentage level',
+          fontColor:'#ECEFF1'
         },
         ticks: {
-          fontColor:'rgb(236,239,241)',
-         gridLines: {
+          fontColor:'#ECEFF1',
+        },
+        gridLines: {
           display: false,
-          color:'rgb(236,239,241)'
+          color:'#ECEFF1'
         }
-      }
+    
       }]
     }
   }
@@ -67,5 +68,4 @@ const TankGraph = (props) => {
     </div>
   )
 }
-
 export default TankGraph; 
