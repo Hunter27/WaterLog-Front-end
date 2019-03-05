@@ -1,16 +1,10 @@
 import React, { Component } from "react";
-import {
-  Map,
-  TileLayer,
-  Rectangle
-} from "react-leaflet";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { fetchPollMapsData } from "./../actions/MapActions";
 import { fetchHeatMapsData } from "./../actions/HeatMapActions";
 import Loader from "./Loader";
 import Error404 from "./Error404";
-import HeatmapLayer from "react-leaflet-heatmap-layer";
 import MapUI from "./MapComponent";
 import {
   generateMapIcons,
@@ -51,11 +45,9 @@ class MapComponent extends Component {
     super(props);
     this.state = {
       simpleView: true,
-      zoom: mapOptions.defaultZoom,
       heatView: false,
       iconState: null,
       contLoading: true,
-      reCenter: false,
       moreOptions: false
     };
   }
@@ -91,7 +83,6 @@ class MapComponent extends Component {
             heatView={this.state.heatView}
             heatIcons={heatPoints}
             icons={this.state.iconState}
-            reCenter={this.state.reCenter}
             focus={[-25.783155, 28.336761]}
             ref='map'
           />

@@ -1,23 +1,15 @@
 import React, { Component } from "react";
-import {
-  Map,
-  TileLayer,
-  Rectangle
-} from "react-leaflet";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
-  fetchMapsData,
   fetchPollMapsData
 } from "../actions/MapActions";
 import { fetchHeatMapsData } from "../actions/HeatMapActions";
 import Loader from "./Loader";
 import Error404 from "./Error404";
-import HeatmapLayer from "react-leaflet-heatmap-layer";
 import {
   generateMapIcons,
-  getHeatMapData,
-  mapOptions
+  getHeatMapData
 } from "../utils";
 import MapUI from "./MapComponent";
 
@@ -29,15 +21,16 @@ class MapFullScreenComponent extends Component {
     this.state = {
       simpleView: true,
       heatView: false,
-      zoom: mapOptions.defaultZoom,
+      iconState: null,
+      contLoading: true,
       moreOptions: false
     };
   }
 
   async componentDidMount() {
-    this.props.fetchMapsData();
     this.props.fetchHeatMapsData();
-    this.timer = setInterval(() => {
+    this.props.fetchPollMapsData();
+    setTimeout(() => {
       this.props.fetchPollMapsData()
       const { pmapData } = this.props;
       this.setState({
@@ -48,23 +41,20 @@ class MapFullScreenComponent extends Component {
         this.state.contLoading = false;
       }
 
-    }, 5000);
+    }, 2000);
   }
 
   render() {
     const {
-      error,
-      loading,
-      mapData,
       heatError,
       heatLoading,
       heatMapData,
       pmapDataError
     } = this.props;
-    if (error || heatError || pmapDataError) {
+    if (heatError || pmapDataError) {
       return <Error404 />;
     }
-    if (loading || heatLoading || this.state.contLoading) {
+    if (heatLoading || this.state.contLoading) {
       return (
         <div>
           <Loader />
@@ -122,7 +112,6 @@ class MapFullScreenComponent extends Component {
           </div>
         </div>
         <div className="map-tile-div-fullscreen">
-          {(() => console.log("icon", this.state.iconState))()}
           <MapUI
             setView={this.state.simpleView}
             heatView={this.state.heatView}
@@ -138,17 +127,12 @@ class MapFullScreenComponent extends Component {
 }
 
 MapFullScreenComponent.propTypes = {
-  fetchMapsData: PropTypes.func.isRequired,
   fetchPollMapsData: PropTypes.func,
-  mapData: PropTypes.array.isRequired,
   pmapData: PropTypes.array
 };
 
 const mapStateToProps = state => ({
   pmapData: state.pmaps.items,
-  mapData: state.maps.items,
-  loading: state.maps.loading,
-  error: state.maps.error,
   heatMapData: state.heatMap.items,
   heatLoading: state.heatMap.loading,
   heatError: state.heatMap.error,
@@ -159,7 +143,6 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
-    fetchMapsData,
     fetchPollMapsData,
     fetchHeatMapsData
   }

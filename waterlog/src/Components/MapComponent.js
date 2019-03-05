@@ -61,9 +61,12 @@ class MapComponent extends Component {
           })()}
           {(() => {
             let icons = [];
-            if (this.props.focus && this.props.icons) {
+
+            if (this.props.focus) {
               const circle = <Marker position={this.props.focus} icon={selectedComponentIcon}></Marker>;
               icons.push(circle);
+            }
+            if (this.props.icons) {
               icons = this.props.icons.concat(icons);
             }
             return icons;
