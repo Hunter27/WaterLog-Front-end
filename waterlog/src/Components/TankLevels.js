@@ -3,6 +3,8 @@ import Tank from "./Tank";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { fetchTankLevels } from "./../actions/TankLevelsActions";
+import Loader from './Loader';
+import Error404 from'./../Components/Error404'
 class TankLevels extends Component {
   componentWillMount() {
     this.props.fetchTankLevels();
@@ -11,9 +13,9 @@ class TankLevels extends Component {
 	render() {
     const { error, levels, loading } = this.props;
     if (loading && levels.length === 0) {
-      return <div>Loading tank info...</div>;
+      return <div><Loader/></div>;
     } else if (error) {
-      return <div>Failed to load tank info...</div>;
+      return <div><Error404/></div>;
     } else {
       return (
         <Fragment>

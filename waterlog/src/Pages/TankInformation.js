@@ -1,5 +1,5 @@
+
 import React, { Component } from "react";
-import TankComponent from "../Components/TankComponent";
 import Tank from './../Components/Tank';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -8,6 +8,7 @@ import PumpButton from "./../Components/PumpButton";
 import GraphLine from "../Components/DailyTankGraph";
 import Error404 from './Error404Page';
 import Loader from './../Components/Loader';
+import Home from './Home';
 
 class TankInformation extends Component {
   constructor(props) {
@@ -36,9 +37,12 @@ class TankInformation extends Component {
 			return <Loader />;
 		}
 
-		console.log('level', level)
     return (
       <div className="tank-info">
+				<img className = "back-icon" 
+				src = 'images/back_button.png'
+				alt = "backButton"
+				onClick={() => this.props.history.push('/')}/>
 				<Tank tank={level} />
 				{true ? <p>optimal level</p> : null}
 				<p>pump is {true ? 'on' : 'off'}</p>

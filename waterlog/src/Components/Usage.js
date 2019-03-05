@@ -17,6 +17,7 @@ import { fetchCostsForecastDaily } from '../actions/CostsDailyForecastAction';
 import { fetchCostsForecastMonthly } from '../actions/CostsMonthlyForecastAction';
 import Loader from './Loader';
 import { fetchPlaceholder } from "../actions/ForecastPlaceholderActions";
+import Error404 from './Error404';
 
 class Usage extends Component {
   constructor(props) {
