@@ -7,6 +7,7 @@ import {
   FETCH_PMAP_DATA_FAILURE,
   handleErrors
 } from './Types';
+import {Globals} from "./../Globals";
 
 export const fetchMapsDataBegin = () => ({
   type: FETCH_MAP_DATA_BEGIN
@@ -48,6 +49,12 @@ async function getLeakInformation() {
   return data;
 }
 
+async function getTankMonitors() {
+  const response = await fetch(process.env.REACT_APP_API_URL + `/api/tankmonitors`).then(handleErrors);
+  const data = await response.json();
+  return data;
+}
+
 async function getMonitors() {
   const response = await fetch(process.env.REACT_APP_API_URL + `/api/monitors`).then(handleErrors);
   const data = await response.json();
@@ -72,11 +79,17 @@ async function getData(dispatch) {
       dispatch(fetchMapsDataFailure(error));
     });
 
-  return { segments, monitors, leaks }
+  var tanks = await getTankMonitors()
+    .then(tank => tank)
+    .catch(error => {
+      dispatch(fetchMapsDataFailure(error));
+    })
+
+  return { segments, monitors, leaks, tanks }
 }
 
 function formatMapData(data) {
-  let markers, segments;
+  let markers, segments, tanks, tankSegments;
   let todaysLeaks;
   let date = new Date(Date.now());
   if (!data.leaks) {
@@ -115,7 +128,24 @@ function formatMapData(data) {
   markers = data.monitors.map(mon => {
     return { id: mon.id, lat: mon.lat, lon: mon.long, status: mon.status };
   });
-  return { markers, segments };
+
+  tanks = data.tanks.map(tank => {
+    return { id: tank.id, lat: tank.lat, lon: tank.long, status: tank.status }
+  });
+
+  tankSegments = data.tanks.map(tank => {
+    let endPoint = [];
+    if(tank.connectedMonitorType === Globals.COMPONENT_TYPES.SENSOR){
+      const marker = markers.find(marker =>  marker.id === tank.connectedMonitorID);
+      endPoint = [marker.lat,marker.lon];
+    } else if(tank.connectedMonitorType === Globals.COMPONENT_TYPES.TANK) {
+      const tank = data.tanks.find( tank => tank.id === tank.connectedMonitorID);
+      endPoint = [tank.lat,tank.long];
+    }
+    return { point1: [tank.lat, tank.long], point2: endPoint }
+  });
+
+  return { markers, segments, tanks, tankSegments };
 }
 
 export const fetchMapsData = () => (dispatch) => {
