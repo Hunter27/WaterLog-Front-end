@@ -9,7 +9,8 @@ import Loader from "./Loader";
 import Error404 from "./Error404";
 import {
   generateMapIcons,
-  getHeatMapData
+  getHeatMapData,
+  generateMapTankIcons
 } from "../utils";
 import MapUI from "./MapComponent";
 import heatMapIcon from "../images/heatmap_icon_blue.png";
@@ -33,17 +34,18 @@ class MapFullScreenComponent extends Component {
   async componentDidMount() {
     this.props.fetchHeatMapsData();
     this.props.fetchPollMapsData();
-    setTimeout(() => {
-      this.props.fetchPollMapsData()
-      const { pmapData } = this.props;
-      this.setState({
-        iconState: generateMapIcons(pmapData, this.state.simpleView),
-      });
 
+    setInterval(() => {
+      this.props.fetchPollMapsData();
+      const { pmapData } = this.props;
+      let tankIcons = generateMapTankIcons(pmapData, this.state.simpleView);
+      let mapIcons = generateMapIcons(pmapData, this.state.simpleView);
+      this.setState({
+        iconState: tankIcons.concat(mapIcons),
+      });
       if (this.state.iconState) {
         this.state.contLoading = false;
       }
-
     }, 2000);
   }
 
