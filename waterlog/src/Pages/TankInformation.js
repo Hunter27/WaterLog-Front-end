@@ -50,7 +50,9 @@ class TankInformation extends Component {
 				<Tank tank={level} />
 				{percentageLevel === optimalLevel ? <p className="optimal">optimal level</p> : null}
 				<p className="p-status">pump is {this.state.pumpOn ? 'on' : 'off'}</p>
-				{((parseInt(percentageLevel) >= parseInt(optimalLevel)) && this.state.pumpOn) ? <p className="p-info">the tank is being overfilled</p> : null}
+				{((parseInt(percentageLevel) >= parseInt(optimalLevel)) && this.state.pumpOn)
+					? <p className="p-info">the tank is being overfilled</p>
+					: null}
 				{percentageLevel <= 5 ? <p className= "t-empty" >the tank is empty</p> : null}
         <PumpButton id={this.state.id} />
         <img
