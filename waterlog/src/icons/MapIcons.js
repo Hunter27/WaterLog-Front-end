@@ -43,3 +43,33 @@ export const selectedComponentIcon = new L.icon({
   shadowAnchor: null,
   iconSize: new L.Point(18, 18)
 });
+
+export const tankOkLightIcon = new L.icon({
+  iconUrl: sensorIconGray,
+  iconAnchor: new L.Point(17.5, 17.5),
+  popupAnchor: new L.Point(0, -17.5),
+  shadowUrl: null,
+  shadowSize: null,
+  shadowAnchor: null,
+  iconSize: new L.Point(35, 35)
+});
+
+export const tankOkDarkerIcon = new L.icon({
+  iconUrl: sensorIconDarkGray,
+  iconAnchor: new L.Point(17.5, 17.5),
+  popupAnchor: new L.Point(0, -17.5),
+  shadowUrl: null,
+  shadowSize: null,
+  shadowAnchor: null,
+  iconSize: new L.Point(35, 35)
+});
+
+export const tankFaultIcon = new L.icon({
+  iconUrl: sensorAnimatedBlueIcon,
+  iconAnchor: new L.Point(17.5, 17.5),
+  popupAnchor: new L.Point(0, -17.5),
+  shadowUrl: null,
+  shadowSize: null,
+  shadowAnchor: null,
+  iconSize: new L.Point(35, 35)
+});
