@@ -7,18 +7,18 @@ import {
 	FETCH_FILTERED_ALERTS_FAILURE,
 	GET_PAGE_NUMBER,
 	handleErrors
-} from './Types'; 
+} from './Types';
 
-export const fetchFilteredAlertsBegin =()=>({
+export const fetchFilteredAlertsBegin = () => ({
 	type: FETCH_FILTERED_ALERTS_BEGIN
 });
 
-export const fetchFilteredAlertsSuccess = alerts =>({
+export const fetchFilteredAlertsSuccess = alerts => ({
 	type: FETCH_FILTERED_ALERTS_SUCCESS,
-	payload:{alerts} 
+	payload: { alerts }
 });
 
-export const fetchFilteredAlertsFailure = error =>({
+export const fetchFilteredAlertsFailure = error => ({
 	type: FETCH_FILTERED_ALERTS_FAILURE,
 	payload: {
 		error: error.message
@@ -40,7 +40,7 @@ export const fetchAlertsSuccess = alerts => ({
 export const fetchAlertsFailure = error => ({
 	type: FETCH_ALERTS_FAILURE,
 	payload: {
-		error 
+		error
 	}
 });
 
@@ -51,7 +51,7 @@ export const fetPageNumber = () => ({
 export const fetchAlerts = (id) => dispatch => {
 
 	dispatch(fetchAlertsBegin());
-	fetch(`${process.env.REACT_APP_API_URL}/api/segmentevents/getalerts/`+id)
+	fetch(`${process.env.REACT_APP_API_URL}/api/segmentevents/getalerts/` + id)
 		.then(handleErrors)
 		.then(res => res.json())
 		.then(alerts => {
@@ -60,14 +60,19 @@ export const fetchAlerts = (id) => dispatch => {
 		.catch(error => dispatch(fetchAlertsFailure(error)));
 };
 
-export const fetchFilteredAlerts =(segment, sensorId, sensortype, severity) => dispatch =>{ 
-	dispatch(fetchFilteredAlertsBegin());
-	fetch(`${process.env.REACT_APP_API_URL}/api/segmentevents/getalertsfilter?segment=${segment}&sensorId=${sensorId}&sensortype=${sensortype}&severity=${severity}`)
-	.then(handleErrors)
-	.then(res => res.json())
-	.then(alerts=>{
-	
-		dispatch(fetchFilteredAlertsSuccess(alerts));
-	})
-	.catch(error => dispatch(fetchFilteredAlertsFailure(error)))
-};
+export const fetchFilteredAlerts = (segment,
+	sensorId,
+	sensortype,
+	severity) => dispatch => {
+		dispatch(fetchFilteredAlertsBegin());
+		fetch(
+			`${process.env.REACT_APP_API_URL}
+			 /api/segmentevents/getalertsfilter?segment=${segment}&
+			 sensorId=${sensorId}&sensortype=${sensortype}&severity=${severity}`)
+			.then(handleErrors)
+			.then(res => res.json())
+			.then(alerts => {
+				dispatch(fetchFilteredAlertsSuccess(alerts));
+			})
+			.catch(error => dispatch(fetchFilteredAlertsFailure(error)))
+	};
