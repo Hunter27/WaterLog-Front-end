@@ -7,7 +7,7 @@ import {
   FETCH_PMAP_DATA_FAILURE,
   handleErrors
 } from './Types';
-import {Globals} from "./../Globals";
+import { Globals } from "./../Globals";
 
 export const fetchMapsDataBegin = () => ({
   type: FETCH_MAP_DATA_BEGIN
@@ -135,14 +135,27 @@ function formatMapData(data) {
 
   tankSegments = data.tanks.map(tank => {
     let endPoint = [];
-    if(tank.connectedMonitorType === Globals.COMPONENT_TYPES.SENSOR){
-      const marker = markers.find(marker =>  marker.id === tank.connectedMonitorID);
-      endPoint = [marker.lat,marker.lon];
-    } else if(tank.connectedMonitorType === Globals.COMPONENT_TYPES.TANK) {
-      const tank = data.tanks.find( tank => tank.id === tank.connectedMonitorID);
-      endPoint = [tank.lat,tank.long];
+    let endPointId;
+    let endPointStatus;
+    if (tank.connectedMonitorType === Globals.COMPONENT_TYPES.SENSOR) {
+      const marker = markers.find(marker => marker.id === tank.connectedMonitorID);
+      endPoint = [marker.lat, marker.lon];
+      endPointId = marker.id;
+      endPointStatus = marker.status;
+    } else if (tank.connectedMonitorType === Globals.COMPONENT_TYPES.TANK) {
+      const _tank = data.tanks.find(tankT => tankT.id === tank.connectedMonitorID);
+      endPoint = [_tank.lat, _tank.long];
+      endPointId = _tank.id;
+      endPointStatus = _tank.status;
     }
-    return { point1: [tank.lat, tank.long], point2: endPoint }
+    return {
+      id1: tank.id,
+      status1: tank.status,
+      point1: [tank.lat, tank.long],
+      id2: endPointId,
+      point2: endPoint,
+      status2: endPointStatus
+    }
   });
 
   return { markers, segments, tanks, tankSegments };

@@ -83,18 +83,61 @@ export const getSensorLayout = (id) => {
   return sensors;
 };
 
+const iconsOptions = {
+  colors: {
+    darkerColor: '#4F5B62',
+    errorColor: '#56ccf7',
+    lighterColor: '#93a4ae'
+  },
+  circleSize: 7,
+  lineWeight: 8
+}
+
+export function generateMapTankIcons(
+  { tanks, tankSegments },
+  simpleView,
+  options = iconsOptions
+) {
+  const defaultColor = simpleView ? options.colors.darkerColor : options.colors.lighterColor;
+  if (!tanks || !tankSegments) {
+    return <div />;
+  }
+  return tankSegments.map(tankSegment => {
+    return (
+      <div>
+        <Polyline
+          positions={[tankSegment.point1, tankSegment.point2]}
+          color={defaultColor}
+          weight={options.lineWeight}
+        >
+          <Popup>
+            <span>{'tank feed pipe '}</span>
+          </Popup>
+        </Polyline>
+        <Marker
+          position={tankSegment.point1}
+          opacity={1} key={tankSegment.id1}
+          icon={simpleView ? sensorOkDarkerIcon : sensorOkLightIcon}
+        >
+          <Popup>
+            <span>{'tank ' + tankSegment.id1 + '\n status ' + tankSegment.status1}</span>
+          </Popup>
+        </Marker>
+        <Marker
+          position={tankSegment.point2}
+          opacity={1} key={tankSegment.id2}
+          icon={simpleView ? sensorOkDarkerIcon : sensorOkLightIcon}>
+          <Popup>
+            <span>{'sensor ' + tankSegment.id2 + '\n status ' + tankSegment.status2}</span>
+          </Popup>
+        </Marker>
+      </div>)
+  });
+}
 export function generateMapIcons(
   { segments, markers },
   simpleView,
-  options = {
-    colors: {
-      darkerColor: '#4F5B62',
-      errorColor: '#56ccf7',
-      lighterColor: '#93a4ae'
-    },
-    circleSize: 7,
-    lineWeight: 8
-  }
+  options = iconsOptions
 ) {
   const defaultColor = simpleView ? options.colors.darkerColor : options.colors.lighterColor;
   if (!segments || !markers) {
