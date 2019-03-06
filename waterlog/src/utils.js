@@ -243,13 +243,16 @@ export function getHeatMapData({ monitorsCoordinates, segmentCoordinates }) {
     return [seg.lat, seg.long, levelToIntensity(seg.faultLevel, mapOptions.maxIntensity)]
   });
 
+  if(!monitorMapData || !segmentMapData){
+    return [];
+  }
   let heatMapData = monitorMapData.concat(segmentMapData);
   return heatMapData;
 }
 
 const southWest = [-25.944586, 28.189546];
 const northEast = [-25.661871, 28.451147];
-const defaultCenterPosition = [-25.783425, 28.336046];
+const defaultCenterPosition = [-25.783082666994947, 28.336604833439203];
 const defaultMaxIntensity = 5;
 const defaultZoom = 17;
 const heatBackgroundConst = 0.91;
