@@ -7,7 +7,10 @@ import {
 import {
   sensorFaultIcon,
   sensorOkLightIcon,
-  sensorOkDarkerIcon
+  sensorOkDarkerIcon,
+  tankFaultIcon,
+  tankOkDarkerIcon,
+  tankOkLightIcon
 } from './icons/MapIcons';
 
 const images = {
@@ -104,8 +107,14 @@ export function generateMapTankIcons(
   }
   return tankSegments.map(tankSegment => {
     let point2 = tankSegment.point2;
-    if(tankSegment.point2 === undefined || tankSegment.point2.length === 0){
+    let id2 = 'sensor ' + tankSegment.id2;
+    let status2 = tankSegment.status2;
+    let sensorIcon = simpleView ? sensorOkDarkerIcon : sensorOkLightIcon;
+    if (tankSegment.point2 === undefined || tankSegment.point2.length === 0) {
       point2 = tankSegment.point1;
+      id2 = 'tank ' + tankSegment.id1;
+      status2 = tankSegment.status1;
+      sensorIcon = simpleView ? tankOkDarkerIcon : tankOkLightIcon;
     }
     return (
       <div>
@@ -121,7 +130,7 @@ export function generateMapTankIcons(
         <Marker
           position={tankSegment.point1}
           opacity={1} key={tankSegment.id1}
-          icon={simpleView ? sensorOkDarkerIcon : sensorOkLightIcon}
+          icon={simpleView ? tankOkDarkerIcon : tankOkLightIcon}
         >
           <Popup>
             <span>{'tank ' + tankSegment.id1 + '\n status ' + tankSegment.status1}</span>
@@ -129,10 +138,10 @@ export function generateMapTankIcons(
         </Marker>
         <Marker
           position={point2}
-          opacity={1} key={tankSegment.id2}
-          icon={simpleView ? sensorOkDarkerIcon : sensorOkLightIcon}>
+          opacity={1} key={id2}
+          icon={sensorIcon}>
           <Popup>
-            <span>{'sensor ' + tankSegment.id2 + '\n status ' + tankSegment.status2}</span>
+            <span>{id2 + '\n status ' + status2}</span>
           </Popup>
         </Marker>
       </div>)

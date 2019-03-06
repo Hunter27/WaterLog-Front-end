@@ -8,36 +8,26 @@ import Error404 from "./Error404";
 import MapUI from "./MapComponent";
 import {
   generateMapIcons,
-  levelToIntensity,
-  mapOptions
+  getHeatMapData,
+  generateMapTankIcons
 } from "./../utils";
 import heatMapIcon from "../images/heatmap_icon_blue.png";
 import reCenterMapIcon from "../images/recentre_icon_blue.png";
 import moreIcon from "../images/more_map_icon.png";
 
-function getHeatMapData({ monitorsCoordinates, segmentCoordinates }) {
-  let monitorMapData = monitorsCoordinates.map(mon => {
-    return [mon.lat, mon.long, levelToIntensity(mon.faultLevel, mapOptions.maxIntensity)]
-  });
-  let segmentMapData = segmentCoordinates.map(seg => {
-    return [seg.lat, seg.long, levelToIntensity(seg.faultLevel, mapOptions.maxIntensity)]
-  });
-
-  let heatMapData = monitorMapData.concat(segmentMapData);
-  return heatMapData;
-}
 class MapComponent extends Component {
   async componentDidMount() {
     this.props.fetchHeatMapsData();
     this.props.fetchPollMapsData();
-    
-    setTimeout(() => {
+
+    setInterval(() => {
       this.props.fetchPollMapsData();
       const { pmapData } = this.props;
+      let tankIcons = generateMapTankIcons(pmapData, this.state.simpleView);
+      let mapIcons = generateMapIcons(pmapData, this.state.simpleView);
       this.setState({
-        iconState: generateMapIcons(pmapData, this.state.simpleView),
+        iconState: tankIcons.concat(mapIcons),
       });
-
       if (this.state.iconState) {
         this.state.contLoading = false;
       }
