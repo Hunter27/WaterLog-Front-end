@@ -12,16 +12,24 @@ import { selectedComponentIcon } from "../icons/MapIcons";
 import { Globals } from "../Globals";
 
 const components = Globals.COMPONENT_TYPES;
+const failSafeMarker = <Marker position={[-33.989400, 18.637909]} icon={selectedComponentIcon} />;
 
 const generateHighlightIcon = (mapData, type, id) => {
   const sensors = mapData.markers;
   const segments = mapData.segments;
+  const tanks = mapData.tanks;
   let coordinates = [null, null];
+  if (!sensors || !segments || !tanks) {
+    return failSafeMarker;
+  }
   switch (type) {
     case components.SEGMENT:
       const segment = segments.find(segment => (id === segment.id));
       const sensor1 = sensors.find(sensor => segment.senseIDIn === sensor.id);
       const sensor2 = sensors.find(sensor => segment.senseIDOut === sensor.id);
+      if (!segment || !sensor1 || !sensor2) {
+        return failSafeMarker;
+      }
       coordinates = [];
       return <Polyline
         positions={[[sensor1.lat, sensor1.lon], [sensor2.lat, sensor2.lon]]}
@@ -30,13 +38,23 @@ const generateHighlightIcon = (mapData, type, id) => {
       />;
     case components.SENSOR:
       coordinates = sensors.find(sensor => (id === sensor.id));
+      if (!coordinates) {
+        return failSafeMarker;
+      }
       return <Marker
         position={coordinates}
         icon={selectedComponentIcon} />;
     case components.TANK:
-      return; //larger icon
+      const _tank = tanks.find(tank => (id === tank.id));
+      if (!_tank) {
+        return failSafeMarker;
+      }
+      coordinates = [_tank.lat, _tank.lon]
+      return <Marker
+        position={coordinates}
+        icon={selectedComponentIcon} />;
     default:
-      return null;
+      return failSafeMarker;
   }
 }
 class MapComponent extends Component {
@@ -45,7 +63,7 @@ class MapComponent extends Component {
     this.reCenter = this.reCenter.bind(this);
     this.ref = this.refs.map;
   }
-  
+
   reCenter() {
     const map = this.refs.map.leafletElement;
     map.setView(mapOptions.centerPosition, mapOptions.defaultZoom);
