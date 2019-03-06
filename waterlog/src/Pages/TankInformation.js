@@ -8,7 +8,6 @@ import PumpButton from "./../Components/PumpButton";
 import GraphLine from "../Components/DailyTankGraph";
 import Error404 from './Error404Page';
 import Loader from './../Components/Loader';
-import Home from './Home';
 
 class TankInformation extends Component {
   constructor(props) {
