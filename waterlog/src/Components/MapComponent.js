@@ -19,6 +19,9 @@ const generateHighlightIcon = (mapData, type, id) => {
   const segments = mapData.segments;
   const tanks = mapData.tanks;
   let coordinates = [null, null];
+  if(!sensors || !segments || !tanks){
+    return failSafeMarker;
+  }
   switch (type) {
     case components.SEGMENT:
       const segment = segments.find(segment => (id === segment.id));

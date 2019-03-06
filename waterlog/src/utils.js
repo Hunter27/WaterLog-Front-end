@@ -110,11 +110,20 @@ export function generateMapTankIcons(
     let id2 = 'sensor ' + tankSegment.id2;
     let status2 = tankSegment.status2;
     let sensorIcon = simpleView ? sensorOkDarkerIcon : sensorOkLightIcon;
+    let tankIcon = simpleView ? sensorOkDarkerIcon : sensorOkLightIcon;
+
+    if (tankSegment.status1.toLowerCase() === 'empty') {
+      tankIcon = tankFaultIcon;
+    }
     if (tankSegment.point2 === undefined || tankSegment.point2.length === 0) {
       point2 = tankSegment.point1;
       id2 = 'tank ' + tankSegment.id1;
       status2 = tankSegment.status1;
-      sensorIcon = simpleView ? tankOkDarkerIcon : tankOkLightIcon;
+      sensorIcon = tankIcon;
+    } else {
+      if (tankSegment.status2.toLowerCase() === 'empty') {
+        sensorIcon = tankFaultIcon;
+      }
     }
     return (
       <div>
@@ -130,7 +139,7 @@ export function generateMapTankIcons(
         <Marker
           position={tankSegment.point1}
           opacity={1} key={tankSegment.id1}
-          icon={simpleView ? tankOkDarkerIcon : tankOkLightIcon}
+          icon={tankIcon}
         >
           <Popup>
             <span>{'tank ' + tankSegment.id1 + '\n status ' + tankSegment.status1}</span>
