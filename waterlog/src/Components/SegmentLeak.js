@@ -6,7 +6,6 @@ import { fetchSegment } from '../actions/SegmentAction';
 import Loader from './Loader';
 import Error404 from './Error404';
 import Map from './Map';
-import AlertComponent from './../Pages/Alert';
 
 class SegmentLeak extends Component {
 	constructor(props) {

@@ -73,7 +73,6 @@ class FaultySensor extends Component {
 		const {
 			status,
 			entityId,
-			severity,
 			date,
 			typeLitres
 		} = selectedSensor;
@@ -88,8 +87,8 @@ class FaultySensor extends Component {
 				/>
 				<div>
 					<h2
-						className={!resolved ? severity.toLowerCase() : 'leak-resolved'}
-					>{`Sensor ${entityId} is Faulty`}</h2>
+						className={!resolved ? 'sensor-unresolved' : 'sensor-resolved'}
+					>{resolved ? `Sensor ${entityId} was Faulty` : `Sensor ${entityId} is Faulty`}</h2>
 					<p id="water-flow">
 						{0}% /{typeLitres.toFixed(1)}/hr water flow
 					</p>
@@ -104,7 +103,7 @@ class FaultySensor extends Component {
 				<hr />
 				{this.state.mapExpanded ? this.segmentMap : null}
 				{resolved ? this.dateResolved(date) : null}
-				<SensorDiagram sensorId={entityId} status={status} />
+				<SensorDiagram sensorId={entityId} status={resolved} />
 				{!resolved ? (
 					<div className="resolve">
 						<button

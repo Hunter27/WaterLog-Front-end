@@ -7,6 +7,7 @@
 	flex: 1;
 	margin: 0;
 	color: $gull-gray;
+	overflow: hidden;
 }
 
 .tank img {
@@ -29,7 +30,7 @@
 
 .tank-info {
 	padding-top: 20px;
-	.tank:first-child {
+	.tank {
 		font-size: 20px;
 		font-weight: bold;
 		color: $blue;
@@ -38,10 +39,30 @@
 		height: 158px;
 		width:  118px;
 	}
-	.tank:last-child {
+	.tank p:last-child {
 		color: $wild-sand;
-		//bottom: 200px;
+		bottom: 100px;
 	}
+}
+
+.optimal {
+	margin: 0;
+	color: $trout;
+}
+
+.p-status {
+	margin: 0;
+	color: $gull-gray;
+}
+
+.p-info {
+	margin: 0;
+	color: $trout;
+}
+
+.t-empty {
+	margin: 0;
+	color: $trout;
 }
 
 .pump-button {
@@ -49,10 +70,11 @@
 	height: 30px;
 	background-color: $blue;
 	border-radius: 2px;
+	margin: 10px  auto;
 }
-.back-icon{
+.back-icon {
   width: 26px;
   position: absolute;
   left: 11px;
-  top:60px;
+  top: 60px;
 }
