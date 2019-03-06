@@ -1,4 +1,5 @@
 @import './variables';
+@import './Stylesheets/Desktop/nav-bar';
 @import './Stylesheets/wastage';
 @import './Stylesheets/alerts';
 @import './Stylesheets/wastageSummary';
@@ -39,8 +40,8 @@ button {
 }
 
 .bold {
-  font-weight: bold;
-  color:#C0C0C0;
+	font-weight: bold;
+	color: #C0C0C0;
 }
 
 .wastage-info {
@@ -112,13 +113,8 @@ button {
 	color: $trout;
 }
 
-@media screen and (min-width: 700px) {
-	body {
-		background-color: $wild-sand;
-	}
-}
 
-@media screen and (min-width: 1400px) {
+@media screen and (min-width: 900px) {
 	body {
 		background-color: $background-color;
 	}
