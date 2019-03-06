@@ -7,6 +7,7 @@ import Loader from './Loader';
 import Error404 from './Error404';
 import Map from './Map';
 import { formatDate } from './../utils';
+import { Globals } from './../Globals';
 
 class FaultySensor extends Component {
 	constructor() {
@@ -29,7 +30,7 @@ class FaultySensor extends Component {
 	}
 
 	handleResolveClick(data) {
-		fetch(`${process.env.REACT_APP_API_URL}/api/segmentleaks/${this.props.match.params.id}`, {
+		fetch(`${process.env.REACT_APP_API_URL}/api/monitors${this.props.match.params.id}`, {
 			method: 'PUT',
 			mode: 'cors',
 			cache: 'no-cache',
@@ -45,8 +46,8 @@ class FaultySensor extends Component {
 	}
 
 	segmentMap = (
-		<div>
-			<Map height="400px" />
+		<div className="sensor-map">
+			<Map type={Globals.COMPONENT_TYPES.SENSOR} id={parseInt(this.props.match.params.id)}/>
 		</div>
 	);
 
