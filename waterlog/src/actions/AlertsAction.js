@@ -69,8 +69,7 @@ export const fetchFilteredAlerts = (segment,
 	/api/segmentevents/getalertsfilter?segment=${segment}&sensorId=${sensorId}&sensortype=${sensortype}&severity=${severity}`)
 			.then(handleErrors)
 			.then(res => res.json())
-			.then(alerts => {
-
+			.then(alerts => { 
 				dispatch(fetchFilteredAlertsSuccess(alerts));
 			})
 			.catch(error => dispatch(fetchFilteredAlertsFailure(error)))
