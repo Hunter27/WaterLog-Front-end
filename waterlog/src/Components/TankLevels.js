@@ -18,14 +18,14 @@ class TankLevels extends Component {
       return <div><Error404/></div>;
     } else {
       return (
-        <Fragment>
+        <div className="tank-wrapper">
           <p className="home-text">Tank Levels</p>
           <div className="tank-container">
             {levels.map((tank, index) => (
               <Tank key={index} tank={tank} />
             ))}
           </div>
-        </Fragment>
+        </div>
       );
     }
   }

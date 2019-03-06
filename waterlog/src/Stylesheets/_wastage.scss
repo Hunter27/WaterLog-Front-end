@@ -7,7 +7,16 @@
 	color: $trout;
 	size: 14pt;
 }
+.usage-cost{
+	background-color: $bg-filter;
+	margin: 20px;
+	border-radius: 5px;
+	padding: 2px;
+	min-height: 200px;
+	color: $trout;
+	size: 14pt;
 
+}
 .wastage>p:first-child {
 	margin: 5px 0 0 0;
 	font-weight: bold;
