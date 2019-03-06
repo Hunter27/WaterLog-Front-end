@@ -103,10 +103,14 @@ export function generateMapTankIcons(
     return <div />;
   }
   return tankSegments.map(tankSegment => {
+    let point2 = tankSegment.point2;
+    if(tankSegment.point2 === undefined || tankSegment.point2.length === 0){
+      point2 = tankSegment.point1;
+    }
     return (
       <div>
         <Polyline
-          positions={[tankSegment.point1, tankSegment.point2]}
+          positions={[tankSegment.point1, point2]}
           color={defaultColor}
           weight={options.lineWeight}
         >
@@ -124,7 +128,7 @@ export function generateMapTankIcons(
           </Popup>
         </Marker>
         <Marker
-          position={tankSegment.point2}
+          position={point2}
           opacity={1} key={tankSegment.id2}
           icon={simpleView ? sensorOkDarkerIcon : sensorOkLightIcon}>
           <Popup>
