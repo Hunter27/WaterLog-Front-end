@@ -1,0 +1,81 @@
+@media screen and (min-width: 900px) {
+	body {
+		.leak-info {
+			padding-top: 20px;
+		}
+
+		.leak-info :first-child {
+			font-size: 30pt;
+		}
+
+		.leak-info :nth-child(2) {
+			font-size: 15pt;
+		}
+
+		.leak-info :nth-child(3) {
+			font-size: 30pt;
+		}
+
+		.leak-info :nth-child(4) {
+			font-size: 15pt;
+		}
+
+		.leak-info :nth-child(5) {
+			margin: 0;
+			color: $gull-gray;
+			font-weight: bold;
+			font-size: 18pt;
+		}
+
+		.leak-info :nth-child(6) {
+			margin-top: 0;
+			color: $gull-gray;
+			font-size: 15pt;
+		}
+
+		#map-toggle {
+			width: 80px;
+		}
+
+		#map-toggle {
+			width: 80px;
+		}
+
+		.logged-issue-text {
+			font-size: 20px;
+		}
+
+		.wastage-label {
+			color: $wild-sand;
+			margin: 10px 0;
+			font-weight: bold;
+			font-size: 22pt;
+		}
+
+		.wastage-summary {
+			margin: 10px auto;
+			padding: 10px 30px;
+			box-sizing: border-box;
+			width: 60%;
+		}
+
+		.wastage-summary p:nth-child(2) {
+			font-size: 15pt;
+			margin-bottom: 15px;
+		}
+
+		.wastage-summary p:last-child {
+			font-size: 15pt;
+			margin-top: 15px;
+		}
+
+		.resolved-leak-button {
+			background-color: $blue;
+			margin: auto;
+		}
+
+		small {
+			font-size: 15px;
+		}
+	}
+}
