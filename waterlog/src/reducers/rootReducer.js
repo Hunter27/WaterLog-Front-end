@@ -43,7 +43,7 @@ const rootReducer = combineReducers({
   seasonUsage: UsageGraphSeasonallyReducer,
   levels: TankLevelReducer,
   level: TankLevelsByIdReducer,
-  pumps: PumpsReducer,
+  pump: PumpsReducer,
   maps: MapsReducer,
   pmaps: PMapsReducer,
   alerts: AlertsReducer,
