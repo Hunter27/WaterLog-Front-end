@@ -227,14 +227,17 @@ export function getHeatMapData({ monitorsCoordinates, segmentCoordinates }) {
 
 const southWest = [-25.944586, 28.189546];
 const northEast = [-25.661871, 28.451147];
+const defaultCenterPosition = [-25.783425, 28.336046];
+const defaultMaxIntensity = 5;
+const defaultZoom = 17;
 const heatBackgroundConst = 0.91;
 
 export const mapOptions = {
   southWest: southWest,
   northEast: northEast,
-  maxIntensity: 5,
-  centerPosition: [-25.783425, 28.336046],
-  defaultZoom: 17,
+  maxIntensity: defaultMaxIntensity,
+  centerPosition: defaultCenterPosition,
+  defaultZoom: defaultZoom,
   heatBackgroundConst: heatBackgroundConst,
   rectangleBounds: [southWest.map((e) => e / heatBackgroundConst), northEast.map((e) => e * heatBackgroundConst)]
 };

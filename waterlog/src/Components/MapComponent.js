@@ -6,7 +6,6 @@ import {
   Marker,
   Polyline
 } from "react-leaflet";
-import { connect } from "react-redux";
 import HeatmapLayer from "react-leaflet-heatmap-layer";
 import { mapOptions } from "../utils";
 import { selectedComponentIcon } from "../icons/MapIcons";
@@ -46,6 +45,7 @@ class MapComponent extends Component {
     this.reCenter = this.reCenter.bind(this);
     this.ref = this.refs.map;
   }
+  
   reCenter() {
     const map = this.refs.map.leafletElement;
     map.setView(mapOptions.centerPosition, mapOptions.defaultZoom);
