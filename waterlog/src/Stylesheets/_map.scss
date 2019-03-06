@@ -11,7 +11,7 @@
 	flex: 1;
 	margin: 5px;
 	background-color: $map-btn;
-	height: 26px;
+	height: 30px;
 	width: 90px;
 	border: none;
 }
@@ -45,9 +45,12 @@
 
 .map-icon-div-layer2 {
 	z-index: 2;
+	width: 50px;
 	position: absolute;
+	margin: 9px auto;
 	float: right;
 	right: 0;
+	bottom: 0;
 }
 
 .invisible {
@@ -61,7 +64,7 @@
 		transition: 0.3s;
 		cursor: pointer;
 		padding: 5px;
-		font-size: 11px;
+		font-size: 13px;
 		font-weight: bold;
 		color: $trout;
 	}
@@ -70,7 +73,6 @@
 		background-color: $gull-gray;
 		color: $wild-sand;
 	}
-
 }
 
 .map-main-div {
@@ -116,13 +118,7 @@
 }
 
 .icon {
-	width: 30px;
-	height: 30px;
+	width: 35px;
+	height: 35x;
 	margin: 2px 2px;
-}
-
-.icon-home {
-	width: 30px;
-	height: 30px;
-	margin: 15px 5px;
 }

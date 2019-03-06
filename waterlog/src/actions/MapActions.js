@@ -86,16 +86,13 @@ function formatMapData(data) {
       leak => {
         let latestTimeStamp = new Date(leak.latestTimeStamp);
 
-        if (latestTimeStamp.getDay() === date.getDay() &&
+        if (latestTimeStamp.getDate() === date.getDate() &&
           latestTimeStamp.getMonth() === date.getMonth() &&
           latestTimeStamp.getFullYear() === date.getFullYear()) {
           return leak;
         }
-        else
-          return [];
       });
   }
-
   if (data.segments) {
     segments = data.segments.map(seg => {
       if (
