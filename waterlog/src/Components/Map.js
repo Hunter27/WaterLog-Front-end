@@ -11,6 +11,9 @@ import {
   levelToIntensity,
   mapOptions
 } from "./../utils";
+import heatMapIcon from "../images/heatmap_icon_blue.png";
+import reCenterMapIcon from "../images/recentre_icon_blue.png";
+import moreIcon from "../images/more_map_icon.png";
 
 function getHeatMapData({ monitorsCoordinates, segmentCoordinates }) {
   let monitorMapData = monitorsCoordinates.map(mon => {
@@ -112,19 +115,19 @@ class MapComponent extends Component {
           <div className={`map-icon-div-layer2 ${this.state.simpleView ? "" : "invisible"}`}>
             <img
               className={`icon-home + ${this.state.moreOptions ? "" : "invisible"}`}
-              src={require("../images/heatmap_icon_blue.png")}
+              src={heatMapIcon}
               alt="heat Toggle"
               onClick={() => { this.setState({ heatView: !this.state.heatView }) }} />
             <img
               className={`icon-home + ${this.state.moreOptions ? "" : "invisible"}`}
-              src={require("../images/recentre_icon_blue.png")}
+              src={reCenterMapIcon}
               alt="re-center Map"
               onClick={() => {
                 this.refs.map.reCenter()
               }} />
             <img
               className="icon-home"
-              src={require("../images/more_map_icon.png")}
+              src={moreIcon}
               alt="more options"
               onClick={() => {
                 this.setState({ moreOptions: !this.state.moreOptions });

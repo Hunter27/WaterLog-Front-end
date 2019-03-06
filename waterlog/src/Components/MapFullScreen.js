@@ -12,6 +12,9 @@ import {
   getHeatMapData
 } from "../utils";
 import MapUI from "./MapComponent";
+import heatMapIcon from "../images/heatmap_icon_blue.png";
+import reCenterMapIcon from "../images/recentre_icon_blue.png";
+import moreIcon from "../images/more_map_icon.png";
 
 
 class MapFullScreenComponent extends Component {
@@ -92,19 +95,19 @@ class MapFullScreenComponent extends Component {
 
             <img
               className="icon-home"
-              src={require("../images/more_map_icon.png")}
+              src={moreIcon}
               alt="more options"
               onClick={() => {
                 this.setState({ moreOptions: !this.state.moreOptions });
               }} />
             <img
               className={`icon + ${this.state.moreOptions ? "" : "invisible"}`}
-              src={require("../images/heatmap_icon_blue.png")}
+              src={heatMapIcon}
               alt="heat Toggle"
               onClick={() => { this.setState({ heatView: !this.state.heatView }) }} />
             <img
               className={`icon + ${this.state.moreOptions ? "" : "invisible"}`}
-              src={require("../images/recentre_icon_blue.png")}
+              src={reCenterMapIcon}
               alt="re-center Map"
               onClick={() => {
                 this.refs.map.reCenter();
