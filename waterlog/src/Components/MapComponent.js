@@ -45,7 +45,7 @@ const generateHighlightIcon = (mapData, type, id) => {
         position={coordinates}
         icon={selectedComponentIcon} />;
     case components.TANK:
-      const _tank = tanks.find(tank => (id == tank.id));
+      const _tank = tanks.find(tank => (id === tank.id));
       if (!_tank) {
         return failSafeMarker;
       }

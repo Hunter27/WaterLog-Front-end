@@ -110,7 +110,7 @@ export function generateMapTankIcons(
     let id2 = 'sensor ' + tankSegment.id2;
     let status2 = tankSegment.status2;
     let sensorIcon = simpleView ? sensorOkDarkerIcon : sensorOkLightIcon;
-    let tankIcon = simpleView ? sensorOkDarkerIcon : sensorOkLightIcon;
+    let tankIcon = simpleView ? tankOkDarkerIcon : tankOkLightIcon;
 
     if (tankSegment.status1.toLowerCase() === 'empty') {
       tankIcon = tankFaultIcon;
