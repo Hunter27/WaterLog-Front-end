@@ -1,7 +1,11 @@
 import L from 'leaflet';
+import sensorIconGray from '../images/map_sensor_icon_gray.png';
+import sensorIconDarkGray from '../images/map_sensor_icon_darkgray.png';
+import sensorAnimatedBlueIcon from '../images/sensor_animation_blue.gif';
+import sensorHighlighter from '../images/selectedComponent.png';
 
 export const sensorOkLightIcon = new L.icon({
-  iconUrl: require('../images/map_sensor_icon_gray.png'),
+  iconUrl: sensorIconGray,
   iconAnchor: new L.Point(12.5, 12.5),
   popupAnchor: new L.Point(0, -12.5),
   shadowUrl: null,
@@ -11,7 +15,7 @@ export const sensorOkLightIcon = new L.icon({
 });
 
 export const sensorOkDarkerIcon = new L.icon({
-  iconUrl: require('../images/map_sensor_icon_darkgray.png'),
+  iconUrl: sensorIconDarkGray,
   iconAnchor: new L.Point(12.5, 12.5),
   popupAnchor: new L.Point(0, -12.5),
   shadowUrl: null,
@@ -21,7 +25,7 @@ export const sensorOkDarkerIcon = new L.icon({
 });
 
 export const sensorFaultIcon = new L.icon({
-  iconUrl: require('../images/sensor_animation_blue.gif'),
+  iconUrl: sensorAnimatedBlueIcon,
   iconAnchor: new L.Point(12.5, 12.5),
   popupAnchor: new L.Point(0, -12.5),
   shadowUrl: null,
@@ -30,12 +34,42 @@ export const sensorFaultIcon = new L.icon({
   iconSize: new L.Point(25, 25)
 });
 
-export const sensorRedIcon = new L.icon({
-  iconUrl: require('../images/Red_sensor_dark.gif'),
-  iconAnchor: null,
+export const selectedComponentIcon = new L.icon({
+  iconUrl: sensorHighlighter,
+  iconAnchor: new L.Point(9, 9),
   popupAnchor: null,
   shadowUrl: null,
   shadowSize: null,
   shadowAnchor: null,
-  iconSize: new L.Point(60, 75)
+  iconSize: new L.Point(18, 18)
+});
+
+export const tankOkLightIcon = new L.icon({
+  iconUrl: sensorIconGray,
+  iconAnchor: new L.Point(17.5, 17.5),
+  popupAnchor: new L.Point(0, -17.5),
+  shadowUrl: null,
+  shadowSize: null,
+  shadowAnchor: null,
+  iconSize: new L.Point(35, 35)
+});
+
+export const tankOkDarkerIcon = new L.icon({
+  iconUrl: sensorIconDarkGray,
+  iconAnchor: new L.Point(17.5, 17.5),
+  popupAnchor: new L.Point(0, -17.5),
+  shadowUrl: null,
+  shadowSize: null,
+  shadowAnchor: null,
+  iconSize: new L.Point(35, 35)
+});
+
+export const tankFaultIcon = new L.icon({
+  iconUrl: sensorAnimatedBlueIcon,
+  iconAnchor: new L.Point(17.5, 17.5),
+  popupAnchor: new L.Point(0, -17.5),
+  shadowUrl: null,
+  shadowSize: null,
+  shadowAnchor: null,
+  iconSize: new L.Point(35, 35)
 });

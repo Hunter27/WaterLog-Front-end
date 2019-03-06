@@ -24,9 +24,9 @@ class AlertComponent extends Component {
 			<div>
 				<h1 className = "usage-header">Filter Alerts</h1>
 				{this.state.filterOpen ? (
-					<AlertsFilter close={this.toggleFilter} />
+					<AlertsFilter close={this.toggleFilter} hist={this.props.history}/>
 				) : (
-					<AlertTable openFilter={this.toggleFilter} />
+					<AlertTable openFilter={this.toggleFilter} hist={this.props.history}/>
 				)}
 			</div>
 		);
