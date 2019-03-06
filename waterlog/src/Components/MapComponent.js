@@ -45,6 +45,7 @@ class MapComponent extends Component {
     this.reCenter = this.reCenter.bind(this);
     this.ref = this.refs.map;
   }
+  
   reCenter() {
     const map = this.refs.map.leafletElement;
     map.setView(mapOptions.centerPosition, mapOptions.defaultZoom);

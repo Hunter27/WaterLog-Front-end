@@ -57,7 +57,7 @@ class MapFullScreenComponent extends Component {
     if (heatError || pmapDataError) {
       return <Error404 />;
     }
-    if (heatLoading || this.state.contLoading) {
+    if ((heatLoading || this.state.contLoading) && this.props.pmapData < 1 && heatMapData < 1) {
       return (
         <div>
           <Loader />
@@ -94,7 +94,7 @@ class MapFullScreenComponent extends Component {
           <div className={`map-icon-div-layer2-fullscreen map-button-tab ${this.state.simpleView ? "" : "invisible"}`}>
 
             <img
-              className="icon-home"
+              className="icon"
               src={moreIcon}
               alt="more options"
               onClick={() => {
