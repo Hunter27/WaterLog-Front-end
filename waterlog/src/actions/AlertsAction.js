@@ -65,11 +65,13 @@ export const fetchFilteredAlerts = (segment,
 	sensortype,
 	severity) => dispatch => {
 		dispatch(fetchFilteredAlertsBegin());
-		fetch(`${process.env.REACT_APP_API_URL}
-	/api/segmentevents/getalertsfilter?segment=${segment}&sensorId=${sensorId}&sensortype=${sensortype}&severity=${severity}`)
+		fetch(
+			`${process.env.REACT_APP_API_URL}
+			 /api/segmentevents/getalertsfilter?segment=${segment}&
+			 sensorId=${sensorId}&sensortype=${sensortype}&severity=${severity}`)
 			.then(handleErrors)
 			.then(res => res.json())
-			.then(alerts => { 
+			.then(alerts => {
 				dispatch(fetchFilteredAlertsSuccess(alerts));
 			})
 			.catch(error => dispatch(fetchFilteredAlertsFailure(error)))
