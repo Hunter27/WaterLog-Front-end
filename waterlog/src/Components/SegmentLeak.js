@@ -28,13 +28,14 @@ class SegmentLeak extends Component {
 		});
 	}
 
-	handleResolveClick(id) {
-		var formData = new FormData();
-		formData.append('id', id);
-
-		fetch(`${process.env.REACT_APP_API_URL}/api/segmentleaks/resolveleaks`, {
-			method: 'POST',
-			body: formData
+	handleResolveClick() { 
+			fetch(`${process.env.REACT_APP_API_URL}/api/segmentleaks/segment/${this.props.match.params.id}/${this.props.match.params.date}`, {
+				method: 'PUT',
+				mode: 'cors',
+				cache: 'no-cache',
+				headers: {
+					'Content-Type': 'application/json'
+				}
 		})
 			.then((res) => {
 				if (res.ok) {
