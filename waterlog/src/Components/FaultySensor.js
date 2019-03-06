@@ -29,7 +29,7 @@ class FaultySensor extends Component {
 	}
 
 	handleResolveClick(data) {
-		fetch(`${process.env.REACT_APP_API_URL}/api/segmentleaks/${this.props.match.params.id}`, {
+		fetch(`${process.env.REACT_APP_API_URL}/api/monitors${this.props.match.params.id}`, {
 			method: 'PUT',
 			mode: 'cors',
 			cache: 'no-cache',
