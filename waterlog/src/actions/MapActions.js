@@ -90,21 +90,14 @@ async function getData(dispatch) {
 
 function formatMapData(data) {
   let markers, segments, tanks, tankSegments;
-  let todaysLeaks;
+  let todaysLeaks
   let date = new Date(Date.now());
   if (!data.leaks) {
     todaysLeaks = [];
   } else {
     todaysLeaks = data.leaks.filter(
-      leak => {
-        let latestTimeStamp = new Date(leak.latestTimeStamp);
-
-        if (latestTimeStamp.getDate() === date.getDate() &&
-          latestTimeStamp.getMonth() === date.getMonth() &&
-          latestTimeStamp.getFullYear() === date.getFullYear()) {
-          return leak;
-        }
-      });
+      leak => leak.resolvedStatus === 2
+      );
   }
   if (data.segments) {
     segments = data.segments.map(seg => {

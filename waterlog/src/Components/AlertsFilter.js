@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { getStatusIcon } from '../utils';
 
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchFilteredAlerts } from '../actions/FilterAction';
+import Loader from './Loader';
+
 class AlertsFilter extends Component {
 	constructor(props) {
 		super(props);
@@ -193,4 +198,18 @@ class AlertsFilter extends Component {
 	}
 }
 
-export default AlertsFilter;
+AlertsFilter.propTypes = {
+	fetchFilteredAlerts: PropTypes.func.isRequired,
+	alerts: PropTypes.array.isRequired
+};
+
+const mapStateToProps = (state) => ({
+	alerts: state.alerts.items,
+	loading: state.alerts.loading,
+	page: state.alerts.page,
+	error: state.alerts.error
+});
+export default connect(
+	mapStateToProps,
+	{ fetchFilteredAlerts }
+)(AlertsFilter);
