@@ -1,7 +1,6 @@
 @import './variables';
 @import './Stylesheets/Desktop/nav-bar';
 @import './Stylesheets/Desktop/segment-leaks';
-@import './Stylesheets/Desktop/tank-info';
 @import './Stylesheets/wastage';
 @import './Stylesheets/alerts';
 @import './Stylesheets/wastageSummary';
@@ -239,9 +238,9 @@ button {
 	  margin-top: 80px;
     display: block;
 	}
+
 	.tank-info .tank img {
-    height: 198px;
-    width: 158px;
-}
-	
+    height: 200px;
+    width: 148px;
+  }
 }
