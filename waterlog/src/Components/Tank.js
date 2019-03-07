@@ -4,13 +4,18 @@ import { getTankImage } from './../utils';
 const conditions = (percent) => {
 	if (percent > 80) {
 		return <p>
-			{"Optimal Level"} <br /> {"Turn pump off"}
+			{"pump is on"} <br /> {"the tank is being overfilled"}
 		</p>;
 	}
 
-	else if (percent >= 50 && percent <= 80) {
+	else if (percent >= 50 && percent <80) {
 		return <p>
-			{"Acceptable Level"} <br /> {"Turn pump off"}
+			{"pump is on"} 
+		</p>;
+	}
+	else if (percent ===80) {
+		return <p>
+			{"optimal level"} <br /> {"pump is on"}
 		</p>;
 	}
 
@@ -35,7 +40,12 @@ const Tank = props => {
 				className={(percentageLevel === 0 || percentageLevel > 80) ? 'exclamation' : ''}
 				alt={`${percentageLevel}% tank`} />
 			<p>{percentageLevel}%</p>
-			<p className="status">{conditions(percentageLevel)}</p>
+			{(() => {
+				if(props.atHome){
+					return	<p className="status">{conditions(percentageLevel)}</p>
+				}
+			})()}
+		
 		</div>
 	);
 };

@@ -22,7 +22,7 @@ class TankLevels extends Component {
           <p className="home-text">Tank Levels</p>
           <div className="tank-container">
             {levels.map((tank, index) => (
-              <Tank key={index} tank={tank} />
+              <Tank key={index} tank={tank} atHome={true}/>
             ))}
           </div>
         </div>
