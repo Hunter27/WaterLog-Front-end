@@ -33,8 +33,8 @@ const generateHighlightIcon = (mapData, type, id) => {
       coordinates = [];
       return <Polyline
         positions={[[sensor1.lat, sensor1.lon], [sensor2.lat, sensor2.lon]]}
-        color={'#57CCF7'}
-        weight={3}
+        color={'#fd2f2f'}
+        weight={4}
       />;
     case components.SENSOR:
       coordinates = sensors.find(sensor => (id === sensor.id));
