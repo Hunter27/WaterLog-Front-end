@@ -231,7 +231,7 @@ button {
 	}
 
 	.usage-cost {
-		margin: 50px 130px;
+		margin: 50px auto;
 		overflow: hidden;
 	}
 
@@ -239,4 +239,9 @@ button {
 	  margin-top: 80px;
     display: block;
 	}
+	.tank-info .tank img {
+    height: 198px;
+    width: 158px;
+}
+	
 }

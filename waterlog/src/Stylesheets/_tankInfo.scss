@@ -78,3 +78,18 @@
   left: 11px;
   top: 60px;
 }
+.wastageTank {
+	background-color: #2B3B42;
+    margin: 20px;
+    border-radius: 5px;
+    padding: 2px;
+    min-height: 200px;
+    color: #4F5B62;
+    size: 14pt;
+}
+.wastageTank > p:first-child {
+	margin: 5px 0 0 0;
+	font-weight: bold;
+	color: #93A4AE;
+}
+
