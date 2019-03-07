@@ -26,8 +26,7 @@ class SegmentLeak extends Component {
 		this.setState({
 			mapExpanded: !this.state.mapExpanded
 		});
-	}
-//body: formData
+	} 
 	handleResolveClick(id) {
 		var formData = new FormData(); 
 		formData.append('id', id);
@@ -65,8 +64,7 @@ class SegmentLeak extends Component {
 	getSeverityClass = (severity) => severity.toLowerCase();
 
 	render() {
-		const { error, loading, segment } = this.props;
-		console.log("My Segment:",segment)
+		const { error, loading, segment } = this.props; 
 		if (loading) {
 			return <Loader />;
 		}
