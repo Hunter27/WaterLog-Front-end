@@ -95,7 +95,6 @@ async function getData(dispatch) {
 }
 
 function formatMapData(data) {
-<<<<<<< HEAD
 	let markers, segments, tanks, tankSegments;
 	let todaysLeaks;
 	if (!data.leaks) {
@@ -175,71 +174,6 @@ function formatMapData(data) {
 	});
 
 	return { markers, segments, tanks, tankSegments };
-=======
-  let markers, segments, tanks, tankSegments;
-  let todaysLeaks
-  let date = new Date(Date.now());
-  if (!data.leaks) {
-    todaysLeaks = [];
-  } else {
-    todaysLeaks = data.leaks.filter(
-      leak => leak.resolvedStatus === 2
-      );
-  }
-  if (data.segments) {
-    segments = data.segments.map(seg => {
-      if (
-        JSON.stringify(Object.keys(seg)) !==
-        JSON.stringify(["id", "senseIDOut", "senseIDIn", "faultCount"])
-      ) { return []; }
-      const leak = todaysLeaks.find(leak => leak.segmentsId === seg.id);
-      if (leak) {
-        if (leak.resolvedStatus) { seg.status = leak.resolvedStatus === 2 ? "leak" : "normal"; }
-        else { seg.status = "normal"; }
-      } else {
-        seg.status = "normal";
-      }
-      return seg;
-    });
-  } else {
-    return [];
-  }
-
-  markers = data.monitors.map(mon => {
-    return { id: mon.id, lat: mon.lat, lon: mon.long, status: mon.status };
-  });
-
-  tanks = data.tanks.map(tank => {
-    return { id: tank.id, lat: tank.lat, lon: tank.long, status: tank.status }
-  });
-
-  tankSegments = data.tanks.map(tank => {
-    let endPoint = [];
-    let endPointId;
-    let endPointStatus;
-    if (tank.connectedMonitorType === Globals.COMPONENT_TYPES.SENSOR) {
-      const marker = markers.find(marker => marker.id === tank.connectedMonitorID);
-      endPoint = [marker.lat, marker.lon];
-      endPointId = marker.id;
-      endPointStatus = marker.status;
-    } else if (tank.connectedMonitorType === Globals.COMPONENT_TYPES.TANK) {
-      const _tank = data.tanks.find(tankT => tankT.id === tank.connectedMonitorID);
-      endPoint = [_tank.lat, _tank.long];
-      endPointId = _tank.id;
-      endPointStatus = _tank.status;
-    }
-    return {
-      id1: tank.id,
-      status1: tank.status,
-      point1: [tank.lat, tank.long],
-      id2: endPointId,
-      point2: endPoint,
-      status2: endPointStatus
-    }
-  });
-
-  return { markers, segments, tanks, tankSegments };
->>>>>>> d32f6bf5d020441e4c6d4f3f98e9b93e1e48f29d
 }
 
 export const fetchMapsData = () => (dispatch) => {
