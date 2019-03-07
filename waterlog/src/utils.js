@@ -7,7 +7,10 @@ import {
 import {
   sensorFaultIcon,
   sensorOkLightIcon,
-  sensorOkDarkerIcon
+  sensorOkDarkerIcon,
+  tankFaultIcon,
+  tankOkDarkerIcon,
+  tankOkLightIcon
 } from './icons/MapIcons';
 
 const images = {
@@ -83,18 +86,80 @@ export const getSensorLayout = (id) => {
   return sensors;
 };
 
+const iconsOptions = {
+  colors: {
+    darkerColor: '#4F5B62',
+    errorColor: '#56ccf7',
+    lighterColor: '#93a4ae'
+  },
+  circleSize: 7,
+  lineWeight: 8
+}
+
+export function generateMapTankIcons(
+  { tanks, tankSegments },
+  simpleView,
+  options = iconsOptions
+) {
+  const defaultColor = simpleView ? options.colors.darkerColor : options.colors.lighterColor;
+  if (!tanks || !tankSegments) {
+    return <div />;
+  }
+  return tankSegments.map(tankSegment => {
+    let point2 = tankSegment.point2;
+    let id2 = 'sensor ' + tankSegment.id2;
+    let status2 = tankSegment.status2;
+    let sensorIcon = simpleView ? sensorOkDarkerIcon : sensorOkLightIcon;
+    let tankIcon = simpleView ? tankOkDarkerIcon : tankOkLightIcon;
+
+    if (tankSegment.status1.toLowerCase() === 'empty') {
+      tankIcon = tankFaultIcon;
+    }
+    if (tankSegment.point2 === undefined || tankSegment.point2.length === 0) {
+      point2 = tankSegment.point1;
+      id2 = 'tank ' + tankSegment.id1;
+      status2 = tankSegment.status1;
+      sensorIcon = tankIcon;
+    } else {
+      if (tankSegment.status2.toLowerCase() === 'empty') {
+        sensorIcon = tankFaultIcon;
+      }
+    }
+    return (
+      <div>
+        <Polyline
+          positions={[tankSegment.point1, point2]}
+          color={defaultColor}
+          weight={options.lineWeight}
+        >
+          <Popup>
+            <span>{'tank feed pipe '}</span>
+          </Popup>
+        </Polyline>
+        <Marker
+          position={tankSegment.point1}
+          opacity={1} key={tankSegment.id1}
+          icon={tankIcon}
+        >
+          <Popup>
+            <span>{'tank ' + tankSegment.id1 + '\n status ' + tankSegment.status1}</span>
+          </Popup>
+        </Marker>
+        <Marker
+          position={point2}
+          opacity={1} key={id2}
+          icon={sensorIcon}>
+          <Popup>
+            <span>{id2 + '\n status ' + status2}</span>
+          </Popup>
+        </Marker>
+      </div>)
+  });
+}
 export function generateMapIcons(
   { segments, markers },
   simpleView,
-  options = {
-    colors: {
-      darkerColor: '#4F5B62',
-      errorColor: '#56ccf7',
-      lighterColor: '#93a4ae'
-    },
-    circleSize: 7,
-    lineWeight: 8
-  }
+  options = iconsOptions
 ) {
   const defaultColor = simpleView ? options.colors.darkerColor : options.colors.lighterColor;
   if (!segments || !markers) {
@@ -178,13 +243,16 @@ export function getHeatMapData({ monitorsCoordinates, segmentCoordinates }) {
     return [seg.lat, seg.long, levelToIntensity(seg.faultLevel, mapOptions.maxIntensity)]
   });
 
+  if(!monitorMapData || !segmentMapData){
+    return [];
+  }
   let heatMapData = monitorMapData.concat(segmentMapData);
   return heatMapData;
 }
 
 const southWest = [-25.944586, 28.189546];
 const northEast = [-25.661871, 28.451147];
-const defaultCenterPosition = [-25.783425, 28.336046];
+const defaultCenterPosition = [-25.783082666994947, 28.336604833439203];
 const defaultMaxIntensity = 5;
 const defaultZoom = 17;
 const heatBackgroundConst = 0.91;

@@ -6,7 +6,7 @@ import { fetchSegment } from '../actions/SegmentAction';
 import Loader from './Loader';
 import Error404 from './Error404';
 import Map from './Map';
-import AlertComponent from './../Pages/Alert';
+import { Globals } from '../Globals';
 
 class SegmentLeak extends Component {
 	constructor(props) {
@@ -52,7 +52,7 @@ class SegmentLeak extends Component {
 
 	segmentMap = (
 		<div className="segment-map">
-			<Map height="400px" />
+			<Map type={Globals.COMPONENT_TYPES.SEGMENT} id={parseInt(this.props.match.params.id)}/>
 		</div>
 	);
 

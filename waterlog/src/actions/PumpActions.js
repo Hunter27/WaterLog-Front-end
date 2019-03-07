@@ -9,9 +9,9 @@ export const fetchPumpsBegin = () => ({
     type: FETCH_PUMPS_BEGIN
 });
 
-export const fetchPumpsSuccess = pumps => ({
+export const fetchPumpsSuccess = pump => ({
     type: FETCH_PUMPS_SUCCESS,
-    payload: { pumps }
+    payload: { pump }
 });
 
 export const fetchPumpsFailure = error => ({
