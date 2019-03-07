@@ -63,7 +63,7 @@ const TankGraph = (props) => {
   }
   defaults.global.legend.display = false;
   return (
-    <div className="UsageTank">
+    <div className="tank-usage">
       <Line options={options} data={data} />
     </div>
   )
