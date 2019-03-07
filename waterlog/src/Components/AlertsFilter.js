@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { getStatusIcon } from '../utils';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { fetchFilteredAlerts } from '../actions/FilterAction';
+import Loader from './Loader';
 
 class AlertsFilter extends Component {
 	constructor(props) {
@@ -19,6 +23,7 @@ class AlertsFilter extends Component {
 		this.submitFilter = this.submitFilter.bind(this);
 		this.handleSeverityClick = this.handleSeverityClick.bind(this);
 	}
+
 	severity = [ 'low', 'medium', 'high' ];
 
 	handleSeverityClick = (severityLevel) => {
@@ -61,6 +66,15 @@ class AlertsFilter extends Component {
 					sensorNumber: parseInt(this.tankSensorInput.value)
 				});
 		}
+
+		const criteria = {
+			segment: this.state.segmentNumber,
+			sensorType: this.state.sensorType,
+			sensorNumber: this.state.sensorNumber,
+			severity: this.state.severity
+		}
+
+		fetchFilteredAlerts();
 		this.props.close();
 	};
 
@@ -174,7 +188,8 @@ class AlertsFilter extends Component {
 					</div>
 					{this.state.severityFilterOpen ? (
 						this.severity.map((item, index) => (
-							<div onClick={() => this.handleSeverityClick(index + 1)} className="severity-selector" key={index}>
+							<div onClick={() => this.handleSeverityClick(index + 1)}
+								className="severity-selector" key={index}>
 								{item}
 								<img src={getStatusIcon(item)} alt="severity indicator" />
 							</div>
@@ -193,4 +208,19 @@ class AlertsFilter extends Component {
 	}
 }
 
-export default AlertsFilter;
+AlertsFilter.propTypes = {
+	fetchFilteredAlerts: PropTypes.func.isRequired,
+	alerts: PropTypes.array.isRequired
+};
+
+const mapStateToProps = (state) => ({
+	alerts: state.alerts.items,
+	loading: state.alerts.loading,
+	page: state.alerts.page,
+	error: state.alerts.error
+});
+
+export default connect(
+	mapStateToProps,
+	{ fetchFilteredAlerts }
+)(AlertsFilter);
