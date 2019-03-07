@@ -59,6 +59,7 @@ class FaultySensor extends Component {
 	);
 
 	render() {
+		console.log('this.props.match.params.id', this.props.match.params.id)
 		const { error, loading, sensor } = this.props;
 		if (loading) {
 			return <Loader />;
