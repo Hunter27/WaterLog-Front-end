@@ -116,36 +116,48 @@ button {
 	display: none;
 }
 
+.status{
+	display:none;
+}
+
 @media screen and (min-width: 700px) {
 	body {
 		background-color:$background-color;
 	}
 
-	//TODO: implementing deskop designs
 	/* **************** Home screen wastage ************************** */
 	.wastage-tank-wrapper {
 		display: flex;
-		//width: 80%;
-		margin: 0 auto;
+	  margin: 0 auto;
 	}
+
   .tank img {
 		height: 138px;
 		width: 100px;
 	}
+
 	.tank-container {
     flex: 4;
 	}
 
+	.alerts-header{
+		display: none;
+	}
+
+  .status{
+		display:block;
+	}
+	
 	.tabcontent{
 		width:80%;
 		margin:0px auto;
 	}
 
 	.map-icon-div-layer2{
-
-		left:80%;
+    left:80%;
 		position:absolute;
 	}
+
 	.tank-wrapper {
 		display: flex;
 		flex-direction: column;
@@ -153,8 +165,7 @@ button {
 	}
 
 	.wastage {
-		//margin: 20px auto;
-		padding: 20px;
+	  padding: 20px;
     flex: 1;
 	}
 
@@ -179,12 +190,8 @@ button {
 		margin: 0 auto;
 	}
 
-
-
-	.leaflet-container {
-		//height: 337px;
-		//width: 1121px;
-		margin: 0 auto;
+  .leaflet-container {
+	  margin: 0 auto;
 	}
 
 	.map-button-div-layer2 {
@@ -217,10 +224,12 @@ button {
 		color: $trout;
 		border-radius: 5px;
 	}
+
 	.usage-cost {
 		margin: 50px 130px;
 		overflow: hidden;
 	}
+
 	.usage-header {
 	margin-top: 80px;
    display: block;
