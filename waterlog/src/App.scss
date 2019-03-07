@@ -114,12 +114,6 @@ button {
 	body {
 		background-color: $wild-sand;
 	}
-}
-
-@media screen and (min-width: 1400px) {
-	body {
-		background-color: $background-color;
-	}
 
 	//TODO: implementing deskop designs
 	/* **************** Home screen wastage ************************** */
@@ -170,7 +164,61 @@ button {
 		width: 30px;
 		height: 30px;
 	}
-
+	.wastage-summary {
+		background-color: $bg-filter;
+		box-shadow: 1px 2px 4px 0 $black;
+		border-radius: 5px;
+		margin: 10px 300px;
+		padding: 5px;
+		color: $gull-gray;
+	}
+	.leak-info :first-child {
+		font-size: 25pt;
+	}
+	.leak-info :nth-child(2) {
+		margin: 5px;
+		font-weight: bold;
+		font-size: 20pt;
+	}
+	.leak-info :nth-child(3) {
+		margin: 0;
+		font-weight: bolder;
+		font-size: 30pt
+	}
+	
+	.leak-info :nth-child(4) {
+		margin: 0;
+		margin-bottom: 7px;
+		font-weight: bold;
+		font-size: 18pt;
+	}
+	
+	.leak-info :nth-child(5) {
+		margin: 0;
+		color: $gull-gray;
+		font-weight: bold;
+		font-size: 18pt;
+	}
+	
+	.leak-info :nth-child(6) {
+		margin-top: 0;
+		color: $gull-gray;
+		font-size: 14pt;
+	}
+	hr {
+		margin: auto;
+		width: 500px;
+	}
+	body {
+		background-color: #253238;
+		color: #f6f6f6;
+		text-align: center;
+		margin: 0;
+		padding: 0;
+		font-family: "Roboto", Helvetica, sans-serif ;
+	  }
+		
+	
 	/* **************** Filter page ************************** */
 	.filter-contents {
 		background-color: $bg-filter;
