@@ -22,6 +22,7 @@ class AlertComponent extends Component {
 	render() {
 		return (
 			<div>
+				<h1 className = "usage-header">Filter Alerts</h1>
 				{this.state.filterOpen ? (
 					<AlertsFilter close={this.toggleFilter} hist={this.props.history}/>
 				) : (

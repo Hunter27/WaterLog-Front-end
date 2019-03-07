@@ -110,7 +110,7 @@ class Usage extends Component {
     }
     
     return (
-      <div className="wastage">
+      <div className="usage-cost">
         <div className="graph-nav tab" id="cost-buttons">
           <button className={`btn-graph-nav tablinks ${this.state.display === "daily" ? "active" : ""}`}
             onClick={(e) => this.openGraph("daily")}
