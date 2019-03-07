@@ -45,7 +45,8 @@ class SegmentLeak extends Component {
 				if (res.ok) {
 					this.setState({
 						leakResolved: !this.state.leakResolved
-					});
+					}); 
+				 this.props.history.go(0); 
 				}
 			})
 			.catch((err) => {
