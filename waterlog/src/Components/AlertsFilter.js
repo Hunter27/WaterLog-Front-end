@@ -74,7 +74,7 @@ class AlertsFilter extends Component {
 			severity: this.state.severity
 		}
 
-		fetchFilteredAlerts();
+		fetchFilteredAlerts(criteria);
 		this.props.close();
 	};
 

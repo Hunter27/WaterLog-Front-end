@@ -9,6 +9,8 @@ import PumpButton from "./../Components/PumpButton";
 import GraphLine from "../Components/DailyTankGraph";
 import Error404 from './Error404Page';
 import Loader from './../Components/Loader';
+import Map from './../Components/Map';
+import { Globals } from './../Globals';
 
 class TankInformation extends Component {
   constructor(props) {
@@ -27,7 +29,13 @@ class TankInformation extends Component {
     this.setState({
       mapExpanded: !this.state.mapExpanded
     });
-  }
+	}
+	
+	segmentMap = (id) => (
+		<div className="segment-map">
+			<Map type={Globals.COMPONENT_TYPES.TANK} id={id} />
+		</div>
+	);
 
 	render() {
 		const { error, loading, level } = this.props;
@@ -54,17 +62,16 @@ class TankInformation extends Component {
 					? <p className="p-info">the tank is being overfilled</p>
 					: null}
 				{percentageLevel <= 5 ? <p className= "t-empty" >the tank is empty</p> : null}
-        <PumpButton id={this.state.id} />
-        <img
-          id="map-toggle"
-          src={
-            this.state.mapExpanded === false
-              ? "images/map_expand.png"
-              : "images/map_close.png"
-          }
-          alt="segment-map"
-          onClick={() => this.handleMapExpand()}
-        />
+				<PumpButton id={this.state.id} />
+				<img
+					id="map-toggle"
+					src={this.state.mapExpanded === false ?
+						'images/map_expand.png' :
+						'images/map_close.png'}
+					alt="segment-map"
+					onClick={() => this.handleMapExpand()}
+				/>
+				{this.state.mapExpanded ? this.segmentMap(this.state.id) : null}
         <GraphLine className="UsageTnk" id={this.state.id} />
       </div>
     );
