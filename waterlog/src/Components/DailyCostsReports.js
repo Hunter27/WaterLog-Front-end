@@ -15,7 +15,8 @@ const DailyCostsReports = (props) => {
 
   let forecast = [];
   for (let i = startX; i <= lastX; i = i + 3600) {
-    forecast.push(slope * i + yIntercept);
+    const value = parseFloat(slope * i + yIntercept).toFixed(2);
+    forecast.push(value < 0 ? 0 : value);
   }
 
   let data = {

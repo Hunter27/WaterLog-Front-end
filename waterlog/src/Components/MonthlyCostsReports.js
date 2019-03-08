@@ -3,8 +3,8 @@ import { Bar, defaults } from 'react-chartjs-2';
 
 const MonthlyCostsReports = (props) => {
   if (props.props.monthlyCost.dataPoints) {
-    var dataY = props.props.monthlyCost.dataPoints.map(a => Math.round(a.y));
-    const forecast = props.props.forecastMonthly;
+    var dataY = props.props.monthlyCost.dataPoints.map(a => parseFloat(a.y).toFixed(2));
+    const forecast = props.props.forecastMonthly.map(a => parseFloat(a).toFixed(2));
     var data = {
       labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
       datasets: [

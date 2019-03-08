@@ -26,21 +26,26 @@ class SegmentLeak extends Component {
 		this.setState({
 			mapExpanded: !this.state.mapExpanded
 		});
-	}
-
+	} 
 	handleResolveClick(id) {
-		var formData = new FormData();
+		var formData = new FormData(); 
 		formData.append('id', id);
-
-		fetch(`${process.env.REACT_APP_API_URL}/api/segmentleaks/resolveleaks`, {
-			method: 'POST',
-			body: formData
+		  return fetch(`${process.env.REACT_APP_API_URL}/api/segmentleaks/${this.props.match.params.id}`, {
+			method: "PUT",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+      }, 
+      body: JSON.stringify(formData), 
 		})
 			.then((res) => {
 				if (res.ok) {
 					this.setState({
 						leakResolved: !this.state.leakResolved
-					});
+					}); 
+				 this.props.history.go(0); 
 				}
 			})
 			.catch((err) => {
@@ -59,7 +64,7 @@ class SegmentLeak extends Component {
 	getSeverityClass = (severity) => severity.toLowerCase();
 
 	render() {
-		const { error, loading, segment } = this.props;
+		const { error, loading, segment } = this.props; 
 		if (loading) {
 			return <Loader />;
 		}
