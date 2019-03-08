@@ -17,7 +17,8 @@ class TankInformation extends Component {
     super(props);
     this.state = {
 			id: this.props.match.params.id,
-			pumpOn: true
+			pumpOn: true,
+			mapExpanded: false
     };
 	}
 	
