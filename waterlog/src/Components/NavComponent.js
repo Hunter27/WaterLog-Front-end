@@ -18,12 +18,8 @@ class NavComponent extends Component {
 			notifications: 0,
 			page: 1
 		};
-	}
-
-	componentDidMount() {
-		this.props.fetchAlerts(this.state.page);
-	}
-
+  }
+  
 	componentWillUnmount() {
 		clearInterval(this.timer);
 		this.timer = null;
