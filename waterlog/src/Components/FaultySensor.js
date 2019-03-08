@@ -15,7 +15,7 @@ class FaultySensor extends Component {
 		this.handleResolveClick = this.handleResolveClick.bind(this);
 		this.state = {
 			mapExpanded: false,
-			leakResolved: false
+			faultResolved: false
 		};
 	}
 
@@ -40,8 +40,9 @@ class FaultySensor extends Component {
 		}).then((res) => {
 			res.json();
 			this.setState({
-				leakResolved: !this.state.leakResolved
+				faultResolved: true
 			});
+			this.props.history.go(0);
 		});
 	}
 
@@ -59,12 +60,8 @@ class FaultySensor extends Component {
 	);
 
 	render() {
-		const {
-			error,
-			loading,
-			sensor
-		} = this.props;
-		
+		const { error, loading, sensor } = this.props;
+
 		if (loading) {
 			return <Loader />;
 		}
@@ -76,25 +73,21 @@ class FaultySensor extends Component {
 		}
 
 		const selectedSensor = sensor[0];
-		const {
-			status,
-			entityId,
-			date,
-			typeLitres
-		} = selectedSensor;
+		const { status, entityId, date, typeLitres } = selectedSensor;
 
 		const resolved = parseInt(status) === 1 ? true : false;
-    const sensorInfo = (
+		const sensorInfo = (
 			<div>
-				<img className="back-icon"
-					src='images/back_button.png'
+				<img
+					className="back-icon"
+					src="images/back_button.png"
 					alt="backButton"
-					onClick={() => this.props.history.push('/alert')} 
+					onClick={() => this.props.history.push('/alert')}
 				/>
 				<div>
-					<h2
-						className={!resolved ? 'sensor-unresolved' : 'sensor-resolved'}
-					>{resolved ? `Sensor ${entityId} was Faulty` : `Sensor ${entityId} is Faulty`}</h2>
+					<h2 className={!resolved ? 'sensor-unresolved' : 'sensor-resolved'}>
+						{resolved ? `Sensor ${entityId} was Faulty` : `Sensor ${entityId} is Faulty`}
+					</h2>
 					<p id="water-flow">
 						{0}% /{typeLitres.toFixed(1)}/hr water flow
 					</p>
@@ -114,7 +107,10 @@ class FaultySensor extends Component {
 					<div className="resolve">
 						<button
 							onClick={() => this.handleResolveClick(entityId)}
-							className={`resolve-button ${!this.state.leakResolved ? 'unresolved-leak' : 'resolved-leak'}`}
+							disabled={this.state.faultResolved}
+							className={`resolve-button ${!this.state.faultResolved
+								? 'unresolved-leak'
+								: 'resolved-leak'}`}
 						>
 							LOG RESOLVED ISSUE
 						</button>
@@ -125,7 +121,6 @@ class FaultySensor extends Component {
 				) : null}
 			</div>
 		);
-
 		return <div>{sensorInfo}</div>;
 	}
 }
