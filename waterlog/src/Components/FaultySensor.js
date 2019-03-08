@@ -30,7 +30,7 @@ class FaultySensor extends Component {
 	}
 
 	handleResolveClick(data) {
-		fetch(`${process.env.REACT_APP_API_URL}/api/monitors/${this.props.match.params.id}`, {
+		fetch(`${process.env.REACT_APP_API_URL}/api/SensorMonitor/resolveSensor/${this.props.match.params.id}`, {
 			method: 'PUT',
 			mode: 'cors',
 			cache: 'no-cache',
@@ -43,7 +43,7 @@ class FaultySensor extends Component {
 				leakResolved: !this.state.leakResolved
 			});
 		});
-	}S
+	}
 
 	segmentMap = (id) => (
 		<div className="segment-map">
