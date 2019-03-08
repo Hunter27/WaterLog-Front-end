@@ -15,12 +15,13 @@ class NavComponent extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			notifications: 0
+			notifications: 0,
+			page: 1
 		};
 	}
 
 	componentDidMount() {
-		this.props.fetchAlerts();
+		this.props.fetchAlerts(this.state.page);
 	}
 
 	componentWillUnmount() {
@@ -29,8 +30,7 @@ class NavComponent extends Component {
 	}
 
 	render() {
-		const { notif } = this.props;
-		
+
 		return (
 			<Router>
 				<div className="App">

@@ -219,8 +219,68 @@ button {
 		padding: 0;
 		font-family: "Roboto", Helvetica, sans-serif ;
 	  }
-		
+	  
 	
+	.tank-info {
+		padding-top: 20px;
+		.tank {
+			font-size: 20px;
+			font-weight: bold;
+			color: $blue;
+		}
+		.tank img {
+			height: 320px;
+			width:  245px;
+		}
+		.tank p:last-child {
+			color: $wild-sand;
+			bottom: 150px;
+		}
+	}
+	
+	.optimal {
+		margin: 0;
+		color: $trout;
+		margin-top: -65px;
+		padding-right: 150px;
+	}
+	
+	.p-status {
+		margin: 0;
+		color: $gull-gray;
+		padding-right: 150px;
+	}
+	
+	.p-info {
+		margin: 0;
+		color: $trout;
+		margin-top: -30px;
+		padding-left: 300px;
+	}	
+	.pump-button {
+		width: 150px;
+		height: 20px;
+		background-color: $blue;
+		border-radius: 2px;
+		margin: 10px  auto;
+		margin-top: 50px;
+	}
+	button {
+		width: 240px;
+		height: 40px;
+		border-radius: 5px;
+		text-transform: uppercase;
+		padding: 2px 10px;
+		border: none;
+		display: block;
+		font-size: 8px;
+	}
+	.tank p {
+		margin: 0;
+		color: white;
+		margin-top: 50px;
+		font-size: 20pt;
+	}
 	/* **************** Filter page ************************** */
 	.filter-contents {
 		background-color: $bg-filter;

@@ -6,10 +6,12 @@ import TankLevels from "./../Components/TankLevels";
 class HomeComponent extends Component {
   render() {
     return (
-      <div>
+      <div className="home">
         <MapComponent />
-        <Wastage />
-        <TankLevels />
+        <div className="wastage-tank-wrapper">
+          <Wastage />
+          <TankLevels/>
+        </div>
       </div>
     );
   }

@@ -30,7 +30,7 @@ class FaultySensor extends Component {
 	}
 
 	handleResolveClick(data) {
-		fetch(`${process.env.REACT_APP_API_URL}/api/monitors${this.props.match.params.id}`, {
+		fetch(`${process.env.REACT_APP_API_URL}/api/monitors/${this.props.match.params.id}`, {
 			method: 'PUT',
 			mode: 'cors',
 			cache: 'no-cache',
@@ -43,11 +43,11 @@ class FaultySensor extends Component {
 				leakResolved: !this.state.leakResolved
 			});
 		});
-	}
+	}S
 
-	segmentMap = (
-		<div className="sensor-map">
-			<Map type={Globals.COMPONENT_TYPES.SENSOR} id={parseInt(this.props.match.params.id)}/>
+	segmentMap = (id) => (
+		<div className="segment-map">
+			<Map type={Globals.COMPONENT_TYPES.SENSOR} id={id} />
 		</div>
 	);
 
@@ -59,7 +59,12 @@ class FaultySensor extends Component {
 	);
 
 	render() {
-		const { error, loading, sensor } = this.props;
+		const {
+			error,
+			loading,
+			sensor
+		} = this.props;
+		
 		if (loading) {
 			return <Loader />;
 		}
@@ -102,7 +107,7 @@ class FaultySensor extends Component {
 					onClick={() => this.handleMapExpand()}
 				/>
 				<hr />
-				{this.state.mapExpanded ? this.segmentMap : null}
+				{this.state.mapExpanded ? this.segmentMap(entityId) : null}
 				{resolved ? this.dateResolved(date) : null}
 				<SensorDiagram sensorId={entityId} status={resolved} />
 				{!resolved ? (
