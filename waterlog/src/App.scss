@@ -1,7 +1,6 @@
 @import './variables';
 @import './Stylesheets/Desktop/nav-bar';
 @import './Stylesheets/Desktop/segment-leaks';
-@import './Stylesheets/Desktop/tank-info';
 @import './Stylesheets/wastage';
 @import './Stylesheets/alerts';
 @import './Stylesheets/wastageSummary';
@@ -116,17 +115,67 @@ button {
 }
 
 
-@media screen and (min-width: 900px) {
+.usage-header {
+	display: none;
+}
+
+.status{
+	display:none;
+}
+
+@media screen and (min-width: 700px) {
+
 	body {
-		background-color: $background-color;
+		background-color:$background-color;
 	}
 
-	//TODO: implementing deskop designs
 	/* **************** Home screen wastage ************************** */
+	.wastage-tank-wrapper {
+		display: flex;
+	  margin: 0 auto;
+	}
+
+  .tank img {
+		height: 138px;
+		width: 100px;
+	}
+
+	.tank-container {
+    flex: 4;
+	}
+
+	.alerts-header{
+		display: none;
+	}
+
+  .status{
+		display:block;
+	}
+	
+	.tabcontent{
+		width:80%;
+		margin:0px auto;
+	}
+
+	.map-icon-div-layer2{
+    left:80%;
+		position:absolute;
+	}
+
+	.tank-wrapper {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+	}
+
 	.wastage {
-		width: 60%;
-		margin: 20px auto;
-		padding: 20px;
+	  padding: 20px;
+    flex: 1;
+	}
+
+	.home-text {
+		flex: 1;
+		height: 20px;
 	}
 
 	.wastage>p:first-child {
@@ -140,14 +189,13 @@ button {
 	}
 
 	/* **************** Home page Map ************************** */
-	.map-main-div {
-		width: 100%;
+	.home {
+		width: 90%;
+		margin: 0 auto;
 	}
 
-	.leaflet-container {
-		height: 500px;
-		width: 100%;
-		margin: 0 auto;
+  .leaflet-container {
+	  margin: 0 auto;
 	}
 
 	.map-button-div-layer2 {
@@ -180,4 +228,18 @@ button {
 		color: $trout;
 		border-radius: 5px;
 	}
+
+	.usage-cost {
+	  overflow: hidden;
+	}
+
+	.usage-header {
+	  margin-top: 80px;
+    display: block;
+	}
+
+	.tank-info .tank img {
+    height: 200px;
+    width: 148px;
+  }
 }

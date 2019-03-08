@@ -3,8 +3,9 @@ import Usage from "./../Components/Usage";
 class UsageComponent extends Component {
   render() {
     return (
-      <div>  
-        <Usage/>
+      <div>
+        <h1 className = "usage-header">Water Usage & Cost</h1>
+        <Usage />
       </div>
     );
   }
