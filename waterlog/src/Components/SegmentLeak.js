@@ -7,6 +7,9 @@ import Loader from './Loader';
 import Error404 from './Error404';
 import Map from './Map';
 import { Globals } from '../Globals';
+import back_button from "./../images/back_button.png"
+import map_expand from './../images/map_expand.png'
+import map_close from './../images/map_close.png'
 
 class SegmentLeak extends Component {
 	constructor(props) {
@@ -90,7 +93,7 @@ class SegmentLeak extends Component {
 		const leakInfo = (
 			<div>
         <img className = "back-icon" 
-					src = 'images/back_button.png'
+					src = {back_button}
 					alt = "backButton"
 					onClick={() => this.props.history.push('/alert') }
 				/>
@@ -111,12 +114,12 @@ class SegmentLeak extends Component {
 					<p> no leak would be 0&#x2113; per hour</p>
 				</div>
 				<img
-					id="map-toggle"
-					src={this.state.mapExpanded === false ?
-						'images/map_expand.png' :
-						'images/map_close.png'}
-					alt="segment-map"
-					onClick={() => this.handleMapExpand()}
+				id="map-toggle"
+				src={this.state.mapExpanded === false ?
+					map_expand :
+					map_close}
+				alt="segment-map"
+				onClick={() => this.handleMapExpand()}
 				/>
 				<hr />
 				{this.state.mapExpanded ? this.segmentMap : null}
