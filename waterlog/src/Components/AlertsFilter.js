@@ -127,7 +127,7 @@ class AlertsFilter extends Component {
             <tr className={`${this.state.segmentFilterOpen ? 'no-line' : ''}`}
               onClick={() => { this.setState({ segmentFilterOpen: !this.state.segmentFilterOpen }); }}>
               <td className="checkbox-cell">
-                <input type="checkbox" checked={this.state.segmentFilterOpen}/>
+                <input type="checkbox" checked={this.state.segmentFilterOpen} />
               </td>
               <td>Segment</td>
             </tr>
@@ -137,7 +137,7 @@ class AlertsFilter extends Component {
                   <input
                     type="number"
                     ref={(input) => (this.segmentInput = input)}
-                    onChange={(event) => {this.setState({segmentNumber: parseInt(event.target.value)})}}
+                    onChange={(event) => { this.setState({ segmentNumber: parseInt(event.target.value) }) }}
                     defaultValue="Type a number"
                     placeholder="Type a number"
                     min="0"
@@ -170,7 +170,7 @@ class AlertsFilter extends Component {
                   <input
                     type="number"
                     ref={(input) => (this.segmentInput = input)}
-                    onChange={(event) => {this.setState({sensorNumber: parseInt(event.target.value)})}}
+                    onChange={(event) => { this.setState({ sensorNumber: parseInt(event.target.value) }) }}
                     defaultValue="Type a number"
                     placeholder="Type a number"
                     min="0"
@@ -213,15 +213,15 @@ class AlertsFilter extends Component {
                   Clear all
                 </button>
                 <div className="filter-alert-button-div">
-                  <button className="left" onClick={()=>{
+                  <button className="left" onClick={() => {
                     this.resetFilter();
                     this.props.close();
-                    }}>
+                  }}>
                     Cancel
                   </button>
-                  <button className="right" onClick={()=>{
-                    this.submitFilter(); 
-                    }}>
+                  <button className="right" onClick={() => {
+                    this.submitFilter();
+                  }}>
                     Apply
                   </button>
                 </div>
