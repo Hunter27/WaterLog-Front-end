@@ -1,10 +1,9 @@
 .filter-contents {
-	background-color: $bg-filter;
-	box-shadow: 1px 2px 4px 0 $black;
 	margin: 20px;
 	padding: 10px;
 	color: $wild-sand;
 	border-radius: 5px;
+	text-align: center;
 
 	li,
 	ul {
@@ -18,29 +17,164 @@
 	ul {
 		margin: 0;
 	}
-}
+	table {
+		margin: auto auto;
+		border-collapse: collapse;
+	}
+	tr {
+		border-bottom: 2px solid $gull-gray;
+		font-weight: bold;
+		text-decoration: underline;
+		text-underline-position: under;
+	}
+	tr:last-child {
+		border-bottom: none;
+	}
+	tr.no-line {
+		border-bottom: none;
+	}
+	label.no-text-underline {
+		text-decoration: none;
+	}
+	td {
+		text-align: start;
+		cursor: pointer;
+	}
+	td.checkbox-cell {
+		width: 5px;
+		.hide-textbox {
+			display: none;
+		}
+	}
+	td.alert-filter-space {
+		padding-bottom: 10px;
+	}
+	td > div {
+		display: inline-block;
+		font-weight: normal;
+	}
+	div + .with-icon {
+		float: right;
+	}
 
-input[type=checkbox] {
-	color: $blue;
-	background-color: $blue;
+	.clicked {
+		font-weight: bold;
+	}
+	input[type=checkbox] {
+		-moz-appearance: none;
+		-webkit-appearance: none;
+		-o-appearance: none;
+		outline: none;
+		content: none;
+	}
+
+	input[type=checkbox]:before {
+		content: "\2714";
+		font-size: 20px;
+		color: transparent !important;
+		cursor: pointer;
+		width: 20px;
+		height: 20px;
+		border: 2px solid $blue;
+	}
+
+	input[type=checkbox]:checked:before {
+		color: $blue !important;
+	}
+	input[type=number] {
+		-webkit-appearance: none;
+	}
+	input[type=number] {
+		margin: auto 15%;
+		width: -webkit-fill-available;
+		background-color: transparent;
+		border: 1px solid $gull-gray;
+		color: $porcelain;
+		height: 20px;
+	}
+	input[type=number]:focus {
+		border: 1px solid $blue;
+	}
+
+	input[type=radio]:checked,
+	input[type=radio] {
+		-moz-appearance: none;
+		-webkit-appearance: none;
+		-o-appearance: none;
+		outline: none;
+		content: none;
+	}
+	input[type=radio]:checked + label,
+	input[type=radio] + label {
+		position: relative;
+		padding-left: 28px;
+		cursor: pointer;
+		line-height: 20px;
+		display: inline-block;
+		color: $gull-gray;
+	}
+	input[type=radio]:checked + label:before,
+	input[type=radio] + label:before {
+		content: '';
+		position: absolute;
+		left: -8.25px;
+		top: -3.04px;
+		width: 25px;
+		height: 25px;
+		border: 2px solid $blue;
+		border-radius: 100%;
+		background: transparent;
+	}
+	input[type=radio]:checked + label:after,
+	input[type=radio] + label:after {
+		content: '';
+		width: 20px;
+		height: 20px;
+		background: $blue;
+		position: absolute;
+		top: 2.5px;
+		left: -3.5px;
+		border-radius: 100%;
+		-webkit-transition: all 0.2s ease;
+		transition: all 0.2s ease;
+	}
+	input[type=radio] + label:after {
+		opacity: 0;
+		-webkit-transform: scale(0);
+		transform: scale(0);
+	}
+	input[type=radio]:checked + label:after {
+		opacity: 1;
+		-webkit-transform: scale(1);
+		transform: scale(1);
+	}
 }
 
 #reset-filter {
 	background-color: $wild-sand;
+	font-weight: bold;
 	text-transform: capitalize;
 	width: 100px;
+	height: 26px;
 	display: block;
 	margin: 5px auto;
 	border: none;
 }
 
-#submit-filter {
-	background-color: $blue;
-	font-weight: bold;
-	width: 120px;
-	display: block;
-	margin: 25px auto;
-	border: none;
+.filter-alert-button-div {
+	button {
+		width: 100px;
+		height: 30px;
+		display: inline-block;
+		margin: 25px 5px;
+		border: none;
+	}
+	button.right {
+		background-color: $blue;
+	}
+	button.left {
+		background-color: $gull-gray;
+	}
 }
 
 #moreAlerts {
