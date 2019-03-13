@@ -81,7 +81,7 @@ class AlertsFilter extends Component {
       sensorNumber: this.state.sensorNumber,
       severity: this.state.severity
     };
-    fetchFilteredAlerts(criteria);
+    this.props.fetchFilteredAlerts(criteria);
     this.props.close();
   };
 
@@ -209,17 +209,22 @@ class AlertsFilter extends Component {
             </tr>
             <tr>
               <td colSpan="2">
-                <button id="reset-filter" onClick={this.resetFilter}>
+                <button id="reset-filter" onClick={() => {
+                  this.resetFilter();
+                  this.props.filtered(false);
+                }}>
                   Clear all
                 </button>
                 <div className="filter-alert-button-div">
                   <button className="left" onClick={() => {
                     this.resetFilter();
+                    this.props.filtered(false);
                     this.props.close();
                   }}>
                     Cancel
                   </button>
                   <button className="right" onClick={() => {
+                    this.props.filtered(true);
                     this.submitFilter();
                   }}>
                     Apply
