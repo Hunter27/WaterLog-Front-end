@@ -42,19 +42,25 @@ class AlertsFilter extends Component {
     switch (severityLevel) {
       case 1: //low
         this.severityLevels.low.selected = true;
+        this.setState({
+          severity: "low"
+        });
         break;
       case 2: //medium
         this.severityLevels.medium.selected = true;
+        this.setState({
+          severity: "medium"
+        });
         break;
       case 3: //high
         this.severityLevels.high.selected = true;
+        this.setState({
+          severity: "high"
+        });
         break;
       default:
         break;
     }
-    this.setState({
-      severity: severityLevel
-    });
   };
 
   resetFilter = () => {
@@ -78,7 +84,7 @@ class AlertsFilter extends Component {
     const criteria = {
       segment: this.state.segmentNumber,
       sensorType: this.state.sensorType,
-      sensorNumber: this.state.sensorNumber,
+      sensorId: this.state.sensorNumber,
       severity: this.state.severity
     };
     this.props.fetchFilteredAlerts(criteria);
@@ -154,9 +160,7 @@ class AlertsFilter extends Component {
             </tr>
             {
               this.state.sensorFilterOpen ? (
-                <div hidden={true}>
-                  {this.radioRow("1", "tank", "tank sensor")}
-                </ div>
+                  this.radioRow("1", "tank", "tank sensor")
               ) : null
             }
             {
