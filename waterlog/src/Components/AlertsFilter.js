@@ -3,224 +3,247 @@ import { getStatusIcon } from '../utils';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchFilteredAlerts } from '../actions/FilterAction';
-import Loader from './Loader';
 
 class AlertsFilter extends Component {
-	constructor(props) {
-		super(props);
+  constructor(props) {
+    super(props);
 
-		this.state = {
-			segmentFilterOpen: false,
-			sensorFilterOpen: false,
-			severityFilterOpen: false,
-			segmentNumber: 0,
-			sensorType: 0,
-			sensorNumber: 0,
-			severity: 0
-		};
+    this.state = {
+      segmentFilterOpen: false,
+      sensorFilterOpen: false,
+      severityFilterOpen: false,
+      severitySelected: false,
+      segmentNumber: 0,
+      sensorType: 0,
+      sensorNumber: 0,
+      severity: 0
+    };
 
-		this.resetFilter = this.resetFilter.bind(this);
-		this.submitFilter = this.submitFilter.bind(this);
-		this.handleSeverityClick = this.handleSeverityClick.bind(this);
-	}
+    this.severityLevels = {
+      low: { text: "low", number: 1, selected: false },
+      medium: { text: "medium", number: 2, selected: false },
+      high: { text: "high", number: 3, selected: false }
+    }
 
-	severity = [ 'low', 'medium', 'high' ];
+    this.segmentInput = {};
+    this.pipeSensorInput = {};
+    this.tankSensorInput = {};
+    this.resetFilter = this.resetFilter.bind(this);
+    this.submitFilter = this.submitFilter.bind(this);
+    this.handleSeverityClick = this.handleSeverityClick.bind(this);
+    this.radioRow = this.radioRow.bind(this);
+    this.severityRow = this.severityRow.bind(this);
+  }
 
-	handleSeverityClick = (severityLevel) => {
-		this.setState({
-			severity: severityLevel
-		});
-	};
+  handleSeverityClick = (severityLevel) => {
+    this.severityLevels.low.selected = false;
+    this.severityLevels.medium.selected = false;
+    this.severityLevels.high.selected = false;
+    switch (severityLevel) {
+      case 1: //low
+        this.severityLevels.low.selected = true;
+        break;
+      case 2: //medium
+        this.severityLevels.medium.selected = true;
+        break;
+      case 3: //high
+        this.severityLevels.high.selected = true;
+        break;
+      default:
+        break;
+    }
+    this.setState({
+      severity: severityLevel
+    });
+  };
 
-	resetFilter = () => {
-		this.segmentCheckbox.checked = false;
-		this.sensorCheckbox.checked = false;
-		this.severityCheckbox.checked = false;
+  resetFilter = () => {
+    this.severityLevels.low.selected = false;
+    this.severityLevels.medium.selected = false;
+    this.severityLevels.high.selected = false;
+    this.setState({
+      segmentFilterOpen: false,
+      sensorFilterOpen: false,
+      severityFilterOpen: false,
+      sensorClicked: false,
+      sensorClicked: false,
+      segmentNumber: 0,
+      sensorType: 0,
+      sensorNumber: 0,
+      severity: 0
+    });
+  };
 
-		this.setState({
-			segmentFilterOpen: false,
-			sensorFilterOpen: false,
-			severityFilterOpen: false,
-			segmentNumber: 0,
-			sensorType: 0,
-			sensorNumber: 0,
-			severity: 0
-		});
-	};
+  submitFilter = () => {
+    const criteria = {
+      segment: this.state.segmentNumber,
+      sensorType: this.state.sensorType,
+      sensorNumber: this.state.sensorNumber,
+      severity: this.state.severity
+    };
+    fetchFilteredAlerts(criteria);
+    this.props.close();
+  };
 
-	submitFilter = () => {
-		if (this.state.segmentFilterOpen) {
-			this.setState({
-				segmentNumber: parseInt(this.segmentInput.value)
-			});
-		}
+  radioRow(value, id, label) {
+    return (
+      <tr className="no-line">
+        <td className="checkbox-cell"></td>
+        <td className="alert-filter-space">
+          <input
+            type="radio"
+            value={value}
+            id={id}
+            name="sensor"
+            onChange={(e) => { this.setState({ sensorType: parseInt(e.target.value) }); }}
+          />
+          <label className="no-text-underline" for={id}>{label}</label>
+        </td>
+      </tr>
+    )
+  }
 
-		if (this.state.sensorFilterOpen) {
-			if (this.state.sensorType === 1)
-				this.setState({
-					sensorNumber: parseInt(this.pipeSensorInput.value)
-				});
-
-			if (this.state.sensorType === 2)
-				this.setState({
-					sensorNumber: parseInt(this.tankSensorInput.value)
-				});
-		}
-
-		const criteria = {
-			segment: this.state.segmentNumber,
-			sensorType: this.state.sensorType,
-			sensorNumber: this.state.sensorNumber,
-			severity: this.state.severity
-		}
-
-		fetchFilteredAlerts(criteria);
-		this.props.close();
-	};
-
-	render() {
-		return (
-			<div>
-				<h1 className="alerts-header">Alerts Filter</h1>
-				<div className="filter-contents">
-					<div>
-						<input
-							type="checkbox"
-							ref={(cb) => (this.segmentCheckbox = cb)}
-							onChange={() => {
-								this.setState({ segmentFilterOpen: !this.state.segmentFilterOpen });
-							}}
-							id="segment-filter"
-							name="segment-filter"
-						/>
-						<label for="segment-filter">Segment</label>
-					</div>
-					{this.state.segmentFilterOpen ? (
-						<input
-							type="number"
-							ref={(input) => (this.segmentInput = input)}
-							defaultValue="0"
-							placeholder="Type a number"
-							min="0"
-							max="10"
-						/>
-					) : null}
-					<hr />
-					<div>
-						<div>
-							<input
-								type="checkbox"
-								ref={(cb) => (this.sensorCheckbox = cb)}
-								onChange={() => {
-									this.setState({ sensorFilterOpen: !this.state.sensorFilterOpen });
-								}}
-								id="sensor-filter"
-								name=""
-								value="sensor-filter"
-							/>
-							<label for="sensor-filter">Sensor</label>
-						</div>
-						{this.state.sensorFilterOpen ? (
-							<ul>
-								<li>
-									<div>
-										<input
-											type="radio"
-											id="tank-filter"
-											name="tank-pipe-filter"
-											value="2"
-											onChange={(e) => {
-												this.setState({ sensorType: parseInt(e.target.value) });
-											}}
-										/>
-										<label for="tank-filter">tank sensor</label>
-									</div>
-									{this.state.sensorType === 2 ? (
-										<input
-											type="number"
-											ref={(input) => (this.tankSensorInput = input)}
-											defaultValue="0"
-											placeholder="Type a number"
-											min="0"
-											max="10"
-										/>
-									) : null}
-								</li>
-								<li>
-									<div>
-										<input
-											type="radio"
-											id="pipe-filter"
-											name="tank-pipe-filter"
-											value="1"
-											onChange={(e) => {
-												this.setState({ sensorType: parseInt(e.target.value) });
-											}}
-										/>
-										<label for="pipe-filter">pipe sensor</label>
-									</div>
-									{this.state.sensorType === 1 ? (
-										<input
-											type="number"
-											ref={(input) => (this.pipeSensorInput = input)}
-											defaultValue="0"
-											placeholder="Type a number"
-											min="0"
-											max="10"
-										/>
-									) : null}
-								</li>
-							</ul>
-						) : null}
-					</div>
-					<hr />
-					<div>
-						<input
-							type="checkbox"
-							ref={(cb) => (this.severityCheckbox = cb)}
-							id="severity-filter"
-							name="severity-filter"
-							onChange={() => {
-								this.setState({ severityFilterOpen: !this.state.severityFilterOpen });
-							}}
-						/>
-						<label for="severity-filter">Severity</label>
-					</div>
-					{this.state.severityFilterOpen ? (
-						this.severity.map((item, index) => (
-							<div onClick={() => this.handleSeverityClick(index + 1)}
-								className="severity-selector" key={index}>
-								{item}
-								<img src={getStatusIcon(item)} alt="severity indicator" />
-							</div>
-						))
-					) : null}
-					<hr />
-					<button id="reset-filter" onClick={this.resetFilter}>
-						Clear All
-					</button>
-					<button id="submit-filter" onClick={this.submitFilter}>
-						DONE
-					</button>
-				</div>
-			</div>
-		);
-	}
+  severityRow(itemText, itemNumber, selected, line) {
+    return (
+      <tr
+        className={line ? "" : "no-line"}
+        onClick={() => {
+          this.handleSeverityClick(itemNumber);
+        }}>
+        <td className="checkbox-cell"></td>
+        <td>
+          <div className={`${selected ? "clicked" : ""}`}>{itemText}</div>
+          <div className="with-icon"><img src={getStatusIcon(itemText)} /></div>
+        </td>
+      </tr>
+    )
+  }
+  render() {
+    return (
+      <div>
+        <h1 className="alerts-header">Alerts Filter</h1>
+        <div className="filter-contents">
+          <table>
+            <tr className={`${this.state.segmentFilterOpen ? 'no-line' : ''}`}
+              onClick={() => { this.setState({ segmentFilterOpen: !this.state.segmentFilterOpen }); }}>
+              <td className="checkbox-cell">
+                <input type="checkbox" checked={this.state.segmentFilterOpen}/>
+              </td>
+              <td>Segment</td>
+            </tr>
+            {this.state.segmentFilterOpen ? (
+              <tr>
+                <td colSpan="2">
+                  <input
+                    type="number"
+                    ref={(input) => (this.segmentInput = input)}
+                    onChange={(event) => {this.setState({segmentNumber: parseInt(event.target.value)})}}
+                    defaultValue="Type a number"
+                    placeholder="Type a number"
+                    min="0"
+                    max="10"
+                  />
+                </td>
+              </tr>
+            ) : null
+            }
+            <tr className={`${this.state.sensorFilterOpen ? 'no-line' : ''}`}
+              onClick={() => { this.setState({ sensorFilterOpen: !this.state.sensorFilterOpen }) }}>
+              <td className="checkbox-cell"><input type="checkbox" checked={this.state.sensorFilterOpen} /></td>
+              <td>Sensor</td>
+            </tr>
+            {
+              this.state.sensorFilterOpen ? (
+                <div hidden={true}>
+                  {this.radioRow("1", "tank", "tank sensor")}
+                </ div>
+              ) : null
+            }
+            {
+              this.state.sensorFilterOpen ? (
+                this.radioRow("2", "pipe", "pipe sensor")
+              ) : null
+            }
+            {this.state.sensorFilterOpen ? (
+              <tr>
+                <td colSpan="2">
+                  <input
+                    type="number"
+                    ref={(input) => (this.segmentInput = input)}
+                    onChange={(event) => {this.setState({sensorNumber: parseInt(event.target.value)})}}
+                    defaultValue="Type a number"
+                    placeholder="Type a number"
+                    min="0"
+                    max="10"
+                  />
+                </td>
+              </tr>
+            ) : null
+            }
+            <tr className={`${this.state.severityFilterOpen ? 'no-line' : ''}`}
+              onClick={() => { this.setState({ severityFilterOpen: !this.state.severityFilterOpen }) }}>
+              <td className="checkbox-cell"><input type="checkbox" checked={this.state.severityFilterOpen} /></td>
+              <td>Severity</td>
+            </tr>
+            {
+              this.state.severityFilterOpen ? (
+                <>
+                  {(() => {
+                    const high = this.severityLevels.high;
+                    return this.severityRow(high.text, high.number, high.selected);
+                  })()}
+                  {(() => {
+                    const medium = this.severityLevels.medium;
+                    return this.severityRow(medium.text, medium.number, medium.selected);
+                  })()}
+                  {(() => {
+                    const low = this.severityLevels.low;
+                    return this.severityRow(low.text, low.number, low.selected, true);
+                  })()}
+                </>
+              ) : null
+            }
+            <tr hidden={true}>
+              <td className="checkbox-cell"><input type="checkbox" /></td>
+              <td>Tank</td>
+            </tr>
+            <tr>
+              <td colSpan="2">
+                <button id="reset-filter" onClick={this.resetFilter}>
+                  Clear all
+                </button>
+                <div className="filter-alert-button-div">
+                  <button className="left" onClick={()=>{
+                    this.resetFilter();
+                    this.props.close();
+                    }}>
+                    Cancel
+                  </button>
+                  <button className="right" onClick={()=>{
+                    this.submitFilter(); 
+                    }}>
+                    Apply
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    );
+  }
 }
 
 AlertsFilter.propTypes = {
-	fetchFilteredAlerts: PropTypes.func.isRequired,
-	alerts: PropTypes.array.isRequired
+  fetchFilteredAlerts: PropTypes.func.isRequired,
+  alerts: PropTypes.array.isRequired
 };
 
 const mapStateToProps = (state) => ({
-	alerts: state.alerts.items,
-	loading: state.alerts.loading,
-	page: state.alerts.page,
-	error: state.alerts.error
+  alerts: state.alerts.items,
+  loading: state.alerts.loading,
+  page: state.alerts.page,
+  error: state.alerts.error
 });
 
-export default connect(
-	mapStateToProps,
-	{ fetchFilteredAlerts }
-)(AlertsFilter);
+export default connect(mapStateToProps, { fetchFilteredAlerts })(AlertsFilter);
