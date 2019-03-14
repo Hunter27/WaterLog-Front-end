@@ -5,7 +5,11 @@ import { fetchAlerts } from '../actions/AlertsAction';
 import { fetchFilteredAlerts } from '../actions/FilterAction';
 import Loader from './Loader';
 import Error404 from './Error404';
-import { formatDate, getStatusIcon } from './../utils';
+import { 
+  formatDate, 
+  getStatusIcon, 
+  entityNameNumberToString
+ } from './../utils';
 
 class AlertTableComponent extends Component {
   constructor(props) {
@@ -67,17 +71,17 @@ class AlertTableComponent extends Component {
               return <tr
                 key={index}
                 className={`table-row ${parseInt(alert.status) === 2 ? 'table-row-unresolved' : ''}`}
-                onClick={() => (hist.push(`alert/${alert.entityName}/${alert.entityId}/${alert.date}`))}
+                onClick={() => (hist.push(`alert/${entityNameNumberToString(alert.entityName)}/${alert.entityId}/${alert.date}`))}
               >
                 <td className="event-date">{formatDate(alert.date)}</td>
-                <td>{`${alert.entityName.toUpperCase()} ${alert.entityId} ${alert.entityType.toUpperCase()}`}</td>
+                <td>{`${entityNameNumberToString(alert.entityName).toUpperCase()} ${alert.entityId} ${alert.entityType.toUpperCase()}`}</td>
                 <td>
-                  {alert.entityName === 'Segment'
+                  {entityNameNumberToString(alert.entityName).toLowerCase() === 'segment'
                     ? `R${parseInt(alert.cost).toFixed(2)}/hr`
                     : null}
                 </td>
                 <td>
-                  {alert.entityName === 'Segment' ? (
+                  {entityNameNumberToString(alert.entityName).toLowerCase() === 'segment' ? (
                     <img alt="severity indicator" src={getStatusIcon(alert.severity)} className="severity-indicator" />
                   ) : (
                       null
