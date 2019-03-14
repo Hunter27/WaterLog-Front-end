@@ -266,3 +266,16 @@ export const mapOptions = {
   heatBackgroundConst: heatBackgroundConst,
   rectangleBounds: [southWest.map((e) => e / heatBackgroundConst), northEast.map((e) => e * heatBackgroundConst)]
 };
+
+export function entityNameNumberToString(number){
+  switch(number){
+    case 1:
+      return "Segment";
+    case 2:
+      return "Sensor";
+    case 3:
+      return "Tank";
+    default:
+      return "";
+  }
+}
