@@ -19,6 +19,9 @@ class DailyTankGraph extends Component {
     this.openGraph("day");
     this.props.fetchTankGraphDaily(this.props.id);
     this.props.fetchPlaceholder();
+    setInterval(() => {
+      this.props.fetchTankGraphDaily(this.props.id);
+    }, 2000);
     ;
   }
 
@@ -38,7 +41,7 @@ class DailyTankGraph extends Component {
     if (error) {
       return <Error404 />;
     }
-    if (loading) {
+    if (loading && dailytankgraph.lenght === 0) {
       return <Loader />;
     }
 
