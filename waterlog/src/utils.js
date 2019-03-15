@@ -47,11 +47,11 @@ export const formatDate = (date) => {
 
 export const mapDataTime = (myData) => {
   let index = [];
-  let dataY = new Array(24).fill(null);
+  let dataY = new Array(24).fill(0);
   myData.map(d => {
     index.push(new Date(d.x).getHours());
   });
-  index.map((i, position) => dataY[i] = myData[position].y)
+  index.map((i, position) => dataY[i] = myData[position].y === "NaN" ? 0: myData[position].y)
   return dataY;
 }
 
