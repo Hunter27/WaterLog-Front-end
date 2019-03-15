@@ -76,6 +76,7 @@ class MapComponent extends Component {
             heatView={this.state.heatView}
             heatIcons={heatPoints}
             icons={this.state.iconState}
+            centerPosition={this.props.centerPosition}
             focus={{
               type: this.props.type ? this.props.type : 0,
               id: this.props.id ? this.props.id : 0
