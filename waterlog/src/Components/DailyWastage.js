@@ -8,6 +8,7 @@ const DailyWastageComponent = (props) => {
   var myData = props.props.dailyWaste.dataPoints;
   let dataY = mapDataTime(myData); 
   var sum = dataY.reduce((a, b) => a + b, 0); 
+  dataY = dataY.fill(null,(new Date(Date.now())).getHours() + 1);
   var data = {
     labels: labelX,
     datasets: [
