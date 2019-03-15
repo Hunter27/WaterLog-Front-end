@@ -51,7 +51,8 @@ export const mapDataTime = (myData) => {
   myData.map(d => {
     index.push(new Date(d.x).getHours());
   });
-  index.map((i, position) => dataY[i] = myData[position].y === "NaN" ? 0: myData[position].y)
+  index.map((i, position) => dataY[i] = (myData[position].y === "NaN" || typeof myData[position].y === "string") ? 0: myData[position].y)
+  dataY = dataY.fill(null,(new Date(Date.now())).getHours() + 1);
   return dataY;
 }
 
