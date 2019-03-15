@@ -71,7 +71,10 @@ class AlertTableComponent extends Component {
               return <tr
                 key={index}
                 className={`table-row ${parseInt(alert.status) === 2 ? 'table-row-unresolved' : ''}`}
-                onClick={() => (hist.push(`alert/${entityNameNumberToString(alert.entityName)}/${alert.entityId}/${alert.date}`))}
+                onClick={() => {
+                  alert.entityName === 3? window.location = `/alert/tank/${alert.entityId}`:
+                  hist.push(`alert/${entityNameNumberToString(alert.entityName)}/${alert.entityId}/${alert.date}`)
+                }}
               >
                 <td className="event-date">{formatDate(alert.date)}</td>
                 <td>{`${entityNameNumberToString(alert.entityName).toUpperCase()} ${alert.entityId} ${alert.entityType.toUpperCase()}`}</td>

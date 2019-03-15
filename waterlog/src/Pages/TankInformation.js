@@ -26,7 +26,7 @@ class TankInformation extends Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchTankLevelById(this.state.id);
     setInterval(() => {
       this.props.fetchTankLevelById(this.state.id);
