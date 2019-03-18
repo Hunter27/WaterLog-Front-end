@@ -25,6 +25,7 @@ const DailyWastageComponent = (props) => {
   }
   var options = {
     defaultFontFamily: "Roboto",
+    maintainAspectRatio: false,
     scales: {
       xAxes: [{
         scaleLabel: {
@@ -65,8 +66,10 @@ const DailyWastageComponent = (props) => {
   defaults.global.legend.display = false;
   return (
     <div className="wastage-graph"> 
-      <div className="head"><b>R {(parseFloat(sum * Globals.WATER_COST).toFixed(2))}</b><b className="dailysubhead"> lost so far</b></div> 
+      <div className="head"><b>R {(parseFloat(sum * Globals.WATER_COST).toFixed(2))}</b><b className="dailysubhead"> lost so far</b></div>
+      <div className="line-container">
       <Line options={options} data={data} />
+      </div>
     </div>
   )
 }
