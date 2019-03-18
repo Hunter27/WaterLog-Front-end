@@ -104,7 +104,7 @@ export function generateMapTankIcons(
 ) {
   const defaultColor = simpleView ? options.colors.darkerColor : options.colors.lighterColor;
   if (!tanks || !tankSegments) {
-    return <div />;
+  return [<div />];
   }
   return tankSegments.map(tankSegment => {
     let point2 = tankSegment.point2;

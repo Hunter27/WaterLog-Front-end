@@ -12,9 +12,18 @@ import { selectedComponentIcon } from "../icons/MapIcons";
 import { Globals } from "../Globals";
 
 const components = Globals.COMPONENT_TYPES;
-const failSafeMarker = <Marker position={[-33.989400, 18.637909]} icon={selectedComponentIcon} />;
+const failSafeMarker ={
+  icon: <Marker
+    position={[-33.989400, 18.637909]}
+    icon={selectedComponentIcon}
+  />,
+  centerPosition: null
+};
 
 const generateHighlightIcon = (mapData, type, id) => {
+  if(!mapData || !type || !id){
+    return failSafeMarker;
+  }
   id = parseInt(id)
   const sensors = mapData.markers;
   const segments = mapData.segments;
@@ -79,7 +88,9 @@ class MapComponent extends Component {
   }
 
   render() {
-    const {icon, centerPosition} = generateHighlightIcon(this.props.mapsData, this.props.focus.type, this.props.focus.id);
+    const type = this.props.focus? this.props.focus.type : null;
+    const id = this.props.focus? this.props.focus.id : null;
+    const {icon, centerPosition} = generateHighlightIcon(this.props.mapsData,type,id);
     return (
       <div>
         <Map

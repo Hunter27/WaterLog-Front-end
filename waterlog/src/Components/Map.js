@@ -25,6 +25,7 @@ class MapComponent extends Component {
       const { pmapData } = this.props;
       let tankIcons = generateMapTankIcons(pmapData, this.state.simpleView);
       let mapIcons = generateMapIcons(pmapData, this.state.simpleView);
+
       this.setState({
         iconState: tankIcons.concat(mapIcons),
       });
