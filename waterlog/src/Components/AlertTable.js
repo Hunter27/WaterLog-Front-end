@@ -94,15 +94,7 @@ class AlertTableComponent extends Component {
 								>
 									<td className="event-date">{formatDate(alert.date)}</td>
 
-									<td
-										className={
-											entityNameNumberToString(alert.entityName).toLowerCase() === 'segment' ? (
-												'alert-row-message'
-											) : (
-												'empty'
-											)
-										}
-									>
+									<td className={'alert-row-message'}>
 										{formattedTime(alert.duration, alert.date, alert.status)}
 									</td>
 

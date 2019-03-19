@@ -8,10 +8,19 @@ import Error404 from './Error404';
 import Map from './Map';
 import { formatDate } from './../utils';
 import { Globals } from './../Globals';
-import back_button from "./../images/back_button.png"
-import map_expand from './../images/map_expand.png'
-import map_close from './../images/map_close.png'
+import back_button from './../images/back_button.png';
+import map_expand from './../images/map_expand.png';
+import map_close from './../images/map_close.png';
 
+function dateDifference(date1, date2) {
+	const dt1 = new Date(date1);
+	const dt2 = new Date(date2);
+	return Math.floor(
+		(Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) -
+			Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate())) /
+			(1000 * 60 * 60 * 24)
+	);
+}
 class FaultySensor extends Component {
 	constructor() {
 		super();
@@ -58,7 +67,7 @@ class FaultySensor extends Component {
 	dateResolved = (date) => (
 		<div className="date-resolved">
 			<h4>(fixed on {formatDate(Date.now())})</h4>
-			<small>took {date - Date.now()} days</small>
+			<small>took {dateDifference(date ,Date.now())} days</small>
 		</div>
 	);
 
@@ -97,12 +106,10 @@ class FaultySensor extends Component {
 					<small>(surrounding sensors have 100% waterflow)</small>
 				</div>
 				<img
-				 id="map-toggle"
-				 src={this.state.mapExpanded === false ?
-					 map_expand :
-					 map_close}
-				 alt="segment-map"
-				 onClick={() => this.handleMapExpand()}
+					id="map-toggle"
+					src={this.state.mapExpanded === false ? map_expand : map_close}
+					alt="segment-map"
+					onClick={() => this.handleMapExpand()}
 				/>
 				<hr />
 				{this.state.mapExpanded ? this.segmentMap(entityId) : null}
