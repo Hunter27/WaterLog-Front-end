@@ -121,3 +121,22 @@
 	height: 35x;
 	margin: 2px 2px;
 }
+
+@media screen and (min-width: 700px) {
+	.map-icon-button-div-layer2 {
+		text-align: right;
+	}
+
+	.map-icon-div-layer2 {
+		margin-right: 5%;
+		display: inline-block;
+		position: relative;
+	}
+
+	.map-button-div-layer2 {
+		position: relative;
+		margin-right: 5px;
+		display: inline-block;
+		width: 200px;
+	}
+}
