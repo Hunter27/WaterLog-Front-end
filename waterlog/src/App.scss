@@ -239,7 +239,7 @@ button {
 	.img-container {
 		display: inline-block;
 		width: 60%;
-		margin: 0 auto;
+		margin: 0 5%;
 	}
 
 	.alert-img {
@@ -263,7 +263,8 @@ button {
 
 	.usage-header {
 		margin-top: 80px;
-		display: block;
+    display: block;
+    text-align: center;
 	}
 
 	.tank-info .tank img {
