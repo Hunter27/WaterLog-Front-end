@@ -125,17 +125,17 @@ button {
 @media screen and (min-width: 700px) {
 	body {
 		background-color: $background-color;
-		text-align: unset;
+		text-align: center;
 	}
 
 	.line-container {
 		height: 300px;
 	}
-  /* **************** Home screen wastage ************************** */
-  .navicons {
-    margin: 0 5%;
-    text-align: center;
-  }
+	/* **************** Home screen wastage ************************** */
+	.navicons {
+		margin: 0 5%;
+		text-align: center;
+	}
 	.wastage-tank-wrapper {
 		display: inline-block;
 		margin: 0 auto;
@@ -148,13 +148,13 @@ button {
 		width: 100px;
 	}
 
-  .head {
-    font-size: 36px;
-  }
-  
-  .dailysubhead{
-    font-size: 36px;
-  }
+	.head {
+		font-size: 36px;
+	}
+
+	.dailysubhead {
+		font-size: 36px;
+	}
 
 	.tank-container {
 		flex: 4;
@@ -250,11 +250,14 @@ button {
 	/* **************** Filter page ************************** */
 	.filter-contents {
 		background-color: $bg-filter;
-		width: 60%;
-		margin: 20px;
-		padding: 10px;
-		color: $trout;
+		width: 600px;
+		margin: 0 auto;
 		border-radius: 5px;
+		box-shadow: 2px 1.5px 10px black;
+	}
+
+	.filter-alert-button-div {
+		margin: 0 18.5%;
 	}
 
 	.usage-cost {
@@ -263,8 +266,8 @@ button {
 
 	.usage-header {
 		margin-top: 80px;
-    display: block;
-    text-align: center;
+		display: block;
+		text-align: center;
 	}
 
 	.tank-info .tank img {
@@ -275,13 +278,12 @@ button {
 		font-size: 20px;
 	}
 	.tank p:nth-child(3) {
-    font-size: 20px;
-    bottom: 90px;
-  }
-  
+		font-size: 20px;
+		bottom: 90px;
+	}
 }
 
-@media screen and (min-width: 700px) and (max-width: 900px){
+@media screen and (min-width: 700px) and (max-width: 900px) {
 	.line-container {
 		height: 200px;
 	}
