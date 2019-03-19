@@ -91,3 +91,12 @@
 		color: $trout;
 	}
 }
+
+@media screen and (min-width: 700px){
+  .usage-cost{
+    margin: 0 25%;
+    box-shadow: 2px 1.5px 10px black;
+    text-align: center;
+    font-size: 24px;
+  }
+}
