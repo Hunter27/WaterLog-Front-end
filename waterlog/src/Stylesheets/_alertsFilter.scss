@@ -179,11 +179,17 @@
 
 #moreAlerts {
 	background-color: $blue;
+	padding: 2px 5px;
 	font-weight: bold;
 	width: 120px;
 	display: block;
 	margin: 0 auto 20px auto;
 	border: none;
+}
+#moreAlerts.loading-button {
+	background: $blue url(images/button-spinner.gif) no-repeat center right;
+	background-size: 50px;
+	width: 170px;
 }
 
 img {

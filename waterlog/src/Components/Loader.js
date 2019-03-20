@@ -1,4 +1,5 @@
 import React from "react";
+import buttonLoaderIcon from "../images/button-spinner.gif"
 
 const Loader = () => {
   return (
@@ -10,3 +11,13 @@ const Loader = () => {
   );
 };
 export default Loader;
+
+export function buttonLoader() {
+  return (
+    <img
+      className="loadingSize-on-loadmore"
+      src={buttonLoaderIcon}
+      alt="button loader"
+    />
+  );
+}
