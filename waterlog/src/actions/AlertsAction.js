@@ -30,12 +30,13 @@ export const fetchAlertsBegin = (load) => ({
   load: load
 });
 
-export const fetchAlertsSuccess = (alerts, id) => ({
+export const fetchAlertsSuccess = (alerts, id, load) => ({
   type: FETCH_ALERTS_SUCCESS,
   payload: {
     alerts,
     total: alerts.length,
-    page: id
+    page: id,
+    load: load
   }
 });
 
@@ -56,7 +57,7 @@ export const fetchAlerts = (id, loadMore) => dispatch => {
     .then(handleErrors)
     .then(res => res.json())
     .then(alerts => {
-      dispatch(fetchAlertsSuccess(alerts, id));
+      dispatch(fetchAlertsSuccess(alerts, id, loadMore));
     })
     .catch(error => dispatch(fetchAlertsFailure(error)));
 };

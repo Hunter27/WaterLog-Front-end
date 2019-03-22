@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchAlerts } from '../actions/AlertsAction';
 import { fetchFilteredAlerts } from '../actions/FilterAction';
-import Loader, { buttonLoader } from './Loader';
+import Loader from './Loader';
 import Error404 from './Error404';
 import {
   formatDate,
@@ -18,22 +18,32 @@ class AlertTableComponent extends Component {
     this.state = {
       ascending: false,
       page: 1,
-      total: this.props.total
+      total: null,
+      interval: null
     };
   }
   componentDidMount() {
     this.props.fetchAlerts(this.state.page, true);
-    setInterval(() => {
-      this.props.fetchAlerts(this.state.page);
+    let _interval = setInterval(() => {
+      if (!this.props.dataFiltered) {
+        this.props.fetchAlerts(1);
+      }
     }, 2000);
 
+    this.setState({
+      interval: _interval
+    })
+  }
+
+  componentWillUnmount(){
+    clearInterval(this.state.interval);
   }
   nextPage = async () => {
     this.setState({
       page: this.state.page + 1
     })
     await this.props.fetchAlerts(this.state.page + 1, true);
-    if (this.props.total == 0) {
+    if (this.props.total === 0) {
       this.setState({
         page: this.state.page - 1,
         total: this.props.total
@@ -42,12 +52,12 @@ class AlertTableComponent extends Component {
   };
 
   render() {
-    const { error, loading, alerts, hist, openFilter, f_alerts, f_loading, dataFiltered } = this.props;
+    const { error, loading, alerts, hist, openFilter, f_alerts, f_loading, dataFiltered, filterError } = this.props;
     let data = alerts;
     if (dataFiltered) {
       data = f_alerts;
     }
-    if (error) {
+    if (error || filterError) {
       return <Error404 />;
     }
     if ((loading || f_loading) && data.length < 1) {
@@ -61,7 +71,7 @@ class AlertTableComponent extends Component {
 
     const formattedTime = (Time, initialDate, status) => {
       const time = Time.split(':');
-      if (parseInt(status) == 1) {
+      if (parseInt(status) === 1) {
         const datetime = new Date(initialDate);
         datetime.setHours(datetime.getHours() + parseInt(time[0]));
         return 'resolved on ' + formatDate(datetime);
@@ -150,14 +160,17 @@ class AlertTableComponent extends Component {
             })}
           </tbody>
         </table>
-        {this.props.total === 0 ? ' ' :
+        {(this.state.total === 0 || dataFiltered)? ' ' :
           <button
             id="moreAlerts"
             className={loading ? "loading-button" : ''}
             onClick={this.nextPage}
           >
             Load More
-				</button>}
+        </button>}
+        {
+          alerts.length === 0 || (dataFiltered && f_alerts.length === 0)?'No Alerts': ''
+        }
       </div>
     );
   }
@@ -177,7 +190,9 @@ const mapStateToProps = (state) => ({
   loading: state.alerts.loading,
   page: state.alerts.page,
   error: state.alerts.error,
-  total: state.alerts.total
+  total: state.alerts.total,
+  changed: state.alerts.dataChange,
+  filterError: state.filteredAlerts.error
 });
 
 export default connect(mapStateToProps, { fetchAlerts, fetchFilteredAlerts })(AlertTableComponent);
