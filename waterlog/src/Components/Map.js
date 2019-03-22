@@ -25,6 +25,7 @@ class MapComponent extends Component {
       const { pmapData } = this.props;
       let tankIcons = generateMapTankIcons(pmapData, this.state.simpleView);
       let mapIcons = generateMapIcons(pmapData, this.state.simpleView);
+
       this.setState({
         iconState: tankIcons.concat(mapIcons),
       });
@@ -76,6 +77,7 @@ class MapComponent extends Component {
             heatView={this.state.heatView}
             heatIcons={heatPoints}
             icons={this.state.iconState}
+            centerPosition={this.props.centerPosition}
             focus={{
               type: this.props.type ? this.props.type : 0,
               id: this.props.id ? this.props.id : 0

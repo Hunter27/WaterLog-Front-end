@@ -7,8 +7,7 @@ const DailyWastageComponent = (props) => {
   var labelX = props.props.placeholder.map(a => (new Date(a).getHours() + ":00"));
   var myData = props.props.dailyWaste.dataPoints;
   let dataY = mapDataTime(myData); 
-  var sum = dataY.reduce((a, b) => a + b, 0); 
-  dataY = dataY.fill(null,(new Date(Date.now())).getHours() + 1);
+  var sum = dataY.reduce((a, b) => a + b); 
   var data = {
     labels: labelX,
     datasets: [
@@ -26,6 +25,7 @@ const DailyWastageComponent = (props) => {
   }
   var options = {
     defaultFontFamily: "Roboto",
+    maintainAspectRatio: false,
     scales: {
       xAxes: [{
         scaleLabel: {
@@ -66,8 +66,10 @@ const DailyWastageComponent = (props) => {
   defaults.global.legend.display = false;
   return (
     <div className="wastage-graph"> 
-      <div className="head"><b>R {(Math.round(sum * Globals.WATER_COST))}</b><b className="dailysubhead"> lost so far</b></div> 
+      <div className="head"><b>R {(parseFloat(sum * Globals.WATER_COST).toFixed(2))}</b><b className="dailysubhead"> lost so far</b></div>
+      <div className="line-container">
       <Line options={options} data={data} />
+      </div>
     </div>
   )
 }

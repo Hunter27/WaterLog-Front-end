@@ -21,10 +21,13 @@ class Wastage extends Component {
   }
   componentDidMount() {
     this.openGraph("daily");
-    this.props.fetchWastageMonthly();
-    this.props.fetchWastageDaily();
-    this.props.fetchWastageSeasonally();
-    this.props.fetchPlaceholder();
+    setInterval(() => {
+      this.props.fetchWastageMonthly();
+      this.props.fetchWastageDaily();
+      this.props.fetchWastageSeasonally();
+      this.props.fetchPlaceholder();
+    },2000)
+
   }
 
   openGraph = graphType => {

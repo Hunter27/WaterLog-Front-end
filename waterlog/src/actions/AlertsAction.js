@@ -1,78 +1,63 @@
 import {
-	FETCH_ALERTS_BEGIN,
-	FETCH_ALERTS_SUCCESS,
-	FETCH_ALERTS_FAILURE,
-	FETCH_FILTERED_ALERTS_BEGIN,
-	FETCH_FILTERED_ALERTS_SUCCESS,
-	FETCH_FILTERED_ALERTS_FAILURE,
-	GET_PAGE_NUMBER,
-	handleErrors
+  FETCH_ALERTS_BEGIN,
+  FETCH_ALERTS_SUCCESS,
+  FETCH_ALERTS_FAILURE,
+  FETCH_FILTERED_ALERTS_BEGIN,
+  FETCH_FILTERED_ALERTS_SUCCESS,
+  FETCH_FILTERED_ALERTS_FAILURE,
+  GET_PAGE_NUMBER,
+  handleErrors
 } from './Types';
 
 export const fetchFilteredAlertsBegin = () => ({
-	type: FETCH_FILTERED_ALERTS_BEGIN
+  type: FETCH_FILTERED_ALERTS_BEGIN
 });
 
 export const fetchFilteredAlertsSuccess = alerts => ({
-	type: FETCH_FILTERED_ALERTS_SUCCESS,
-	payload: { alerts }
+  type: FETCH_FILTERED_ALERTS_SUCCESS,
+  payload: { alerts }
 });
 
 export const fetchFilteredAlertsFailure = error => ({
-	type: FETCH_FILTERED_ALERTS_FAILURE,
-	payload: {
-		error: error.message
-	}
+  type: FETCH_FILTERED_ALERTS_FAILURE,
+  payload: {
+    error: error.message
+  }
 })
 
-export const fetchAlertsBegin = () => ({
-	type: FETCH_ALERTS_BEGIN
+export const fetchAlertsBegin = (load) => ({
+  type: FETCH_ALERTS_BEGIN,
+  load: load
 });
 
-export const fetchAlertsSuccess = alerts => ({
-	type: FETCH_ALERTS_SUCCESS,
-	payload: {
-		alerts,
-		total: alerts.filter(alert => alert.status === 2).length
-	}
+export const fetchAlertsSuccess = (alerts, id, load) => ({
+  type: FETCH_ALERTS_SUCCESS,
+  payload: {
+    alerts,
+    total: alerts.length,
+    page: id,
+    load: load
+  }
 });
 
 export const fetchAlertsFailure = error => ({
-	type: FETCH_ALERTS_FAILURE,
-	payload: {
-		error
-	}
+  type: FETCH_ALERTS_FAILURE,
+  payload: {
+    error
+  }
 });
 
 export const fetPageNumber = () => ({
-	type: GET_PAGE_NUMBER
+  type: GET_PAGE_NUMBER
 });
 
-export const fetchAlerts = (id) => dispatch => {
-
-	dispatch(fetchAlertsBegin());
-	fetch(`${process.env.REACT_APP_API_URL}/api/segmentevents/getalerts/` + id)
-		.then(handleErrors)
-		.then(res => res.json())
-		.then(alerts => {
-			dispatch(fetchAlertsSuccess(alerts));
-		})
-		.catch(error => dispatch(fetchAlertsFailure(error)));
+export const fetchAlerts = (id, loadMore) => dispatch => {
+  dispatch(fetchAlertsBegin(loadMore));
+  fetch(`${process.env.REACT_APP_API_URL}/api/segmentevents/getalerts/` + id)
+    .then(handleErrors)
+    .then(res => res.json())
+    .then(alerts => {
+      dispatch(fetchAlertsSuccess(alerts, id, loadMore));
+    })
+    .catch(error => dispatch(fetchAlertsFailure(error)));
 };
-
-export const fetchFilteredAlerts = (criteria) => dispatch => {
-	dispatch(fetchFilteredAlertsBegin());
-	console.log('criteria', `${process.env.REACT_APP_API_URL}
-			 /api/segmentevents/getalertsfilter?segment=${criteria.segment}&
-			 sensorId=${criteria.sensorNumber}&sensortype=${criteria.sensorType}&severity=${criteria.severity}`)
-		fetch(
-			`${process.env.REACT_APP_API_URL}
-			 /api/segmentevents/getalertsfilter?segment=${criteria.segment}&
-			 sensorId=${criteria.sensorNumber}&sensortype=${criteria.sensorType}&severity=${criteria.severity}`)
-			.then(handleErrors)
-			.then(res => res.json())
-			.then(alerts => {
-				dispatch(fetchFilteredAlertsSuccess(alerts));
-			})
-			.catch(error => dispatch(fetchFilteredAlertsFailure(error)))
-	};

@@ -29,7 +29,6 @@ export const fetchSensor = (id, date) => dispatch => {
 		.then(handleErrors)
 		.then(res => res.json())
 		.then(sensor => {
-			console.log(sensor);
 			dispatch(fetchSensorSuccess(sensor));
 		})
 		.catch(error => dispatch(fetchSensorFailure(error)));

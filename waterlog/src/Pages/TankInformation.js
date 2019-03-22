@@ -26,8 +26,11 @@ class TankInformation extends Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchTankLevelById(this.state.id);
+    setInterval(() => {
+      this.props.fetchTankLevelById(this.state.id);
+    }, 2000);
   }
 
   handleMapExpand() {
@@ -47,7 +50,7 @@ class TankInformation extends Component {
     if (error) {
       return <Error404 />;
     }
-    if (loading) {
+    if (loading && (Object.keys(level) === ['id', 'percentageLevel', 'optimalLevel', 'pumpStatus'])) {
       return <Loader />;
     }
 

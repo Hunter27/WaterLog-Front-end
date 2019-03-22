@@ -42,7 +42,7 @@ button {
 
 .bold {
 	font-weight: bold;
-	color: #C0C0C0;
+	color: #c0c0c0;
 }
 
 .wastage-info {
@@ -114,77 +114,105 @@ button {
 	color: $trout;
 }
 
-
 .usage-header {
 	display: none;
 }
 
-.status{
-	display:none;
+.status {
+	display: none;
 }
 
 @media screen and (min-width: 700px) {
-
 	body {
-		background-color:$background-color;
+		background-color: $background-color;
+		text-align: center;
 	}
 
+	.line-container {
+		height: 300px;
+	}
 	/* **************** Home screen wastage ************************** */
+	.navicons {
+		margin: 0 5%;
+		text-align: center;
+	}
 	.wastage-tank-wrapper {
-		display: flex;
-	  margin: 0 auto;
+		display: inline-block;
+		margin: 0 auto;
+		width: 100%;
+		text-align: center;
 	}
 
-  .tank img {
+	.tank img {
 		height: 138px;
 		width: 100px;
 	}
 
-	.tank-container {
-    flex: 4;
+	.head {
+		font-size: 36px;
 	}
 
-	.alerts-header{
+	.dailysubhead {
+		font-size: 36px;
+	}
+
+	.tank-container {
+		flex: 4;
+	}
+
+	.alerts-header {
 		display: none;
 	}
 
-  .status{
-		display:block;
-	}
-	
-	.tabcontent{
-		width:80%;
-		margin:0px auto;
+	.status {
+		display: block;
 	}
 
-	.map-icon-div-layer2{
-    left:80%;
-		position:absolute;
+	.tabcontent {
+		width: 80%;
+		margin: 0px auto;
+	}
+
+	.map-icon-div-layer2 {
+		left: 80%;
+		position: absolute;
 	}
 
 	.tank-wrapper {
 		display: flex;
 		flex-direction: column;
 		flex: 1;
+		margin-top: 20px;
 	}
 
 	.wastage {
-	  padding: 20px;
-    flex: 1;
+		padding: 20px;
+		flex: 1;
+		margin-left: 0px;
+		width: 50%;
+		float: left;
+		box-shadow: 2px 1.5px 10px black;
 	}
 
 	.home-text {
 		flex: 1;
 		height: 20px;
+		font-size: 31px;
+		height: 37px;
+		width: 100%;
+		font-weight: bold;
+		line-height: 37px;
+		text-align: center;
+		margin-bottom: 50px;
 	}
 
-	.wastage>p:first-child {
+	.wastage > p:first-child {
 		margin: 5px 0;
 		font-size: 20pt;
 	}
 
 	.graph-nav {
-		width: 50%;
+		width: auto;
 		margin: 0 auto;
 	}
 
@@ -194,8 +222,8 @@ button {
 		margin: 0 auto;
 	}
 
-  .leaflet-container {
-	  margin: 0 auto;
+	.leaflet-container {
+		margin: 0 auto;
 	}
 
 	.map-button-div-layer2 {
@@ -211,7 +239,7 @@ button {
 	.img-container {
 		display: inline-block;
 		width: 60%;
-		margin: 0 auto;
+		margin: 0 5%;
 	}
 
 	.alert-img {
@@ -222,24 +250,41 @@ button {
 	/* **************** Filter page ************************** */
 	.filter-contents {
 		background-color: $bg-filter;
-		width: 60%;
-		margin: 20px;
-		padding: 10px;
-		color: $trout;
+		width: 600px;
+		margin: 0 auto;
 		border-radius: 5px;
+		box-shadow: 2px 1.5px 10px black;
+	}
+
+	.filter-alert-button-div {
+		margin: 0 18.5%;
 	}
 
 	.usage-cost {
-	  overflow: hidden;
+		overflow: hidden;
 	}
 
 	.usage-header {
-	  margin-top: 80px;
-    display: block;
+		margin-top: 80px;
+		display: block;
+		text-align: center;
 	}
 
 	.tank-info .tank img {
-    height: 200px;
-    width: 148px;
-  }
+		height: 200px;
+		width: 148px;
+	}
+	.tank p {
+		font-size: 20px;
+	}
+	.tank p:nth-child(3) {
+		font-size: 20px;
+		bottom: 90px;
+	}
+}
+
+@media screen and (min-width: 700px) and (max-width: 900px) {
+	.line-container {
+		height: 200px;
+	}
 }

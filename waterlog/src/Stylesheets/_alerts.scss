@@ -72,3 +72,33 @@ td:first-child {
 	font-weight: normal;
 	padding-top: 25px;
 }
+
+.alert-row-litres{
+    display: none;
+}
+
+.alert-row-message{
+  display: none;
+}
+
+.empty{
+  display: none;
+}
+
+@media screen and (min-width: 750px){
+  .alert-row-litres{
+    display: inline;
+    float: right;
+    line-height: 25px;
+  }
+  .alert-row-message{
+    display: inline;
+    float: left;
+    line-height: 25px;
+  }
+
+  .empty {
+    display: inline;
+    content: " ";
+  }
+}

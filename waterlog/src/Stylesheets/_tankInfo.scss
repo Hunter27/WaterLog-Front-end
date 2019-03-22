@@ -93,3 +93,9 @@
 	color: #93A4AE;
 }
 
+@media screen and (min-width: 700px){
+  .wastageTank {
+    box-shadow: 2px 1.5px 10px black;
+    margin: 0 10%;
+  }
+}

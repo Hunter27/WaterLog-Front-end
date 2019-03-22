@@ -7,7 +7,10 @@ import Loader from './Loader';
 import Error404 from'./../Components/Error404'
 class TankLevels extends Component {
   componentWillMount() {
-    this.props.fetchTankLevels();
+    this.props.fetchTankLevels()
+    setInterval(() => {
+      this.props.fetchTankLevels()
+    },5000);
 	}
 
 	render() {
